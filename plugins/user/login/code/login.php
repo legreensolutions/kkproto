@@ -17,7 +17,7 @@ if ( isset ( $_GET[md5("AL")] ) && trim ( $_GET[md5("AL")] ) != ""  ){
             $login_error=$msg_email_activation_failed;
     }
 }
-if ($_POST['submit'] == "Sign In"){
+if (isset($_POST['submit']) && $_POST['submit'] == "Sign In"){
 if ( $_POST['loginname'] == "" ){
     $login_error .= $msg_empty_loginname;
 }

@@ -20,7 +20,8 @@
                     <tr>
                         
                         <td class="errormessage_login" align="center" >
-                       <?php echo $myuser->err_desc; echo $login_error ;?>
+                       <?php if(isset($myuser->err_desc)) echo $myuser->err_desc; 
+                                if(isset($login_error)) echo $login_error ;?>
                         </td>
                         
                     </tr>   

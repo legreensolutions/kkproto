@@ -3,8 +3,8 @@
 <head>
 <link rel="shortcut icon" href="images/kaffakarma/favicon.ico" type="image/x-icon" />
   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
-  <title><?php echo $title ?></title>
-  <?php echo $js ?><?php echo $css ?>
+  <title><?php if (!empty($title)) echo $title ?></title>
+  <?php if (!empty($js)) echo $js ?><?php if (!empty($css)) echo $css ?>
   <link rel="stylesheet" type="text/css" href="css/default.css"><link rel="stylesheet" type="text/css" href="css/menu.css">
 <script src="js/menu.js" language="JavaScript" type="text/JavaScript"></script>
 <?php 
@@ -33,31 +33,32 @@ if(isset($_SESSION[SESSION_TITLE.'flash_refresh_page']) && trim($_SESSION[SESSIO
     </tr>
     <tr>
       <td valign="bottom"  style="font-size:10px; text-align: right; color:#603813; ">
-       ☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕
+&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;
       </td>
     </tr>
 
 
     <tr>
       <td  style="text-align: left; ">
-		<?php echo $menu ?>
+		<?php if (!empty($menu)) echo $menu ?>
       </td>
     </tr>
     <tr>
-      <td height="350" style="vertical-align: top; background-color: #ffebda; min-height:350px"><?php echo $content.'' . $this->plugin_output  ?></td>
+      <td height="350" style="vertical-align: top; background-color: #ffebda; min-height:350px"><?php if (!empty($content)) echo $content;
+        echo $this->plugin_output;  ?></td>
     </tr>
     <tr>
-      <td valign="top"  style="font-size:10px; text-align: left; color:#603813; " > ☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕☕</td>
+      <td valign="top"  style="font-size:10px; text-align: left; color:#603813; " > &#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;&#x2615;</td>
     </tr>
     <tr>
-      <td valign="top" align="center"  id="footer" ><br/><?php echo $footer ?>&nbsp; Website
+      <td valign="top" align="center"  id="footer" ><br/><?php if (!empty($footer)) echo $footer ?>&nbsp; Website
 content
-Copyright &#169; 2008 - Kaffakarma :: <a target="_blank" href="http://kaffakarma.com">kaffakarma.com</a></td>
+Copyright &#169; 2012-2013 - Kaffakarma :: <a target="_blank" href="http://kaffakarma.com">kaffakarma.com</a></td>
     </tr>
 
   </tbody>
 </table>
 <br>
-<div style="position:absolute; width:100%; height:20px; top:10px; text-align:right; padding-right:10px; "><?php echo $language ?></div>
+<div style="position:absolute; width:100%; height:20px; top:10px; text-align:right; padding-right:10px; "><?php if (!empty($language)) echo $language ?></div>
 </body>
 </html>

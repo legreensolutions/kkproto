@@ -1,6 +1,6 @@
 <?php
-$mesg_error ="Empty Message List","Error Message";
+$mesg_error = "Error Message";
 
-$gfw_default_redirect_page = "GFW Flash Delfault redirect page";
+$gfw_default_redirect_page = "index.php";
 
 ?>

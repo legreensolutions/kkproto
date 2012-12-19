@@ -39,7 +39,7 @@
     <tr>
       <td valign="top" align="center"  id="footer" ><br/><?php echo $footer ?>&nbsp; Website
 content
-Copyright &#169; 2012 - Kaffakarma :: <a target="_blank" href="http://kaffakarma.com">kaffakarma.com</a></td>
+Copyright &#169; 2012-2013 - Kaffakarma :: <a target="_blank" href="http://kaffakarma.com">kaffakarma.com</a></td>
     </tr>
 
   </tbody>

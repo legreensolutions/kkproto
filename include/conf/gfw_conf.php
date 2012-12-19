@@ -31,5 +31,19 @@ if(!isset($_SESSION[SESSION_TITLE.'gLANGUAGE'])){
  define('CONF_NOT_PUBLISH',0);
  define('CONF_PUBLISH',1);
 
+// for gsconf
+ define('CONF_TYPE_TEXT',1);
+ define('CONF_TYPE_DYNAMIC_TEXT',2);
+ define('CONF_TYPE_MESSAGES',3);
+ define('CONF_TYPE_CAPTIONS',4);
+ define('CONF_TYPE_OBJECT_CAPTIONS',5);
+ define('CONF_TYPE_SYSTEMCONF',6);
+
+
+
+           if(!isset($_SESSION[SESSION_TITLE.'userid'])) $_SESSION[SESSION_TITLE.'userid'] = "";
+           if(!isset($_SESSION[SESSION_TITLE.'username'])) $_SESSION[SESSION_TITLE.'username'] = "";
+           if(!isset($_SESSION[SESSION_TITLE.'usertypeid'])) $_SESSION[SESSION_TITLE.'usertypeid'] = "";
+           if(!isset($_SESSION[SESSION_TITLE.'userstatusid'])) $_SESSION[SESSION_TITLE.'userstatusid'] = "";
 
 ?>

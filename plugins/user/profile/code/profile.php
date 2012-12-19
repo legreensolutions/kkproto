@@ -18,7 +18,7 @@
 
  $myimage = new Image;
 
-if ( $_POST['submit'] == $CAP_OBJ_update ) {
+if ( isset($_POST['submit']) && $_POST['submit'] == $CAP_OBJ_update ) {
 $strERR = "";
     if ( trim($_POST['txtfirstname']) == "" ){
     $strERR .= $MSG_VAL_first_name;
@@ -93,7 +93,7 @@ $strERR = "";
             exit();
         }
     }
- }elseif ( $_POST['delete'] == $CAP_OBJ_delete_image ){
+ }elseif ( isset($_POST['delete']) && $_POST['delete'] == $CAP_OBJ_delete_image ){
     $myuser = new User();
     $myuser->connection = $myconnection;
            $myuser->id = $_SESSION[SESSION_TITLE.'userid'];

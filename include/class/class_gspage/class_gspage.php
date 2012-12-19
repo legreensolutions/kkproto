@@ -34,7 +34,7 @@ class gsPage {
 
 	var $plugin_path='plugins/';
 
-	
+	var $gsconf_path='include/class/class_gsconf/';
 
 	var $plugin_output='';
 
@@ -43,10 +43,8 @@ class gsPage {
 	var $css_path='css/';
 	var $current_url ;
 
-	/* 
-	var $gsconf_path='include/class/class_gsconf/';
-	var $use_gsconf=true;
-	var $gsconf; */
+	var $use_gsconf=false;
+	var $gsconf;
 	
 	var $debug_state=false;
 	var $debug_output='';
@@ -54,10 +52,15 @@ class gsPage {
 	var $plugin ;
 
 
+        function __construct()
+        {
+
+        }
+
 	function display(){
 		
 		$title=$this->title;
-		$name=$this->name;
+		//$name=$this->name;
 		$page_name = $this->page_name;
 		$current_url = $this->current_url;
 
@@ -112,11 +115,37 @@ class gsPage {
 		}
 
 
-/*		if ($this->use_gsconf == true){
+		if ($this->use_gsconf == true){
 
-        
+			ob_start();	
+			$filename = $this->root_path.$this->gsconf_path.'class_gsconf_conf.php';
+			eval("\$filename = \"$filename\";");
+			if (file_exists($filename)) {
+				include($filename);
 
-		} */
+			}else{
+				echo 'File :: '.$filename ." not exists. <br/>";
+			}
+			$debug_output .= ob_get_contents();
+			ob_end_clean();
+
+			ob_start();	
+			$filename = $this->root_path.$this->gsconf_path.'class_gsconf.php';
+			eval("\$filename = \"$filename\";");
+			if (file_exists($filename)) {
+				include($filename);
+				
+				$this->gsconf = new gsConf;
+				$this->gsconf->connection = $myconnection;
+				
+			}else{
+				echo 'File :: '.$filename ." not exists. <br/>";
+			}
+			$debug_output .= ob_get_contents();
+			ob_end_clean();
+
+
+		}
 
 
 		ob_start();	
@@ -301,7 +330,7 @@ class gsPage {
 			$this->debug_output($this->debug_output);
 		}
 
-		include($root_path.'layouts/'.$this->layout);
+		include($this->root_path.'layouts/'.$this->layout);
 
 	}
 
@@ -309,7 +338,7 @@ class gsPage {
 	function get_plugin(){
 		
 		$title=$this->title;
-		$name=$this->name;
+		//$name=$this->name;
 		$page_name = $this->page_name;
 		$current_url = $this->current_url;
 
@@ -525,11 +554,14 @@ class gsPage {
 		}
 
 
-
+                if(!isset($css)) $css="";
+                if(!isset($js)) $js="";
 
 		$filename = $this->root_path.$this->plugin_path.$this->plugin."/css/".$this->plugin.".css";
+                        
 		eval("\$filename = \"$filename\";");
-		if (file_exists( $this->root_path.$filename)) {
+                
+		if (file_exists( $filename)) {
 			$css.='<link rel="stylesheet" type="text/css" href="'.$filename.'">';
 		}else{
 			$debug_output .= 'File :: '.$filename ." not exists <br/>";
@@ -538,7 +570,8 @@ class gsPage {
 
 		$filename = $this->root_path.$this->plugin_path.$this->plugin."/js/".$this->plugin.".js";
 		eval("\$filename = \"$filename\";");
-		if (file_exists($this->root_path.$filename)) {
+                
+		if (file_exists($filename)) {
 			$js.='<script src="'.$filename.'" language="JavaScript" type="text/JavaScript"></script>';
 		}else{
 			$debug_output .= 'File :: '.$filename ." not exists. <br/>";
@@ -647,7 +680,7 @@ class gsPage {
 			$this->debug_output($this->debug_output);
 		}
 
-		include($root_path.'layouts/'.$this->layout);
+		include($this->root_path.'layouts/'.$this->layout);
 
 	}
 
@@ -663,7 +696,7 @@ class gsPage {
 		$myconnection = $this->db_connection;
 		$page_name = $this->page_name;
 		foreach ($content_list as $content){	
-			include($root_path.$include_path.$content);	
+			include($this->root_path.$include_path.$content);	
 		}
 		$output = ob_get_contents();
 	ob_end_clean();
@@ -671,7 +704,7 @@ class gsPage {
 	}
 
 	function debug_output($debug_output){
-		echo '<div style="overflow:auto; width:100%; height:120px;background-color:#FFF87B; position:absolute;" onclick="this.style.display=\'none\';" title="Click to close Error Console">';
+		echo '<div style="overflow:auto; width:100%; height:130px;background-color:#FFF87B; position:absolute;" onclick="this.style.display=\'none\';" title="Click to close Error Console">';
 		echo '<div align="center"><span style="font-weight : bold; font-size:16px;" >Debug Window</span></div> <br/>';
 		
 		echo 'Pagename : '.$this->page_name.'<br/>';

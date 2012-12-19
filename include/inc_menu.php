@@ -73,7 +73,8 @@ GLOBAL $g_menu_Logout_page;
 				$str_menu .= "[get_link('" . $my_menu["caption"] . "','".$my_menu["url"]."')";
 			}
 
-			if ( $my_menu["submenu"] != "" ){
+
+			if ( isset($my_menu["submenu"]) && $my_menu["submenu"] != "" ){
 				$submenu = $my_menu["submenu"];
 				$str_menu .= ", null,  ";
 				GLOBAL $$submenu;

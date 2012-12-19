@@ -6,3 +6,7 @@
 
 # Ignore connection.php
 /include/connection/connection.php
+
+# Ignore ~ hidden
+*.php~
+.gitignore~

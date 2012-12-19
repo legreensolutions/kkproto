@@ -12,6 +12,8 @@ $page = new gsPage;
 	$page->page_name = 'index';		// page name for menu and other purpose
 	$page->layout = 'default.html';		// layout name
 
+        $page->use_gsconf = true;                 // enable GS conf
+
     $page->conf_list = array("conf.php");
     $page->menuconf_list = array("menu_conf.php");
 	$page->connection_list = array("connection.php");

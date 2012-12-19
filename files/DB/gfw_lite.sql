@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.7deb6
+-- version 3.4.11.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 18, 2011 at 03:20 AM
--- Server version: 5.1.58
--- PHP Version: 5.3.6-6~dotdeb.1
+-- Generation Time: Dec 18, 2012 at 06:50 AM
+-- Server version: 5.5.28
+-- PHP Version: 5.4.6-1ubuntu1.1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -16,8 +17,22 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `gfw_lite`
+-- Database: `kaffakarma`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` text,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -63,45 +78,7 @@ CREATE TABLE IF NOT EXISTS `configurations` (
   PRIMARY KEY (`id`),
   KEY `page_id` (`page_id`,`language_id`),
   KEY `configurationtype_id` (`configurationtype_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
-
---
--- Dumping data for table `configurations`
---
-
-INSERT INTO `configurations` (`id`, `configuration_name`, `page_id`, `value`, `description`, `language_id`, `configurationtype_id`, `publish`) VALUES
-(1, 'g_msg_unauthorized_request ', 10, '<strong>Unauthorized Page Request</strong><br/> <br/> You are not authorized to access this page. This attempt will be reported to the system Administrator. ', 'Message for Unauthorized Page Request', 1, 3, 0),
-(2, 'g_msg_unauthorized_request_redirect_page', 10, 'index.php', 'Unauthorized Page Request Delfault redirect page', 1, 6, 0),
-(3, 'g_orgname', 10, 'Le Greens', 'This is Organisation Name', 1, 6, 0),
-(4, 'obj_select_default_text', 10, 'Choose from list..', 'This is Select object default text', 1, 6, 0),
-(5, 'g_menu_Login', 10, 'Login', '', 1, 5, 0),
-(6, 'g_menu_Logout', 10, 'Logout', '', 1, 5, 0),
-(7, 'g_menu_Logout_page', 10, 'logout.php', '', 1, 5, 0),
-(8, 'g_menu_home', 20, 'Home', '', 1, 5, 0),
-(9, 'g_menu_GFW Menu', 20, 'GFW Menu', '', 1, 5, 0),
-(10, 'g_menu_user_menu', 20, 'User Menu', '', 1, 5, 0),
-(11, 'g_menu_guestbook', 20, 'Guest Book', '', 1, 5, 0),
-(12, 'g_menu_download', 20, 'Downloads', '', 1, 5, 0),
-(13, 'g_menu_Sign Up', 20, 'Sign Up', '', 1, 5, 0),
-(14, 'g_menu_Search Conf', 20, 'Search Conf', '', 1, 5, 0),
-(15, 'g_menu_Publish Conf (ALL)', 20, 'Publish Conf (ALL)', '', 1, 5, 0),
-(16, 'g_menu_Import Conf', 20, 'Import Conf', '', 1, 5, 0),
-(17, 'g_menu_Settings', 20, 'Settings', '', 1, 5, 0),
-(18, 'g_menu_Languages', 20, 'Languages', '', 1, 5, 0),
-(19, 'g_menu_Add Language', 20, 'Add Language', '', 1, 5, 0),
-(20, 'g_menu_Images', 20, 'Images', '', 1, 5, 0),
-(21, 'g_backup', 20, 'Backup Data', '', 1, 5, 0),
-(22, 'g_restore', 20, 'Restore Data', '', 1, 5, 0),
-(23, 'g_menu_Profile', 20, 'Profile', '', 1, 5, 0),
-(24, 'g_menu_Change Password', 20, 'Change Password', '', 1, 5, 0),
-(25, 'g_menu_Add Security Question', 20, 'Add Security Question', '', 1, 5, 0),
-(26, 'g_menu_Search Security Question', 20, 'Search Security Question', '', 1, 5, 0),
-(27, 'g_menu_Add User', 20, 'Add User', '', 1, 5, 0),
-(28, 'g_menu_User List', 20, 'User List', '', 1, 5, 0),
-(29, 'download_menu_source', 20, 'Download Source', '', 1, 5, 0),
-(30, 'download_menu_db', 20, 'Download DB', '', 1, 5, 0),
-(31, 'guestbook_menu_admin_list_guestbooks', 20, 'List Guest Book', '', 1, 5, 0),
-(32, 'index_content', 6, 'Hi <br/><br/><br />\n<br />\nThis is <A href="http://www.legreensolutions.com" target="_blank">LegreenSolutions</A> first attempt to create simple FrameWork called <strong>"Green FrameWork"</strong>. This is not a complete frame work like CAKE PHP, CI, etc... Here we try to separate presentation layer from coding, there by simplifying programmers and designers jobs. We tried to create a system which help the administrator to edit the static text, messages (both info and error) online. No need to edit the code !!!. <strong>"Green FrameWork"</strong> also support multi-language (for static text and messages only)<br/><br />\n<br />\nThis project is under testing. We would like to invite your suggestion to make this effort successful.<br/><br/><br />\n<br />\n<br />\nPlease clone Git Repository for testing<br/><br />\n---------------------------------------<br/> <br/><br />\ngit clone git://github.com/pramodgmenon/GreenFrameWork.git<br/> <br/><br />\n<br />\n<strong>Other Products used:</strong><br/> <br/><br />\n<br />\n1)&nbsp;<A href="http://gurtom.com/products/menus/js" target="_blank">Gurt JavaScript Menu</A><br/><br />\n2)&nbsp;<A href="http://tinymce.moxiecode.com" target="_blank">TinyMCE Javascript Content Editor</A><br/><br/><br/><br />\n<br />\nRegards,<br/><br />\nTeam LegreenSolutions.<br />\n', '', 1, 1, 0);
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -394,6 +371,59 @@ INSERT INTO `countries` (`id`, `country`, `country_name`, `iso2`, `iso3`, `numer
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `customers`
+--
+
+CREATE TABLE IF NOT EXISTS `customers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `address` text NOT NULL,
+  `state_id` int(11) NOT NULL,
+  `country_id` int(11) NOT NULL,
+  `postal_code` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `state_id` (`state_id`,`country_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `items`
+--
+
+CREATE TABLE IF NOT EXISTS `items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` text,
+  `item_status_id` int(11) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `keywords` text,
+  `unit_price` double NOT NULL,
+  `tax_item` double NOT NULL,
+  `tax_shipping` double NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`),
+  KEY `item_status_id` (`item_status_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `itemstatuses`
+--
+
+CREATE TABLE IF NOT EXISTS `itemstatuses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` text,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `languages`
 --
 
@@ -438,11 +468,6 @@ CREATE TABLE IF NOT EXISTS `messages` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `messages`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -465,6 +490,38 @@ INSERT INTO `messagetypes` (`id`, `messagetype_name`, `description`) VALUES
 (2, 'Messageboard', ''),
 (3, 'Quickcontact', ''),
 (4, 'Forum', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orderitems`
+--
+
+CREATE TABLE IF NOT EXISTS `orderitems` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `quantity` double NOT NULL,
+  `unit_price` double NOT NULL,
+  `tax_item` double NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `order_id` (`order_id`,`item_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` datetime NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `tax_shipping` double NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `customer_id` (`customer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -614,6 +671,19 @@ INSERT INTO `states` (`id`, `state_name`, `statecode`, `country_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `useritems`
+--
+
+CREATE TABLE IF NOT EXISTS `useritems` (
+  `user_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `unit_price` double NOT NULL,
+  KEY `user_id` (`user_id`,`item_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -696,3 +766,7 @@ INSERT INTO `usertypes` (`id`, `usertype_name`, `description`, `loggedin_page`) 
 (1, 'Admin', 'Administrator', 'profile.php'),
 (2, 'Employee', 'Employee', 'profile.php'),
 (3, 'User', 'Registered User', 'profile.php');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

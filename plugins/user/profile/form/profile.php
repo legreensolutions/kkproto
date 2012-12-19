@@ -9,7 +9,8 @@
 
                 <tr>
                     <td colspan="2" align="center" class="errormessage">
-                    <?php echo $myuser->err_desc;echo $strERR;?><br /><br />
+                    <?php if(isset($myuser->err_desc)) echo $myuser->err_desc;
+                        if(isset($strERR)) echo $strERR;?><br /><br />
                     </td>
                 </tr>
                 <tr>
