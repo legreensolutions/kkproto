@@ -10,7 +10,7 @@ $page = new gsPage;
 	$page->current_url = $current_url;	// current url for pages
 	$page->title = "Kaffakarma.com";	// page Title
 	$page->page_name = 'login';		// page name for menu and other purpose
-	$page->layout = 'default.html';		// layout name
+	$page->layout = 'k_coffee.html';		// layout name
 
     $page->conf_list = array("conf.php");
     $page->menuconf_list = array("menu_conf.php");
@@ -24,8 +24,8 @@ $page = new gsPage;
 	$content_list[$index]['file_name']='inc_language.php';
 	$content_list[$index]['var_name']='language';
 	$index++;
-	$content_list[$index]['file_name']='inc_menu.php';
-	$content_list[$index]['var_name']='menu';
+	$content_list[$index]['file_name']='inc_left_menu.php';
+	$content_list[$index]['var_name']='left_menu';
 
 	$page->content_list = $content_list;
 

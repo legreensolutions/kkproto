@@ -8,10 +8,9 @@ require(ROOT_PATH.'include/class/class_gspage/class_gspage.php');	// new Page Cl
 $page = new gsPage;
 	
 	$page->current_url = $current_url;	// current url for pages
-	$page->title = "Kaffakarma.com";	// page Title
-	$page->page_name = 'index';		// page name for menu and other purpose
-	$page->layout = 'k_coffee.html';		// layout name
-
+	$page->title = "Green FrameWork";	// page Title
+	$page->page_name = 'gsconf_search';		// page name for menu and other purpose
+	$page->layout = 'default.html';		// layout name
         $page->use_gsconf = true;                 // enable GS conf
 
         $page->conf_list = array("conf.php");
@@ -19,18 +18,19 @@ $page = new gsPage;
 	$page->connection_list = array("connection.php");
 
 	$page->function_list = array("functions.php");
-	$page->class_list = array("class_user.php");
-	$page->pageconf_list = array("index.php");
+	$page->class_list = array("class_gspagination.php","class_user.php");
 
 	$index=0;
-	$content_list[$index]['file_name']='inc_left_menu.php';
-	$content_list[$index]['var_name']='left_menu';
+	$content_list[$index]['file_name']='inc_language.php';
+	$content_list[$index]['var_name']='language';
 	$index++;
-	$content_list[$index]['file_name']='inc_index.php';
-	$content_list[$index]['var_name']='content';
+	$content_list[$index]['file_name']='inc_menu.php';
+	$content_list[$index]['var_name']='menu';
 
 	$page->content_list = $content_list;
 
 
-	$page->display(); //completed page with dynamic cintent will be displayed
+	$page->plugin_path = 'plugins/gsconf/'; 
+	$page->plugin = 'gsconf_search';
+	$page->get_plugin(); //completed pluggin with dynamic content will be displayed
 ?>

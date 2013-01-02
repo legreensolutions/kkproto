@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <title><?php if (!empty($title)) echo $title ?></title>
+  <?php if (!empty($js)) echo $js ?><?php if (!empty($css)) echo $css ?>
+  <head><link href="css/k_coffee.css" rel="stylesheet" type="text/css"></head>
+
+  <body>
+    <div id="outer-container">
+      <div id="body">
+            <div id="top-bar"></div>
+    
+            <div id="facebook_left"></div>
+            <div id="twitter"></div>
+            <div id="facebook"></div>
+            <div id="facebook_right"></div>
+            <div style="clear:both;"></div>
+
+            <div id="logo_left"></div>
+            <div id="logo"></div>
+            <div id="logo-right"></div>
+            <div style="clear:both;"></div>
+
+            <div id="open_new_account_left"></div>
+            <div id="open_new_account"></div>
+            <div style="clear:both;"></div>
+
+            <div id="search_left"></div>
+            <div id="search_box"><input type="text" id= "search"/></div>            
+            <div id="search_button"></div>
+            <div id="search_button_right"></div>   
+            <div style="clear:both;"></div>
+
+
+            <div id="login_left"></div>
+            <div id="login"></div>   
+            <div id="login_right"></div>
+            <div style="clear:both;"></div>
+
+            <div id="bar_above_content"></div>
+
+            <div id="left-menu">
+<?php if (!empty($left_menu)) echo $left_menu ?>
+
+            </div><!-- Menu end -->
+          
+            <div id="content-area">
+<?php if (!empty($content)) echo $content;
+        echo $this->plugin_output;  ?>
+          
+
+
+
+            <br /><br /><br /><br /><br /><br />
+            <hr />
+            &copy; KaffaKarma.com. All rights reserved.
+        
+            </div>
+
+    </div><!-- body -->
+  </div><!-- Outer container-->
+</body>
+
+</html>

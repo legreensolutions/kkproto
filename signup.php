@@ -7,29 +7,29 @@ require(ROOT_PATH.'include/class/class_gspage/class_gspage.php');   // new Page 
 
 $page = new gsPage;
     
-    $page->current_url = $current_url;  // current url for pages
-    $page->title = "Kaffakarma.com";   // page Title
-    $page->page_name = 'signup';     // page name for menu and other purpose
-    $page->layout = 'default.html';     // layout name
+        $page->current_url = $current_url;  // current url for pages
+        $page->title = "Kaffakarma.com";   // page Title
+        $page->page_name = 'signup';     // page name for menu and other purpose
+        $page->layout = 'k_coffee.html';     // layout name
 
-    $page->conf_list = array("conf.php");
-    $page->menuconf_list = array("menu_conf.php");
+        $page->conf_list = array("conf.php");
+        $page->menuconf_list = array("menu_conf.php");
 
-    $page->connection_list = array("connection.php",);
+        $page->connection_list = array("connection.php",);
 
-    $page->function_list = array("functions.php","image.php");
-    $page->class_list = array("class_user.php","class_securityquestion.php","class_country.php","class_city.php","class_image.php");
+        $page->function_list = array("functions.php","image.php");
+        $page->class_list = array("class_user.php","class_securityquestion.php","class_country.php","class_city.php","class_image.php");
 
-    $index=0;
-    $content_list[$index]['file_name']='inc_language.php';
-    $content_list[$index]['var_name']='language';
-    $index++;
-    $content_list[$index]['file_name']='inc_menu.php';
-    $content_list[$index]['var_name']='menu';
+        $index=0;
+        $content_list[$index]['file_name']='inc_language.php';
+        $content_list[$index]['var_name']='language';
+        $index++;
+        $content_list[$index]['file_name']='inc_left_menu.php';
+        $content_list[$index]['var_name']='left_menu';
 
-    $page->content_list = $content_list;
+        $page->content_list = $content_list;
 
-    $page->plugin_path = 'plugins/user/'; 
-    $page->plugin = 'signup';
-    $page->get_plugin(); //completed pluggin with dynamic content will be displayed
+        $page->plugin_path = 'plugins/user/'; 
+        $page->plugin = 'signup';
+        $page->get_plugin(); //completed pluggin with dynamic content will be displayed
 ?>                                `
