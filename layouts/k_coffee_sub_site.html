@@ -1,0 +1,46 @@
+<html>
+  <title><?php if (!empty($title)) echo $title ?></title>
+  <?php if (!empty($js)) echo $js ?><?php if (!empty($css)) echo $css ?>
+  <head><link href="../css/k_coffee_sub_site.css" rel="stylesheet" type="text/css"></head>
+
+  <body>
+    <div id="outer-container">
+      <div id="body">
+
+
+            <div id = "logo"></div>
+            <div id = "sub_site_logo"></div>
+
+            <div id = "top_right">
+              <div id = "top_right_1">Login</div>
+              <div id = "top_right_2">Profile</div>
+            </div>
+        
+              <div id = "sub_site_name_left"></div>
+              <div id = "sub_site_name">LeGreenSolutions</div>
+              <div id = "sub_site_name_right"></div>
+
+              <div id = "equipments_removed"></div>
+
+
+  
+            <div id="left-menu">
+<?php if (!empty($left_menu)) echo $left_menu ?>
+
+            </div><!-- Menu end -->
+          
+            <div id="content-area">
+<?php if (!empty($content)) echo $content;
+        echo $this->plugin_output;  ?>
+        
+            <div style="clear:both"></div>
+            <div id="copy_right"><hr />&copy; KaffaKarma.com. All rights reserved.</div>
+            
+        
+            </div>
+
+    </div><!-- body -->
+  </div><!-- Outer container-->
+</body>
+
+</html>
