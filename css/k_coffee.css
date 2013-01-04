@@ -135,10 +135,10 @@ body {
   height:65px;     
   float:left;
 }
-#login:hover {
+#login:hover, a div#login:visited {
   background-image:url('../images/k_coffee/_login.png');  
+  color:#fff;
 }
-
 #login_right {
   background-image:url('../images/k_coffee/login_right.png');  
   width:32px;
@@ -229,17 +229,17 @@ body {
 
 #fund_raiser_button {
   background-image:url('../images/k_coffee/fund_raiser_button.png');   
-  height:102px;
-  width:236px;
+  height:104px;
+  width:146px;
   float:left;
 }
 #fund_raiser_button:hover {
-  background-image:url('../images/k_coffee/_fund_raiser_button.png');   
+  background-image:url('../images/k_coffee/_fund_raiser_button.png');   6
 }
 #equipments_big_button {
   background-image:url('../images/k_coffee/equipments_big_button.png');   
-  height:102px;
-  width:240px;
+  height:104px;
+  width:146px;
   float:left;
 }
 #equipments_big_button:hover {
@@ -250,153 +250,8 @@ body {
   margin-top:4px;
 }
 
-
-/* ------------------ */
-
-/*
-#heading-left {
-  width:600px;
-  height:259px;
-  background-image:url('../images/k_coffee/heading-left.png');
-  float:left;
-}
-#open_my_account {
-  float:left;
-  width:82px;
-  height:259px;
-  background-image:url('../images/k_coffee/open_my_account.png'); 
-}
-#open_my_account:hover {
-  float:left;
-  width:82px;
-  height:259px;
-  background-image:url('../images/k_coffee/_open_my_account.png'); 
-}
-#login_and_profile {
-  float:left;
-  width:119px;
-  height:257px;
-}
-
-#login {
-  width:119px;
-  height:132px;
-  background-image:url('../images/k_coffee/login.png'); 
-}
-#login:hover {
-  background-image:url('../images/k_coffee/_login.png'); 
-}
-
-#profile {
-  width:119px;
-  height:127px;
-  background-image:url('../images/k_coffee/profile.png'); 
-}
-#profile:hover {
-  background-image:url('../images/k_coffee/_profile.png'); 
-}
-
-#top_full_width {
-  float:left;
-  width:626px;
-  height:63px;
-  background-image:url('../images/k_coffee/top_full_width.png'); 
-  
-}
-#equipments {
-  float:left;
-  width:174px;
-  height:63px;
-  background-image:url('../images/k_coffee/equipments.png');  
-}
-#equipments:hover {
-  float:left;
-  width:174px;
-  height:63px;
-  background-image:url('../images/k_coffee/_equipments.png');  
-}
-
-
-#left-menu {
-  width:203px;
-  height:316px;
-  height:816px;
-  float:left;
-}
-
-#m_bottom {
-  width:203px;
-  height:316px;
-  background-image:url('../images/k_coffee/bottom_left.png');   
-}
-#m1, #m2, #m3, #m4, #m5, #m6, #m7 {
-  clear:both;
-  width:203px;
-  height:45px;
-  text-align:right;
+#search_box input#search {
+  color:brown;
   font-family:"Times New Roman",Georgia,Serif;
-  font-style:italic;
-  font-size:20px;
-} 
-
-#m1 {
-  background-image:url('../images/k_coffee/m1.png');   
+  font-size:14px;  
 }
-#m1:hover {
-  background-image:url('../images/k_coffee/_m1.png');   
-}
-#m2 {
-  background-image:url('../images/k_coffee/m2.png');   
-}
-#m2:hover {
-  background-image:url('../images/k_coffee/_m2.png');   
-}
-#m3 {
-  background-image:url('../images/k_coffee/m3.png');   
-}
-#m3:hover {
-  background-image:url('../images/k_coffee/_m3.png');   
-}
-#m4 {
-  background-image:url('../images/k_coffee/m4.png');   
-}
-#m4:hover {
-  background-image:url('../images/k_coffee/_m4.png');   
-}
-#m5 {
-  background-image:url('../images/k_coffee/m5.png');   
-}
-#m5:hover {
-  background-image:url('../images/k_coffee/_m5.png');   
-}
-#m6 {
-  background-image:url('../images/k_coffee/m6.png');   
-}
-#m6:hover {
-  background-image:url('../images/k_coffee/_m6.png');   
-}
-#m7 {
-  background-image:url('../images/k_coffee/m7.png');   
-}
-#m7:hover {
-  background-image:url('../images/k_coffee/_m7.png');   
-}
-#bottom-left {
-  background-image:url('../images/k_coffee/bottom_left.png');   
-  height:363px;
-  width:203px;
-
-}
-
-
-h1 {
-  position:absolute;
-  top:220px;
-  left:500px;
-  color:#da863d;
-  font-size:14px;
-  
-}
-
-
-*/

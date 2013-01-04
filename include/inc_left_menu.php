@@ -1,8 +1,8 @@
-<div id="m1">Home</div>
-<div id="m2">About the Coffee</div>
-<div id="m3">About us</div>
-<div id="m4">FAQ</div>
-<div id="m5">Contact us</div>
+<a href="index.php"><div id="m1">Home</div></a>
+<a href="about_the_coffee.php"><div id="m2">About the Coffee</div></a>
+<a href="aboutus.php"><div id="m3">About us</div></a>
+<a href="faq.php"><div id="m4">FAQ</div></a>
+<a href="contact_us.php"><div id="m5">Contact us</div></a>
 <div id="m_bottom"></div>
 
     <div id="bottom-left"></div>
