@@ -23,6 +23,8 @@ class gsPage {
 	var $css_list = array();
 	var $function_list = array();
 
+        var $access_list = array();
+
 	var $root_path='./';
 	var $connection_path='include/connection/';
 	var $conf_path='include/conf/';
@@ -96,6 +98,40 @@ class gsPage {
 			}
 			
 		}
+
+
+
+
+
+        if(count($this->access_list) > 0){
+                $chk == false;
+                foreach ($this->access_list as $user_typeid){
+
+                        if ( isset($_SESSION[SESSION_TITLE.'userid']) && $_SESSION[SESSION_TITLE.'userid'] > 0 ) {
+                                if ( constant($user_typeid) == $_SESSION[SESSION_TITLE.'usertypeid']){
+                                        $chk = true;
+                                }
+                        }
+
+                }
+
+                 if ( $chk == false ){
+                            $_SESSION[SESSION_TITLE.'flash'] = $g_msg_unauthorized_request;
+                            $_SESSION[SESSION_TITLE.'flash_redirect_page'] = $g_msg_unauthorized_request_redirect_page;
+                            header( "Location: gfwflash.php");
+                            exit();
+                 }
+
+
+        }
+			
+	
+
+
+
+
+
+
 
 
 		if(count($this->connection_list) > 0){
@@ -369,6 +405,42 @@ class gsPage {
 			}
 			
 		}
+
+
+
+
+
+
+
+
+        if(count($this->access_list) > 0){
+                $chk == false;
+                foreach ($this->access_list as $user_typeid){
+
+                        if ( isset($_SESSION[SESSION_TITLE.'userid']) && $_SESSION[SESSION_TITLE.'userid'] > 0 ) {
+                                if ( constant($user_typeid) == $_SESSION[SESSION_TITLE.'usertypeid']){
+                                       $chk = true;
+                                }
+                        }
+
+                }
+
+                 if ( $chk == false ){
+                            $_SESSION[SESSION_TITLE.'flash'] = $g_msg_unauthorized_request;
+                            $_SESSION[SESSION_TITLE.'flash_redirect_page'] = $g_msg_unauthorized_request_redirect_page;
+                            header( "Location: gfwflash.php");
+                            exit();
+                 }
+
+
+        }
+
+
+
+
+
+
+
 
 		if(count($this->connection_list) > 0){
 			foreach ($this->connection_list as $connection_file){

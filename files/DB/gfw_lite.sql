@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 18, 2012 at 06:50 AM
+-- Generation Time: Jan 03, 2013 at 03:06 PM
 -- Server version: 5.5.28
 -- PHP Version: 5.4.6-1ubuntu1.1
 
@@ -78,7 +78,41 @@ CREATE TABLE IF NOT EXISTS `configurations` (
   PRIMARY KEY (`id`),
   KEY `page_id` (`page_id`,`language_id`),
   KEY `configurationtype_id` (`configurationtype_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+
+--
+-- Dumping data for table `configurations`
+--
+
+INSERT INTO `configurations` (`id`, `configuration_name`, `page_id`, `value`, `description`, `language_id`, `configurationtype_id`, `publish`) VALUES
+(1, 'DYNAMIC_INDEX_CONTENT', 6, 'Hi <br/><br/><br />\n<br />\nThis is <A href="http://www.legreensolutions.com" target="_blank">LegreenSolutions</A> first attempt to create simple FrameWork called <strong>"Green FrameWork Lite"</strong>. This is not a complete frame work like CAKE PHP, CI, etc... Here we try to separate presentation layer from coding, there by simplifying programmers and designers jobs. <br/><br />\n<br />\nThis project is under testing. We would like to invite your suggestion to make this effort successful.<br/><br/><br />\n<br />\n<br />\nPlease clone Git Repository for testing<br/><br />\n---------------------------------------<br/> <br/><br />\ngit clone git@github.com:pramodgmenon/GreenFrameWorkLite.git<br/> <br/><br />\n<br />\n<strong>Other Products used:</strong><br/> <br/><br />\n<br />\n1)&nbsp;<A href="http://gurtom.com/products/menus/js" target="_blank">Gurt JavaScript Menu</A><br/><br />\n<br />\nRegards,<br/><br />\nTeam LegreenSolutions.<br />\n', 'Dynamic index content', 1, 2, 0),
+(2, 'conf_page_caption', 9, 'G&nbsp;&nbsp;F&nbsp;&nbsp;W&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;&nbsp;e&nbsp;&nbsp;t&nbsp;&nbsp;t&nbsp;&nbsp;i&nbsp;&nbsp;n&nbsp;&nbsp;g&nbsp;&nbsp;s', '', 1, 4, 0),
+(3, 'conf_show_debug_window', 9, 'Show Debug Window', 'caption Show Debug Window', 1, 4, 0),
+(4, 'conf_enable_online_editting', 9, 'Enable Online Editing', 'caption enable online editing', 1, 4, 0),
+(5, 'conf_enable_gallery', 9, 'View Gallery with Editor ', '', 1, 4, 0),
+(6, 'conf_language', 9, 'Language', 'caption language', 1, 4, 0),
+(7, 'msg_update_success', 9, 'Configuration successfully updated', 'Message on successfull update', 1, 3, 0),
+(8, 'msg_update_success_redirect_page', 9, 'gsconf_settings.php', 'Redirect page on sucessfull update', 1, 6, 0),
+(9, 'msg_update_failed', 9, 'Configuration update failed', 'Message on update failed', 1, 3, 0),
+(10, 'msg_update_failed_redirect_page', 9, 'gsconf_settings.php', 'Redirect page on update failed', 1, 6, 0),
+(11, 'conf_submit_update', 9, 'Update', 'caption submit update', 1, 5, 0),
+(12, 'gallery_path', 2, 'images/gallery', '', 1, 6, 0),
+(13, 'CAPGallery', 2, 'Gallery', '', 1, 6, 0),
+(14, 'errmsg_invalid_id', 2, 'Invalid Id, Please contact System Admin', 'Invalid conf Id', 1, 3, 0),
+(15, 'errmsg_invalid_id_redirect_page', 2, 'index.php', 'Redirect page on invalid Configuration ID', 1, 6, 0),
+(16, 'msg_update_success', 2, 'Configuration successfully updated', 'Message on successfull update', 1, 3, 0),
+(17, 'msg_update_success_redirect_page', 2, 'gsconf_search.php', 'Redirect page on sucessfull update', 1, 6, 0),
+(18, 'msg_update_failed', 2, 'Configuration update failed', 'Message on update failed', 1, 3, 0),
+(19, 'msg_update_failed_redirect_page', 2, 'gsconf_search.php', 'Redirect page on update failed', 1, 6, 0),
+(20, 'msg_delete_success', 2, 'Configuration successfully deleted', 'Message on successfull delete', 1, 3, 0),
+(21, 'msg_delete_success_redirect_page', 2, 'gsconf_search.php', 'Redirect page on sucessfull delete', 1, 6, 0),
+(22, 'msg_delete_failed', 2, 'Configuration delete failed', 'Message on delete failed', 1, 3, 0),
+(23, 'R D Page delete failed', 2, 'gsconf_search.php', 'Redirect page on delete failed', 1, 6, 0),
+(24, 'conf_publish', 2, 'Publish', 'caption Publish', 1, 5, 0),
+(25, 'conf_submit_update', 2, 'Update', 'caption submit update', 1, 5, 0),
+(26, 'conf_submit_delete', 2, 'Delete', 'caption submit delete', 1, 5, 0),
+(27, 'index', 34, 'Dynamic index content', '', 1, 2, 0),
+(28, 'dynamic_index_content', 6, 'Hi <br/><br/><br />\n<br />\nThis is <A href="http://www.legreensolutions.com" target="_blank">LegreenSolutions</A> first attempt to create simple FrameWork called <strong>"Green FrameWork Lite"</strong>. This is not a complete frame work like CAKE PHP, CI, etc... Here we try to separate presentation layer from coding, there by simplifying programmers and designers jobs. <br/><br />\n<br />\nThis project is under testing. We would like to invite your suggestion to make this effort successful.<br/><br/><br />\n<br />\n<br />\nRegards,<br/><br />\nTeam LegreenSolutions.<br />\n', 'Dynamic index content', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -516,10 +550,17 @@ CREATE TABLE IF NOT EXISTS `orderitems` (
 
 CREATE TABLE IF NOT EXISTS `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date` datetime NOT NULL,
+  `order_number` varchar(255) DEFAULT NULL,
+  `order_date` datetime NOT NULL,
   `customer_id` int(11) NOT NULL,
   `tax_shipping` double NOT NULL,
+  `order_amount` double(10,2) DEFAULT '0.00',
+  `order_status` char(1) DEFAULT '1',
+  `paymentoption` char(1) NOT NULL DEFAULT 'I',
+  `paymentdate` datetime DEFAULT NULL,
+  `paymentdetail` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `order_number` (`order_number`,`order_date`),
   KEY `customer_id` (`customer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -533,7 +574,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `page_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
 
 --
 -- Dumping data for table `pages`
@@ -572,7 +613,25 @@ INSERT INTO `pages` (`id`, `page_name`) VALUES
 (30, 'admin_list_guestbooks'),
 (31, 'admin_list_guestbookst'),
 (32, 'admin_view_books'),
-(33, 'aboutus');
+(33, 'aboutus'),
+(34, 'Hi <br/><br/><br />\n<br />\nThis is <A href="http://www.legreensolutions.com" target="_blank">LegreenSolutions</A> first attempt to create simple FrameWork called <strong>"Green FrameWork Lite"</strong>. This is not a complete frame work like CAKE PHP, CI,');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `paypal`
+--
+
+CREATE TABLE IF NOT EXISTS `paypal` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `txn_id` varchar(255) DEFAULT NULL,
+  `txn_date` datetime NOT NULL,
+  `txn_type` varchar(255) DEFAULT NULL,
+  `payment_status` varchar(255) DEFAULT NULL,
+  `notification` text NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
