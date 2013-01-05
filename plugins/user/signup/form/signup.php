@@ -92,11 +92,10 @@
                   ?>
                   </td>
                 </tr>
-                <tr>
+                <tr colspan="2">
                     <td  valign="bottom" align="right" class="passwd_caption"  width="50%">
                         <b><?php echo $CAP_image ?></b>
-                    </td>
-                    <td  width="50%"><input type="file" name="fleimage" id="fleimage" size="30" />
+<input type="file" name="fleimage" id="fleimage" size="30" />
                     </td>
                 </tr>
                 <tr>

@@ -255,3 +255,16 @@ body {
   font-family:"Times New Roman",Georgia,Serif;
   font-size:14px;  
 }
+#content-area form#frmsignup table tbody tr td select {
+  width:200px;
+  
+}
+#frmsignup table tbody tr td input#fleimage {
+  width:100px; 
+}
+h1 {
+  font-family:"Times New Roman",Georgia,Serif;
+  font-size:18px;
+  color:#dd8b52;    
+}
+
