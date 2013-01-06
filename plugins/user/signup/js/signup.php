@@ -1,3 +1,30 @@
+$(function() {
+$("#chk").click(function() {
+    // getting the value that user typed
+    var checkString    = $("#txtusername").val();
+    // forming the queryString
+    var data            = 'user='+ checkString;
+
+    // if checkString is not empty
+    if(checkString) {
+        // ajax call
+        $.ajax({
+            type: "POST",
+            url: "user_name_check.php",
+            data: data,
+            beforeSend: function(html) { // this happen before actual call
+                $("#results").html('');
+            },
+            success: function(html){ // this happen after we get result
+                $("#results").show();
+                $("#results").append(html);
+            }
+        });
+}
+return false;
+});
+});
+
     <!--
     function Trim(strInput) {
     while (true) {
@@ -92,7 +119,7 @@ function get_captcha_image(){
     if(http_captcha.readyState == 4){ //Finished loading the response
         var response = http_captcha.responseText;
         document.getElementById("div_captcha").innerHTML=response;
-    
+
     }
 
 }
@@ -104,3 +131,4 @@ function get_captcha_image(){
             if( result == false)
             error += "<?php echo $MSG_invalid_filename?>\n";
         }*/?>
+

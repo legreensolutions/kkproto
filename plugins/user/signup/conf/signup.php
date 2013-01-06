@@ -58,7 +58,7 @@ $CAP_sec_que = "Security Question";
 $CAP_sec_ans = "Security Answer";
 
 $CAP_submit = "Submit";
-
+$CAP_check = "Check";
 
 
 
@@ -79,4 +79,7 @@ $MSG_image_uploaded = "Image uploaded & renamed";
 
 $MSG_image_err_upload = "Error while renaming the uploaded files. Contact administrator";
 
+
+
 ?>
+

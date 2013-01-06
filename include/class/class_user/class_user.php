@@ -96,7 +96,7 @@ class User {
             }else{
                 if ( $this->usertype_id == $_SESSION[SESSION_TITLE.'usertypeid']){
                         return true;
-                    
+
                 }else{
                         return false;
                 }
@@ -239,7 +239,7 @@ class User {
                 Here is your new password for ".$g_orgname.". <br><br>
                 Your Username: " . $this->user_name . "<br>
                 Your Password: " . $password . "<br /><br /><br />
-                
+
                 Thanks,<br /><br />
                 ".$g_orgname."<br />";
                 // send password to user
@@ -367,56 +367,56 @@ class User {
                 $str_condition = " user_name  LIKE '%" . $username . "%'" ;
             }else{
                 $str_condition .= " AND user_name  LIKE '%" . $username . "%'" ;
-            } 
+            }
         }
         if ($firstname != "" ) {
             if (trim($str_condition) =="") {
                 $str_condition = " firstname  LIKE '%" . $firstname . "%'" ;
             }else{
                 $str_condition .= " AND firstname  LIKE '%" . $firstname . "%'" ;
-            } 
+            }
         }
         if ($lastname != "" ) {
             if (trim($str_condition) =="") {
                 $str_condition = " lastname  LIKE '%" . $lastname . "%'" ;
             }else{
                 $str_condition .= " AND lastname  LIKE '%" . $lastname . "%'" ;
-            } 
+            }
         }
         if ($address != "" ) {
             if (trim($str_condition) =="") {
                 $str_condition = " address  LIKE '%" . $address . "%'" ;
             }else{
                 $str_condition .= " AND address  LIKE '%" . $address . "%'" ;
-            } 
+            }
         }
         if ( $city != "" ) {
             if (trim($str_condition) =="") {
                 $str_condition = " C.city_name LIKE '%" . $city . "%'" ;
             }else{
                 $str_condition .= " C.city_name LIKE '%" . $city;
-            } 
+            }
         }
         if ( $country != "" && $country != -1 ) {
             if (trim($str_condition) =="") {
                 $str_condition = " U.country_id = " . $country;
             }else{
                 $str_condition .= " AND U.country_id = " . $country;
-            } 
+            }
         }
         if ( $usertype != "" && $usertype != -1 ) {
             if (trim($str_condition) =="") {
                 $str_condition = " usertype_id = " . $usertype;
             }else{
                 $str_condition .= " AND usertype_id = " . $usertype;
-            } 
+            }
         }
         if ( $userstatus != "" && $userstatus != -1 ) {
             if (trim($str_condition) =="") {
                 $str_condition = " userstatus_id = " . $userstatus;
             }else{
                 $str_condition .= " AND userstatus_id = " . $userstatus;
-            } 
+            }
         }
 
         if (trim($str_condition) !="") {
@@ -431,9 +431,9 @@ class User {
         if ( mysql_num_rows($rsRES) > 0 ){
         //without limit  , result of that in $all_rs
             if (trim($this->total_records)!="" && $this->total_records > 0) {
-                
+
             } else {
-                $all_rs = mysql_query($strSQL, $this->connection) or die(mysql_error(). $strSQL_limit); 
+                $all_rs = mysql_query($strSQL, $this->connection) or die(mysql_error(). $strSQL_limit);
                 $this->total_records = mysql_num_rows($all_rs);
             }
 
