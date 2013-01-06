@@ -1,5 +1,7 @@
 body {
   background-color:#170e01;  
+  font-family:"Times New Roman",Georgia,Serif;
+  font-style:italic;
 }
 #outer-container {
   background-image:url('images/k_coffee_subsite/v_strand.png');
@@ -14,6 +16,18 @@ body {
 /*  background-color:#fff;*/
 }
 
+a, a:hover, a:visited {
+  text-decoration:none;
+  color:brown;
+}
+#login {
+  position:relative;
+  top:50px;
+  color:brown;
+}
+#login:hover {
+  color:red;  
+}
 #logo {
   width:417px;
   height:207px;
@@ -26,6 +40,15 @@ body {
   height:207px  ;
   background-image:url('../images/k_coffee_subsite/sub_site_logo.png');  
   float:left;
+  overflow:hidden;
+}
+
+#sub_site_logo_inside {
+  width:260px;
+  height:200px  ;
+  text-align:center;
+  margin:auto;
+  overflow:hidden;
 }
 
 #top_right {
@@ -63,6 +86,10 @@ body {
   height:52px;
   background-image:url('../images/k_coffee_subsite/sub_site_name.png');    
   float:left; 
+  font-family:"Times New Roman",Georgia,Serif;
+  font-style:italic;
+  font-size:20px;  
+  font-weight:bold;
 }
 
 #sub_site_name_right {
@@ -89,7 +116,7 @@ body {
   font-size:20px;
 } 
 #m1, #m2:hover, #m3:hover, #m4:hover, #m5:hover, #m6:hover, #m7:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 #m1 {
@@ -146,6 +173,7 @@ body {
 
 
 #bottom_left_repeat {
+  clear:both;
   background-image:url('../images/k_coffee_subsite/bottom_left_repeat.png');   
   background-repeat:repeat-y;
   height:500px;
@@ -153,14 +181,14 @@ body {
 
 }
 
-#fund_raiser_button {
-  background-image:url('../images/k_coffee_subsite/fund_raiser_button.png');   
+#support_cause {
+  background-image:url('../images/k_coffee_subsite/support_cause.png');   
   height:102px;
   width:236px;
   float:left;
 }
-#fund_raiser_button:hover {
-  background-image:url('../images/k_coffee_subsite/_fund_raiser_button.png');   
+#support_cause:hover {
+  background-image:url('../images/k_coffee_subsite/_support_cause.png');   
 }
 #equipments_big_button {
   background-image:url('../images/k_coffee_subsite/equipments_big_button.png');   
@@ -190,3 +218,9 @@ body {
   margin-top:30px;
   color:grey;
 }
+h1 {
+  font-family:"Times New Roman",Georgia,Serif;
+  font-size:18px;
+  color:#dd8b52;    
+}
+

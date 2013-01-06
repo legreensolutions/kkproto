@@ -12,8 +12,18 @@ body {
   min-height:1400px;
   background-color:#f9f3e6;
 /*  background-color:#fff;*/
+  font-family:"Times New Roman",Georgia,Serif;
+  font-style:italic;
 }
+a {
+  text-decoration:none;
 
+  
+}
+a:visited {
+  color:brown;  
+  text-decoration:none;
+}
 #top-bar {
   background-image:url('../images/k_coffee/top_bar.png');  
   width:800px;
@@ -135,7 +145,7 @@ body {
   height:65px;     
   float:left;
 }
-#login:hover, a div#login:visited {
+#login:hover {
   background-image:url('../images/k_coffee/_login.png');  
   color:#fff;
 }
@@ -163,7 +173,7 @@ body {
   font-size:20px;
 } 
 #m1, #m2:hover, #m3:hover, #m4:hover, #m5:hover, #m6:hover, #m7:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 #m1 {
@@ -267,4 +277,5 @@ h1 {
   font-size:18px;
   color:#dd8b52;    
 }
+
 

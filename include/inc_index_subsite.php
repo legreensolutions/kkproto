@@ -2,7 +2,7 @@ Kaffa Karma is a family owned and operated company that was founded on the princ
 
             <br /><br /><br />
 
-            <div id = "support_cause"></div>
+            <a href="#"><div id = "support_cause"></div></a>
      
 
             
