@@ -24,8 +24,10 @@
                         <b><?php echo $CAP_username ?></b>
                     </td>
                     <td valign="top" align="left"  width="50%">
-                    <input class="passwd_box"  type="text" name="txtusername" id="txtusername" value="<?php if(isset($_POST['txtusername'])){echo $_POST['txtusername'];}?>" ></td>
+                    <input class="passwd_box"  type="text" name="txtusername" id="txtusername" value="<?php if(isset($_POST['txtusername'])){echo $_POST['txtusername'];}?>" >
+                    <input id="chk" type="submit" value="<?php echo $CAP_check ?>" /></td>
                 </tr>
+                <tr><td></td><td><div id="results"></div></td></tr>
                  <tr>
                     <td valign="bottom" align="right" class="passwd_caption"  width="50%" >
                         <b><?php echo $CAP_password ?></b>
@@ -101,7 +103,7 @@
                 <tr>
                     <td  width="50%" align="right">
                         <b><?php echo $CAP_sec_que ?></b>
-                    </td>   
+                    </td>
                     <td  width="50%">
                          <?php if(isset($_POST['lstsec_que'])){ $value = $_POST['lstsec_que']; } else{ $value = -1;}
                          populate_list_array("lstsec_que", $chk_que, "id", "question", $defaultvalue=$value,$disable=false)?>
@@ -110,7 +112,7 @@
                 <tr>
                     <td  width="50%" align="right">
                         <b><?php echo $CAP_sec_ans ?></b>
-                    </td>   
+                    </td>
                     <td  width="50%">
                         <input class="passwd_box"  type="text" name="txtsec_ans" id="txtsec_ans" value="<?php if(isset($_POST['txtsec_ans'])){echo $_POST['txtsec_ans'];}?>" />
                     </td>
@@ -151,3 +153,4 @@
             document.getElementById("txtusername").focus();
    //-->
     </script>
+

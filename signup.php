@@ -6,12 +6,13 @@ $current_url = $_SERVER['PHP_SELF'];
 require(ROOT_PATH.'include/class/class_gspage/class_gspage.php');   // new Page Class
 
 $page = new gsPage;
-    
+
         $page->current_url = $current_url;  // current url for pages
         $page->title = "Kaffakarma.com";   // page Title
         $page->page_name = 'signup';     // page name for menu and other purpose
         $page->layout = 'k_coffee.html';     // layout name
 
+        $page->js_list_link = array("jquery-1.4.2.min.js");
         $page->conf_list = array("conf.php");
         $page->menuconf_list = array("menu_conf.php");
 
@@ -29,7 +30,8 @@ $page = new gsPage;
 
         $page->content_list = $content_list;
 
-        $page->plugin_path = 'plugins/user/'; 
+        $page->plugin_path = 'plugins/user/';
         $page->plugin = 'signup';
         $page->get_plugin(); //completed pluggin with dynamic content will be displayed
 ?>                                `
+
