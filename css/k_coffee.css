@@ -9,8 +9,9 @@ body {
   text-align:center;
   margin:auto;
   width:801px;
-  min-height:1400px;
-  background-color:#f9f3e6;
+  min-height:1500px;
+/*  background-color:#f9f3e6;*/
+  background-color:#f8f2e5;
 /*  background-color:#fff;*/
   font-family:"Times New Roman",Georgia,Serif;
   font-style:italic;
@@ -21,10 +22,20 @@ a {
 
   
 }
+p{
+  margin:0px;
+  padding:0px;
+}
 a:visited {
   color:brown;  
   text-decoration:none;
 }
+.shift_right_align_center {
+  text-align:justify;
+  margin-left:30px;
+  margin-right:-80px;
+}
+
 #content-area form table tbody tr td input {
   font-weight:normal;
 }
@@ -73,8 +84,6 @@ a:visited {
   height:55px;     
   float:left;
 }
-
-
 
 
 #logo_left {
@@ -158,6 +167,7 @@ a:visited {
   width:87px;
   height:65px;     
   float:left;
+/*  font-weight:bold;*/
 }
 #login:hover {
   background-image:url('../images/k_coffee/_login.png');  
@@ -179,12 +189,13 @@ a:visited {
 
 #m1, #m2, #m3, #m4, #m5, #m6, #m7 {
   clear:both;
-  width:200px;
+  width:203px;
   height:45px;
   text-align:right;
   font-family:"Times New Roman",Georgia,Serif;
   font-style:italic;
   font-size:20px;
+  margin-right:50px;
 } 
 #m1, #m2:hover, #m3:hover, #m4:hover, #m5:hover, #m6:hover, #m7:hover {
   text-decoration: none;
@@ -221,24 +232,24 @@ a:visited {
   background-image:url('../images/k_coffee/_m5.png');   
 }
 #left-menu {
-  width:235px;
+  width:203px;
   height:225px;
-  height:816px;
+  height:700px;
   float:left;
 }
 #content-area {
   float:left;
   width:480px;
   text-align:right;
-  margin-top:25px;
-  margin-left:50px;
+  margin-top:0px;
+  margin-left:0px;
   font-family:"Times New Roman",Georgia,Serif;
   text-align:justify;
 }
 
 #m_bottom {
   width:203px;
-  height:316px;
+  height:453px;
   background-image:url('../images/k_coffee/m_bottom.png');   
 }
 
@@ -291,5 +302,35 @@ h1 {
   font-size:18px;
   color:#dd8b52;    
 }
+/*
+#footer {
+  position:fixed;
+  left:0%;
+  top:97%;
+  color:#fff;
+  background-color:#000;
+  width:100%;
+  text-align:center;
+  border:1px 1px 0px 1px solid #fff;
+  font-family:courier;
+  font-style:normal;
+  font-size:14px;
+}*/
 
+#footer { 
+  width:801px;
+  text-align:center;
+  background-color:#52201c;
+  color:orange;
+  font-family:courier;
+  font-style:normal;
+  font-size:14px;
+  margin:auto;
+}
+#footer_container {
+  width:100%;
+  text-align:center;
+  margin:auto;
+  
 
+}

@@ -97,8 +97,7 @@
                 <tr>
                     <td  valign="bottom" align="right" class="passwd_caption" >
                           <?php echo $CAP_image ?><br />
-                          <input type="file" name="fleimage" id="fleimage" size="30" />
-                          
+                          <input type="file" name="fleimage" id="fleimage" size="20" />
                     </td>
                 </tr>
 

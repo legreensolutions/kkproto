@@ -11,8 +11,9 @@ body {
   text-align:center;
   margin:auto;
   width:801px;
-  min-height:1400px;
+  min-height:1472px;
   background-color:#f9f3e6;
+  background-color:#f8f2e5;
 /*  background-color:#fff;*/
 }
 
@@ -166,7 +167,7 @@ a, a:hover, a:visited {
 }
 
 #menu_bottom {
-  width:203px;
+  width:200px;
   height:425px;
   background-image:url('../images/k_coffee_subsite/menu_bottom.png');   
 }
@@ -177,7 +178,7 @@ a, a:hover, a:visited {
   background-image:url('../images/k_coffee_subsite/bottom_left_repeat.png');   
   background-repeat:repeat-y;
   height:500px;
-  width:203px;
+  width:200px;
 
 }
 
@@ -223,4 +224,20 @@ h1 {
   font-size:18px;
   color:#dd8b52;    
 }
+#footer { 
+  width:801px;
+  text-align:center;
+  background-color:#52201c;
+  color:orange;
+  font-family:courier;
+  font-style:normal;
+  font-size:14px;
+  margin:auto;
+}
+#footer_container {
+  width:100%;
+  text-align:center;
+  margin:auto;
+  
 
+}

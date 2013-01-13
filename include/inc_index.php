@@ -1,7 +1,12 @@
 <table style="width:100%; padding:10px; ">
   <tbody>
     <tr>
-      <td><?= $index_content; ?></td>
+      <td>
+
+        <div class="shift_right_align_center">
+          <?= $index_content; ?>
+        </div>
+      </td>
     </tr>
   </tbody>
 </table>
