@@ -7,57 +7,58 @@
   <body>
     <div id="outer-container">
       <div id="body">
+
+
             <div id="top-bar"></div>
     
             <div id="facebook_left"></div>
-            <a href="http://www.twitter.com"><div id="twitter"></div></a>
-            <a href="http://www.facebook.com"><div id="facebook"></div></a>
+            <a id="twitter" href="http://www.twitter.com"> </a>
+            <a id="facebook" href="http://www.facebook.com"> </a>
             <div id="facebook_right"></div>
-            <div style="clear:both;"></div>
+
 
             <div id="logo_left"></div>
             <div id="logo"></div>
             <div id="logo-right"></div>
-            <div style="clear:both;"></div>
+
 
             <div id="open_new_account_left"></div>
-             <a href = "signup.php"><div id="open_new_account"></div></a>
-            <div style="clear:both;"></div>
+             <a id="open_new_account" href = "signup.php"> </a>
+
 
             <div id="search_left"></div>
             <div id="search_box"><input type="text" id= "search"/></div>            
             <div id="search_button"></div>
-            <div id="search_button_right"></div>   
-            <div style="clear:both;"></div>
+            <div id="search_button_right"></div> 
 
 
             <div id="login_left"></div>
-            <a href = "login.php"><div id="login"><br />L o g i n</div></a> 
+            <a id="login" href = "login.php"><br />L o g i n</a> 
             <div id="login_right"></div>
-            <div style="clear:both;"></div>
+
 
             <div id="bar_above_content"></div>
 
             <div id="left-menu">
 <?php if (!empty($left_menu)) echo $left_menu ?>
-
+<div id="m_bottom"></div>
             </div><!-- Menu end -->
-          
             <div id="content-area">
 <?php if (!empty($content)) echo $content;
         echo $this->plugin_output;  ?>
           
 
-
-            
-        
             </div>
-    
+
+            <div style="clear:both;"></div>
+
     </div><!-- body -->
   
   </div><!-- Outer container-->
 
-  <div id="footer_container"><div id="footer">&copy; KaffaKarma.com. All rights reserved.</div></div>
+
+  <div id="footer_container"><div id="footer"> &copy; KaffaKarma.com. All rights reserved.</div></div>
+
 
 </body>
 
