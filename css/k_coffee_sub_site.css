@@ -11,10 +11,14 @@ body {
   text-align:center;
   margin:auto;
   width:801px;
-  min-height:1472px;
+  min-height:1000px;/*Do not reduce this below 1000px */
   background-color:#f9f3e6;
   background-color:#f8f2e5;
 /*  background-color:#fff;*/
+
+  background-image:url('../images/k_coffee_subsite/m_bottom.png');
+  background-repeat:repeat-y;
+  background-position:0px 65px;
 }
 
 a, a:hover, a:visited {
