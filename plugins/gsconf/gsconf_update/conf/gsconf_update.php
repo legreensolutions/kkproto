@@ -1,5 +1,5 @@
 <?php
-$this->js_list_link = array("tinymce/jscripts/tiny_mce/tiny_mce.js"); 
+$this->js_list_link = array("tiny_mce/tiny_mce.js"); 
 
 $gallery_path = $this->gsconf->get_conf(CONF_TYPE_SYSTEMCONF,'gallery_path',"gsconf_update","images/gallery");
 $CAPGallery = $this->gsconf->get_conf(CONF_TYPE_SYSTEMCONF,'CAPGallery',"gsconf_update","Gallery");
