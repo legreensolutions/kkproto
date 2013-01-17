@@ -22,7 +22,7 @@ $page = new gsPage;
 	$page->class_list = array("class_user.php");
 	$page->pageconf_list = array("index.php");
 
-        $page->js_list_link = array("jquery-1.4.2.min.js",'faq.js');
+        $page->js_list_link = array("jquery.min.js",'faq.js');
         $page->css_list = array('faq.css');
 
 

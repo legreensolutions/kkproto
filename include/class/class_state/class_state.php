@@ -8,7 +8,7 @@ class state {
     var $connection;
     var $id = gINVALID;
     var $state_name = "";
-    var $state_code = gINVALID;
+    var $statecode = gINVALID;
     var $country_id = gINVALID;
     var $country_name = "";
     var $error_number=gINVALID;

@@ -12,7 +12,7 @@ $page = new gsPage;
         $page->page_name = 'signup';     // page name for menu and other purpose
         $page->layout = 'k_coffee.html';     // layout name
 
-        $page->js_list_link = array("jquery-1.4.2.min.js");
+        $page->js_list_link = array("jquery.min.js");
         $page->conf_list = array("conf.php");
         $page->menuconf_list = array("menu_conf.php");
 
