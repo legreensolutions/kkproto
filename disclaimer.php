@@ -21,6 +21,7 @@ $page = new gsPage;
 	$page->function_list = array("functions.php");
 	$page->class_list = array("class_user.php");
 	
+        $page->pageconf_list = array("disclaimer.php");
 
 	$index=0;
 	$content_list[$index]['file_name']='inc_left_menu.php';

@@ -5,7 +5,7 @@ $tmp_index_content = '<p>Kaffa Karma is a family owned and operated company that
           
 ';
 
-$index_content = $this->gsconf->get_conf(CONF_TYPE_TEXT,'DYNAMIC_INDEX_CONTENT','index',$tmp_index_content,"Dynamic index content");
+$index_content = $this->gsconf->get_conf(CONF_TYPE_TEXT,'Home Page Content','index',$tmp_index_content,"Dynamic index content");
 
 ?>
 

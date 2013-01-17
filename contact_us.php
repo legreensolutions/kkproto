@@ -9,7 +9,7 @@ $page = new gsPage;
 	
 	$page->current_url = $current_url;	// current url for pages
 	$page->title = "Kaffakarma.com";	// page Title
-	$page->page_name = 'about_us';		// page name for menu and other purpose
+	$page->page_name = 'contact_us';		// page name for menu and other purpose
 	$page->layout = 'k_coffee.html';		// layout name
 
         $page->use_gsconf = true;                 // enable GS conf
@@ -20,7 +20,7 @@ $page = new gsPage;
 
 	$page->function_list = array("functions.php");
 	$page->class_list = array("class_user.php");
-	$page->pageconf_list = array("index.php");
+	$page->pageconf_list = array("contact_us.php");
 
 	$index=0;
 	$content_list[$index]['file_name']='inc_left_menu.php';
