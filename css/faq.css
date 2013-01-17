@@ -1,0 +1,14 @@
+.faq {
+	margin-bottom: 8px;
+}
+.faq a{
+	
+	font-weight: bold;
+	text-decoration: underline;
+}
+.faq_answer {
+	display: none;
+	margin-top: 8px;
+	margin-bottom: 24px;
+	margin-left: 16px;
+}

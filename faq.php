@@ -22,6 +22,10 @@ $page = new gsPage;
 	$page->class_list = array("class_user.php");
 	$page->pageconf_list = array("index.php");
 
+        $page->js_list_link = array("jquery-1.4.2.min.js",'faq.js');
+        $page->css_list = array('faq.css');
+
+
 	$index=0;
 	$content_list[$index]['file_name']='inc_left_menu.php';
 	$content_list[$index]['var_name']='left_menu';
