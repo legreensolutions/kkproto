@@ -135,6 +135,22 @@ a:visited {
 #open_new_account:hover {
   background-image:url('../images/k_coffee/_open_new_account.png');  
 }
+
+#profile_link {
+  background-image:url('../images/k_coffee/profile_bg.png');  
+  width:205px;
+  height:40px;     
+  float:left;
+  font-size:17px;
+}
+#profile_link:hover {
+  background-image:url('../images/k_coffee/_profile_bg.png');  
+}
+
+#profile_link p {
+margin-top: 8px;
+}
+
 #search_left {
   background-image:url('../images/k_coffee/search_left.png');  
   width:178px;

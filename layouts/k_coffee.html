@@ -23,7 +23,14 @@
 
 
             <div id="open_new_account_left"></div>
-             <a id="open_new_account" href = "signup.php"> </a>
+             
+
+             <?php if ( $_SESSION[SESSION_TITLE.'userid'] > 0){ ?>
+                <a id="profile_link" href = "profile.php"> <p>Profile:<?= $_SESSION[SESSION_TITLE.'username'] ?></p> </a> 
+
+            <?php } else { ?>
+                <a id="open_new_account" href = "signup.php"> </a>
+            <?php } ?>
 
 
             <div id="search_left"></div>
@@ -33,7 +40,12 @@
 
 
             <div id="login_left"></div>
-            <a id="login" href = "login.php"><br />L o g i n</a> 
+            <?php if ( $_SESSION[SESSION_TITLE.'userid'] > 0){ ?>
+                <a id="login" href = "logout.php"><br />L o g o u t</a> 
+
+            <?php } else { ?>
+                <a id="login" href = "login.php"><br />L o g i n</a>
+            <?php } ?>
             <div id="login_right"></div>
 
 
