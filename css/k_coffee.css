@@ -29,10 +29,15 @@ a {
 
   
 }
-p{
+
+.shift_right_align_center p {
   margin:0px;
   padding:0px;
 }
+
+
+
+
 a:visited {
   color:brown;  
   text-decoration:none;
@@ -360,3 +365,32 @@ h1 {
   
 
 }
+a.faq_question {
+
+  color:grey;
+  font-style:italics;
+  font-weight:normal;
+  font-size:16px;
+  text-decoration:none;
+  background-image:url('../images/k_coffee/arrow.png');
+  background-repeat:no-repeat;
+  background-position:0px;
+  padding-left:25px;
+}
+
+.faq p {
+
+  margin-left:25px;
+}
+
+
+.faq div.faq_answer {
+  color:brown;
+  font-size:16px;
+  margin-left:50px;
+ 
+
+}
+
+
+
