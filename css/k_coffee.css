@@ -66,29 +66,39 @@ a:visited {
   width:800px;
   height:8px;    
 }
-#facebook_left {
-  background-image:url('../images/k_coffee/facebook_left.png');  
-  width:681px;
+#linked_in_left {
+  background-image:url('../images/k_coffee/linked_in_left.png');  
+  width:650px;
   height:55px;    
   float:left;
 }
+#linked_in {
+  background-image:url('../images/k_coffee/linked_in.png');  
+  width:40px;
+  height:55px;     
+  float:left;
+}
+#linked_in:hover {
+  background-image:url('../images/k_coffee/_linked_in.png');  
+}
+
 #facebook {
-  background-image:url('../images/k_coffee/_facebook.png');  
+  background-image:url('../images/k_coffee/facebook.png');  
   width:42px;
   height:55px;     
   float:left;
 }
 #facebook:hover {
-  background-image:url('../images/k_coffee/facebook.png');  
+  background-image:url('../images/k_coffee/_facebook.png');  
 }
 #twitter {
-  background-image:url('../images/k_coffee/_twitter.png');  
-  width:45px;
+  background-image:url('../images/k_coffee/twitter.png');  
+  width:36px;
   height:55px;     
   float:left;
 }
 #twitter:hover {
-  background-image:url('../images/k_coffee/twitter.png');  
+  background-image:url('../images/k_coffee/_twitter.png');  
 }
 #facebook_right {
   background-image:url('../images/k_coffee/facebook_right.png');  
