@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 03, 2013 at 03:06 PM
+-- Generation Time: Jan 18, 2013 at 01:30 AM
 -- Server version: 5.5.28
 -- PHP Version: 5.4.6-1ubuntu1.1
 
@@ -78,41 +78,7 @@ CREATE TABLE IF NOT EXISTS `configurations` (
   PRIMARY KEY (`id`),
   KEY `page_id` (`page_id`,`language_id`),
   KEY `configurationtype_id` (`configurationtype_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
-
---
--- Dumping data for table `configurations`
---
-
-INSERT INTO `configurations` (`id`, `configuration_name`, `page_id`, `value`, `description`, `language_id`, `configurationtype_id`, `publish`) VALUES
-(1, 'DYNAMIC_INDEX_CONTENT', 6, 'Hi <br/><br/><br />\n<br />\nThis is <A href="http://www.legreensolutions.com" target="_blank">LegreenSolutions</A> first attempt to create simple FrameWork called <strong>"Green FrameWork Lite"</strong>. This is not a complete frame work like CAKE PHP, CI, etc... Here we try to separate presentation layer from coding, there by simplifying programmers and designers jobs. <br/><br />\n<br />\nThis project is under testing. We would like to invite your suggestion to make this effort successful.<br/><br/><br />\n<br />\n<br />\nPlease clone Git Repository for testing<br/><br />\n---------------------------------------<br/> <br/><br />\ngit clone git@github.com:pramodgmenon/GreenFrameWorkLite.git<br/> <br/><br />\n<br />\n<strong>Other Products used:</strong><br/> <br/><br />\n<br />\n1)&nbsp;<A href="http://gurtom.com/products/menus/js" target="_blank">Gurt JavaScript Menu</A><br/><br />\n<br />\nRegards,<br/><br />\nTeam LegreenSolutions.<br />\n', 'Dynamic index content', 1, 2, 0),
-(2, 'conf_page_caption', 9, 'G&nbsp;&nbsp;F&nbsp;&nbsp;W&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;&nbsp;e&nbsp;&nbsp;t&nbsp;&nbsp;t&nbsp;&nbsp;i&nbsp;&nbsp;n&nbsp;&nbsp;g&nbsp;&nbsp;s', '', 1, 4, 0),
-(3, 'conf_show_debug_window', 9, 'Show Debug Window', 'caption Show Debug Window', 1, 4, 0),
-(4, 'conf_enable_online_editting', 9, 'Enable Online Editing', 'caption enable online editing', 1, 4, 0),
-(5, 'conf_enable_gallery', 9, 'View Gallery with Editor ', '', 1, 4, 0),
-(6, 'conf_language', 9, 'Language', 'caption language', 1, 4, 0),
-(7, 'msg_update_success', 9, 'Configuration successfully updated', 'Message on successfull update', 1, 3, 0),
-(8, 'msg_update_success_redirect_page', 9, 'gsconf_settings.php', 'Redirect page on sucessfull update', 1, 6, 0),
-(9, 'msg_update_failed', 9, 'Configuration update failed', 'Message on update failed', 1, 3, 0),
-(10, 'msg_update_failed_redirect_page', 9, 'gsconf_settings.php', 'Redirect page on update failed', 1, 6, 0),
-(11, 'conf_submit_update', 9, 'Update', 'caption submit update', 1, 5, 0),
-(12, 'gallery_path', 2, 'images/gallery', '', 1, 6, 0),
-(13, 'CAPGallery', 2, 'Gallery', '', 1, 6, 0),
-(14, 'errmsg_invalid_id', 2, 'Invalid Id, Please contact System Admin', 'Invalid conf Id', 1, 3, 0),
-(15, 'errmsg_invalid_id_redirect_page', 2, 'index.php', 'Redirect page on invalid Configuration ID', 1, 6, 0),
-(16, 'msg_update_success', 2, 'Configuration successfully updated', 'Message on successfull update', 1, 3, 0),
-(17, 'msg_update_success_redirect_page', 2, 'gsconf_search.php', 'Redirect page on sucessfull update', 1, 6, 0),
-(18, 'msg_update_failed', 2, 'Configuration update failed', 'Message on update failed', 1, 3, 0),
-(19, 'msg_update_failed_redirect_page', 2, 'gsconf_search.php', 'Redirect page on update failed', 1, 6, 0),
-(20, 'msg_delete_success', 2, 'Configuration successfully deleted', 'Message on successfull delete', 1, 3, 0),
-(21, 'msg_delete_success_redirect_page', 2, 'gsconf_search.php', 'Redirect page on sucessfull delete', 1, 6, 0),
-(22, 'msg_delete_failed', 2, 'Configuration delete failed', 'Message on delete failed', 1, 3, 0),
-(23, 'R D Page delete failed', 2, 'gsconf_search.php', 'Redirect page on delete failed', 1, 6, 0),
-(24, 'conf_publish', 2, 'Publish', 'caption Publish', 1, 5, 0),
-(25, 'conf_submit_update', 2, 'Update', 'caption submit update', 1, 5, 0),
-(26, 'conf_submit_delete', 2, 'Delete', 'caption submit delete', 1, 5, 0),
-(27, 'index', 34, 'Dynamic index content', '', 1, 2, 0),
-(28, 'dynamic_index_content', 6, 'Hi <br/><br/><br />\n<br />\nThis is <A href="http://www.legreensolutions.com" target="_blank">LegreenSolutions</A> first attempt to create simple FrameWork called <strong>"Green FrameWork Lite"</strong>. This is not a complete frame work like CAKE PHP, CI, etc... Here we try to separate presentation layer from coding, there by simplifying programmers and designers jobs. <br/><br />\n<br />\nThis project is under testing. We would like to invite your suggestion to make this effort successful.<br/><br/><br />\n<br />\n<br />\nRegards,<br/><br />\nTeam LegreenSolutions.<br />\n', 'Dynamic index content', 1, 1, 0);
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -155,252 +121,16 @@ CREATE TABLE IF NOT EXISTS `countries` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `country_name` (`country_name`),
   UNIQUE KEY `iso2` (`iso2`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=240 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=241 ;
 
 --
 -- Dumping data for table `countries`
 --
 
 INSERT INTO `countries` (`id`, `country`, `country_name`, `iso2`, `iso3`, `numericcode`) VALUES
-(1, 'AFGHANISTAN', 'Afghanistan', 'AF', 'AFG', 4),
-(2, 'ALBANIA', 'Albania', 'AL', 'ALB', 8),
-(3, 'ALGERIA', 'Algeria', 'DZ', 'DZA', 12),
-(4, 'AMERICAN SAMOA', 'American Samoa', 'AS', 'ASM', 16),
-(5, 'ANDORRA', 'Andorra', 'AD', 'AND', 20),
-(6, 'ANGOLA', 'Angola', 'AO', 'AGO', 24),
-(7, 'ANGUILLA', 'Anguilla', 'AI', 'AIA', 660),
-(8, 'ANTARCTICA', 'Antarctica', 'AQ', NULL, NULL),
-(9, 'ANTIGUA AND BARBUDA', 'Antigua and Barbuda', 'AG', 'ATG', 28),
-(10, 'ARGENTINA', 'Argentina', 'AR', 'ARG', 32),
-(11, 'ARMENIA', 'Armenia', 'AM', 'ARM', 51),
-(12, 'ARUBA', 'Aruba', 'AW', 'ABW', 533),
-(13, 'AUSTRALIA', 'Australia', 'AU', 'AUS', 36),
-(14, 'AUSTRIA', 'Austria', 'AT', 'AUT', 40),
-(15, 'AZERBAIJAN', 'Azerbaijan', 'AZ', 'AZE', 31),
-(16, 'BAHAMAS', 'Bahamas', 'BS', 'BHS', 44),
-(17, 'BAHRAIN', 'Bahrain', 'BH', 'BHR', 48),
-(18, 'BANGLADESH', 'Bangladesh', 'BD', 'BGD', 50),
-(19, 'BARBADOS', 'Barbados', 'BB', 'BRB', 52),
-(20, 'BELARUS', 'Belarus', 'BY', 'BLR', 112),
-(21, 'BELGIUM', 'Belgium', 'BE', 'BEL', 56),
-(22, 'BELIZE', 'Belize', 'BZ', 'BLZ', 84),
-(23, 'BENIN', 'Benin', 'BJ', 'BEN', 204),
-(24, 'BERMUDA', 'Bermuda', 'BM', 'BMU', 60),
-(25, 'BHUTAN', 'Bhutan', 'BT', 'BTN', 64),
-(26, 'BOLIVIA', 'Bolivia', 'BO', 'BOL', 68),
-(27, 'BOSNIA AND HERZEGOVINA', 'Bosnia and Herzegovina', 'BA', 'BIH', 70),
-(28, 'BOTSWANA', 'Botswana', 'BW', 'BWA', 72),
-(29, 'BOUVET ISLAND', 'Bouvet Island', 'BV', NULL, NULL),
-(30, 'BRAZIL', 'Brazil', 'BR', 'BRA', 76),
-(31, 'BRITISH INDIAN OCEAN TERRITORY', 'British Indian Ocean Territory', 'IO', NULL, NULL),
-(32, 'BRUNEI DARUSSALAM', 'Brunei Darussalam', 'BN', 'BRN', 96),
-(33, 'BULGARIA', 'Bulgaria', 'BG', 'BGR', 100),
-(34, 'BURKINA FASO', 'Burkina Faso', 'BF', 'BFA', 854),
-(35, 'BURUNDI', 'Burundi', 'BI', 'BDI', 108),
-(36, 'CAMBODIA', 'Cambodia', 'KH', 'KHM', 116),
-(37, 'CAMEROON', 'Cameroon', 'CM', 'CMR', 120),
 (38, 'CANADA', 'Canada', 'CA', 'CAN', 124),
-(39, 'CAPE VERDE', 'Cape Verde', 'CV', 'CPV', 132),
-(40, 'CAYMAN ISLANDS', 'Cayman Islands', 'KY', 'CYM', 136),
-(41, 'CENTRAL AFRICAN REPUBLIC', 'Central African Republic', 'CF', 'CAF', 140),
-(42, 'CHAD', 'Chad', 'TD', 'TCD', 148),
-(43, 'CHILE', 'Chile', 'CL', 'CHL', 152),
-(44, 'CHINA', 'China', 'CN', 'CHN', 156),
-(45, 'CHRISTMAS ISLAND', 'Christmas Island', 'CX', NULL, NULL),
-(46, 'COCOS (KEELING) ISLANDS', 'Cocos (Keeling) Islands', 'CC', NULL, NULL),
-(47, 'COLOMBIA', 'Colombia', 'CO', 'COL', 170),
-(48, 'COMOROS', 'Comoros', 'KM', 'COM', 174),
-(49, 'CONGO', 'Congo', 'CG', 'COG', 178),
-(50, 'CONGO, THE DEMOCRATIC REPUBLIC OF THE', 'Congo, the Democratic Republic of the', 'CD', 'COD', 180),
-(51, 'COOK ISLANDS', 'Cook Islands', 'CK', 'COK', 184),
-(52, 'COSTA RICA', 'Costa Rica', 'CR', 'CRI', 188),
-(53, 'COTE D''IVOIRE', 'Cote D''Ivoire', 'CI', 'CIV', 384),
-(54, 'CROATIA', 'Croatia', 'HR', 'HRV', 191),
-(55, 'CUBA', 'Cuba', 'CU', 'CUB', 192),
-(56, 'CYPRUS', 'Cyprus', 'CY', 'CYP', 196),
-(57, 'CZECH REPUBLIC', 'Czech Republic', 'CZ', 'CZE', 203),
-(58, 'DENMARK', 'Denmark', 'DK', 'DNK', 208),
-(59, 'DJIBOUTI', 'Djibouti', 'DJ', 'DJI', 262),
-(60, 'DOMINICA', 'Dominica', 'DM', 'DMA', 212),
-(61, 'DOMINICAN REPUBLIC', 'Dominican Republic', 'DO', 'DOM', 214),
-(62, 'ECUADOR', 'Ecuador', 'EC', 'ECU', 218),
-(63, 'EGYPT', 'Egypt', 'EG', 'EGY', 818),
-(64, 'EL SALVADOR', 'El Salvador', 'SV', 'SLV', 222),
-(65, 'EQUATORIAL GUINEA', 'Equatorial Guinea', 'GQ', 'GNQ', 226),
-(66, 'ERITREA', 'Eritrea', 'ER', 'ERI', 232),
-(67, 'ESTONIA', 'Estonia', 'EE', 'EST', 233),
-(68, 'ETHIOPIA', 'Ethiopia', 'ET', 'ETH', 231),
-(69, 'FALKLAND ISLANDS (MALVINAS)', 'Falkland Islands (Malvinas)', 'FK', 'FLK', 238),
-(70, 'FAROE ISLANDS', 'Faroe Islands', 'FO', 'FRO', 234),
-(71, 'FIJI', 'Fiji', 'FJ', 'FJI', 242),
-(72, 'FINLAND', 'Finland', 'FI', 'FIN', 246),
-(73, 'FRANCE', 'France', 'FR', 'FRA', 250),
-(74, 'FRENCH GUIANA', 'French Guiana', 'GF', 'GUF', 254),
-(75, 'FRENCH POLYNESIA', 'French Polynesia', 'PF', 'PYF', 258),
-(76, 'FRENCH SOUTHERN TERRITORIES', 'French Southern Territories', 'TF', NULL, NULL),
-(77, 'GABON', 'Gabon', 'GA', 'GAB', 266),
-(78, 'GAMBIA', 'Gambia', 'GM', 'GMB', 270),
-(79, 'GEORGIA', 'Georgia', 'GE', 'GEO', 268),
-(80, 'GERMANY', 'Germany', 'DE', 'DEU', 276),
-(81, 'GHANA', 'Ghana', 'GH', 'GHA', 288),
-(82, 'GIBRALTAR', 'Gibraltar', 'GI', 'GIB', 292),
-(83, 'GREECE', 'Greece', 'GR', 'GRC', 300),
-(84, 'GREENLAND', 'Greenland', 'GL', 'GRL', 304),
-(85, 'GRENADA', 'Grenada', 'GD', 'GRD', 308),
-(86, 'GUADELOUPE', 'Guadeloupe', 'GP', 'GLP', 312),
-(87, 'GUAM', 'Guam', 'GU', 'GUM', 316),
-(88, 'GUATEMALA', 'Guatemala', 'GT', 'GTM', 320),
-(89, 'GUINEA', 'Guinea', 'GN', 'GIN', 324),
-(90, 'GUINEA-BISSAU', 'Guinea-Bissau', 'GW', 'GNB', 624),
-(91, 'GUYANA', 'Guyana', 'GY', 'GUY', 328),
-(92, 'HAITI', 'Haiti', 'HT', 'HTI', 332),
-(93, 'HEARD ISLAND AND MCDONALD ISLANDS', 'Heard Island and Mcdonald Islands', 'HM', NULL, NULL),
-(94, 'HOLY SEE (VATICAN CITY STATE)', 'Holy See (Vatican City State)', 'VA', 'VAT', 336),
-(95, 'HONDURAS', 'Honduras', 'HN', 'HND', 340),
-(96, 'HONG KONG', 'Hong Kong', 'HK', 'HKG', 344),
-(97, 'HUNGARY', 'Hungary', 'HU', 'HUN', 348),
-(98, 'ICELAND', 'Iceland', 'IS', 'ISL', 352),
-(99, 'INDIA', 'India', 'IN', 'IND', 356),
-(100, 'INDONESIA', 'Indonesia', 'ID', 'IDN', 360),
-(101, 'IRAN, ISLAMIC REPUBLIC OF', 'Iran, Islamic Republic of', 'IR', 'IRN', 364),
-(102, 'IRAQ', 'Iraq', 'IQ', 'IRQ', 368),
-(103, 'IRELAND', 'Ireland', 'IE', 'IRL', 372),
-(104, 'ISRAEL', 'Israel', 'IL', 'ISR', 376),
-(105, 'ITALY', 'Italy', 'IT', 'ITA', 380),
-(106, 'JAMAICA', 'Jamaica', 'JM', 'JAM', 388),
-(107, 'JAPAN', 'Japan', 'JP', 'JPN', 392),
-(108, 'JORDAN', 'Jordan', 'JO', 'JOR', 400),
-(109, 'KAZAKHSTAN', 'Kazakhstan', 'KZ', 'KAZ', 398),
-(110, 'KENYA', 'Kenya', 'KE', 'KEN', 404),
-(111, 'KIRIBATI', 'Kiribati', 'KI', 'KIR', 296),
-(112, 'KOREA, DEMOCRATIC PEOPLE''S REPUBLIC OF', 'Korea, Democratic People''s Republic of', 'KP', 'PRK', 408),
-(113, 'KOREA, REPUBLIC OF', 'Korea, Republic of', 'KR', 'KOR', 410),
-(114, 'KUWAIT', 'Kuwait', 'KW', 'KWT', 414),
-(115, 'KYRGYZSTAN', 'Kyrgyzstan', 'KG', 'KGZ', 417),
-(116, 'LAO PEOPLE''S DEMOCRATIC REPUBLIC', 'Lao People''s Democratic Republic', 'LA', 'LAO', 418),
-(117, 'LATVIA', 'Latvia', 'LV', 'LVA', 428),
-(118, 'LEBANON', 'Lebanon', 'LB', 'LBN', 422),
-(119, 'LESOTHO', 'Lesotho', 'LS', 'LSO', 426),
-(120, 'LIBERIA', 'Liberia', 'LR', 'LBR', 430),
-(121, 'LIBYAN ARAB JAMAHIRIYA', 'Libyan Arab Jamahiriya', 'LY', 'LBY', 434),
-(122, 'LIECHTENSTEIN', 'Liechtenstein', 'LI', 'LIE', 438),
-(123, 'LITHUANIA', 'Lithuania', 'LT', 'LTU', 440),
-(124, 'LUXEMBOURG', 'Luxembourg', 'LU', 'LUX', 442),
-(125, 'MACAO', 'Macao', 'MO', 'MAC', 446),
-(126, 'MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF', 'Macedonia, the Former Yugoslav Republic of', 'MK', 'MKD', 807),
-(127, 'MADAGASCAR', 'Madagascar', 'MG', 'MDG', 450),
-(128, 'MALAWI', 'Malawi', 'MW', 'MWI', 454),
-(129, 'MALAYSIA', 'Malaysia', 'MY', 'MYS', 458),
-(130, 'MALDIVES', 'Maldives', 'MV', 'MDV', 462),
-(131, 'MALI', 'Mali', 'ML', 'MLI', 466),
-(132, 'MALTA', 'Malta', 'MT', 'MLT', 470),
-(133, 'MARSHALL ISLANDS', 'Marshall Islands', 'MH', 'MHL', 584),
-(134, 'MARTINIQUE', 'Martinique', 'MQ', 'MTQ', 474),
-(135, 'MAURITANIA', 'Mauritania', 'MR', 'MRT', 478),
-(136, 'MAURITIUS', 'Mauritius', 'MU', 'MUS', 480),
-(137, 'MAYOTTE', 'Mayotte', 'YT', NULL, NULL),
-(138, 'MEXICO', 'Mexico', 'MX', 'MEX', 484),
-(139, 'MICRONESIA, FEDERATED STATES OF', 'Micronesia, Federated States of', 'FM', 'FSM', 583),
-(140, 'MOLDOVA, REPUBLIC OF', 'Moldova, Republic of', 'MD', 'MDA', 498),
-(141, 'MONACO', 'Monaco', 'MC', 'MCO', 492),
-(142, 'MONGOLIA', 'Mongolia', 'MN', 'MNG', 496),
-(143, 'MONTSERRAT', 'Montserrat', 'MS', 'MSR', 500),
-(144, 'MOROCCO', 'Morocco', 'MA', 'MAR', 504),
-(145, 'MOZAMBIQUE', 'Mozambique', 'MZ', 'MOZ', 508),
-(146, 'MYANMAR', 'Myanmar', 'MM', 'MMR', 104),
-(147, 'NAMIBIA', 'Namibia', 'NA', 'NAM', 516),
-(148, 'NAURU', 'Nauru', 'NR', 'NRU', 520),
-(149, 'NEPAL', 'Nepal', 'NP', 'NPL', 524),
-(150, 'NETHERLANDS', 'Netherlands', 'NL', 'NLD', 528),
-(151, 'NETHERLANDS ANTILLES', 'Netherlands Antilles', 'AN', 'ANT', 530),
-(152, 'NEW CALEDONIA', 'New Caledonia', 'NC', 'NCL', 540),
-(153, 'NEW ZEALAND', 'New Zealand', 'NZ', 'NZL', 554),
-(154, 'NICARAGUA', 'Nicaragua', 'NI', 'NIC', 558),
-(155, 'NIGER', 'Niger', 'NE', 'NER', 562),
-(156, 'NIGERIA', 'Nigeria', 'NG', 'NGA', 566),
-(157, 'NIUE', 'Niue', 'NU', 'NIU', 570),
-(158, 'NORFOLK ISLAND', 'Norfolk Island', 'NF', 'NFK', 574),
-(159, 'NORTHERN MARIANA ISLANDS', 'Northern Mariana Islands', 'MP', 'MNP', 580),
-(160, 'NORWAY', 'Norway', 'NO', 'NOR', 578),
-(161, 'OMAN', 'Oman', 'OM', 'OMN', 512),
-(162, 'PAKISTAN', 'Pakistan', 'PK', 'PAK', 586),
-(163, 'PALAU', 'Palau', 'PW', 'PLW', 585),
-(164, 'PALESTINIAN TERRITORY, OCCUPIED', 'Palestinian Territory, Occupied', 'PS', NULL, NULL),
-(165, 'PANAMA', 'Panama', 'PA', 'PAN', 591),
-(166, 'PAPUA NEW GUINEA', 'Papua New Guinea', 'PG', 'PNG', 598),
-(167, 'PARAGUAY', 'Paraguay', 'PY', 'PRY', 600),
-(168, 'PERU', 'Peru', 'PE', 'PER', 604),
-(169, 'PHILIPPINES', 'Philippines', 'PH', 'PHL', 608),
-(170, 'PITCAIRN', 'Pitcairn', 'PN', 'PCN', 612),
-(171, 'POLAND', 'Poland', 'PL', 'POL', 616),
-(172, 'PORTUGAL', 'Portugal', 'PT', 'PRT', 620),
-(173, 'PUERTO RICO', 'Puerto Rico', 'PR', 'PRI', 630),
-(174, 'QATAR', 'Qatar', 'QA', 'QAT', 634),
-(175, 'REUNION', 'Reunion', 'RE', 'REU', 638),
-(176, 'ROMANIA', 'Romania', 'RO', 'ROM', 642),
-(177, 'RUSSIAN FEDERATION', 'Russian Federation', 'RU', 'RUS', 643),
-(178, 'RWANDA', 'Rwanda', 'RW', 'RWA', 646),
-(179, 'SAINT HELENA', 'Saint Helena', 'SH', 'SHN', 654),
-(180, 'SAINT KITTS AND NEVIS', 'Saint Kitts and Nevis', 'KN', 'KNA', 659),
-(181, 'SAINT LUCIA', 'Saint Lucia', 'LC', 'LCA', 662),
-(182, 'SAINT PIERRE AND MIQUELON', 'Saint Pierre and Miquelon', 'PM', 'SPM', 666),
-(183, 'SAINT VINCENT AND THE GRENADINES', 'Saint Vincent and the Grenadines', 'VC', 'VCT', 670),
-(184, 'SAMOA', 'Samoa', 'WS', 'WSM', 882),
-(185, 'SAN MARINO', 'San Marino', 'SM', 'SMR', 674),
-(186, 'SAO TOME AND PRINCIPE', 'Sao Tome and Principe', 'ST', 'STP', 678),
-(187, 'SAUDI ARABIA', 'Saudi Arabia', 'SA', 'SAU', 682),
-(188, 'SENEGAL', 'Senegal', 'SN', 'SEN', 686),
-(189, 'SERBIA AND MONTENEGRO', 'Serbia and Montenegro', 'CS', NULL, NULL),
-(190, 'SEYCHELLES', 'Seychelles', 'SC', 'SYC', 690),
-(191, 'SIERRA LEONE', 'Sierra Leone', 'SL', 'SLE', 694),
-(192, 'SINGAPORE', 'Singapore', 'SG', 'SGP', 702),
-(193, 'SLOVAKIA', 'Slovakia', 'SK', 'SVK', 703),
-(194, 'SLOVENIA', 'Slovenia', 'SI', 'SVN', 705),
-(195, 'SOLOMON ISLANDS', 'Solomon Islands', 'SB', 'SLB', 90),
-(196, 'SOMALIA', 'Somalia', 'SO', 'SOM', 706),
-(197, 'SOUTH AFRICA', 'South Africa', 'ZA', 'ZAF', 710),
-(198, 'SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS', 'South Georgia and the South Sandwich Islands', 'GS', NULL, NULL),
-(199, 'SPAIN', 'Spain', 'ES', 'ESP', 724),
-(200, 'SRI LANKA', 'Sri Lanka', 'LK', 'LKA', 144),
-(201, 'SUDAN', 'Sudan', 'SD', 'SDN', 736),
-(202, 'SURINAME', 'Suriname', 'SR', 'SUR', 740),
-(203, 'SVALBARD AND JAN MAYEN', 'Svalbard and Jan Mayen', 'SJ', 'SJM', 744),
-(204, 'SWAZILAND', 'Swaziland', 'SZ', 'SWZ', 748),
-(205, 'SWEDEN', 'Sweden', 'SE', 'SWE', 752),
-(206, 'SWITZERLAND', 'Switzerland', 'CH', 'CHE', 756),
-(207, 'SYRIAN ARAB REPUBLIC', 'Syrian Arab Republic', 'SY', 'SYR', 760),
-(208, 'TAIWAN, PROVINCE OF CHINA', 'Taiwan, Province of China', 'TW', 'TWN', 158),
-(209, 'TAJIKISTAN', 'Tajikistan', 'TJ', 'TJK', 762),
-(210, 'TANZANIA, UNITED REPUBLIC OF', 'Tanzania, United Republic of', 'TZ', 'TZA', 834),
-(211, 'THAILAND', 'Thailand', 'TH', 'THA', 764),
-(212, 'TIMOR-LESTE', 'Timor-Leste', 'TL', NULL, NULL),
-(213, 'TOGO', 'Togo', 'TG', 'TGO', 768),
-(214, 'TOKELAU', 'Tokelau', 'TK', 'TKL', 772),
-(215, 'TONGA', 'Tonga', 'TO', 'TON', 776),
-(216, 'TRINIDAD AND TOBAGO', 'Trinidad and Tobago', 'TT', 'TTO', 780),
-(217, 'TUNISIA', 'Tunisia', 'TN', 'TUN', 788),
-(218, 'TURKEY', 'Turkey', 'TR', 'TUR', 792),
-(219, 'TURKMENISTAN', 'Turkmenistan', 'TM', 'TKM', 795),
-(220, 'TURKS AND CAICOS ISLANDS', 'Turks and Caicos Islands', 'TC', 'TCA', 796),
-(221, 'TUVALU', 'Tuvalu', 'TV', 'TUV', 798),
-(222, 'UGANDA', 'Uganda', 'UG', 'UGA', 800),
-(223, 'UKRAINE', 'Ukraine', 'UA', 'UKR', 804),
-(224, 'UNITED ARAB EMIRATES', 'United Arab Emirates', 'AE', 'ARE', 784),
-(225, 'UNITED KINGDOM', 'United Kingdom', 'GB', 'GBR', 826),
 (226, 'UNITED STATES', 'United States', 'US', 'USA', 840),
-(227, 'UNITED STATES MINOR OUTLYING ISLANDS', 'United States Minor Outlying Islands', 'UM', NULL, NULL),
-(228, 'URUGUAY', 'Uruguay', 'UY', 'URY', 858),
-(229, 'UZBEKISTAN', 'Uzbekistan', 'UZ', 'UZB', 860),
-(230, 'VANUATU', 'Vanuatu', 'VU', 'VUT', 548),
-(231, 'VENEZUELA', 'Venezuela', 'VE', 'VEN', 862),
-(232, 'VIET NAM', 'Viet Nam', 'VN', 'VNM', 704),
-(233, 'VIRGIN ISLANDS, BRITISH', 'Virgin Islands, British', 'VG', 'VGB', 92),
-(234, 'VIRGIN ISLANDS, U.S.', 'Virgin Islands, U.s.', 'VI', 'VIR', 850),
-(235, 'WALLIS AND FUTUNA', 'Wallis and Futuna', 'WF', 'WLF', 876),
-(236, 'WESTERN SAHARA', 'Western Sahara', 'EH', 'ESH', 732),
-(237, 'YEMEN', 'Yemen', 'YE', 'YEM', 887),
-(238, 'ZAMBIA', 'Zambia', 'ZM', 'ZMB', 894),
-(239, 'ZIMBABWE', 'Zimbabwe', 'ZW', 'ZWE', 716);
+(240, 'Other', 'Other', '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -419,6 +149,19 @@ CREATE TABLE IF NOT EXISTS `customers` (
   PRIMARY KEY (`id`),
   KEY `state_id` (`state_id`,`country_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `faq`
+--
+
+CREATE TABLE IF NOT EXISTS `faq` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `question` varchar(255) NOT NULL,
+  `answer` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -473,10 +216,7 @@ CREATE TABLE IF NOT EXISTS `languages` (
 --
 
 INSERT INTO `languages` (`id`, `language_name`, `publish`) VALUES
-(1, 'English', 1),
-(6, '&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;', 1),
-(7, 'français', 1),
-(8, 'Deutsch', 1);
+(1, 'English', 1);
 
 -- --------------------------------------------------------
 
@@ -574,47 +314,21 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `page_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `pages`
 --
 
 INSERT INTO `pages` (`id`, `page_name`) VALUES
-(1, 'gsconf_search'),
-(2, 'gsconf_update'),
-(3, 'gfwflash'),
-(4, 'login'),
-(5, 'g_confpage'),
-(6, 'index'),
-(7, 'profile'),
-(8, 'change_passwd'),
-(9, 'gsconf_settings'),
-(10, 'g_pageconf'),
-(11, 'get_passwd'),
-(12, 'change_password'),
-(13, 'securityquestion'),
-(14, 'sec_que_search'),
-(15, 'signup'),
-(16, 'get_password'),
-(17, 'language_search'),
-(18, 'language'),
-(19, 'gsconf_publishall'),
-(20, 'g_menuconf'),
-(21, 'image_upload'),
-(22, 'language_import'),
-(23, 'searchquestion'),
-(24, 'gsconf_import'),
-(25, 'restore'),
-(26, 'add_user'),
-(27, 'user_list'),
-(28, 'download'),
-(29, 'guestbook'),
-(30, 'admin_list_guestbooks'),
-(31, 'admin_list_guestbookst'),
-(32, 'admin_view_books'),
-(33, 'aboutus'),
-(34, 'Hi <br/><br/><br />\n<br />\nThis is <A href="http://www.legreensolutions.com" target="_blank">LegreenSolutions</A> first attempt to create simple FrameWork called <strong>"Green FrameWork Lite"</strong>. This is not a complete frame work like CAKE PHP, CI,');
+(1, 'index'),
+(2, 'sitemap'),
+(3, 'terms_of_use'),
+(4, 'disclaimer'),
+(5, 'privacy_policy'),
+(6, 'contact_us'),
+(7, 'about_us'),
+(8, 'about_the_coffee');
 
 -- --------------------------------------------------------
 
@@ -669,7 +383,7 @@ CREATE TABLE IF NOT EXISTS `states` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `state_name` (`state_name`,`country_id`),
   KEY `country_id` (`country_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=65 ;
 
 --
 -- Dumping data for table `states`
@@ -725,7 +439,19 @@ INSERT INTO `states` (`id`, `state_name`, `statecode`, `country_id`) VALUES
 (47, 'Washington', 'WA', 226),
 (48, 'West Virginia', 'WV', 226),
 (49, 'Wisconsin', 'WI', 226),
-(50, 'Wyoming', 'WY', 226);
+(50, 'Wyoming', 'WY', 226),
+(51, 'Alberta', 'AAC', 38),
+(52, 'British Columbia', 'BCC', 38),
+(53, 'Manitoba', 'MAC', 38),
+(54, 'New Brunswick', 'NBC', 38),
+(55, 'Newfoundland and Labrador', 'NLC', 38),
+(57, 'Nova Scotia', 'NSC', 38),
+(59, 'Ontario', 'OOC', 38),
+(60, 'Prince Edward Island', 'PEC', 38),
+(61, 'Quebec', 'QCC', 38),
+(62, 'Saskatchewan', 'SNC', 38),
+(63, 'Yukon', 'YNC', 38),
+(64, 'Other', NULL, 240);
 
 -- --------------------------------------------------------
 

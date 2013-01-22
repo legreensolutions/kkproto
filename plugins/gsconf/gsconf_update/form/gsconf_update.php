@@ -37,13 +37,46 @@
 				<td>
 						<div align="center" style="overflow:auto;width:300px;height:395px;background-color:#F5F5F5;border:1px;border-color:#D6D6D6;border-style:solid;">
 						<div align="center" style="padding:4px;"><strong><?= $CAPGallery ?></strong></div><br/>
-						<?php 
-								$result =get_filenames(ROOT_PATH.$gallery_path,"jpeg","",true);
-								$n = sizeof($result);
-								for ($i = 0 ; $i < $n ; $i++ ){
-						?>
-						<IMG width="80" src="<?= $result[$i]?>"/>  <br/>  <?= $result[$i]?>		<br/>
-						<?php  } ?>
+
+<?php 
+		$result =get_filenames(ROOT_PATH.$gallery_path,"jpeg","",true);
+		$n = sizeof($result);
+		for ($i = 0 ; $i < $n ; $i++ ){
+?>
+<IMG width="80" src="<?= $result[$i]?>"/>  <br/>  <?= $result[$i]?>		<br/>
+<?php  } ?>
+
+
+
+
+<?php 
+		$result =get_filenames(ROOT_PATH.$gallery_path,"jpg","",true);
+		$n = sizeof($result);
+		for ($i = 0 ; $i < $n ; $i++ ){
+?>
+<IMG width="80" src="<?= $result[$i]?>"/>  <br/>  <?= $result[$i]?>		<br/>
+<?php  } ?>
+
+
+
+
+<?php 
+		$result =get_filenames(ROOT_PATH.$gallery_path,"png","",true);
+		$n = sizeof($result);
+		for ($i = 0 ; $i < $n ; $i++ ){
+?>
+<IMG width="80" src="<?= $result[$i]?>"/>  <br/>  <?= $result[$i]?>		<br/>
+<?php  } ?>
+
+
+
+<?php 
+		$result =get_filenames(ROOT_PATH.$gallery_path,"gif","",true);
+		$n = sizeof($result);
+		for ($i = 0 ; $i < $n ; $i++ ){
+?>
+<IMG width="80" src="<?= $result[$i]?>"/>  <br/>  <?= $result[$i]?>		<br/>
+<?php  } ?>
 						</div>
 				</td>
 			<?php }?>
