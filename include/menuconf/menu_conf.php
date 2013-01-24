@@ -36,10 +36,10 @@ $menu_list[$i][submenu] = "user_menu_employee";
 $i++;
 
 
-$menu_list[$i][caption] = "Guest Book";
+$menu_list[$i][caption] = "Kaffakarma";
 $menu_list[$i][url]="#";
 $menu_list[$i][usertype] = 0;
-$menu_list[$i][submenu] = "guestbook_menu";
+$menu_list[$i][submenu] = "kaffakarma_menu";
 
 $i++;
 
@@ -190,18 +190,18 @@ $download_menu[$i][submenu] = "";
 $i++;
 
 
-GLOBAL $guestbook_menu;
+GLOBAL $kaffakarma_menu;
 
-$guestbook_menu[$i][caption] = "Guest Book";
-$guestbook_menu[$i][url]="guestbook.php";
-$guestbook_menu[$i][usertype] = 0;
-$guestbook_menu[$i][submenu] = "";
+$kaffakarma_menu[$i][caption] = "FAQ search";
+$kaffakarma_menu[$i][url]="faq_search.php";
+$kaffakarma_menu[$i][usertype] = USERTYPE_ADMIN;
+$kaffakarma_menu[$i][submenu] = "";
 $i++;
 
-$guestbook_menu[$i][caption] = "List Guest Book";
-$guestbook_menu[$i][url]="admin_list_guestbooks.php"; 
-$guestbook_menu[$i][usertype] = USERTYPE_ADMIN;
-$guestbook_menu[$i][submenu] = "";
+$kaffakarma_menu[$i][caption] = "Add FAQ";
+$kaffakarma_menu[$i][url]="faq_update.php"; 
+$kaffakarma_menu[$i][usertype] = USERTYPE_ADMIN;
+$kaffakarma_menu[$i][submenu] = "";
 $i++;
 
 

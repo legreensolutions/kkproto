@@ -1,0 +1,45 @@
+
+
+
+form h1{
+ width:100%;
+ text-align:center;
+ font-family:"Times New Roman",Georgia,Serif;
+ font-size:18px;
+ color:#dd8b52;
+ margin-top:10px;
+
+}
+
+form div{
+ width:80%;
+ margin-left:auto;
+ margin-right:auto;
+ margin-bottom: 10px;       
+ 
+}
+
+div.field{
+background:orange;
+} 
+
+div.actions {
+ 
+text-align:center; 
+}
+.field input, .field textarea{
+width:100%;
+text-align: left;
+}
+
+.field label{
+ font-size:14px;
+ margin-left:10px;
+}
+
+#notice {
+  color: green;
+}
+
+
+
