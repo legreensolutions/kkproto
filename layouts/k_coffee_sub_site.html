@@ -1,7 +1,10 @@
 <html>
   <title><?php if (!empty($title)) echo $title ?></title>
   <?php if (!empty($js)) echo $js ?><?php if (!empty($css)) echo $css ?>
-  <head><link href="../css/k_coffee_sub_site.css" rel="stylesheet" type="text/css"></head>
+  <head>
+    <link href="../css/k_coffee_sub_site.css" rel="stylesheet" type="text/css">
+    <link href="../css/item.css" rel="stylesheet" type="text/css">
+  </head>
 
   <body>
     <div id="outer-container">
@@ -42,14 +45,37 @@
             <div id="content-area">
 <?php if (!empty($content)) echo $content;
         echo $this->plugin_output;  ?>
+
+
+
+                <div style="clear:both;"></div>
+
+                <?php for($i=0;$i<5;$i++){ ?>
+                <div class="item_div">
+                        <div class="item_name">Breakfast Blend</div>
+                        <div class="item_image"><img src="../images/k_coffee_subsite/sample_coffee/2.jpg"></div>
+                        <div class="price_buy"><div class="item_price">$15</div><div class="buy_button" ></div></div>
+                        <div style="clear:both;"></div>
+                        <div class="item_description">
+  This is a blend that uses specific beans, each with their own roast. There is no option to select your own roast. Mixed partly with espresso for additional kick.
+  This is a blend that uses specific beans, each with their own roast. There is no option to select your own roast. Mixed partly with espresso for additional kick.
+                        </div>
+                </div>
+                <?php } ?>
+              
+
+
+
         
-            <div style="clear:both"></div>
-            
-            
-        
-            </div>
+
+
+
+
+
+
     
     </div><!-- body -->
+    <div style="clear:both;"></div>
   </div><!-- Outer container-->
   <div id="footer_container"><div id="footer">&copy; KaffaKarma.com. All rights reserved.</div></div>
 </body>

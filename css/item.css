@@ -1,5 +1,69 @@
 .item_div {
-  height:100px;
-  width:100px;
-  border:1px solid red; 
+  height:250px;
+  width:220px;
+  border:1px solid #f8e0c8; 
+  background-color:#fff;
+  overflow:hidden;
+  float:left;
+  margin:5px;
 }
+.item_div:hover {
+  border:1px solid #e5ccb3;  
+}
+.item_name {
+  text-align:center;
+  margin:auto;
+  color:brown;
+  line-height:30px;
+}
+.item_name:hover {
+  color:black;
+}
+.item_image {
+  width:100px;
+  text-align:center;
+  margin:auto;
+  padding:5px;
+  border:1px solid #fff;   
+  /*background-color: #f8e0c8;*/
+}
+.item_image:hover {
+  border:1px solid #f8e0c8;   
+}
+.item_description {
+  text-align:justify;
+  margin:auto;
+  color:#000;
+  padding:10px;
+  line-height:15px;
+  font-size:12px;
+  color:grey;
+}
+.item_description:hover {
+  color:black;
+  
+}
+.price_buy {
+  text-align:center;
+  margin:auto;
+  width:100px;
+}
+
+.buy_button {
+  background-image:url('../images/k_coffee_subsite/buy_button.png');
+  width:50px;
+  height:20px;
+  float:left;
+  margin:5px;
+  margin-left:10px;
+}
+.buy_button:hover {
+  background-position:0px 20px;
+}
+.item_price {
+  float:left;
+  color:blue;
+  line-height:30px;
+
+}
+
