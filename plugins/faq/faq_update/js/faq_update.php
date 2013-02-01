@@ -1,3 +1,9 @@
+<?php
+  // prevent execution of this code by direct call from browser
+  if ( !defined('CHECK_INCLUDED') ){
+    exit();
+  }
+?>
     <!--
     function Trim(strInput) {
     while (true) {

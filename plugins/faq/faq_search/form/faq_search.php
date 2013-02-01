@@ -1,3 +1,9 @@
+<?php
+  // prevent execution of this code by direct call from browser
+  if ( !defined('CHECK_INCLUDED') ){
+    exit();
+  }
+?>
 <form target="_self" method="GET" action="<?php echo $current_url; ?>" name="frmfaq_search">
 
 <h1><?php echo $CAP_page_caption?></h1>

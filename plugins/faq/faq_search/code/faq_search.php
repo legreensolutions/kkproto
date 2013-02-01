@@ -1,9 +1,17 @@
 <?php
+  // prevent execution of this code by direct call from browser
+  if ( !defined('CHECK_INCLUDED') ){
+    exit();
+  }
+?>
+
+
+<?php
         //for pagination
         $Mypagination = new Pagination(20);
 
 
-        $Myfaq = new faq($myconnection);
+        $Myfaq = new Faq($myconnection);
         $Myfaq->connection = $myconnection;
         $chk = $Myfaq->get_list_array();
 

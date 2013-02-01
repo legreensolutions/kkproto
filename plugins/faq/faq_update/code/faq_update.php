@@ -1,4 +1,10 @@
 <?php
+  // prevent execution of this code by direct call from browser
+  if ( !defined('CHECK_INCLUDED') ){
+    exit();
+  }
+?>
+<?php
 $error = "";
 if ($_POST['insert'] == $CAP_insert || $_POST['update'] == $CAP_update){
 
@@ -7,7 +13,7 @@ if ( trim($_POST['txtquestion']) == "" ){
 }
 $myfaq->error_description = $error;
 if ( $error == "" ){
-      $myfaq = new faq();
+      $myfaq = new Faq();
       $myfaq->connection = $myconnection;
       $myfaq->question = trim($_POST['txtquestion']);
       $myfaq->answer = trim($_POST['txtanswer']);
@@ -18,7 +24,6 @@ if ( $error == "" ){
                             $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "index.php";
                             header( "Location: gfwflash.php");
                             exit();
-                            //echo $msg_unmatching_que_ans;exit();
                             }
                             elseif ( $_POST['update'] == $CAP_update && $chk != false ) {
                             $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_que_updated;
@@ -35,7 +40,7 @@ if ( $error == "" ){
 }
 }
 elseif ($_POST['delete'] == $CAP_delete){
-    $myfaq = new faq();
+    $myfaq = new Faq();
     $myfaq->connection = $myconnection;
     $myfaq->id = $_POST['h_id'];
     $chk = $myfaq->delete();
@@ -54,7 +59,7 @@ elseif ($_POST['delete'] == $CAP_delete){
 }
 elseif (isset($_GET['id']) && $_GET['id'] > 0){
 $h_id = $_GET['id'];
-$myfaq = new faq();
+$myfaq = new Faq();
 $myfaq->connection = $myconnection;
 $myfaq->id = $_GET['id'];
 $chk = $myfaq->get_detail();

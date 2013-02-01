@@ -1,4 +1,10 @@
 <?php
+  // prevent execution of this code by direct call from browser
+  if ( !defined('CHECK_INCLUDED') ){
+    exit();
+  }
+?>
+<?php
 $CAP_faq = "FAQ";
 
 $CAP_Question = "Question";

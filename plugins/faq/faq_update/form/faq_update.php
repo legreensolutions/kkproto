@@ -1,13 +1,9 @@
-<?php   /*
-    This forms most of the HTML contents of User Login page
-    On clicking the Login Button
-    the page is called by itself
-    If successful user is redirected to the concerned Logged in page
-    Else
-    Invalid Login information is displayed
-    */
-
-    ?>
+<?php
+  // prevent execution of this code by direct call from browser
+  if ( !defined('CHECK_INCLUDED') ){
+    exit();
+  }
+?>
         <!-- form start-->
             <form  target="_self" method="post" action="<?php echo $current_url?>" name="frmfaq" id="frmfaq">
 
@@ -19,7 +15,7 @@
         else{echo $CAP_page_caption_add;}?> </h1>
 
 
-        <?php echo $myfaq->error_description; ?>
+        <p><?php echo $myfaq->error_description; ?></p>
 
 
 <div class="field">

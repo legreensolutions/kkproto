@@ -12,19 +12,18 @@
 	$page->title = "Kaffakarma.com :: Item";	// page Title
 	$page->page_name = 'item';		    // page name for menu and other purpose
 	$page->layout = 'default.html';		// layout name
-        $page->use_gsconf = true;         // enable GS conf
+        $page->access_list = array("USERTYPE_ADMIN"); // authorisation
           
         $page->conf_list = array("conf.php");
         $page->menuconf_list = array("menu_conf.php");
 	$page->connection_list = array("connection.php");
 	$page->function_list = array("functions.php");
-	$page->class_list = array("class_user.php","class_item.php");
-	$page->pageconf_list = array("item.php");
+	$page->class_list = array("class_item.php");
+        $page->pageconf_list = array("item.php");
+        
+        $page->css_list = array("form.css");
 
 	$index=0;
-	$content_list[$index]['file_name']='inc_language.php';
-	$content_list[$index]['var_name']='language';
-	$index++;
 	$content_list[$index]['file_name']='inc_menu.php';
 	$content_list[$index]['var_name']='menu';
 	$index++;
