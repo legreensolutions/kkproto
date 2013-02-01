@@ -140,10 +140,12 @@ a:visited {
   background-image:url('../images/k_coffee/open_new_account.png');  
   width:205px;
   height:40px;     
+  background-position:0px 0px;
   float:left;
 }
 #open_new_account:hover {
-  background-image:url('../images/k_coffee/_open_new_account.png');  
+  /*background-image:url('../images/k_coffee/_open_new_account.png');  */
+  background-position:0px 40px;
 }
 
 #profile_link {
@@ -182,7 +184,7 @@ margin-top: 8px;
   float:left;
 }
 #search_button:hover {
-  background-image:url('../images/k_coffee/_search_button.png');  
+  background-position:0px 28px;
 }
 #search_button_right {
   background-image:url('../images/k_coffee/search_button_right.png');  
@@ -234,40 +236,27 @@ margin-top: 8px;
   font-style:italic;
   font-size:20px;
   margin-right:50px;
+  background-position:0px 0px;
 } 
-#m1, #m2:hover, #m3:hover, #m4:hover, #m5:hover, #m6:hover, #m7:hover {
+#m1:hover, #m2:hover, #m3:hover, #m4:hover, #m5:hover, #m6:hover, #m7:hover {
   text-decoration: none;
+  background-position:0px 45px;
 }
 
 #m1 {
   background-image:url('../images/k_coffee/m1.png');   
 }
-#m1:hover {
-  background-image:url('../images/k_coffee/_m1.png');   
-}
 #m2 {
   background-image:url('../images/k_coffee/m2.png');   
-}
-#m2:hover {
-  background-image:url('../images/k_coffee/_m2.png');   
 }
 #m3 {
   background-image:url('../images/k_coffee/m3.png');   
 }
-#m3:hover {
-  background-image:url('../images/k_coffee/_m3.png');   
-}
 #m4 {
   background-image:url('../images/k_coffee/m4.png');   
 }
-#m4:hover {
-  background-image:url('../images/k_coffee/_m4.png');   
-}
 #m5 {
   background-image:url('../images/k_coffee/m5.png');   
-}
-#m5:hover {
-  background-image:url('../images/k_coffee/_m5.png');   
 }
 #left-menu {
   width:203px;
