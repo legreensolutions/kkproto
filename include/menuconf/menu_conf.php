@@ -206,7 +206,17 @@ $i++;
 
 
 
+$kaffakarma_menu[$i][caption] = "Item Search";
+$kaffakarma_menu[$i][url]="item_search.php"; 
+$kaffakarma_menu[$i][usertype] = USERTYPE_ADMIN;
+$kaffakarma_menu[$i][submenu] = "";
+$i++;
 
+$kaffakarma_menu[$i][caption] = "Add Item";
+$kaffakarma_menu[$i][url]="item.php"; 
+$kaffakarma_menu[$i][usertype] = USERTYPE_ADMIN;
+$kaffakarma_menu[$i][submenu] = "";
+$i++;
 
 
 

@@ -20,20 +20,20 @@ if ( $error == "" ){
       $myItem->id = $_POST['h_id'];
       $chk = $myItem->update();
                             if ($chk == false){
-                           // $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_on_fail;
-                            //$_SESSION[SESSION_TITLE.'flash_redirect_page'] = "index.php";
-                            //header( "Location: gfwflash.php");
-                            //exit();
+                             $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_on_fail;
+                             $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "item.php";
+                             header( "Location: gfwflash.php");
+                             exit();
                             }
                             elseif ( $_POST['update'] == $CAP_update && $chk != false ) {
                             $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_updated;
-                            $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "items.php";
+                            $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "item_search.php";
                             header( "Location: gfwflash.php");
                             exit();
                             }
                             elseif ($_POST['insert'] == $CAP_insert && $chk != false){
                             $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_added;
-                            $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "item.php";
+                            $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "item_search.php";
                             header( "Location: gfwflash.php");
                             exit();
                             }
@@ -46,13 +46,13 @@ elseif ($_POST['delete'] == $CAP_delete){
     $chk = $myItem->delete();
                             if ( $chk == false ){
                             $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_on_fail;
-                            $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "items.php";
+                            $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "item.php";
                             header( "Location: gfwflash.php");
                             exit();
                             }
                             else{
                             $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_deleted;
-                            $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "items.php";
+                            $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "item_search.php";
                             header( "Location: gfwflash.php");
                             exit();
                             }
