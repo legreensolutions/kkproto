@@ -78,14 +78,14 @@ $strERR = "";
         $data_user = $myuser->update();
         if ( $data_user == true ){
             if ( trim ( $_FILES['fleimage']['name'] ) != "" && $myuser->id > 0 ) {
-                        //rename the uploaded Image file and the thumbnail
-                        if ( $myimage->rename_image ($myuser->id, $arrupload["imagefile"], USER_DIR)  /*&& rename_image ($imageid, $arrupload["thumbfile"], THUMBS_DIR)*/ ) {
-                        $strMSG = $MSG_image_uploaded;
-                        }
-                        else {
-                        //Error while renaming the uploaded files
-                        $strERR = $MSG_image_err_upload;
-                        }
+                //rename the uploaded Image file and the thumbnail
+                if ( $myimage->rename_image ($myuser->id, $arrupload["imagefile"], USER_DIR)  /*&& rename_image ($imageid, $arrupload["thumbfile"], THUMBS_DIR)*/ ) {
+                $strMSG = $MSG_image_uploaded;
+                }
+                else {
+                //Error while renaming the uploaded files
+                $strERR = $MSG_image_err_upload;
+                }
             }
             $_SESSION[SESSION_TITLE.'flash'] = $MSG_profile_updated;
             $_SESSION[SESSION_TITLE.'flash_redirect_page'] = $RD_file_name_profile_updated;

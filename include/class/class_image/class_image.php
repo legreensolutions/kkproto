@@ -55,6 +55,7 @@ function upload_image ($fleFILE, $minwidth=800, $maxwidth=1024, $minheight=600, 
                         //if (img_resize($uploadfile, 150, 100, 100, $thumbfile)){
                             //SUCCESS
                             $arrRet["err_code"] = 0;
+                            $arrRet["err_desc"] = "";
                             $arrRet["imagefile"] = $uploadfile;
                             //$arrRet["thumbfile"] = $thumbfile;
                     //  }
@@ -66,25 +67,30 @@ function upload_image ($fleFILE, $minwidth=800, $maxwidth=1024, $minheight=600, 
                     else { //if (move_uploaded_file($_FILES['fleimage']['tmp_name'], $uploadfile))
                         //unable to move the file from temporary directory
                         $arrRet["err_code"] = -5;
+                        $arrRet["err_desc"] = "unable to move the file from temporary directory";
                     }
                 }
                 else { //if (($size[0] >= $minwidth) &&
                     //invalid dimension
                     $arrRet["err_code"] = -4;
+                    $arrRet["err_desc"] = "invalid dimension";
                 }
             }
             else { //if ($_FILES["fleimage"]["size"] < $maxsize)
                 //invalid size error
-                $arrRet["err_code"] = -3;
+                $arrRet["err_code"] = -3; 
+                $arrRet["err_desc"] = "invalid size error";
             }
         }
         else { //if(trim(basename($_FILES["fleimage"]["name"])) != "" && 
             // invalid file type
             $arrRet["err_code"] = -2;
+            $arrRet["err_desc"] ="invalid file type";
         }
     }
     else { //if ($_FILES["fleimage"]["error"] == 0)
         $arrRet["err_code"] = -1;
+        $arrRet["err_desc"] ="File not uploaded. Please select a valid image file";
     }
     return ($arrRet);
 }

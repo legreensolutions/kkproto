@@ -18,7 +18,7 @@
         //for pagination
         $MyItem->total_records = $Mypagination->total_records;
 
-        $data_bylimit = $MyItem->get_list_array_bylimit(-1, $_GET["txtname"], "", $Mypagination->start_record,$Mypagination->max_records);
+        $data_bylimit = $MyItem->get_list_array_bylimit(-1, $_GET["txtname"], "","","","", $Mypagination->start_record,$Mypagination->max_records);
         
         if ( $data_bylimit == false ){
             $mesg = "No records found";

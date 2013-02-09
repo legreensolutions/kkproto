@@ -12,17 +12,17 @@
 	$page->title = "Kaffakarma.com :: Item";	// page Title
 	$page->page_name = 'item';		    // page name for menu and other purpose
 	$page->layout = 'default.html';		// layout name
-        $page->access_list = array("USERTYPE_ADMIN"); // authorisation
-          
-        $page->conf_list = array("conf.php");
-        $page->menuconf_list = array("menu_conf.php");
-	$page->connection_list = array("connection.php");
-	$page->function_list = array("functions.php");
-	$page->class_list = array("class_item.php");
-        $page->pageconf_list = array("item.php");
-        
-        $page->css_list = array("form.css");
-        $page->js_list = array("item.js");
+
+    $page->access_list = array("USERTYPE_ADMIN"); // authorisation          
+    $page->conf_list = array("conf.php");
+    $page->menuconf_list = array("menu_conf.php");
+    $page->connection_list = array("connection.php");
+    $page->function_list = array("functions.php");
+    $page->class_list = array("class_item.php","class_itemstatus.php", "class_itemtype.php","class_image.php");
+    $page->pageconf_list = array("item.php");
+    
+    $page->css_list = array("form.css");
+    $page->js_list = array("item.js");
 
 	$index=0;
 	$content_list[$index]['file_name']='inc_menu.php';
@@ -30,7 +30,7 @@
 	$index++;
 	$content_list[$index]['file_name']='inc_item_code.php';
 	$content_list[$index]['var_name']='content';
-  $index++;
+    $index++;
 	$content_list[$index]['file_name']='inc_item_form.php';
 	$content_list[$index]['var_name']='content';
 	$page->content_list = $content_list;

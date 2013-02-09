@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 18, 2013 at 01:30 AM
--- Server version: 5.5.28
+-- Generation Time: Feb 09, 2013 at 05:35 PM
+-- Server version: 5.5.29
 -- PHP Version: 5.4.6-1ubuntu1.1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
@@ -78,7 +78,18 @@ CREATE TABLE IF NOT EXISTS `configurations` (
   PRIMARY KEY (`id`),
   KEY `page_id` (`page_id`,`language_id`),
   KEY `configurationtype_id` (`configurationtype_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `configurations`
+--
+
+INSERT INTO `configurations` (`id`, `configuration_name`, `page_id`, `value`, `description`, `language_id`, `configurationtype_id`, `publish`) VALUES
+(1, 'Home Page Content', 1, '<p>Kaffa Karma is a family owned and operated company that was founded on the principles of Paying It Forward.</p><br />\n<p>The owners have been an active part of the Calgary community for four generations and have watched this thriving metropolis take form.</p><br />\n<p>Over the years, as our children have grown and participated in community events, sporting groups and clubs, we&#39;ve been involved in a TON of fund raisers. Kaffa Karma is just that! Fund raising on cruise control!</p><br /><p>We work with your group or organization to raise funds without the early morning bottle drives or hours working in a bingo hall. Kaffa Karma will brand and market Organic Gourmet 100% Arabica Coffee for your group. We handle the order processing and arrange for the delivery of the product... so, all you do is collect a check at the end of the month.</p><br /><div id = "fund_raiser_button"></div><!--div id = "equipments_big_button"></div--><br />\n          <br />\n', 'Dynamic index content', 1, 1, 0),
+(2, 'Our Showcase', 8, '<br />\n<h1>Our Showcase</h1><br />\nCoffee... <br /><br />\n          <br />\n', 'Dynamic about_the_coffee content', 1, 1, 0),
+(3, 'Contact Information', 6, '<br />\n<h1>Contact Information</h1><br />\nKaffa Karma <br /><br />\nCanada<br /><br />\nemail:  admin@kaffakarma.com<br /><br />\nPh: 123456789<br /><br />\n          <br />\n', 'Dynamic contact_us content', 1, 1, 0),
+(4, 'About Us', 7, '<br />\n<h1>About Us</h1><br />Kaffa Karma is just ... fund raising on cruise control!<br /><br />\nKaffa Karma is a family owned and operated company that was founded on the principals of paying it forward. The owners have been an active part of the Calgary community for four generations and have watched this thriving metropolis take form. over the years as our children have grown and participated in community events, sporting groups and clubs and as such weÃ¢â‚¬â„¢ve been involved in a TON of fund raisers.<br />\n  <br />\n', 'Dynamic about_us content', 1, 1, 0),
+(5, 'coffee', 9, '<br />\n<h1>Coffee</h1><br />Coffee!<br /><br />\nCoffee .....  <br />\n', 'Dynamic coffee content', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -161,7 +172,14 @@ CREATE TABLE IF NOT EXISTS `faq` (
   `question` varchar(255) NOT NULL,
   `answer` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `faq`
+--
+
+INSERT INTO `faq` (`id`, `question`, `answer`) VALUES
+(6, 'D5T', 'D5Te');
 
 -- --------------------------------------------------------
 
@@ -174,6 +192,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `name` varchar(255) NOT NULL,
   `description` text,
   `item_status_id` int(11) NOT NULL,
+  `item_type_id` int(11) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `keywords` text,
   `unit_price` double NOT NULL,
@@ -196,7 +215,37 @@ CREATE TABLE IF NOT EXISTS `itemstatuses` (
   `description` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `itemstatuses`
+--
+
+INSERT INTO `itemstatuses` (`id`, `name`, `description`) VALUES
+(1, 'In Stock', 'In Stock'),
+(2, 'Out of Stock', 'Out of Stock');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `itemtypes`
+--
+
+CREATE TABLE IF NOT EXISTS `itemtypes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` text,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `itemtypes`
+--
+
+INSERT INTO `itemtypes` (`id`, `name`, `description`) VALUES
+(1, 'Kaffakarma Only', 'Items used in Kaffakarma subsites Only'),
+(2, 'All', 'Items used in all other subsites');
 
 -- --------------------------------------------------------
 
@@ -314,7 +363,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `page_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `pages`
@@ -328,7 +377,8 @@ INSERT INTO `pages` (`id`, `page_name`) VALUES
 (5, 'privacy_policy'),
 (6, 'contact_us'),
 (7, 'about_us'),
-(8, 'about_the_coffee');
+(8, 'about_the_coffee'),
+(9, 'coffee');
 
 -- --------------------------------------------------------
 
@@ -502,7 +552,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `user_name`, `userpassword`, `usertype_id`, `firstname`, `lastname`, `emailid`, `address`, `city_id`, `state_id`, `country_id`, `ipaddress`, `registrationdate`, `lastlogin`, `userstatus_id`, `image`, `securityquestion_id`, `answer`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'Admin', '', '', '', '16', 0, 99, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, '', 1, 'neelan');
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'Admin', '', '', '', '16', 0, 0, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'menu.png', 1, 'neelan');
 
 -- --------------------------------------------------------
 

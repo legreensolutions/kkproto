@@ -178,11 +178,11 @@ $i++;
 
 
 GLOBAL $download_menu;
-$download_menu[$i][caption] = "Download Source";
-$download_menu[$i][url]="download.php?download=greenFW.zip"; 
-$download_menu[$i][usertype] = 0;
-$download_menu[$i][submenu] = "";
-$i++;
+//$download_menu[$i][caption] = "Download Source";
+//$download_menu[$i][url]="download.php?download=greenFW.zip"; 
+//$download_menu[$i][usertype] = 0;
+//$download_menu[$i][submenu] = "";
+//$i++;
 $download_menu[$i][caption] = "Download DB";
 $download_menu[$i][url]="download.php?download=gfw.sql.zip";
 $download_menu[$i][usertype] = 0;
