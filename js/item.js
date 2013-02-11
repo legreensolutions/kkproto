@@ -19,6 +19,10 @@ while (true) {
 return strInput;
 }
 
+function isNumber(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
 function validate_item(){
     error = "";
     frm = document.getElementById("frmItem");
@@ -28,6 +32,32 @@ function validate_item(){
 
     if(Trim(frm.txtdescription.value) == ""){
        error += "<?php echo $MSG_empty_description ?>\n";
+    }
+
+    if(frm.lstitem_status_id.value==-1){
+        error += "<?php echo $MSG_empty_item_status ?>\n";
+    }
+
+    if(frm.lstitem_type_id.value==-1){
+        error += "<?php echo $MSG_empty_item_type ?>\n";
+    }
+
+
+    if(Trim(frm.txtkeywords.value) == ""){
+       error += "<?php echo $MSG_empty_keywords ?>\n";
+    }
+
+
+    if(!isNumber(frm.txtunit_price .value)){
+       error += "<?php echo $MSG_empty_unit_price ?>\n";
+    }
+
+    if(!isNumber(frm.txttax_item .value)){
+       error += "<?php echo $MSG_empty_tax_item ?>\n";
+    }
+
+    if(!isNumber(frm.txttax_shipping .value)){
+       error += "<?php echo $MSG_empty_tax_shipping ?>\n";
     }
 
     if ( error != "" ){
