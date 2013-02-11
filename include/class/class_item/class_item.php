@@ -164,22 +164,22 @@ function get_list_array_bylimit($id=gINVALID,$name="", $description="", $item_st
 
 
         if ( $name != "" ) {
-                $str_condition .= " AND name  LIKE '%" . addslashes(trim($name)) . "%'" ;
+                $str_condition .= " AND I.name  LIKE '%" . addslashes(trim($name)) . "%'" ;
         }
 
 
         if ( $description != "" ) {
-                $str_condition .= " AND description  LIKE '%" . addslashes(trim($description)) . "%'" ;
+                $str_condition .= " AND I.description  LIKE '%" . addslashes(trim($description)) . "%'" ;
 
         }
 
 
         if ( $item_status_id != gINVALID && $item_status_id != ""){
-                $str_condition .= " AND item_status_id = ".addslashes(trim($item_status_id));
+                $str_condition .= " AND I.item_status_id = ".addslashes(trim($item_status_id));
         }
 
         if ( $item_type_id != gINVALID && $item_type_id != ""){
-                $str_condition .= " AND item_type_id = ".addslashes(trim($item_status_id));
+                $str_condition .= " AND I.item_type_id = ".addslashes(trim($item_status_id));
         }
 
 
