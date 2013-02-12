@@ -1,6 +1,4 @@
 
-
-
 form h1{
  width:100%;
  text-align:center;
@@ -8,7 +6,6 @@ form h1{
  font-size:18px;
  color:#dd8b52;
  margin-top:10px;
-
 }
 
 form div{
@@ -20,14 +17,14 @@ form div{
 }
 
 div.field{
-background:orange;
+/*background:orange;*/
 } 
 
 div.actions {
  
 text-align:center; 
 }
-.field input, .field textarea{
+.field input, .field textarea, .field select{
 width:100%;
 text-align: left;
 }
@@ -35,6 +32,7 @@ text-align: left;
 .field label{
  font-size:14px;
  margin-left:10px;
+ font-weight:bold;
 }
 
 #notice {
