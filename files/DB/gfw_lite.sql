@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 09, 2013 at 05:35 PM
+-- Generation Time: Feb 13, 2013 at 12:02 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.6-1ubuntu1.1
 
@@ -19,6 +19,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `kaffakarma`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `business`
+--
+
+CREATE TABLE IF NOT EXISTS `business` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `day` varchar(255) DEFAULT NULL,
+  `time` varchar(255) DEFAULT NULL,
+  `time_zone` varchar(255) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `comments` text,
+  `date` datetime NOT NULL,
+  `ipaddress` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userid` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -78,18 +102,7 @@ CREATE TABLE IF NOT EXISTS `configurations` (
   PRIMARY KEY (`id`),
   KEY `page_id` (`page_id`,`language_id`),
   KEY `configurationtype_id` (`configurationtype_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
-
---
--- Dumping data for table `configurations`
---
-
-INSERT INTO `configurations` (`id`, `configuration_name`, `page_id`, `value`, `description`, `language_id`, `configurationtype_id`, `publish`) VALUES
-(1, 'Home Page Content', 1, '<p>Kaffa Karma is a family owned and operated company that was founded on the principles of Paying It Forward.</p><br />\n<p>The owners have been an active part of the Calgary community for four generations and have watched this thriving metropolis take form.</p><br />\n<p>Over the years, as our children have grown and participated in community events, sporting groups and clubs, we&#39;ve been involved in a TON of fund raisers. Kaffa Karma is just that! Fund raising on cruise control!</p><br /><p>We work with your group or organization to raise funds without the early morning bottle drives or hours working in a bingo hall. Kaffa Karma will brand and market Organic Gourmet 100% Arabica Coffee for your group. We handle the order processing and arrange for the delivery of the product... so, all you do is collect a check at the end of the month.</p><br /><div id = "fund_raiser_button"></div><!--div id = "equipments_big_button"></div--><br />\n          <br />\n', 'Dynamic index content', 1, 1, 0),
-(2, 'Our Showcase', 8, '<br />\n<h1>Our Showcase</h1><br />\nCoffee... <br /><br />\n          <br />\n', 'Dynamic about_the_coffee content', 1, 1, 0),
-(3, 'Contact Information', 6, '<br />\n<h1>Contact Information</h1><br />\nKaffa Karma <br /><br />\nCanada<br /><br />\nemail:  admin@kaffakarma.com<br /><br />\nPh: 123456789<br /><br />\n          <br />\n', 'Dynamic contact_us content', 1, 1, 0),
-(4, 'About Us', 7, '<br />\n<h1>About Us</h1><br />Kaffa Karma is just ... fund raising on cruise control!<br /><br />\nKaffa Karma is a family owned and operated company that was founded on the principals of paying it forward. The owners have been an active part of the Calgary community for four generations and have watched this thriving metropolis take form. over the years as our children have grown and participated in community events, sporting groups and clubs and as such weÃ¢â‚¬â„¢ve been involved in a TON of fund raisers.<br />\n  <br />\n', 'Dynamic about_us content', 1, 1, 0),
-(5, 'coffee', 9, '<br />\n<h1>Coffee</h1><br />Coffee!<br /><br />\nCoffee .....  <br />\n', 'Dynamic coffee content', 1, 1, 0);
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -172,14 +185,7 @@ CREATE TABLE IF NOT EXISTS `faq` (
   `question` varchar(255) NOT NULL,
   `answer` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
-
---
--- Dumping data for table `faq`
---
-
-INSERT INTO `faq` (`id`, `question`, `answer`) VALUES
-(6, 'D5T', 'D5Te');
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -552,7 +558,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `user_name`, `userpassword`, `usertype_id`, `firstname`, `lastname`, `emailid`, `address`, `city_id`, `state_id`, `country_id`, `ipaddress`, `registrationdate`, `lastlogin`, `userstatus_id`, `image`, `securityquestion_id`, `answer`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'Admin', '', '', '', '16', 0, 0, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'menu.png', 1, 'neelan');
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'Admin', '', '', '', '16', 0, 0, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, NULL, 1, 'neelan');
 
 -- --------------------------------------------------------
 
