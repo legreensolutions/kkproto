@@ -1,4 +1,3 @@
-<div style="width:100%; height:30px; background-color:#412207;" id="menu"></div>
 <script language="JavaScript">
 <!--
 var menuConfig = [
@@ -103,4 +102,4 @@ new menu (menuHierarchy, menuConfig);
 //-->
 </script>
 
-<?php $this->debug_output.=$menu_debug_output;  ?>
+<?php $this->debug_output.= $menu_debug_output;  ?>

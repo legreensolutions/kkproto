@@ -157,4 +157,17 @@ color:#92151D;
 }
 
 
+#admin_panel_bg {
+  border-bottom:1px solid #57531C;
+  height:106px;
+  text-align:right;
+  color:#57531C;
+  background-image:url('../images/kaffakarma/admin_panel_bg.png');
+}
 
+#content_bg {
+  vertical-align: top; 
+  background-image:url('../images/kaffakarma/content_bg.png'); 
+  height:350px;
+  border-bottom:1px solid #936b4a;  
+}
