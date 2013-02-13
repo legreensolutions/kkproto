@@ -12,20 +12,20 @@ function populatelist ($lstname, $str_query, $str_firstvalue="-1", $str_firstopt
         if ( $str_selected == $str_firstvalue ) {
             echo '<option selected="selected" value="' . $str_firstvalue . '">';
             echo $str_firstoption;
-            echo '</option>';
+            echo '"';
         }
         else {
-            echo '<option value="' . $str_firstvalue . '">' . $str_firstoption . '</option>';
+            echo '<option value="' . $str_firstvalue . '">' . $str_firstoption . '"';
         }
     }
     while ($arrRES = mysql_fetch_array($rsRES)) {
         if ( $str_selected == $arrRES[0] ) {
             echo '<option selected="selected" value="' . $arrRES[0] . '">';
             echo $arrRES[1];
-            echo '</option>';
+            echo '"';
         }
         else {
-            echo '<option value="' . $arrRES[0] . '">' . $arrRES[1] . '</option>';
+            echo '<option value="' . $arrRES[0] . '">' . $arrRES[1] . '"';
         }
     }
     echo '</select>';
@@ -37,8 +37,8 @@ function populate_list_array($objname, $array_list, $value_array, $display_array
 GLOBAL $g_obj_select_default_text;
 ?>	
 <select  name="<?php echo $objname; ?>" <?php if ($disable == true){?> disabled="true"<?php } ?> >
-	<option selected="selected" value="-1"><?php echo $g_obj_select_default_text ?></option>
-	<?php foreach ($array_list as $value) { ?><option <?php if( $defaultvalue == $value[$value_array]){ ?> selected="selected"<?php } ?> value="<?php echo $value[$value_array]; ?>"><?php echo $value[$display_array]; ?></option>
+	<option selected="selected" value="-1"><?php echo $g_obj_select_default_text ?>
+	<?php foreach ($array_list as $value) { ?><option <?php if( $defaultvalue == $value[$value_array]){ ?> selected="selected"<?php } ?> value="<?php echo $value[$value_array]; ?>"><?php echo $value[$display_array]; ?>
 	<?php } //--end for ?>
 </select>
 	
@@ -212,11 +212,46 @@ function generate_language_links($admin_check=false){
 
 
 
+function time_array (){
+$time_array = array();$i=0;
+	/* -- Time Range 12:00 AM - 11:00 PM -- */
+    $time_array[$i]["time"] = "12:00 AM"; 
+    $i++;
+	for ( $i=1; $i <= 11; $i++) {
+		$time_array[$i]["time"] =  $i . ":00 AM"; 
+	}
+	$time_array[$i]["time"] = "12:00 PM"; 
+    $i++;
+	for ( $i=13; $i <= 23; $i++) {
+		$time_array[$i]["time"]  = ($i%12) . ":00 PM";
+	}
+  return $time_array;
+}
+ 
 
 
-
-
-
+function weekdays_array (){
+$weekdays_array = array();$i=0;
+    $weekdays_array[$i]["day"] = "Sunday"; $i++;
+    $weekdays_array[$i]["day"] = "Monday"; $i++;
+    $weekdays_array[$i]["day"] = "Tuesday"; $i++;
+    $weekdays_array[$i]["day"] = "Wednesday"; $i++;
+    $weekdays_array[$i]["day"] = "Thursday"; $i++;
+    $weekdays_array[$i]["day"] = "Friday"; $i++;
+    $weekdays_array[$i]["day"] = "Saturday"; $i++;
+return $weekdays_array;
+}
+ 
+function time_zone_array (){
+$time_zone_array = array();$i=0;
+    $time_zone_array[$i]["zone"] = "Pacific Standard Time (PST)"; $i++;
+    $time_zone_array[$i]["zone"] = "Mountain Standard Time (MST)"; $i++;
+    $time_zone_array[$i]["zone"] = "Central Standard Time (CST)"; $i++;
+    $time_zone_array[$i]["zone"] = "Eastern Standard Time(EST)"; $i++;
+    $time_zone_array[$i]["zone"] = "Atlantic Standard Time (AST)"; $i++;
+    $time_zone_array[$i]["zone"] = "Other Time Zones"; $i++;
+return $time_zone_array;
+}
 
 
 ?>

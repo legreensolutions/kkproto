@@ -216,7 +216,7 @@ class User {
             }
     }
     function get_newpassword(){
-    GLOBAL $g_orgname;
+
     $strSQL = "SELECT user_name,firstname FROM users U,securityquestions S WHERE securityquestion_id = S.id AND ";
     $strSQL .= "user_name = '".addslashes(trim($_POST['txtusername']))."' AND securityquestion_id = ".$_POST['lstsec_que'];
     $strSQL .= " AND answer = '".addslashes(trim($_POST['txtsec_ans']))."'";
@@ -230,18 +230,18 @@ class User {
             $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
             //Creating mail to user
             $page_email = $email;
-            $str_subject = "New Password for ".$g_orgname;
+            $str_subject = "New Password for ".ORG_NAME;
             $headers  = 'MIME-Version: 1.0' . "\r\n";
             $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-            $headers .= 'From: '.$g_orgname.' <'.EMAIL_INFO.'>'."\r\n";
+            $headers .= 'From: '.ORG_NAME.' <'.EMAIL_NO_REPLY.'>'."\r\n";
             $message = "Dear " . $fname . ",<br />
                 <br />
-                Here is your new password for ".$g_orgname.". <br><br>
+                Here is your new password for ".ORG_NAME.". <br><br>
                 Your Username: " . $this->user_name . "<br>
                 Your Password: " . $password . "<br /><br /><br />
 
                 Thanks,<br /><br />
-                ".$g_orgname."<br />";
+                ".ORG_NAME."<br />";
                 // send password to user
 //                 echo $message;exit();
                 mail($page_email,$str_subject,$message,$headers);

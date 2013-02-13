@@ -2,12 +2,6 @@
 // This is Global Page Configuration file
 // All the Conf defined in this page is commonly used configurations (Common error messages)
 
-
-
-
-GLOBAL $g_orgname;
-$g_orgname ="LeGreenSolutions";
-
 GLOBAL $g_obj_select_default_text;
 $g_obj_select_default_text = "Choose from list..";
 

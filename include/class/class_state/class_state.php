@@ -4,7 +4,7 @@ if ( !defined('CHECK_INCLUDED') ){
     exit();
 }
 
-class state {
+class State {
     var $connection;
     var $id = gINVALID;
     var $state_name = "";
@@ -118,6 +118,56 @@ function get_list_array(){
         return false;
         }
 }
+
+
+function get_list_array_canada_and_us(){
+        $states = array();$i=0;
+
+
+        $strSQL = "SELECT S.id AS state_id,state_name,statecode,country_id,country_name FROM states S,countries C";
+        $strSQL .= " WHERE S.country_id = C.id AND C.id = 38 ORDER BY state_name";
+        $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
+        if ( mysql_num_rows($rsRES) > 0 ){
+              $states[$i]["id"] = gINVALID;
+              $states[$i]["state_name"] = "--Canada--";
+              $i++;
+        while ( list ($id,$state_name,$statecode,$country_id,$country_name) = mysql_fetch_row($rsRES) ){
+              $states[$i]["id"] = $id;
+              $states[$i]["state_name"] = $state_name;
+              $states[$i]["statecode"] = $statecode;
+              $states[$i]["country_id"] = $country_id;
+              $states[$i]["country_name"] = $country_name;
+              $i++;
+        }
+
+        }
+        $strSQL = "SELECT S.id AS state_id,state_name,statecode,country_id,country_name FROM states S,countries C";
+        $strSQL .= " WHERE S.country_id = C.id AND C.id = 226 ORDER BY state_name";
+        $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
+        if ( mysql_num_rows($rsRES) > 0 ){
+              $states[$i]["id"] = gINVALID;
+              $states[$i]["state_name"] = "--United States--";
+              $i++;
+        while ( list ($id,$state_name,$statecode,$country_id,$country_name) = mysql_fetch_row($rsRES) ){
+              $states[$i]["id"] = $id;
+              $states[$i]["state_name"] = $state_name;
+              $states[$i]["statecode"] = $statecode;
+              $states[$i]["country_id"] = $country_id;
+              $states[$i]["country_name"] = $country_name;
+              $i++;
+        }
+
+        return $states;
+        }
+        else{
+        $this->error_number = 4;
+        $this->error_description="Can't list states";
+        return false;
+        }
+}
+
+
+
 function get_list_array_bylimit($state_name=-1,$statecode=-1,$country_id=-1,$country_name="",$start_record = 0,$max_records = 25){
 
         $limited_data = array();
