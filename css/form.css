@@ -18,6 +18,7 @@ form div{
 
 div.field{
 /*background:orange;*/
+text-align:left; 
 } 
 
 div.actions {
@@ -29,10 +30,14 @@ width:100%;
 text-align: left;
 }
 
+.field textarea {
+height:100px;
+}
 .field label{
  font-size:14px;
  margin-left:10px;
  font-weight:bold;
+
 }
 
 #notice {
