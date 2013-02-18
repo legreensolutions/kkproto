@@ -7,7 +7,7 @@ $msg_empty_loginname = "Login Name Empty ";
 
 $msg_empty_password = "Password Empty ";
 
-$msg_default_username = "Enter your email address ";
+$msg_default_username = "Enter your User Name ";
 
 $msg_error_login = "Invalid Login/Password";
 

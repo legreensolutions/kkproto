@@ -11,6 +11,17 @@ define("USERSTATUS_TO_BE_ACTIVATED", 2);
 define("USERSTATUS_CANCELED", 3);
 define("USERSTATUS_ADMIN_CANCELED", 4);
 
+
+
+//ITEM Types
+define("ITEMTYPE_KAFFAKARMA", 1);
+define("ITEMTYPE_ALL", 2);
+
+//ITEM Status
+define("ITEMSTATUS_IN_STOCK", 1);
+define("ITEMSTATUS_OUT_OF_STOCK", 2);
+
+
 GLOBAL $g_msg_unauthorized_request;
 $g_msg_unauthorized_request = "<strong>Unauthorized Page Request</strong><br/> <br/> You are not authorized to access this page. This attempt will be reported to the system Administrator. ";
 

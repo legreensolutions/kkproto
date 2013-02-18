@@ -4,7 +4,7 @@ if ( !defined('CHECK_INCLUDED') ){
     exit();
 }
 
-class Item {
+class UserItem {
     var $connection;
     var $id = gINVALID;
     var $name = "";
@@ -28,7 +28,7 @@ class Item {
     var $total_records = "";
 
 function get_id(){
-    $strSQL = "SELECT id,name, description, item_status_id, item_type_id, image, keywords, unit_price, tax_item, tax_shipping FROM items WHERE name = '".addslashes(trim($this->name))."'";
+    $strSQL = "SELECT UI.id, I.name, I.description, I.item_status_id, I.item_type_id, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping, UI.user_id, UI.item_id, UI.unit_price as user_price FROM items I, useritems UI WHERE UI.item_id = I.id AND I.name = '".addslashes(trim($this->name))."'";
     $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
     if ( mysql_num_rows($rsRES) > 0 ){
         $this->id = mysql_result($rsRES,0,'id');
@@ -43,6 +43,10 @@ function get_id(){
         $this->unit_price = mysql_result($rsRES,0,'unit_price');
         $this->tax_item = mysql_result($rsRES,0,'tax_item');
         $this->tax_shipping = mysql_result($rsRES,0,'tax_shipping');
+        $this->user_id = mysql_result($rsRES,0,'user_id');
+        $this->item_id = mysql_result($rsRES,0,'item_id');
+        $this->user_price = mysql_result($rsRES,0,'user_price');
+
 
         return $this->id;
     }else{
@@ -55,7 +59,7 @@ function get_id(){
 
 
 function get_detail(){
-    $strSQL = "SELECT I.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping FROM items I,itemstatuses S, itemtypes T WHERE I.item_status_id = S.id AND I.item_type_id = T.id AND I.id = '".addslashes(trim($this->id))."'";
+    $strSQL = "SELECT UI.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping, , UI.user_id, UI.item_id, UI.unit_price AS user_price FROM items I,itemstatuses S, itemtypes T, useritems UI WHERE I.item_status_id = S.id AND I.item_type_id = T.id AND UI.item_id = I.id AND UI.id = '".addslashes(trim($this->id))."'";
     $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
     if ( mysql_num_rows($rsRES) > 0 ){
         $this->id = mysql_result($rsRES,0,'id');
@@ -68,6 +72,10 @@ function get_detail(){
         $this->unit_price= mysql_result($rsRES,0,'unit_price');
         $this->tax_item= mysql_result($rsRES,0,'tax_item');
         $this->tax_shipping= mysql_result($rsRES,0,'tax_shipping');
+        $this->user_id= mysql_result($rsRES,0,'user_id');
+        $this->item_id= mysql_result($rsRES,0,'item_id');
+        $this->user_price= mysql_result($rsRES,0,'user_price');
+
         return $this->id;
     }else{
         $this->error_number = 2;
@@ -79,16 +87,10 @@ function get_detail(){
 
 function update(){
     if ( $this->id == "" || $this->id == gINVALID) {
-    $strSQL = "INSERT INTO items (name, description, item_status_id, item_type_id, image, keywords, unit_price, tax_item, tax_shipping) VALUES ('";
-    $strSQL .= addslashes(trim($this->name)) ."','";
-    $strSQL .= addslashes(trim($this->description)) ."',";
-    $strSQL .= addslashes(trim($this->item_status_id)) .",";
-    $strSQL .= addslashes(trim($this->item_type_id)) .",'";
-    $strSQL .= addslashes(trim($this->image)) ."','";
-    $strSQL .= addslashes(trim($this->keywords)) ."',";
-    $strSQL .= addslashes(trim($this->unit_price)) .",";
-    $strSQL .= addslashes(trim($this->tax_item)) .",";
-    $strSQL .= addslashes(trim($this->tax_shipping)) .")";
+    $strSQL = "INSERT INTO useritems (user_id, item_id, unit_price) VALUES ('";
+    $strSQL .= addslashes(trim($this->user_id)) ."','";
+    $strSQL .= addslashes(trim($this->item_id)) ."','";
+    $strSQL .= addslashes(trim($this->user_price))."')";
 
     $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
           if ( mysql_affected_rows($this->connection) > 0 ) {
@@ -96,22 +98,14 @@ function update(){
               return $this->id;
           }else{
               $this->error_number = 3;
-              $this->error_description="Can't insert this name";
+              $this->error_description="Can't insert this Record";
               return false;
           }
     }
     elseif($this->id > 0 ) {
-    $strSQL = "UPDATE items SET name = '".addslashes(trim($this->name))."',";
-    $strSQL .= "description = '".addslashes(trim($this->description))."',";
-    $strSQL .= "item_status_id = ".addslashes(trim($this->item_status_id)).",";
-    $strSQL .= "item_type_id = ".addslashes(trim($this->item_type_id)).",";
-if ( $this->image != "" ){
-    $strSQL .= "image = '".addslashes(trim($this->image))."',";
-}
-    $strSQL .= "keywords = '".addslashes(trim($this->keywords))."',";
-    $strSQL .= "unit_price = ".addslashes(trim($this->unit_price)).",";
-    $strSQL .= "tax_item = ".addslashes(trim($this->tax_item)).",";
-    $strSQL .= "tax_shipping = ".addslashes(trim($this->tax_shipping));
+    $strSQL = "UPDATE useritems SET user_id = '".addslashes(trim($this->user_id))."',";
+    $strSQL .= "item_id = '".addslashes(trim($this->item_id))."',";
+    $strSQL .= "unit_price = ".addslashes(trim($this->user_price));
     $strSQL .= " WHERE id = ".$this->id;
     $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
             if ( mysql_affected_rows($this->connection) >= 0 ) {
@@ -119,7 +113,7 @@ if ( $this->image != "" ){
             }
             else{
                 $this->error_number = 3;
-                $this->error_description="Can't update this items";
+                $this->error_description="Cant update this Record";
                 return false;
             }
     }
@@ -127,10 +121,11 @@ if ( $this->image != "" ){
 
 function get_list_array(){
         $items = array();$i=0;
-        $strSQL = "SELECT I.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping FROM items I,itemstatuses S, itemtypes T WHERE I.item_status_id = S.id AND I.item_type_id = T.id ORDER BY id";
+        $strSQL = "SELECT UI.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping , UI.user_id, UI.item_id ,UI.unit_price AS user_price FROM items I,itemstatuses S, itemtypes T, useritems UI WHERE I.item_status_id = S.id AND I.item_type_id = T.id AND UI.item_id = I.id  ORDER BY UI.id";
+
         $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
         if ( mysql_num_rows($rsRES) > 0 ){
-            while ( list ($id,$name,$description, $item_status_id, $item_status_name, $item_type_id, $item_type_name, $image, $keywords, $unit_price, $tax_item, $tax_shipping) = mysql_fetch_row($rsRES) ){
+            while ( list ($id,$name,$description, $item_status_id, $item_status_name, $item_type_id, $item_type_name, $image, $keywords, $unit_price, $tax_item, $tax_shipping, $user_id, $item_id, $user_price) = mysql_fetch_row($rsRES) ){
                 $items[$i]["id"] =  $id;
                 $items[$i]["name"] = $name;
                 $items[$i]["description"] = $description;
@@ -143,25 +138,31 @@ function get_list_array(){
                 $items[$i]["unit_price"] = $unit_price;
                 $items[$i]["tax_item"] = $tax_item;
                 $items[$i]["tax_shipping"] = $tax_shipping;
+                $items[$i]["user_id"] = $user_id;
+                $items[$i]["item_id"] = $item_id;
+                $items[$i]["user_price"] = $user_price;
                 $i++;
             }
             return $items;
         }else{
-        $this->error_number = 4;
-        $this->error_description="Can't list items";
-        return false;
+            $this->error_number = 4;
+            $this->error_description="Can't list items";
+            return false;
         }
+            
+        
 }
 
-function get_list_array_bylimit($id=gINVALID,$name="", $description="", $item_status_id=gINVALID, $item_type_id=gINVALID, $keywords="", $start_record = 0,$max_records = 25){
+
+function get_list_array_bylimit($id=gINVALID,$name="", $description="", $item_status_id=gINVALID, $item_type_id=gINVALID, $user_id=gINVALID, $item_id=gINVALID, $keywords="", $start_record = 0,$max_records = 25){
 
         $limited_data = array();
         $i=0;
         $str_condition = "";
 
-        $strSQL = "SELECT I.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping FROM items I,itemstatuses S, itemtypes T WHERE I.item_status_id = S.id AND I.item_type_id = T.id ";
+        $strSQL = "UI.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping , UI.user_id, UI.item_id ,UI.unit_price AS user_price FROM items I,itemstatuses S, itemtypes T, useritems UI WHERE I.item_status_id = S.id AND I.item_type_id = T.id AND UI.item_id = I.id ";
         if ( $id != "" && $id != gINVALID ) {
-                $str_condition .= " AND id  = '" . addslashes(trim($id)) . "'" ;
+                $str_condition .= " AND UI.id  = '" . addslashes(trim($id)) . "'" ;
         }
 
 
@@ -182,6 +183,14 @@ function get_list_array_bylimit($id=gINVALID,$name="", $description="", $item_st
 
         if ( $item_type_id != gINVALID && $item_type_id != ""){
                 $str_condition .= " AND I.item_type_id = ".addslashes(trim($item_status_id));
+        }
+
+        if ( $user_id != gINVALID && $user_id != ""){
+                $str_condition .= " AND UI.user_id = ".addslashes(trim($user_id));
+        }
+
+        if ( $item_id != gINVALID && $item_id != ""){
+                $str_condition .= " AND UI.item_id = ".addslashes(trim($item_id));
         }
 
 
@@ -216,6 +225,10 @@ function get_list_array_bylimit($id=gINVALID,$name="", $description="", $item_st
                 $limited_data[$i]["unit_price"] = $row["unit_price"];
                 $limited_data[$i]["tax_item"] = $row["tax_item"];
                 $limited_data[$i]["tax_shipping"] = $row["tax_shipping"];
+                $limited_data[$i]["user_id"] = $row["user_id"];
+                $limited_data[$i]["item_id"] = $row["item_id"];
+                $limited_data[$i]["user_price"] = $row["user_price"];
+
                 $i++;
             }
             return $limited_data;
@@ -239,21 +252,6 @@ function delete(){
         }
     }
 }
-
-
-function delete_image_fromDB(){
-    $strSQL = "UPDATE items SET image='' WHERE id = ".$this->id;
-    $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
-    if ( mysql_affected_rows($this->connection) > 0 ) {
-        return true;
-    }else{
-        return false;
-        $this->error_description = "Image not deleted";
-     }
-}
-
-
-
 
 
 

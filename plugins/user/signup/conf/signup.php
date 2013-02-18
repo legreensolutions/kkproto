@@ -2,7 +2,9 @@
 
 $MSG_empty_username = "Username Empty ";
 
-$MSG_invalid_username = "Username is not a valid E-mail Address";
+$MSG_empty_email = "Username Empty ";
+
+$MSG_invalid_email = "Not a valid E-mail Address";
 
 $MSG_empty_firstname = "Firstname Empty ";
 
@@ -37,6 +39,8 @@ $CAP_page_caption = "S&nbsp;&nbsp;i&nbsp;&nbsp;g&nbsp;&nbsp;n&nbsp;&nbsp;&nbsp;&
 
 $CAP_username = "Username";
 
+$CAP_email = "Email";
+
 $CAP_password = "Password";
 
 $CAP_repassword = "Retype Password";
@@ -48,6 +52,8 @@ $CAP_lastname = "Lastname";
 $CAP_address = "Address";
 
 $CAP_city = "City";
+
+$CAP_state = "State or Province";
 
 $CAP_country = "Country";
 

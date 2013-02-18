@@ -125,7 +125,7 @@ if ( $this->image != "" ){
 
 function get_list_array(){
         $items = array();$i=0;
-        $strSQL = "SELECT I.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping FROM items I,itemstatuses S, itemtypes T WHERE I.item_status_id = S.id AND I.item_type_id = T.id ORDER BY id";
+        $strSQL = "SELECT I.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping FROM items I,itemstatuses S, itemtypes T WHERE I.item_status_id = S.id AND I.item_type_id = T.id ORDER BY I.id";
         $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
         if ( mysql_num_rows($rsRES) > 0 ){
             while ( list ($id,$name,$description, $item_status_id, $item_status_name, $item_type_id, $item_type_name, $image, $keywords, $unit_price, $tax_item, $tax_shipping) = mysql_fetch_row($rsRES) ){
@@ -179,14 +179,14 @@ function get_list_array_bylimit($id=gINVALID,$name="", $description="", $item_st
         }
 
         if ( $item_type_id != gINVALID && $item_type_id != ""){
-                $str_condition .= " AND I.item_type_id = ".addslashes(trim($item_status_id));
+                $str_condition .= " AND I.item_type_id = ".addslashes(trim($item_type_id));
         }
 
 
         if (trim($str_condition) !="") {
             $strSQL .=  $str_condition . "  ";
         }
-        $strSQL .= " ORDER BY id";
+        $strSQL .= " ORDER BY I.id";
         //taking limit  result of that in $rsRES .$start_record is starting record of a page.$max_records num of records in that page
         $strSQL_limit = sprintf("%s LIMIT %d, %d", $strSQL, $start_record, $max_records);
         $rsRES = mysql_query($strSQL_limit, $this->connection) or die(mysql_error(). $strSQL_limit);
@@ -249,10 +249,6 @@ function delete_image_fromDB(){
         $this->error_description = "Image not deleted";
      }
 }
-
-
-
-
 
 
 

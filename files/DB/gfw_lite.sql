@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 13, 2013 at 12:02 PM
+-- Generation Time: Feb 18, 2013 at 12:55 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.6-1ubuntu1.1
 
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `cities` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `country_id` (`country_id`,`state_id`,`city_name`),
   KEY `state_id` (`state_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `cities`
@@ -82,7 +82,8 @@ INSERT INTO `cities` (`id`, `city_name`, `state_id`, `country_id`) VALUES
 (13, '', 0, 0),
 (14, 'Kochi', NULL, 99),
 (15, 'Kochi', 0, 0),
-(16, 'cochin', 0, 0);
+(16, 'cochin', 0, 0),
+(17, 'ere', 52, 38);
 
 -- --------------------------------------------------------
 
@@ -185,7 +186,23 @@ CREATE TABLE IF NOT EXISTS `faq` (
   `question` varchar(255) NOT NULL,
   `answer` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `faq`
+--
+
+INSERT INTO `faq` (`id`, `question`, `answer`) VALUES
+(1, 'How does the partnership between Kaffa Karma and my Non-Profit group or organization work?', '1. Kaffa Karma will create a personalized web site for your Non-Profit Organization FREE of charge to you.\r\n2. You promote coffee sales through the Non-Profit website to generate income for your group. Buy your own coffee and refer others to do the same.\r\n3. Kaffa Karma does all the time consuming work for you by handling all your Non-Profit group sales and product delivery. You just handle the promotion'),
+(2, 'How does Kaffa Karma help my Non-Profit group make money?', 'At the end of the month, all sales for the Non-Profit group are totaled and a check is mailed for a percentage of the sales. This is truly stress-free fund raising!'),
+(3, 'What is the pricing for the coffee and the percentage of commission paid?', 'Please contact us using the Contact Us link on the website and we will discuss this with you.'),
+(4, 'How do members and supporters of the organization pay for the coffee they buy?', 'Kaffa Karma takes payment for coffee orders by Paypal.'),
+(5, 'Will I receive confirmation of my order?', 'Yes.\r\n1. Paypal will send a confirmation notification to you by email when your payment is successfully processed.\r\n2. Kaffa Karma will also email an Order Confirmation when your order is complete.'),
+(6, 'When will my coffee be delivered?', 'We ship our coffee orders every Wednesday, by courier.'),
+(7, 'What is the cost of shipping?', 'The cost of delivery and GST are calculated in the purchase price so there are no additional charges. If you live outside of Alberta, please contact us.'),
+(8, 'Are you able to ship to a Post Office Box?', 'No. Kaffa Karma uses a courier so there must be a physical address.'),
+(9, 'Do you ship to locations outside of Alberta?', 'At the present time we are shipping locally, however, we plan to expand to other areas so please contact us to make arrangements.'),
+(10, 'Do you have questions that are not answered in this FAQ?', 'Please contact us using the Contact Us link on the website and we will get back to you as quickly as possible. Usually you will hear from us within 48 hours, however it could be much sooner than that. We look forward to speaking with you. Thanks.');
 
 -- --------------------------------------------------------
 
@@ -207,7 +224,19 @@ CREATE TABLE IF NOT EXISTS `items` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   KEY `item_status_id` (`item_status_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`id`, `name`, `description`, `item_status_id`, `item_type_id`, `image`, `keywords`, `unit_price`, `tax_item`, `tax_shipping`) VALUES
+(1, 'Coffee 1', 'Coffee 1', 1, 1, '4.jpg', 'Coffee', 15, 5, 5),
+(2, 'Coffee 2', 'Coffee 2', 1, 1, '3.jpg', 'Coffee', 15, 5, 5),
+(3, 'Coffee 3', 'Coffee 3', 1, 1, '2.jpg', 'Coffee', 15, 5, 5),
+(4, 'Coffee 4', 'Coffee 4', 1, 1, '4.jpg', 'Coffee', 15, 5, 5),
+(5, 'Coffee 5', 'Coffee 5', 1, 1, '3.jpg', 'Coffee', 15, 5, 5),
+(6, 'Coffee 6', 'Coffee 6', 1, 1, '2.jpg', 'Coffee', 15, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -516,11 +545,13 @@ INSERT INTO `states` (`id`, `state_name`, `statecode`, `country_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `useritems` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
   `unit_price` double NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`,`item_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

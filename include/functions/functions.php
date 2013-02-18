@@ -1,7 +1,7 @@
 <?php 
 // Function to populate values in a dropdown list
 function populatelist ($lstname, $str_query, $str_firstvalue="-1", $str_firstoption = "", $str_selected = "", $bln_disabled = false, $str_event = "", $str_style = "") {
-    GLOBAL $myconnection;
+
     $rsRES = mysql_query($str_query) or die (mysql_error() . $str_query);
     $str_disable = "";
     if ($bln_disabled == true){
@@ -37,9 +37,10 @@ function populate_list_array($objname, $array_list, $value_array, $display_array
 GLOBAL $g_obj_select_default_text;
 ?>	
 <select  name="<?php echo $objname; ?>" <?php if ($disable == true){?> disabled="true"<?php } ?> >
-	<option selected="selected" value="-1"><?php echo $g_obj_select_default_text ?>
-	<?php foreach ($array_list as $value) { ?><option <?php if( $defaultvalue == $value[$value_array]){ ?> selected="selected"<?php } ?> value="<?php echo $value[$value_array]; ?>"><?php echo $value[$display_array]; ?>
+	<option selected="selected" value="-1"><?php echo $g_obj_select_default_text ?></option>
+	<?php foreach ($array_list as $value) { ?><option <?php if( $defaultvalue == $value[$value_array]){ ?> selected="selected"<?php } ?> value="<?php echo $value[$value_array]; ?>"><?php echo $value[$display_array]; ?></option>
 	<?php } //--end for ?>
+
 </select>
 	
 <?php }	

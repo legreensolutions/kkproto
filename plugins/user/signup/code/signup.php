@@ -2,16 +2,16 @@
     $myquestion = new securityquestion();
     $myquestion->connection = $myconnection;
     $chk_que = $myquestion->get_list_array();
-    if ( $chk == false ){
 
-    }
+
+    $mystate = new State($myconnection);
+    $mystate->connection = $myconnection;
+    $chk_state = $mystate->get_list_array_canada_and_us();
 
     $mycountry = new country($myconnection);
     $mycountry->connection = $myconnection;
     $chk_con = $mycountry->get_list_array();
-    if ( $chk == false ){
 
-    }
 
     $myimage = new Image;
 
@@ -19,12 +19,19 @@ if ($_POST['submit'] == $CAP_submit){
 if ( $_POST['txtusername'] == "" ){
     $strERR .= "<br/>".$MSG_empty_username;
 }
+
+
 if ( $_POST['txtpasswd'] == "" ){
     $strERR .= "<br/>".$MSG_empty_password;
 }
 if ( $_POST['txtrepasswd'] == "" ){
     $strERR .= "<br/>".$MSG_empty_retype_password;
 }
+
+if ( $_POST['txtemail'] == "" ){
+    $strERR .= "<br/>".$MSG_empty_email;
+}
+
 if ( $_POST['txtpasswd'] != $_POST['txtrepasswd'] ){
     $strERR .= "<br/>".$MSG_unmatching_passwords;
 }
@@ -85,7 +92,7 @@ if ( $strERR == "" ){
               $password = $_POST['txtpasswd'];
               $myuser->userpassword = $_POST['txtpasswd'];
 
-              $myuser->emailid = $_POST['txtusername'];
+              $myuser->emailid = $_POST['txtemail'];
               $myuser->firstname = $_POST['txtfirstname'];
               $myuser->lastname = $_POST['txtlastname'];
               $myuser->address = $_POST['txtaddress'];
@@ -102,6 +109,7 @@ if ( $strERR == "" ){
 
               $myuser->city_id = $city_id;
 
+              $myuser->state_id = $_POST['lststate'];
               $myuser->country_id = $_POST['lstcountry'];
               $myuser->usertype_id = USERTYPE_REGISTERED_USER;
               $myuser->userstatus_id = USERSTATUS_TO_BE_ACTIVATED;
@@ -112,6 +120,42 @@ if ( $strERR == "" ){
               $myuser->sec_ans = $_POST['txtsec_ans'];
               $chk = $myuser->update();
               if ( $chk == true ){
+//######################### FOR USERITEM ############################
+
+
+
+        //for pagination
+        $Mypagination = new Pagination(100);
+
+
+        $MyItem = new Item($myconnection);
+        $MyItem->connection = $myconnection;
+        $chk = $MyItem->get_list_array();
+
+        //for pagination
+        $MyItem->total_records = $Mypagination->total_records;
+
+        $data_bylimit = $MyItem->get_list_array_bylimit(-1, "", "","",ITEMSTATUS_IN_STOCK,ITEMTYPE_KAFFAKARMA, $Mypagination->start_record,$Mypagination->max_records);
+        
+        if ( $data_bylimit == false ){
+            // No Items found
+        }else{
+            $count_data_bylimit=count($data_bylimit);
+            $index = 0;
+            $MyUserItem = new UserItem($myconnection);
+            $MyUserItem->connection = $myconnection;
+            while ( $count_data_bylimit > $index ){
+                $MyUserItem->id = gINVALID;
+                $MyUserItem->item_id = $data_bylimit[$index]["id"];
+                $MyUserItem->user_price = $data_bylimit[$index]["unit_price"];
+                $MyUserItem->user_id = $myuser->id;
+                $MyUserItem->update();
+                $index++;
+            }
+
+        }
+
+//###################################################################
                     if ( trim ( $_FILES['fleimage']['name'] ) != "" && $myuser->id > 0 ) {
                         //rename the uploaded Image file and the thumbnail
                         if ( $myimage->rename_image ($myuser->id, $arrupload["imagefile"], USER_DIR)  /*&& rename_image ($imageid, $arrupload["thumbfile"], THUMBS_DIR)*/ ) {

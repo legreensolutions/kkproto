@@ -43,15 +43,19 @@ return false;
     function validate_signup(){
         error = "";
         frm = document.getElementById("frmsignup");
+
+
         if(frm.txtusername.value==""){
             error = "<?php echo $MSG_empty_username ?>\n";
         }
-        else{
+        if(frm.txtemail.value==""){
+            error = "<?php echo $MSG_empty_email ?>\n";
+        }else{
         pattern = /\w+@\w+\.\w+/;
          //pattern = /^[a-zA-Z0-9]\w+(\.)?\w+@\w+\.\w{2,5}(\.\w{2,5})?$/;
-        result = pattern.test(Trim(frm.txtusername.value));
+        result = pattern.test(Trim(frm.txtemail.value));
         if( result == false) {
-           error = "<?php echo $MSG_invalid_username?>\n";
+           error = "<?php echo $MSG_invalid_email?>\n";
         }
         }
         if(document.getElementById("txtpasswd").value==""){
