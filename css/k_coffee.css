@@ -79,7 +79,8 @@ a:visited {
   float:left;
 }
 #linked_in:hover {
-  background-image:url('../images/k_coffee/_linked_in.png');  
+  background-image:url('../images/k_coffee/linked_in.png');  
+  background-position:0px 55px;
 }
 
 #facebook {
@@ -89,7 +90,8 @@ a:visited {
   float:left;
 }
 #facebook:hover {
-  background-image:url('../images/k_coffee/_facebook.png');  
+  background-image:url('../images/k_coffee/facebook.png');  
+  background-position:0px 55px;
 }
 #twitter {
   background-image:url('../images/k_coffee/twitter.png');  
@@ -98,7 +100,8 @@ a:visited {
   float:left;
 }
 #twitter:hover {
-  background-image:url('../images/k_coffee/_twitter.png');  
+  background-image:url('../images/k_coffee/twitter.png');  
+  background-position:0px 55px;
 }
 #facebook_right {
   background-image:url('../images/k_coffee/facebook_right.png');  
@@ -210,8 +213,9 @@ margin-top: 8px;
 /*  font-weight:bold;*/
 }
 #login:hover {
-  background-image:url('../images/k_coffee/_login.png');  
+  background-image:url('../images/k_coffee/login.png');  
   color:#fff;
+  background-position:0px 65px;
 }
 #login_right {
   background-image:url('../images/k_coffee/login_right.png');  
