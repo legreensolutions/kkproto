@@ -104,34 +104,22 @@ function get_list_array_bylimit($id=-1,$question="", $answer="", $start_record =
 
         $strSQL = "SELECT id,question,answer FROM faq WHERE 1 ";
         if ( $id != "" && $id != -1 ) {
-            if (trim($str_condition) =="") {
-                $str_condition = "  id  = '" . $id . "'" ;
-            }else{
-                $str_condition .= " AND id  = '" . $id . "'" ;
-            } 
+            $str_condition .= " AND id  = '" . $id . "'" ;
         }
 
 
         if ( $question != "" ) {
-            if (trim($str_condition) =="") {
-                $str_condition = "  question  LIKE '%" . $question . "%'" ;
-            }else{
-                $str_condition .= " AND question  LIKE '%" . $question . "%'" ;
-            } 
+            $str_condition .= " AND question  LIKE '%" . $question . "%'" ;
         }
 
 
         if ( $answer != "" ) {
-            if (trim($str_condition) =="") {
-                $str_condition = "  answer  LIKE '%" . $answer . "%'" ;
-            }else{
-                $str_condition .= " AND answer  LIKE '%" . $answer . "%'" ;
-            } 
+            $str_condition .= " AND answer  LIKE '%" . $answer . "%'" ;
         }
 
 
         if (trim($str_condition) !="") {
-            $strSQL .= " AND  " . $str_condition . "  ";
+            $strSQL .=  $str_condition . "  ";
         }
         $strSQL .= " ORDER BY id";
         //taking limit  result of that in $rsRES .$start_record is starting record of a page.$max_records num of records in that page
