@@ -219,7 +219,11 @@ $kaffakarma_menu[$i][submenu] = "";
 $i++;
 
 
-
+$kaffakarma_menu[$i][caption] = "Contact Us Forms Submitted";
+$kaffakarma_menu[$i][url]="business_search.php";
+$kaffakarma_menu[$i][usertype] = USERTYPE_ADMIN;
+$kaffakarma_menu[$i][submenu] = "";
+$i++;
 
 
 ?>

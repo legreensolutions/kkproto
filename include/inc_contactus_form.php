@@ -22,7 +22,7 @@
     <div class="field" >
         <label> Country: </label>
         <?php if(isset($_POST['lstcountry'])){ $value = $_POST['lstcountry']; } else{ $value = -1;}
-         populate_list_array("lstcountry", $chk_country, "id", "country", $defaultvalue=$value,$disable=false);
+         populate_list_array("lstcountry", $chk_country, "country", "country", $defaultvalue=$value,$disable=false);
       ?>
     </div>
 
@@ -39,11 +39,11 @@
     </div>
 
     <div class="field" >
-        <label> The best day and time to call is : (your time zone ) </label>
+        <label> The best day to call is : </label>
     <?php if(isset($_POST['lstday'])){ $value = $_POST['lstday']; } else{ $value = -1;}
          populate_list_array("lstday", weekdays_array(), "day", "day", $defaultvalue=$value,$disable=false);
       ?>		
-    <br/>
+    <br/> <label>The best time to call is : </label>
     <?php if(isset($_POST['lsttime'])){ $value = $_POST['lsttime']; } else{ $value = -1;}
          populate_list_array("lsttime", time_array(), "time", "time", $defaultvalue=$value,$disable=false);
       ?>

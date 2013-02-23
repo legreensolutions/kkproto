@@ -36,5 +36,5 @@ $page = new gsPage;
 	$page->content_list = $content_list;
 
 
-	$page->display(); //completed page with dynamic cintent will be displayed
+	$page->display(); //completed page with dynamic content will be displayed
 ?>

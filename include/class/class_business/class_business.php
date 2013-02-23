@@ -18,6 +18,7 @@ class Business {
     var $email= "";
     var $comments= "";
     var $date= "Now()";
+    var $date_formatted= "";
     var $ipaddress = "";
 
 
@@ -28,7 +29,7 @@ class Business {
 
 
 function get_detail(){
-    $strSQL = "SELECT B.id, B.name, B.user_id, B.phone, B.day, B.time, B.time_zone, B.state, B.country, B.email, B.comments, B.date, B.ipaddress FROM business B WHERE B.id = ". addslashes(trim($this->id))."'";
+    $strSQL = "SELECT B.id, B.name, B.user_id, B.phone, B.day, B.time, B.time_zone, B.state, B.country, B.email, B.comments, B.date, B.ipaddress, DATE_FORMAT(B.date ,'%m/%d/%Y') AS E_date FROM business B WHERE B.id = '". addslashes(trim($this->id))."'";
     $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
     if ( mysql_num_rows($rsRES) > 0 ){
         $this->id = mysql_result($rsRES,0,'id');
@@ -44,6 +45,7 @@ function get_detail(){
         $this->comments = mysql_result($rsRES,0,'comments');
         $this->date = mysql_result($rsRES,0,'date');
         $this->ipaddress = mysql_result($rsRES,0,'ipaddress');
+        $this->date_formatted = mysql_result($rsRES,0,'E_date');
         return $this->id;
     }else{
         $this->error_number = 2;
@@ -106,10 +108,10 @@ function update(){
 
 function get_list_array(){
         $business = array();$i=0;
-        $strSQL = "SELECT B.id, B.name, B.user_id, B.phone, B.day, B.time, B.time_zone, B.state, B.country, B.email, B.comments, B.date, B.ipaddress FROM business B ";
+        $strSQL = "SELECT B.id, B.name, B.user_id, B.phone, B.day, B.time, B.time_zone, B.state, B.country, B.email, B.comments, B.date, B.ipaddress, DATE_FORMAT(B.date ,'%m/%d/%Y') AS E_date FROM business B ";
         $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
         if ( mysql_num_rows($rsRES) > 0 ){
-            while ( list ($id, $name, $user_id, $phone, $day, $time, $time_zone, $state, $country, $email, $comments, $date, $ipaddress) = mysql_fetch_row($rsRES) ){
+            while ( list ($id, $name, $user_id, $phone, $day, $time, $time_zone, $state, $country, $email, $comments, $date, $ipaddress ,$date_formatted) = mysql_fetch_row($rsRES) ){
                 $business[$i]["id"] =  $id;
                 $business[$i]["name"] = $name;
                 $business[$i]["user_id"] = $user_id;
@@ -122,6 +124,7 @@ function get_list_array(){
                 $business[$i]["email"] = $email;
                 $business[$i]["comments"] = $comments;
                 $business[$i]["date"] = $date;
+                $business[$i]["date_formatted"] = $date_formatted;
                 $business[$i]["ipaddress"] = $ipaddress;
                 $i++;
             }
@@ -139,7 +142,7 @@ function get_list_array_bylimit($id=-1,$name="", $phone="", $email="", $date= ""
         $i=0;
         $str_condition = "";
 
-        $strSQL = "SELECT B.id, B.name, B.user_id, B.phone, B.day, B.time, B.time_zone, B.state, B.country, B.email, B.comments, B.date, B.ipaddress FROM business B WHERE 1 ";
+        $strSQL = "SELECT B.id, B.name, B.user_id, B.phone, B.day, B.time, B.time_zone, B.state, B.country, B.email, B.comments, B.date, B.ipaddress, DATE_FORMAT(B.date ,'%m/%d/%Y') E_date FROM business B WHERE 1 ";
 
         if ( $id != "" && $id != -1 ) {
             $str_condition .= " AND id  = '" . $id . "'" ;
@@ -199,6 +202,7 @@ function get_list_array_bylimit($id=-1,$name="", $phone="", $email="", $date= ""
                 $limited_data[$i]["email"] = $row["email"];
                 $limited_data[$i]["comments"] = $row["comments"];
                 $limited_data[$i]["date"] = $row["date"];
+                $limited_data[$i]["date_formatted"] = $row["E_date"];
                 $limited_data[$i]["ipaddress"] = $row["ipaddress"];
                 $i++;
             }
