@@ -3,11 +3,10 @@
         $charity=$_GET['charity'];
     }else{
 	    $server_host = explode('.', $_SERVER['HTTP_HOST']);
-	    $title = strtolower($server_host[0]);
-	    if (strtolower($title) == strtolower("www")) {
+	    $charity = strtolower($server_host[0]);
+	    if (strtolower($charity) == strtolower("www")) {
 		    $charity = strtolower($server_host[1]);
 	    }
-
 	}
 
     $myuser = new user($myconnection);
