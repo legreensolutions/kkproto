@@ -160,7 +160,7 @@ function get_list_array_bylimit($id=gINVALID,$name="", $description="", $item_st
         $i=0;
         $str_condition = "";
 
-        $strSQL = "UI.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping , UI.user_id, UI.item_id ,UI.unit_price AS user_price FROM items I,itemstatuses S, itemtypes T, useritems UI WHERE I.item_status_id = S.id AND I.item_type_id = T.id AND UI.item_id = I.id ";
+        $strSQL = "SELECT UI.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping , UI.user_id, UI.item_id ,UI.unit_price AS user_price FROM items I,itemstatuses S, itemtypes T, useritems UI WHERE I.item_status_id = S.id AND I.item_type_id = T.id AND UI.item_id = I.id ";
         if ( $id != "" && $id != gINVALID ) {
                 $str_condition .= " AND UI.id  = '" . addslashes(trim($id)) . "'" ;
         }

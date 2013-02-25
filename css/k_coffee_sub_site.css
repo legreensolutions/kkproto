@@ -54,6 +54,11 @@ a, a:hover, a:visited {
   text-align:center;
   margin:auto;
   overflow:hidden;
+  
+}
+#sub_site_logo_inside img {
+  width:260px;
+  height:200px;
 }
 
 #top_right {

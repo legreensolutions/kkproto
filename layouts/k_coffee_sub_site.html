@@ -14,7 +14,8 @@
             <div id = "logo"></div>
             <div id = "sub_site_logo">
                     <div id="sub_site_logo_inside">
-                        
+                        <img src="<?php echo $user_image?>">
+
                         <!-- SUB SITE LOGO HERE -->
 
                     </div>
@@ -27,7 +28,7 @@
         
               <div id = "sub_site_name_left"></div>
               <div id = "sub_site_name">
-                  LeGreenSolutions<!-- SUB SITE NAME HERE -->
+                  <?php echo $charity; ?><!-- SUB SITE NAME HERE -->
               </div>
               <div id = "sub_site_name_right"></div>
 
@@ -47,31 +48,7 @@
         echo $this->plugin_output;  ?>
 
 
-
-                <div style="clear:both;"></div>
-
-                <?php for($i=0;$i<6;$i++){ ?>
-                <div class="item_div">
-                        <div class="item_name">Breakfast Blend</div>
-                        <div class="item_image"><img src="../images/k_coffee_subsite/sample_coffee/2.jpg"></div>
-                        <div class="price_buy"><div class="item_price">$15</div><div class="buy_button" ></div></div>
-                        <div style="clear:both;"></div>
-                        <div class="item_description">
-  This is a blend that uses specific beans, each with their own roast. There is no option to select your own roast. Mixed partly with espresso for additional kick.
-  This is a blend that uses specific beans, each with their own roast. There is no option to select your own roast. Mixed partly with espresso for additional kick.
-                        </div>
-                </div>
-                <?php } ?>
-              
-
-
-
-        
-
-
-
-
-
+      
 
     
     </div><!-- body -->

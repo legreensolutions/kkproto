@@ -63,7 +63,7 @@ $CAP_city = "City";
 
 $CAP_country = "Country";
 
-$CAP_image = "Upload Image";
+$CAP_image = "Upload Image (260 x 200)";
 
 $CAP_sec_que = "Security Question";
 
