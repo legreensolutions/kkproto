@@ -31,12 +31,13 @@ $g_msg_unauthorized_request_redirect_page = "index.php";
 
 
 //Email 
-define("EMAIL_NO_REPLY", "noreply@kaffakarma.legreensolutions.com");
-define("EMAIL_INFO", "noreply@kaffakarma.legreensolutions.com");
-define("EMAIL_SUPPORT", "noreply@kaffakarma.legreensolutions.com");
+define("EMAIL_NO_REPLY", "noreply@kaffakarma.local");
+define("EMAIL_INFO", "noreply@kaffakarma.local");
+define("EMAIL_SUPPORT", "noreply@kaffakarma.local");
 
 
-define("WEB_URL", "http://kaffakarma.legreensolutions.com");
-define("WEB_NAME", "kaffakarma.legreensolutions.com");
+define("WEB_URL", "http://kaffakarma.local");
+define("SUBSITE_WEB_URL", "http://kaffakarma.local/subsite");
+define("WEB_NAME", "kaffakarma.local");
 define("ORG_NAME", "Kaffakarma");
 ?>

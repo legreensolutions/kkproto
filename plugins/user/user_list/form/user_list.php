@@ -1,3 +1,9 @@
+<?php
+  // prevent execution of this code by direct call from browser
+  if ( !defined('CHECK_INCLUDED') ){
+    exit();
+  }
+?>
 <form name="frmsearch" id="frmsearch" method="GET" action="user_list.php">
 <table align="center">
 <tbody>

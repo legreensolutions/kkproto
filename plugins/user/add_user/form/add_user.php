@@ -22,7 +22,7 @@
                 <tr>
                     <?php if ( $image != "" ){?>
                     <td>
-                        <img  src="<?php echo$user_image?>" height="48px" align="left">
+                        <img  src="<?php echo $user_image?>" height="48px" align="left">
                     </td>
                     <td></td>
                     <?php }?>
@@ -71,6 +71,8 @@
                     </td>
                 </tr>
                 <?php } ?>
+
+
                 <tr>
                     <td style="width:30%" align="right" >
                         <b><?php echo $CAP_usertype?></b>
@@ -101,6 +103,18 @@
                     <td style="width:30%" align="right" >&nbsp;</td>    
                     <td >&nbsp;</td>
                 </tr>
+
+
+
+                <tr>
+                    <td style="width:30%" align="right">
+                        <b><?php echo $CAP_email?></b>
+                    </td>   
+                    <td >
+                        <input style="width:200px;" align = "center" type="text" name="txtemail" value="<?php if(isset($_POST['txtemail'])){echo $_POST['txtemail'];}elseif(isset($_GET['id'])){echo $myuser->emailid;}?>"  >
+                    </td>
+                </tr>
+
 
                 <tr>
                     <td style="width:30%" align="right">

@@ -160,6 +160,7 @@ class User {
         elseif($this->id > 0 ) {
             $strSQL = "UPDATE users SET ";
             $strSQL .= "firstname = '".addslashes(trim($this->firstname))."',";
+            $strSQL .= "emailid = '".addslashes(trim($this->emailid))."',";
             $strSQL .= "lastname = '".addslashes(trim($this->lastname))."',";
             $strSQL .= "usertype_id = '".addslashes(trim($this->usertype_id))."',";
             $strSQL .= "userstatus_id = '".addslashes(trim($this->userstatus_id))."',";
@@ -303,11 +304,42 @@ class User {
         else{
             return false;
         }
-        /*}
+    }
+
+    function get_charity_detail(){
+        //if ( isset($_SESSION[SESSION_TITLE.'userid']) &&$_SESSION[SESSION_TITLE.'userid'] > 0 ) {
+        $strSQL = "SELECT * FROM users WHERE usertype_id= ".USERTYPE_REGISTERED_USER." AND userstatus_id=".USERSTATUS_ACTIVE." AND user_name = '".$this->user_name."'";
+        $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
+        if ( mysql_num_rows($rsRES) > 0 ){
+                $this->id = mysql_result($rsRES,0,'id');
+                $this->user_name = mysql_result($rsRES,0,'user_name');
+                //$this->userpassword = mysql_result($rsRES,0,'userpassword');
+                $this->usertype_id = mysql_result($rsRES,0,'usertype_id');
+                $this->userstatus_id = mysql_result($rsRES,0,'userstatus_id');
+                $this->firstname = mysql_result($rsRES,0,'firstname');
+                $this->lastname = mysql_result($rsRES,0,'lastname');
+                $this->emailid = mysql_result($rsRES,0,'emailid');
+                $this->address = mysql_result($rsRES,0,'address');
+                $this->city_id = mysql_result($rsRES,0,'city_id');
+                $this->state_id = mysql_result($rsRES,0,'state_id');
+                $this->country_id = mysql_result($rsRES,0,'country_id');
+                $this->image = mysql_result($rsRES,0,'image');
+                $this->ipaddress = mysql_result($rsRES,0,'ipaddress');
+                $this->registrationdate = mysql_result($rsRES,0,'registrationdate');
+                $this->lastlogin = mysql_result($rsRES,0,'lastlogin');
+                $this->sec_que_id = mysql_result($rsRES,0,'securityquestion_id');
+                $this->sec_ans = mysql_result($rsRES,0,'answer');
+                return true;
+        }
         else{
             return false;
-        } */
+        }
     }
+
+
+
+
+
     function delete_image_fromDB(){
         $strSQL = "UPDATE users SET image='' WHERE id = ".$this->id;
         $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
@@ -322,7 +354,7 @@ class User {
     function get_list_array($txtsearch,$lstusertype,$lstuserstatus){
         $data = array();$i=0;
         $strSQL = "SELECT U.id AS uid,user_name,firstname,usertype_id,userstatus_id,usertype_name,userstatus_name,";
-        $strSQL .= "registrationdate FROM users U,usertypes UT,userstatuses US WHERE usertype_id=UT.id AND userstatus_id=US.id";
+        $strSQL .= "registrationdate, emailid FROM users U,usertypes UT,userstatuses US WHERE usertype_id=UT.id AND userstatus_id=US.id";
         if ( $txtsearch != "" ){
         $strSQL .= " AND ( firstname LIKE '%".$txtsearch."%' OR user_name LIKE '%".$txtsearch."%' )";
         }
@@ -334,9 +366,10 @@ class User {
         }
         $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
         if ( mysql_num_rows($rsRES) > 0 ){
-        while ( list ($id,$user_name,$firstname,$usertype_id,$userstatus_id,$usertype_name,$userstatus_name,$registrationdate) = mysql_fetch_row($rsRES) ){
+        while ( list ($id,$user_name,$firstname,$usertype_id,$userstatus_id,$usertype_name,$userstatus_name,$registrationdate,$emailid) = mysql_fetch_row($rsRES) ){
               $data[$i]["id"] = $id;
               $data[$i]["user_name"] = $user_name;
+              $data[$i]["emailid"] = $emailid;
               $data[$i]["firstname"] = $firstname;
               $data[$i]["usertype_id"] = $usertype_id;
               $data[$i]["userstatus_id"] = $userstatus_id;
@@ -354,10 +387,10 @@ class User {
     }
     function get_list_array_bylimit($username,$firstname,$lastname,$address,$city,$country,$usertype,$userstatus,$start_record = 0,$max_records = 25){
         $limited_data = array();$i=0;
-        $strSQL = "SELECT U.id AS uid,user_name,firstname,lastname,address,";
+        $strSQL = "SELECT U.id AS uid,user_name,emailid,firstname,lastname,address,";
         $strSQL .= "city_id,city_name,U.country_id,country,";
         $strSQL .= "usertype_id,usertype_name,userstatus_id,userstatus_name,";
-        $strSQL .= "registrationdate FROM ((((users U INNER JOIN usertypes UT ON usertype_id=UT.id) ";
+        $strSQL .= "registrationdate,image FROM ((((users U INNER JOIN usertypes UT ON usertype_id=UT.id) ";
         $strSQL .= " LEFT JOIN userstatuses US ON userstatus_id=US.id )";
         $strSQL .= " LEFT JOIN cities C ON city_id = C.id )";
         $strSQL .= " LEFT JOIN countries CO ON U.country_id = CO.id ) ";
@@ -437,9 +470,10 @@ class User {
                 $this->total_records = mysql_num_rows($all_rs);
             }
 
-        while ( list ($id,$user_name,$firstname,$lastname,$address,$city_id,$city_name,$country_id,$country,$usertype_id,$usertype_name,$userstatus_id,$userstatus_name,$r_date) = mysql_fetch_row($rsRES) ){
+        while ( list ($id,$user_name,$emailid,$firstname,$lastname,$address,$city_id,$city_name,$country_id,$country,$usertype_id,$usertype_name,$userstatus_id,$userstatus_name,$r_date,$image) = mysql_fetch_row($rsRES) ){
               $limited_data[$i]["id"] = $id;
               $limited_data[$i]["user_name"] = $user_name;
+              $limited_data[$i]["emailid"] = $emailid;
               $limited_data[$i]["firstname"] = $firstname;
               $limited_data[$i]["lastname"] = $lastname;
               $limited_data[$i]["address"] = $address;
@@ -454,6 +488,7 @@ class User {
               $limited_data[$i]["userstatus_name"] = $userstatus_name;
               $r_date = date('m/d/Y', strtotime($r_date));
               $limited_data[$i]["registrationdate"] = $r_date;
+              $limited_data[$i]["image"] = $image;
               $i++;
         }
         return $limited_data;

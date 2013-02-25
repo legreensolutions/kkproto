@@ -3,8 +3,6 @@
   if ( !defined('CHECK_INCLUDED') ){
     exit();
   }
-?>
-<?php
  $mycountry = new country($myconnection);
  $mycountry->connection = $myconnection;
  $chk_country = $mycountry->get_list_array();
@@ -18,13 +16,13 @@
  $chk_userstatus = $myuserstatus->get_list_array();
 
  //for pagination
-        $Mypagination = new Pagination(20);
+        $Mypagination = new Pagination(30);
         $myuser = new user($myconnection);
         $myuser->connection = $myconnection;
         //for pagination
         $myuser->total_records = $Mypagination->total_records;
 
-        $data_bylimit = $myuser->get_list_array_bylimit($_GET["txtusername"],$_GET["txtfirstname"],$_GET["txtlastname"],$_GET["txtaddress"],$_GET["txtcity"],$_GET["lstcountry"],$_GET["lstusertype"],$_GET["lstuserstatus"],$Mypagination->start_record,$Mypagination->max_records);
+        $data_bylimit = $myuser->get_list_array_bylimit($_GET["txtcharity_name"],"","","","","",USERTYPE_REGISTERED_USER,USERSTATUS_ACTIVE,$Mypagination->start_record,$Mypagination->max_records);
         
         if ( $data_bylimit == false ){
             $mesg = "No records found";

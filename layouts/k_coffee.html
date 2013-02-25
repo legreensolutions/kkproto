@@ -35,8 +35,14 @@
 
 
             <div id="search_left"></div>
-            <div id="search_box"><input type="text" id= "search"/></div>            
-            <div id="search_button"></div>
+<form name="frmsearch" id="frmsearch" method="GET" action="search_charity.php">
+            <div id="search_box">
+                <input   maxlength="100" name="txtcharity_name" id= "search" >
+            </div>            
+     
+            <input id="search_button" name="submit" type="image" alt="" title="Search Charity?"  style="cursor:pointer;" />
+            <input type="hidden" name="h_conf_search" value="<?php echo md5("CONF_SEARCH"); ?>">
+</form>
             <div id="search_button_right"></div> 
 
 

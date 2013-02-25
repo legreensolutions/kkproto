@@ -1,8 +1,9 @@
 <?php
 
 $MSG_empty_username = "Username Empty ";
+$MSG_empty_email = "Email Empty ";
 
-$MSG_invalid_username = "Username is not a valid E-mail Address";
+$MSG_invalid_email = "email is not a valid E-mail Address";
 
 $MSG_empty_password = "Either u have to type password or click the check box to generate Password";
 
@@ -41,6 +42,8 @@ $CAP_page_caption_add = "A&nbsp;&nbsp;d&nbsp;&nbsp;d&nbsp;&nbsp;&nbsp;&nbsp;U&nb
 $CAP_page_caption_update = "U&nbsp;&nbsp;p&nbsp;&nbsp;d&nbsp;&nbsp;a&nbsp;&nbsp;t&nbsp;&nbsp;e&nbsp;&nbsp;&nbsp;&nbsp;U&nbsp;&nbsp;s&nbsp;&nbsp;e&nbsp;&nbsp;r";
 
 $CAP_username = "Username";
+
+$CAP_email = "Email";
 
 $CAP_password = "Password";
 

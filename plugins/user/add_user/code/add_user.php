@@ -33,6 +33,11 @@
  if ( trim($_POST['txtusername']) == "" ){
       $strERR .= $MSG_empty_username;
  }
+
+ if ( trim($_POST['txtemail']) == "" ){
+      $strERR .= $MSG_empty_email;
+ }
+
  if ( trim($_POST['txtpassword']) == "" && trim($_POST['txtrepassword']) == "" ){
       if ( $_POST['chkpassword'] == "" ){
       $strERR .= $MSG_empty_password;
@@ -101,7 +106,7 @@ $myuser->error_description = $strERR;
               $myuser->userpassword = $_POST['txtpassword'];
               $myuser->usertype_id = $_POST['lstusertype'];
               $myuser->userstatus_id = $_POST['lstuserstatus'];
-              $myuser->emailid = $_POST['txtusername'];
+              $myuser->emailid = $_POST['txtemail'];
               $myuser->firstname = $_POST['txtfirstname'];
               $myuser->lastname = $_POST['txtlastname'];
               $myuser->address = $_POST['txtaddress'];

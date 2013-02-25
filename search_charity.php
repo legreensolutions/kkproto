@@ -10,9 +10,8 @@ $page = new gsPage;
     $page->current_url = $current_url;  // current url for pages
     $page->title = "Kaffakarma.com";   // page Title
     $page->page_name = 'user_list';     // page name for menu and other purpose
-    $page->layout = 'default.html';     // layout name
-    $page->access_list = array("USERTYPE_ADMIN"); // authorisation
-
+    $page->layout = 'k_coffee.html';     // layout name
+    
     $page->conf_list = array("conf.php");
     $page->menuconf_list = array("menu_conf.php");
 
@@ -31,6 +30,6 @@ $page = new gsPage;
     $page->content_list = $content_list;
 
     $page->plugin_path = 'plugins/user/';
-    $page->plugin = 'user_list';
+    $page->plugin = 'search_charity';
     $page->get_plugin(); //completed pluggin with dynamic content will be displayed
 ?>                                `
