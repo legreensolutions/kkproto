@@ -411,5 +411,7 @@ a.faq_question {
 
 }
 
-
+*:focus {
+    outline: none;
+}
 
