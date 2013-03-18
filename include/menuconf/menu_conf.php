@@ -65,22 +65,22 @@ $i++;
 
 GLOBAL $gfw_menu;
 
-$gfw_menu[$i][caption] = "Search Conf";
+$gfw_menu[$i][caption] = "Web Content";
 $gfw_menu[$i][url]="gsconf_search.php";
 $gfw_menu[$i][usertype] = USERTYPE_ADMIN;
 $i++;
 
-/*
-$gfw_menu[$i][caption] = "Publish Conf (ALL)";
+
+$gfw_menu[$i][caption] = "Publish Content (ALL)";
 $gfw_menu[$i][url]="gsconf_publishall.php";
 $gfw_menu[$i][usertype] = USERTYPE_ADMIN;
 $i++;
 
-$gfw_menu[$i][caption] = "Import Conf";
+$gfw_menu[$i][caption] = "Import Content";
 $gfw_menu[$i][url]="gsconf_import.php";
 $gfw_menu[$i][usertype] = USERTYPE_ADMIN;
 $i++;
-*/
+
 
 $gfw_menu[$i][caption] ="Settings";
 $gfw_menu[$i][url]="gsconf_settings.php";
