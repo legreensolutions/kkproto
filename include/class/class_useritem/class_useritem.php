@@ -7,6 +7,7 @@ if ( !defined('CHECK_INCLUDED') ){
 class UserItem {
     var $connection;
     var $id = gINVALID;
+    var $item_id = gINVALID;
     var $name = "";
     var $description = "";
     var $item_status_id = gINVALID;
@@ -28,7 +29,7 @@ class UserItem {
     var $total_records = "";
 
 function get_id(){
-    $strSQL = "SELECT UI.id, I.name, I.description, I.item_status_id, I.item_type_id, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping, UI.user_id, UI.item_id, UI.unit_price as user_price FROM items I, useritems UI WHERE UI.item_id = I.id AND I.name = '".addslashes(trim($this->name))."'";
+    $strSQL = "SELECT UI.id, I.name, I.description, I.item_status_id, I.item_type_id, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping, UI.user_id, UI.item_id, UI.unit_price as user_price FROM items I, useritems UI WHERE UI.item_id = I.id AND I.name = '".addslashes(trim($this->name))."' AND UI.user_id ='".addslashes(trim($this->user_id))."'";
     $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
     if ( mysql_num_rows($rsRES) > 0 ){
         $this->id = mysql_result($rsRES,0,'id');
@@ -59,7 +60,34 @@ function get_id(){
 
 
 function get_detail(){
-    $strSQL = "SELECT UI.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping, , UI.user_id, UI.item_id, UI.unit_price AS user_price FROM items I,itemstatuses S, itemtypes T, useritems UI WHERE I.item_status_id = S.id AND I.item_type_id = T.id AND UI.item_id = I.id AND UI.id = '".addslashes(trim($this->id))."'";
+    $strSQL = "SELECT UI.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping, UI.user_id, UI.item_id, UI.unit_price AS user_price FROM items I,itemstatuses S, itemtypes T, useritems UI WHERE I.item_status_id = S.id AND I.item_type_id = T.id AND UI.item_id = I.id AND UI.id = '".addslashes(trim($this->id))."'";
+    $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
+    if ( mysql_num_rows($rsRES) > 0 ){
+        $this->id = mysql_result($rsRES,0,'id');
+        $this->name = mysql_result($rsRES,0,'name');
+        $this->description = mysql_result($rsRES,0,'description');
+        $this->item_status_id= mysql_result($rsRES,0,'item_status_id');
+        $this->item_type_id= mysql_result($rsRES,0,'item_type_id');
+        $this->image= mysql_result($rsRES,0,'image');
+        $this->keywords= mysql_result($rsRES,0,'keywords');
+        $this->unit_price= mysql_result($rsRES,0,'unit_price');
+        $this->tax_item= mysql_result($rsRES,0,'tax_item');
+        $this->tax_shipping= mysql_result($rsRES,0,'tax_shipping');
+        $this->user_id= mysql_result($rsRES,0,'user_id');
+        $this->item_id= mysql_result($rsRES,0,'item_id');
+        $this->user_price= mysql_result($rsRES,0,'user_price');
+
+        return $this->id;
+    }else{
+        $this->error_number = 2;
+        $this->error_description="Contact administrator to get its details";
+        return false;
+    }
+}
+
+
+function get_item_detail(){
+    $strSQL = "SELECT UI.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping, UI.user_id, UI.item_id, UI.unit_price AS user_price FROM items I,itemstatuses S, itemtypes T, useritems UI WHERE I.item_status_id = S.id AND I.item_type_id = T.id AND UI.item_id = I.id AND UI.item_id = '".addslashes(trim($this->item_id))."' AND UI.user_id ='".addslashes(trim($this->user_id))."'";
     $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
     if ( mysql_num_rows($rsRES) > 0 ){
         $this->id = mysql_result($rsRES,0,'id');

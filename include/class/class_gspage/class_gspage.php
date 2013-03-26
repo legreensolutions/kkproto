@@ -285,9 +285,9 @@ class gsPage {
 
 		if(count($this->css_list) > 0){
 			foreach ($this->css_list as $css_file){
-				$filename =$this->css_path.$css_file;
+				$filename =$this->root_path.$this->css_path.$css_file;
 				eval("\$filename = \"$filename\";");
-				if (file_exists( $this->root_path.$filename)) {
+				if (file_exists($filename)) {
 					$css.='<link rel="stylesheet" type="text/css" href="'.$filename.'">';
 				}else{
 					$debug_output .= 'File :: '.$filename ." not exists <br/>";
@@ -300,9 +300,9 @@ class gsPage {
 	
 		if(count($this->js_list_link) > 0){
 			foreach ($this->js_list_link as $js_link_file){
-				$filename =$this->js_link_path.$js_link_file;
+				$filename =$this->root_path.$this->js_link_path.$js_link_file;
 				eval("\$filename = \"$filename\";");
-				if (file_exists($this->root_path.$filename)) {
+				if (file_exists($filename)) {
 					$js.='<script src="'.$filename.'" language="JavaScript" type="text/JavaScript"></script>';
 				}else{
 					$debug_output .= 'File :: '.$filename ." not exists. <br/>";
@@ -582,9 +582,9 @@ class gsPage {
 
 		if(count($this->css_list) > 0){
 			foreach ($this->css_list as $css_file){
-				$filename =$this->css_path.$css_file;
+				$filename =$this->root_path.$this->css_path.$css_file;
 				eval("\$filename = \"$filename\";");
-				if (file_exists( $this->root_path.$filename)) {
+				if (file_exists($filename)) {
 					$css.='<link rel="stylesheet" type="text/css" href="'.$filename.'">';
 				}else{
 					$debug_output .= 'File :: '.$filename ." not exists <br/>";
@@ -597,9 +597,9 @@ class gsPage {
 	
 		if(count($this->js_list_link) > 0){
 			foreach ($this->js_list_link as $js_link_file){
-				$filename =$this->js_link_path.$js_link_file;
+				$filename =$this->root_path.$this->js_link_path.$js_link_file;
 				eval("\$filename = \"$filename\";");
-				if (file_exists($this->root_path.$filename)) {
+				if (file_exists($filename)) {
 					$js.='<script src="'.$filename.'" language="JavaScript" type="text/JavaScript"></script>';
 				}else{
 					$debug_output .= 'File :: '.$filename ." not exists. <br/>";

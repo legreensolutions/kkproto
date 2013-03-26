@@ -225,6 +225,12 @@ $kaffakarma_menu[$i][usertype] = USERTYPE_ADMIN;
 $kaffakarma_menu[$i][submenu] = "";
 $i++;
 
+$kaffakarma_menu[$i][caption] = "Prohibited Words";
+$kaffakarma_menu[$i][url]="keywords.php";
+$kaffakarma_menu[$i][usertype] = USERTYPE_ADMIN;
+$kaffakarma_menu[$i][submenu] = "";
+$i++;
+
 
 ?>
 

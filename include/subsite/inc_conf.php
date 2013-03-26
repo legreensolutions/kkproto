@@ -1,6 +1,8 @@
 <?php 
     if(isset($_GET['charity']) && $_GET['charity'] !="" ) {
         $charity=$_GET['charity'];
+    }elseif(isset($_SESSION[SESSION_TITLE.'charity']) && $_SESSION[SESSION_TITLE.'charity'] !="" ) {
+        $charity=$_SESSION[SESSION_TITLE.'charity'];
     }else{
 	    $server_host = explode('.', $_SERVER['HTTP_HOST']);
 	    $charity = strtolower($server_host[0]);
@@ -15,35 +17,19 @@
     if($myuser->get_charity_detail()!=false){
         $title = "Charity Page :: ".$charity;
         $user_image = "../../images/user/user.gif";
-      if ( $myuser->image != "" ) {
+        if ( $myuser->image != "" ) {
             $ext = explode('.', $myuser->image);
             $ext = $ext[count($ext)-1];
             $user_image = "../../".USER_DIR . $myuser->id . '.' . $ext;
-      }
-
-
-        $myuseritem = new UserItem($myconnection);
-        $myuseritem->connection = $myconnection;
-        //for pagination
-
-        $Mypagination = new Pagination(100);
-        $myuseritem->total_records = $Mypagination->total_records;
-        $data_bylimit = $myuseritem->get_list_array_bylimit(gINVALID, "","", ITEMSTATUS_IN_STOCK, ITEMTYPE_KAFFAKARMA, $myuser->id, gINVALID, "", $Mypagination->start_record,$Mypagination->max_records);
+        }
+        $_SESSION[SESSION_TITLE.'charity'] = $myuser->user_name;
+        $_SESSION[SESSION_TITLE.'charity_id'] = $myuser->id;
         
-        if ( $data_bylimit == false ){
-            $mesg = "No records found";
-        }else{
-            $count_data_bylimit=count($data_bylimit);
-            $Mypagination->total_records = $myuseritem->total_records;
-            $Mypagination->paginate();
 
-        }            
-
-
-
-
-
+ 
     }else{
+        $_SESSION[SESSION_TITLE.'charity'] = "";
+        $_SESSION[SESSION_TITLE.'charity_id'] = "";
         $_SESSION[SESSION_TITLE.'flash'] = "No Charity Page found!";
         $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "index.php";
         header( "Location: ".WEB_URL."/gfwflash.php");

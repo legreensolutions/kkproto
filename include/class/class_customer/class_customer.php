@@ -4,141 +4,64 @@ if ( !defined('CHECK_INCLUDED') ){
     exit();
 }
 
-class User {
+class Customer {
     var $connection;
     var $id = gINVALID;
-    var $firstname;
-    var $lastname;
-    var $emailid;
+    var $first_name;
+    var $last_name;
     var $address;
+    var $street = "";
     var $city_id = gINVALID;
     var $state_id = gINVALID;
     var $country_id = gINVALID;
-    var $image = "";
+    var $postal_code = "";
+    var $emailid = "";
+    var $phone = "";
     var $ipaddress = "";
-    var $registrationdate;
-    var $lastlogin;
-    var $sec_que_id = gINVALID;
-    var $sec_ans = "";
+    var $gender_id = gINVALID;
+    var $registrationdate = "";
     var $error = false;
     var $error_number=gINVALID;
     var $error_description="";
     //for pagination
     var $total_records = "";
 
-    function User ( $id="",$uname="",$pass="",$connection="",$usertype_id = USERTYPE_REGISTERED_USER,$userstatus_id = USERSTATUS_TO_BE_ACTIVATED ){
+    function Customer ( $id="", $first_name="", $last_name="", $address="", $street="", $city_id=gINVALID,  $state_id=gINVALID, $country_id=gINVALID, $postal_code = "", $emailid = "", $phone = "", $ipaddress ="", $gender_id = gINVALID, $connection="" ){
         $this->id = $id;
-        $this->user_name = $uname;
-        $this->userpassword = $pass;
+        $this->first_name = $first_name;
+        $this->last_name = $last_name;
+        $this->address = $address;
+        $this->street = $street;
+        $this->city_id = $city_id;
+        $this->state_id = $state_id;
+        $this->country_id = $country_id;
+        $this->postal_code = $postal_code;
+        $this->emailid = $emailid;
+        $this->phone = $phone;
+        $this->ipaddress = $ipaddress;
+        $this->gender_id = $gender_id;
+
         $this->connection=$connection;
-        $this->usertype_id = $usertype_id;
-        $this->userstatus_id = $userstatus_id;
+
     }
 
-    function login(){
-          $strSQL = "SELECT U.id AS uid,user_name,userpassword,usertype_id,firstname,lastname,emailid,address,";
-          $strSQL .= "city_id,state_id,country_id,ipaddress,registrationdate,lastlogin,userstatus_id,loggedin_page ";
-          $strSQL .= "FROM users U,usertypes UT,userstatuses US WHERE user_name = '".$this->user_name;
-          $strSQL .= "' AND userpassword='".$this->userpassword."' ";
-          $strSQL .= "AND userstatus_id = ".USERSTATUS_ACTIVE." AND U.usertype_id = UT.id";
-          $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
-          if ( mysql_num_rows($rsRES) > 0 ){
-                $this->id = mysql_result($rsRES,0,'uid');
-                $this->user_name = mysql_result($rsRES,0,'user_name');
-                $this->userpassword = mysql_result($rsRES,0,'userpassword');
-                $this->usertype_id = mysql_result($rsRES,0,'usertype_id');
-                $this->userstatus_id = mysql_result($rsRES,0,'userstatus_id');
-                $this->loggedin_page = mysql_result($rsRES,0,'loggedin_page');
-                $this->firstname = mysql_result($rsRES,0,'firstname');
-                $this->lastname = mysql_result($rsRES,0,'lastname');
-                $this->emailid = mysql_result($rsRES,0,'emailid');
-                $this->address = mysql_result($rsRES,0,'address');
-                $this->city_id = mysql_result($rsRES,0,'city_id');
-                $this->state_id = mysql_result($rsRES,0,'state_id');
-                $this->country_id = mysql_result($rsRES,0,'country_id');
-                $this->ipaddress = mysql_result($rsRES,0,'ipaddress');
-                $this->registrationdate = mysql_result($rsRES,0,'registrationdate');
-                $this->lastlogin = mysql_result($rsRES,0,'lastlogin');
-                return true;
-          }
-          else{
-                $this->error_description = "Login Failed";
-                return false;
-          }
-    }
-    function register_login(){
-           $_SESSION[SESSION_TITLE.'userid'] = $this->id;
-           $_SESSION[SESSION_TITLE.'username'] = $this->user_name;
-           $_SESSION[SESSION_TITLE.'usertypeid'] = $this->usertype_id;
-           $_SESSION[SESSION_TITLE.'userstatusid'] = $this->userstatus_id;
-            return true;
-    }
-    function logout(){
-        $chk = session_destroy();
-        if ($chk == true){
-            return true;
-        }
-        else{
-                return false;
-        }
-    }
-    function check_login(){
-        if ( isset($_SESSION[SESSION_TITLE.'userid']) && $_SESSION[SESSION_TITLE.'userid'] > 0 ) {
-            if ( trim($this->usertype_id) == "" || trim($this->usertype_id) == -1 ){
-                return true;
-            }else{
-                if ( $this->usertype_id == $_SESSION[SESSION_TITLE.'usertypeid']){
-                        return true;
 
-                }else{
-                        return false;
-                }
-            }
-
-       }else{
-                   return false;
-       }
-    }
 
     function update(){
         if ( $this->id == "" || $this->id == gINVALID) {
-              $strSQL = "INSERT INTO users (user_name,userpassword,firstname,lastname,emailid,";
-              if ( $this->address != "" ){
-              $strSQL .= "address,";
-              }
-              if ( $this->city_id ) {
-              $strSQL .= "city_id,";
-              }
-              if ( $this->state_id ) {
-              $strSQL .= "state_id,";
-              }
-              $strSQL .= "country_id,";
-              if ( $this->image != "" ){
-              $strSQL .= "image,";
-              }
-              $strSQL .= "usertype_id,userstatus_id,registrationdate,securityquestion_id,answer) ";
-              $strSQL .= "VALUES ('".addslashes(trim($this->user_name))."','";
-              $strSQL .= md5(addslashes(trim($this->userpassword)))."','";
-              $strSQL .= addslashes(trim($this->firstname))."','";
-              $strSQL .= addslashes(trim($this->lastname))."','";
-              $strSQL .= addslashes(trim($this->emailid))."',";
-              if ( $this->address != "" ){
-              $strSQL .= "'".addslashes(trim($this->address))."',";
-              }
-              if ( $this->city_id ) {
-              $strSQL .= addslashes(trim($this->city_id)).",";
-              }
-              if ( $this->state_id ) {
-              $strSQL .= addslashes(trim($this->state_id)).",";
-              }
-              $strSQL .= addslashes(trim($this->country_id)).",";
-              if ( $this->image != "" ){
-              $strSQL .= "'" . addslashes(trim($this->image))."',";
-              }
-              $strSQL .= $this->usertype_id.",".$this->userstatus_id.",";
-              $strSQL .= "now(),";
-              $strSQL .= addslashes(trim($this->sec_que_id)).",'";
-              $strSQL .= addslashes(trim($this->sec_ans))."')";
+              $strSQL = "INSERT INTO customers  first_name, last_name, address, street, city, state_id, country_id, postal_code, emailid, phone, ipaddress, gender_id) ";
+              $strSQL .= "VALUES ('".addslashes(trim($this->first_name))."','";
+              $strSQL .= addslashes(trim($this->last_name))."','";
+              $strSQL .= addslashes(trim($this->address))."','";
+              $strSQL .= addslashes(trim($this->street))."','";
+              $strSQL .= addslashes(trim($this->city_id))."','";
+              $strSQL .= addslashes(trim($this->state_id))."','";
+              $strSQL .= addslashes(trim($this->country_id))."','";
+              $strSQL .= addslashes(trim($this->postal_code))."','";
+              $strSQL .= addslashes(trim($this->emailid))."','";
+              $strSQL .= addslashes(trim($this->phone))."','";
+              $strSQL .= addslashes(trim($this->ipaddress))."','";
+              $strSQL .= addslashes(trim($this->gender_id))."')";
               $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
               if ( mysql_affected_rows($this->connection) > 0 ){
                     $this->id = mysql_insert_id();;
@@ -151,177 +74,52 @@ class User {
 
         }
         elseif($this->id > 0 ) {
-            $strSQL = "UPDATE users SET ";
-            $strSQL .= "firstname = '".addslashes(trim($this->firstname))."',";
-            $strSQL .= "emailid = '".addslashes(trim($this->emailid))."',";
-            $strSQL .= "lastname = '".addslashes(trim($this->lastname))."',";
-            $strSQL .= "usertype_id = '".addslashes(trim($this->usertype_id))."',";
-            $strSQL .= "userstatus_id = '".addslashes(trim($this->userstatus_id))."',";
-            if ( $this->address != "" ){
+            $strSQL = "UPDATE customers SET ";
+            $strSQL .= "first_name = '".addslashes(trim($this->first_name))."',";
+            $strSQL .= "last_name = '".addslashes(trim($this->last_name))."',";
             $strSQL .= "address = '".addslashes(trim($this->address))."',";
-            }
-            if ( $this->city_id ) {
-            $strSQL .= "city_id = ".addslashes(trim($this->city_id)).",";
-            }
-            if ( $this->state_id ) {
-            $strSQL .= "state_id = ".addslashes(trim($this->state_id)).",";
-            }
-            $strSQL .= "country_id = ".addslashes(trim($this->country_id)).",";
-            if ( $this->image != "" ){
-            $strSQL .= "image = '".addslashes(trim($this->image))."',";
-            }
-            $strSQL .= "lastlogin = '".addslashes(trim($this->lastlogin))."',";
-            $strSQL .= "securityquestion_id = '".addslashes(trim($this->sec_que_id))."',";
-            $strSQL .= "answer = '".addslashes(trim($this->sec_ans))."'";
+            $strSQL .= "street = '".addslashes(trim($this->street))."',";
+            $strSQL .= "city_id = '".addslashes(trim($this->city_id))."',";
+            $strSQL .= "state_id = '".addslashes(trim($this->state_id))."',";
+            $strSQL .= "country_id = '".addslashes(trim($this->country_id))."',";
+            $strSQL .= "postal_code = '".addslashes(trim($this->postal_code))."',";
+            $strSQL .= "emailid = '".addslashes(trim($this->emailid))."',";
+            $strSQL .= "phone = '".addslashes(trim($this->phone))."',";
+            $strSQL .= "ipaddress = '".addslashes(trim($this->ipaddress))."',";
+            $strSQL .= "gender_id = '".addslashes(trim($this->gender_id))."',";
             $strSQL .= " WHERE id = ".$this->id;//$this->id
             $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
             if ( mysql_affected_rows($this->connection) >= 0 ) {
                     return true;
             }
             else{
-                $this->error_description = "User Update Failed";
+                $this->error_description = "Customer Update Failed";
                 return false;
             }
         }
 
     }
 
-    function update_userstatus(){
-        $strSQL = "UPDATE users SET userstatus_id = ".$this->userstatus_id;
-        $strSQL .= " WHERE id = ".$this->id;
-        $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
-            if ( mysql_affected_rows($this->connection) > 0 ) {
-                    return true;
-            }
-            else{
-                $this->error_description = "User Status Update Failed";
-                return false;
-            }
-    }
-    function delete(){
-        $strSQL = "DELETE FROM users WHERE id =".$this->id;
-        $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
-            if ( mysql_affected_rows($this->connection) > 0 ) {
-                    return true;
-            }
-            else{
-                $this->error_description = "Can't Delete This User";
-                return false;
-            }
-    }
-    function get_newpassword(){
 
-    $strSQL = "SELECT user_name,firstname FROM users U,securityquestions S WHERE securityquestion_id = S.id AND ";
-    $strSQL .= "user_name = '".addslashes(trim($_POST['txtusername']))."' AND securityquestion_id = ".$_POST['lstsec_que'];
-    $strSQL .= " AND answer = '".addslashes(trim($_POST['txtsec_ans']))."'";
-    $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
-        if ( mysql_num_rows($rsRES) > 0 ) {
-            $email = mysql_result($rsRES,0,'user_name');
-            $fname = mysql_result($rsRES,0,'firstname');
-            //Generating & updating password
-            $password = substr(md5(microtime()),0,8) ;
-            $strSQL = "UPDATE users SET userpassword = '".md5($password)."' WHERE user_name = '".$this->user_name."'";
-            $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
-            //Creating mail to user
-            $page_email = $email;
-            $str_subject = "New Password for ".ORG_NAME;
-            $headers  = 'MIME-Version: 1.0' . "\r\n";
-            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-            $headers .= 'From: '.ORG_NAME.' <'.EMAIL_NO_REPLY.'>'."\r\n";
-            $message = "Dear " . $fname . ",<br />
-                <br />
-                Here is your new password for ".ORG_NAME.". <br><br>
-                Your Username: " . $this->user_name . "<br>
-                Your Password: " . $password . "<br /><br /><br />
 
-                Thanks,<br /><br />
-                ".ORG_NAME."<br />";
-                // send password to user
-//                 echo $message;exit();
-                mail($page_email,$str_subject,$message,$headers);
-                return true;
-        }
-        else{
-             $this->error_description = "Invalid email address!, Please check the email entered";
-             return  false;
-        }
-    }
-    function change_password($newpasswd,$oldpasswd){
-                    $strSQL = "UPDATE users SET ";
-                    $strSQL .= "userpassword = '" .$newpasswd. "' ";
-                    $strSQL .= "WHERE id = '" . $this->id . "' AND userpassword = '".$oldpasswd."'";
-                    $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
-                    if ( mysql_affected_rows($this->connection) > 0 ) {
-                        return true;
-                    }
-                    else{
-                        return false;
-                        $this->error_description = "Incorrect password";
-                    }
-    }
-    function exist(){
-        $strSQL = "SELECT 1 FROM users WHERE user_name = '".$this->user_name."'";
-        $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
-        if ( mysql_num_rows($rsRES) > 0 ){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
     function get_detail(){
-        //if ( isset($_SESSION[SESSION_TITLE.'userid']) &&$_SESSION[SESSION_TITLE.'userid'] > 0 ) {
-        $strSQL = "SELECT * FROM users WHERE id = ".$this->id;
+        $strSQL = "SELECT * FROM customers WHERE id = ".$this->id;
         $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
         if ( mysql_num_rows($rsRES) > 0 ){
                 $this->id = mysql_result($rsRES,0,'id');
-                $this->user_name = mysql_result($rsRES,0,'user_name');
-                //$this->userpassword = mysql_result($rsRES,0,'userpassword');
-                $this->usertype_id = mysql_result($rsRES,0,'usertype_id');
-                $this->userstatus_id = mysql_result($rsRES,0,'userstatus_id');
-                $this->firstname = mysql_result($rsRES,0,'firstname');
-                $this->lastname = mysql_result($rsRES,0,'lastname');
-                $this->emailid = mysql_result($rsRES,0,'emailid');
+                $this->first_name = mysql_result($rsRES,0,'first_name');
+                $this->last_name = mysql_result($rsRES,0,'last_name');
                 $this->address = mysql_result($rsRES,0,'address');
+                $this->street = mysql_result($rsRES,0,'street');
                 $this->city_id = mysql_result($rsRES,0,'city_id');
                 $this->state_id = mysql_result($rsRES,0,'state_id');
                 $this->country_id = mysql_result($rsRES,0,'country_id');
-                $this->image = mysql_result($rsRES,0,'image');
-                $this->ipaddress = mysql_result($rsRES,0,'ipaddress');
-                $this->registrationdate = mysql_result($rsRES,0,'registrationdate');
-                $this->lastlogin = mysql_result($rsRES,0,'lastlogin');
-                $this->sec_que_id = mysql_result($rsRES,0,'securityquestion_id');
-                $this->sec_ans = mysql_result($rsRES,0,'answer');
-                return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-    function get_charity_detail(){
-        //if ( isset($_SESSION[SESSION_TITLE.'userid']) &&$_SESSION[SESSION_TITLE.'userid'] > 0 ) {
-        $strSQL = "SELECT * FROM users WHERE usertype_id= ".USERTYPE_REGISTERED_USER." AND userstatus_id=".USERSTATUS_ACTIVE." AND user_name = '".$this->user_name."'";
-        $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
-        if ( mysql_num_rows($rsRES) > 0 ){
-                $this->id = mysql_result($rsRES,0,'id');
-                $this->user_name = mysql_result($rsRES,0,'user_name');
-                //$this->userpassword = mysql_result($rsRES,0,'userpassword');
-                $this->usertype_id = mysql_result($rsRES,0,'usertype_id');
-                $this->userstatus_id = mysql_result($rsRES,0,'userstatus_id');
-                $this->firstname = mysql_result($rsRES,0,'firstname');
-                $this->lastname = mysql_result($rsRES,0,'lastname');
+                $this->postal_code = mysql_result($rsRES,0,'postal_code');
                 $this->emailid = mysql_result($rsRES,0,'emailid');
-                $this->address = mysql_result($rsRES,0,'address');
-                $this->city_id = mysql_result($rsRES,0,'city_id');
-                $this->state_id = mysql_result($rsRES,0,'state_id');
-                $this->country_id = mysql_result($rsRES,0,'country_id');
-                $this->image = mysql_result($rsRES,0,'image');
+                $this->phone = mysql_result($rsRES,0,'phone');
                 $this->ipaddress = mysql_result($rsRES,0,'ipaddress');
                 $this->registrationdate = mysql_result($rsRES,0,'registrationdate');
-                $this->lastlogin = mysql_result($rsRES,0,'lastlogin');
-                $this->sec_que_id = mysql_result($rsRES,0,'securityquestion_id');
-                $this->sec_ans = mysql_result($rsRES,0,'answer');
+                $this->gender_id = mysql_result($rsRES,0,'gender_id');
                 return true;
         }
         else{
@@ -330,166 +128,96 @@ class User {
     }
 
 
+    function get_list_array(){
+            $customers = array();$i=0;
+            $strSQL = "SELECT id, first_name, last_name, address, street, city, state_id, country_id, postal_code, emailid, phone, ipaddress, gender_id, registrationdate FROM customers ORDER BY id";
+            $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
+            if ( mysql_num_rows($rsRES) > 0 ){
+                while ( list ($id,$first_name,$last_name) = mysql_fetch_row($rsRES) ){
+                    $customers[$i]["id"] =  $id;
+                    $customers[$i]["first_name"] = $first_name;
+                    $customers[$i]["last_name"] = $last_name;
+                    $i++;
+                }
+                return $customers;
+            }else{
+            $this->error_number = 4;
+            $this->error_description="Can't list Customer";
+            return false;
+            }
+    }
 
 
+    function get_list_array_bylimit($id=-1,$first_name="", $last_name="", $start_record = 0,$max_records = 25){
 
-    function delete_image_fromDB(){
-        $strSQL = "UPDATE users SET image='' WHERE id = ".$this->id;
+            $limited_data = array();
+            $i=0;
+            $str_condition = "";
+
+            $strSQL = "id, first_name, last_name, address, street, city, state_id, country_id, postal_code, emailid, phone, ipaddress, gender_id, registrationdate FROM customers WHERE 1 ";
+            if ( $id != "" && $id != -1 ) {
+                $str_condition .= " AND id  = '" . $id . "'" ;
+            }
+
+
+            if ( $first_name != "" ) {
+                $str_condition .= " AND first_name  LIKE '%" . $first_name . "%'" ;
+            }
+
+
+            if ( $last_name != "" ) {
+                $str_condition .= " AND last_name  LIKE '%" . $last_name . "%'" ;
+            }
+
+
+            if (trim($str_condition) !="") {
+                $strSQL .=  $str_condition . "  ";
+            }
+            $strSQL .= " ORDER BY id";
+            //taking limit  result of that in $rsRES .$start_record is starting record of a page.$max_records num of records in that page
+            $strSQL_limit = sprintf("%s LIMIT %d, %d", $strSQL, $start_record, $max_records);
+            $rsRES = mysql_query($strSQL_limit, $this->connection) or die(mysql_error(). $strSQL_limit);
+
+            if ( mysql_num_rows($rsRES) > 0 ){
+
+                //without limit  , result of that in $all_rs
+                if (trim($this->total_records)!="" && $this->total_records > 0) {
+                    
+                } else {
+                    $all_rs = mysql_query($strSQL, $this->connection) or die(mysql_error(). $strSQL_limit); 
+                    $this->total_records = mysql_num_rows($all_rs);
+                }
+        
+                while ( $row = mysql_fetch_assoc($rsRES) ){
+                    $limited_data[$i]["id"] = $row["id"];
+                    $limited_data[$i]["first_name"] = $row["first_name"];
+                    $limited_data[$i]["last_name"] = $row["last_name"];
+                    $i++;
+                }
+                return $limited_data;
+            }else{
+                $this->error_number = 5;
+                $this->error_description="Can't get limited data";
+                return false;
+            }
+    }
+
+
+    function delete(){
+        $strSQL = "DELETE FROM customers WHERE id =".$this->id;
         $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
-        if ( mysql_affected_rows($this->connection) > 0 ) {
-                        return true;
-        }
-        else{
-                        return false;
-                        $this->error_description = "Image not deleted";
-         }
+            if ( mysql_affected_rows($this->connection) > 0 ) {
+                    return true;
+            }
+            else{
+                $this->error_description = "Can't Delete This Customer";
+                return false;
+            }
     }
-    function get_list_array($txtsearch,$lstusertype,$lstuserstatus){
-        $data = array();$i=0;
-        $strSQL = "SELECT U.id AS uid,user_name,firstname,usertype_id,userstatus_id,usertype_name,userstatus_name,";
-        $strSQL .= "registrationdate, emailid FROM users U,usertypes UT,userstatuses US WHERE usertype_id=UT.id AND userstatus_id=US.id";
-        if ( $txtsearch != "" ){
-        $strSQL .= " AND ( firstname LIKE '%".$txtsearch."%' OR user_name LIKE '%".$txtsearch."%' )";
-        }
-        if ( $lstusertype != -1 && $lstusertype != ""){
-        $strSQL .= " AND usertype_id = ".$lstusertype;
-        }
-        if ( $lstuserstatus != -1 && $lstuserstatus != ""){
-        $strSQL .= " AND userstatus_id = ".$lstuserstatus;
-        }
-        $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
-        if ( mysql_num_rows($rsRES) > 0 ){
-        while ( list ($id,$user_name,$firstname,$usertype_id,$userstatus_id,$usertype_name,$userstatus_name,$registrationdate,$emailid) = mysql_fetch_row($rsRES) ){
-              $data[$i]["id"] = $id;
-              $data[$i]["user_name"] = $user_name;
-              $data[$i]["emailid"] = $emailid;
-              $data[$i]["firstname"] = $firstname;
-              $data[$i]["usertype_id"] = $usertype_id;
-              $data[$i]["userstatus_id"] = $userstatus_id;
-              $data[$i]["usertype_name"] = $usertype_name;
-              $data[$i]["userstatus_name"] = $userstatus_name;
-              $r_date = date('m/d/Y', strtotime($registrationdate));
-              $data[$i]["registrationdate"] = $r_date;
-              $i++;
-        }
-        return $data;
-        }
-        else{
-        return false;
-        }
-    }
-    function get_list_array_bylimit($username,$firstname,$lastname,$address,$city,$country,$usertype,$userstatus,$start_record = 0,$max_records = 25){
-        $limited_data = array();$i=0;
-        $strSQL = "SELECT U.id AS uid,user_name,emailid,firstname,lastname,address,";
-        $strSQL .= "city_id,city_name,U.country_id,country,";
-        $strSQL .= "usertype_id,usertype_name,userstatus_id,userstatus_name,";
-        $strSQL .= "registrationdate,image FROM ((((users U INNER JOIN usertypes UT ON usertype_id=UT.id) ";
-        $strSQL .= " LEFT JOIN userstatuses US ON userstatus_id=US.id )";
-        $strSQL .= " LEFT JOIN cities C ON city_id = C.id )";
-        $strSQL .= " LEFT JOIN countries CO ON U.country_id = CO.id ) ";
 
-        if ($username != "" ) {
-            if (trim($str_condition) =="") {
-                $str_condition = " user_name  LIKE '%" . $username . "%'" ;
-            }else{
-                $str_condition .= " AND user_name  LIKE '%" . $username . "%'" ;
-            }
-        }
-        if ($firstname != "" ) {
-            if (trim($str_condition) =="") {
-                $str_condition = " firstname  LIKE '%" . $firstname . "%'" ;
-            }else{
-                $str_condition .= " AND firstname  LIKE '%" . $firstname . "%'" ;
-            }
-        }
-        if ($lastname != "" ) {
-            if (trim($str_condition) =="") {
-                $str_condition = " lastname  LIKE '%" . $lastname . "%'" ;
-            }else{
-                $str_condition .= " AND lastname  LIKE '%" . $lastname . "%'" ;
-            }
-        }
-        if ($address != "" ) {
-            if (trim($str_condition) =="") {
-                $str_condition = " address  LIKE '%" . $address . "%'" ;
-            }else{
-                $str_condition .= " AND address  LIKE '%" . $address . "%'" ;
-            }
-        }
-        if ( $city != "" ) {
-            if (trim($str_condition) =="") {
-                $str_condition = " C.city_name LIKE '%" . $city . "%'" ;
-            }else{
-                $str_condition .= " C.city_name LIKE '%" . $city;
-            }
-        }
-        if ( $country != "" && $country != -1 ) {
-            if (trim($str_condition) =="") {
-                $str_condition = " U.country_id = " . $country;
-            }else{
-                $str_condition .= " AND U.country_id = " . $country;
-            }
-        }
-        if ( $usertype != "" && $usertype != -1 ) {
-            if (trim($str_condition) =="") {
-                $str_condition = " usertype_id = " . $usertype;
-            }else{
-                $str_condition .= " AND usertype_id = " . $usertype;
-            }
-        }
-        if ( $userstatus != "" && $userstatus != -1 ) {
-            if (trim($str_condition) =="") {
-                $str_condition = " userstatus_id = " . $userstatus;
-            }else{
-                $str_condition .= " AND userstatus_id = " . $userstatus;
-            }
-        }
 
-        if (trim($str_condition) !="") {
-            $strSQL .= " WHERE  " . $str_condition . "  ";
-        }
-        $strSQL .= "ORDER BY user_name";
 
-        //taking limit  result of that in $rsRES .$start_record is starting record of a page.$max_records num of records in that page
-        $strSQL_limit = sprintf("%s LIMIT %d, %d", $strSQL, $start_record, $max_records);
-        $rsRES = mysql_query($strSQL_limit, $this->connection) or die(mysql_error(). $strSQL_limit);
 
-        if ( mysql_num_rows($rsRES) > 0 ){
-        //without limit  , result of that in $all_rs
-            if (trim($this->total_records)!="" && $this->total_records > 0) {
-
-            } else {
-                $all_rs = mysql_query($strSQL, $this->connection) or die(mysql_error(). $strSQL_limit);
-                $this->total_records = mysql_num_rows($all_rs);
-            }
-
-        while ( list ($id,$user_name,$emailid,$firstname,$lastname,$address,$city_id,$city_name,$country_id,$country,$usertype_id,$usertype_name,$userstatus_id,$userstatus_name,$r_date,$image) = mysql_fetch_row($rsRES) ){
-              $limited_data[$i]["id"] = $id;
-              $limited_data[$i]["user_name"] = $user_name;
-              $limited_data[$i]["emailid"] = $emailid;
-              $limited_data[$i]["firstname"] = $firstname;
-              $limited_data[$i]["lastname"] = $lastname;
-              $limited_data[$i]["address"] = $address;
-              $limited_data[$i]["city_id"] = $city_id;
-              $limited_data[$i]["city"] = $city_name;
-              $limited_data[$i]["country_id"] = $country_id;
-              $limited_data[$i]["country"] = $country;
-
-              $limited_data[$i]["usertype_id"] = $usertype_id;
-              $limited_data[$i]["userstatus_id"] = $userstatus_id;
-              $limited_data[$i]["usertype_name"] = $usertype_name;
-              $limited_data[$i]["userstatus_name"] = $userstatus_name;
-              $r_date = date('m/d/Y', strtotime($r_date));
-              $limited_data[$i]["registrationdate"] = $r_date;
-              $limited_data[$i]["image"] = $image;
-              $i++;
-        }
-        return $limited_data;
-        }
-        else{
-        return false;
-        }
-    }
 
     function get_xml(){
         if ( isset($_SESSION[SESSION_TITLE.'userid']) && $_SESSION[SESSION_TITLE.'userid'] > 0 ) {
@@ -499,9 +227,10 @@ class User {
         echo "<row>";
         echo "<id>" .$this->id."</id>";
         echo "<user_name>".$this->user_name."</user_name>";
-        echo "<firstname>".$this->firstname."</firstname>";
-        echo "<lastname>".$this->lastname."</lastname>";
+        echo "<first_name>".$this->first_name."</first_name>";
+        echo "<last_name>".$this->last_name."</last_name>";
         echo "<address>".$this->address."</address>";
+        echo "<street>".$this->street."</street>";
         echo "<city_id>".$this->city_id."</city_id>";
         echo "<state_id>".$this->state_id."</state_id>";
         echo "<country_id>".$this->country_id."</country_id>";

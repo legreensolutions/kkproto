@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 18, 2013 at 12:55 PM
+-- Generation Time: Mar 26, 2013 at 06:43 AM
 -- Server version: 5.5.29
--- PHP Version: 5.4.6-1ubuntu1.1
+-- PHP Version: 5.4.6-1ubuntu1.2
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `business` (
   `ipaddress` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `userid` (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `cities` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `country_id` (`country_id`,`state_id`,`city_name`),
   KEY `state_id` (`state_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `cities`
@@ -83,7 +83,8 @@ INSERT INTO `cities` (`id`, `city_name`, `state_id`, `country_id`) VALUES
 (14, 'Kochi', NULL, 99),
 (15, 'Kochi', 0, 0),
 (16, 'cochin', 0, 0),
-(17, 'ere', 52, 38);
+(17, 'ere', 52, 38),
+(18, 'afadsf', 4, 226);
 
 -- --------------------------------------------------------
 
@@ -103,7 +104,17 @@ CREATE TABLE IF NOT EXISTS `configurations` (
   PRIMARY KEY (`id`),
   KEY `page_id` (`page_id`,`language_id`),
   KEY `configurationtype_id` (`configurationtype_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `configurations`
+--
+
+INSERT INTO `configurations` (`id`, `configuration_name`, `page_id`, `value`, `description`, `language_id`, `configurationtype_id`, `publish`) VALUES
+(1, 'Home Page Content', 1, '<p>Kaffa Karma is a family owned and operated company that was founded on the principles of Paying It Forward.</p><br />\n<p>The owners have been an active part of the Calgary community for four generations and have watched this thriving metropolis take form.</p><br />\n<p>Over the years, as our children have grown and participated in community events, sporting groups and clubs, we&#39;ve been involved in a TON of fund raisers. Kaffa Karma is just that! Fund raising on cruise control!</p><br /><p>We work with your group or organization to raise funds without the early morning bottle drives or hours working in a bingo hall. Kaffa Karma will brand and market Organic Gourmet 100% Arabica Coffee for your group. We handle the order processing and arrange for the delivery of the product... so, all you do is collect a check at the end of the month.</p><br /><div id = "fund_raiser_button"></div><!--div id = "equipments_big_button"></div--><br />\n          <br />\n', 'Dynamic index content', 1, 1, 0),
+(2, 'Our Showcase', 8, '<br />\n<h1>Our Showcase</h1><br />\nCoffee... <br /><br />\n          <br />\n', 'Dynamic about_the_coffee content', 1, 1, 0),
+(3, 'Contact Information', 6, '<br />\n<h1>Contact Information</h1><br />\nKaffa Karma <br /><br />\nCanada<br /><br />\nemail:  admin@kaffakarma.com<br /><br />\nPh: 123456789<br /><br />\n          <br />\n', 'Dynamic contact_us content', 1, 1, 0),
+(4, 'About Us', 7, '<br />\n<h1>About Us</h1><br />Kaffa Karma is just ... fund raising on cruise control!<br /><br />\nKaffa Karma is a family owned and operated company that was founded on the principals of paying it forward. The owners have been an active part of the Calgary community for four generations and have watched this thriving metropolis take form. over the years as our children have grown and participated in community events, sporting groups and clubs and as such weÃ¢â‚¬â„¢ve been involved in a TON of fund raisers.<br />\n  <br />\n', 'Dynamic about_us content', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -168,9 +179,16 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `address` text NOT NULL,
-  `state_id` int(11) NOT NULL,
-  `country_id` int(11) NOT NULL,
-  `postal_code` varchar(255) NOT NULL,
+  `street` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `state_id` int(11) DEFAULT NULL,
+  `country_id` int(11) DEFAULT NULL,
+  `postal_code` varchar(255) DEFAULT NULL,
+  `emailid` varchar(100) DEFAULT NULL,
+  `phone` varchar(16) DEFAULT NULL,
+  `ipaddress` varchar(16) DEFAULT NULL,
+  `gender_id` int(11) DEFAULT NULL,
+  `registrationdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `state_id` (`state_id`,`country_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -203,6 +221,28 @@ INSERT INTO `faq` (`id`, `question`, `answer`) VALUES
 (8, 'Are you able to ship to a Post Office Box?', 'No. Kaffa Karma uses a courier so there must be a physical address.'),
 (9, 'Do you ship to locations outside of Alberta?', 'At the present time we are shipping locally, however, we plan to expand to other areas so please contact us to make arrangements.'),
 (10, 'Do you have questions that are not answered in this FAQ?', 'Please contact us using the Contact Us link on the website and we will get back to you as quickly as possible. Usually you will hear from us within 48 hours, however it could be much sooner than that. We look forward to speaking with you. Thanks.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `genders`
+--
+
+CREATE TABLE IF NOT EXISTS `genders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` text,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `genders`
+--
+
+INSERT INTO `genders` (`id`, `name`, `description`) VALUES
+(1, 'Male', NULL),
+(2, 'Female', NULL);
 
 -- --------------------------------------------------------
 
@@ -285,6 +325,18 @@ INSERT INTO `itemtypes` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `keywords`
+--
+
+CREATE TABLE IF NOT EXISTS `keywords` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `words` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `languages`
 --
 
@@ -361,7 +413,9 @@ CREATE TABLE IF NOT EXISTS `orderitems` (
   `item_id` int(11) NOT NULL,
   `quantity` double NOT NULL,
   `unit_price` double NOT NULL,
+  `shipping_amount` double NOT NULL,
   `tax_item` double NOT NULL,
+  `tax_shipping` double NOT NULL,
   PRIMARY KEY (`id`),
   KEY `order_id` (`order_id`,`item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -376,7 +430,9 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_number` varchar(255) DEFAULT NULL,
   `order_date` datetime NOT NULL,
+  `user_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
+  `shipping_amount` double NOT NULL,
   `tax_shipping` double NOT NULL,
   `order_amount` double(10,2) DEFAULT '0.00',
   `order_status` char(1) DEFAULT '1',
@@ -541,6 +597,21 @@ INSERT INTO `states` (`id`, `state_name`, `statecode`, `country_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `userdetails`
+--
+
+CREATE TABLE IF NOT EXISTS `userdetails` (
+  `id` int(10) unsigned NOT NULL,
+  `phone` varchar(16) DEFAULT NULL,
+  `fax` varchar(16) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `description` text,
+  `gender_id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `useritems`
 --
 
@@ -551,7 +622,19 @@ CREATE TABLE IF NOT EXISTS `useritems` (
   `unit_price` double NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`,`item_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `useritems`
+--
+
+INSERT INTO `useritems` (`id`, `user_id`, `item_id`, `unit_price`) VALUES
+(1, 2, 1, 15),
+(2, 2, 2, 15),
+(3, 2, 3, 15),
+(4, 2, 4, 15),
+(5, 2, 5, 15),
+(6, 2, 6, 15);
 
 -- --------------------------------------------------------
 
@@ -568,6 +651,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `lastname` varchar(100) NOT NULL DEFAULT '',
   `emailid` varchar(100) NOT NULL DEFAULT '',
   `address` varchar(255) DEFAULT NULL,
+  `street` varchar(255) DEFAULT NULL,
   `city_id` varchar(100) DEFAULT NULL,
   `state_id` int(10) unsigned DEFAULT NULL,
   `country_id` smallint(5) unsigned DEFAULT NULL,
@@ -582,14 +666,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `user_name` (`user_name`),
   KEY `usertype_id` (`usertype_id`),
   KEY `userstatus_id` (`userstatus_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `user_name`, `userpassword`, `usertype_id`, `firstname`, `lastname`, `emailid`, `address`, `city_id`, `state_id`, `country_id`, `ipaddress`, `registrationdate`, `lastlogin`, `userstatus_id`, `image`, `securityquestion_id`, `answer`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'Admin', '', '', '', '16', 0, 0, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, NULL, 1, 'neelan');
+INSERT INTO `users` (`id`, `user_name`, `userpassword`, `usertype_id`, `firstname`, `lastname`, `emailid`, `address`, `street`, `city_id`, `state_id`, `country_id`, `ipaddress`, `registrationdate`, `lastlogin`, `userstatus_id`, `image`, `securityquestion_id`, `answer`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'Admin', '', '', '', NULL, '16', 0, 0, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, NULL, 1, 'neelan'),
+(2, 'legreens', '4297f44b13955235245b2497399d7a93', 2, 'legreens', 'legree', 'legreens@test.com', 'afaf', NULL, '18', 4, 226, NULL, '2013-02-25 13:25:29', '0000-00-00 00:00:00', 1, '', 4, 'dfd');
 
 -- --------------------------------------------------------
 

@@ -11,7 +11,7 @@ $page = new gsPage;
 	$page->title = "Kaffakarma.com";	// page Title
 	$page->page_name = 'gfwflash';		// page name for menu and other purpose
 
-	$page->layout = 'flash.html';		// layout name
+	$page->layout = 'k_coffee_flash.html';		// layout name
 
     $page->conf_list = array("conf.php");
     $page->menuconf_list = array("menu_conf.php");

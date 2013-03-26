@@ -25,7 +25,7 @@ if ( $_POST['passwd'] == "" ){
     $login_error .= "<br/>".$msg_empty_password;
 }
 if ( $login_error == "" ){
-      $uname = trim($_POST['loginname']);
+      $uname = mysql_real_escape_string(trim($_POST['loginname']));
       $pass = md5(trim($_POST['passwd']));
       $myuser = new User(gInvalid,$uname,$pass,$myconnection);
       $chk = $myuser->login();

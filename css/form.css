@@ -32,6 +32,7 @@ text-align: left;
 
 .field textarea {
 height:100px;
+width:100%;
 }
 .field label{
  font-size:14px;
@@ -42,10 +43,12 @@ height:100px;
 
 #notice {
   color: green;
+  text-align:center; 
 }
 
 .error{
-  color: green;
+  color: red;
+  text-align:center; 
 }
 
 .search_form{
@@ -53,3 +56,25 @@ padding-left:200px;
 padding-right:200px;
 }
 
+div.field_small{
+/*background:orange;*/
+text-align:left; 
+margin-bottom: 10px; 
+}
+
+.field_small input, .field_small textarea, .field_small select{
+width:40px;
+text-align: left;
+margin-right:90%;
+}
+
+.field_small textarea {
+height:100px;
+
+}
+.field_small label{
+ font-size:14px;
+ margin-left:10px;
+ font-weight:bold;
+
+}
