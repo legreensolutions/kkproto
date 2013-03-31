@@ -4,39 +4,35 @@ if ( !defined('CHECK_INCLUDED') ){
     exit();
 }
 
-class Faq {
+class Orderitem {
     var $connection;
     var $id = gINVALID;
-    var $question = "";
-    var $answer = "";
+    var $order_id = gINVALID;
+    var $item_id = gINVALID;
+    var $quantity = "";
+    var $unit_price = "";
+    var $shipping_amount = "";
+    var $tax_item = "";
+    var $tax_shipping = "";
     var $error_number=gINVALID;
     var $error_description="";
     //for pagination
     var $total_records = "";
 
-function get_id(){
-    $strSQL = "SELECT id,question FROM faq WHERE question = '".$this->question."'";
-    $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
-    if ( mysql_num_rows($rsRES) > 0 ){
-        $this->id = mysql_result($rsRES,0,'id');
-        $this->question = mysql_result($rsRES,0,'question');
-        return $this->id;
-    }else{
-        $this->error_number = 1;
-        $this->error_description="This FAQ doesn't exist";
-        return false;
-    }
-}
-
 
 
 function get_detail(){
-    $strSQL = "SELECT id,question,answer FROM faq WHERE id = '".$this->id."'";
+    $strSQL = "SELECT id, order_id, item_id, quantity, unit_price, shipping_amount, tax_item, tax_shipping  FROM orderitems WHERE id = '".$this->id."'";
     $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
     if ( mysql_num_rows($rsRES) > 0 ){
         $this->id = mysql_result($rsRES,0,'id');
-        $this->question = mysql_result($rsRES,0,'question');
-        $this->answer = mysql_result($rsRES,0,'answer');
+        $this->order_id = mysql_result($rsRES,0,'order_id');
+        $this->item_id = mysql_result($rsRES,0,'item_id');
+        $this->quantity = mysql_result($rsRES,0,'quantity');
+        $this->unit_price = mysql_result($rsRES,0,'unit_price');
+        $this->shipping_amount = mysql_result($rsRES,0,'shipping_amount');
+        $this->tax_item = mysql_result($rsRES,0,'tax_item');
+        $this->tax_shipping = mysql_result($rsRES,0,'tax_shipping');
         return $this->id;
     }else{
         $this->error_number = 2;
@@ -46,24 +42,63 @@ function get_detail(){
 }
 
 
+function get_order_detail(){
+        $orderitems = array();$i=0;
+        $strSQL = "SELECT id, order_id, item_id, quantity, unit_price, shipping_amount, tax_item, tax_shipping  FROM orderitems WHERE order_id = '".$this->order_id."'";
+        $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
+        if ( mysql_num_rows($rsRES) > 0 ){
+            while ( list ($id,$order_id,$item_id) = mysql_fetch_row($rsRES) ){
+                $orderitems[$i]["id"] =  $id;
+                $orderitems[$i]["order_id"] = $order_id;
+                $orderitems[$i]["item_id"] = $item_id;
+                $orderitems[$i]["quantity"] = $quantity;
+                $orderitems[$i]["unit_price"] = $unit_price;
+                $orderitems[$i]["shipping_amount"] = $shipping_amount;
+                $orderitems[$i]["tax_item"] = $tax_item;
+                $orderitems[$i]["tax_shipping"] = $tax_shipping;
+                $i++;
+            }
+            return $orderitems;
+        }else{
+        $this->error_number = 4;
+        $this->error_description="Can't list Orderitem";
+        return false;
+        }
+}
+
+
+
+
+
+
 function update(){
     if ( $this->id == "" || $this->id == gINVALID) {
-    $strSQL = "INSERT INTO faq (question, answer) VALUES ('";
-    $strSQL .= addslashes(trim($this->question)) ."','";
-    $strSQL .= addslashes(trim($this->answer)) ."')";
+    $strSQL = "INSERT INTO orderitems (order_id, item_id, quantity, unit_price, shipping_amount, tax_item, tax_shipping) VALUES ('";
+    $strSQL .= addslashes(trim($this->order_id)) ."','";
+    $strSQL .= addslashes(trim($this->item_id)) ."','";
+    $strSQL .= addslashes(trim($this->quantity)) ."','";
+    $strSQL .= addslashes(trim($this->unit_price)) ."','";
+    $strSQL .= addslashes(trim($this->shipping_amount)) ."','";
+    $strSQL .= addslashes(trim($this->tax_item)) ."','";
+    $strSQL .= addslashes(trim($this->tax_shipping)) ."')";
     $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
           if ( mysql_affected_rows($this->connection) > 0 ) {
               $this->id = mysql_insert_id();
               return $this->id;
           }else{
               $this->error_number = 3;
-              $this->error_description="Can't insert this question";
+              $this->error_description="Can't insert this order_id";
               return false;
           }
     }
     elseif($this->id > 0 ) {
-    $strSQL = "UPDATE faq SET question = '".addslashes(trim($this->question))."',";
-    $strSQL .= "answer = '".addslashes(trim($this->answer))."'";
+    $strSQL = "UPDATE orderitems SET order_id = '".addslashes(trim($this->order_id))."',";
+    $strSQL .= "item_id = '".addslashes(trim($this->item_id))."'";
+    $strSQL .= "quantity = '".addslashes(trim($this->quantity))."'";
+    $strSQL .= "unit_price = '".addslashes(trim($this->unit_price))."'";
+    $strSQL .= "shipping_amount = '".addslashes(trim($this->shipping_amount))."'";
+    $strSQL .= "tax_item = '".addslashes(trim($this->tax_item))."'";
+    $strSQL .= "tax_shipping = '".addslashes(trim($this->tax_shipping))."'";
     $strSQL .= " WHERE id = ".$this->id;
     $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
             if ( mysql_affected_rows($this->connection) >= 0 ) {
@@ -71,95 +106,48 @@ function update(){
             }
             else{
                 $this->error_number = 3;
-                $this->error_description="Can't update this FAQ";
+                $this->error_description="Can't update this Orderitem";
                 return false;
             }
     }
 }
 
 function get_list_array(){
-        $faqs = array();$i=0;
-        $strSQL = "SELECT id,question,answer FROM faq ORDER BY id";
+        $orderitems = array();$i=0;
+        $strSQL = "SELECT id, order_id, item_id, quantity, unit_price, shipping_amount, tax_item, tax_shipping FROM orderitems ORDER BY id";
         $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
         if ( mysql_num_rows($rsRES) > 0 ){
-            while ( list ($id,$question,$answer) = mysql_fetch_row($rsRES) ){
-                $faqs[$i]["id"] =  $id;
-                $faqs[$i]["question"] = $question;
-                $faqs[$i]["answer"] = $answer;
+            while ( list ($id,$order_id,$item_id) = mysql_fetch_row($rsRES) ){
+                $orderitems[$i]["id"] =  $id;
+                $orderitems[$i]["order_id"] = $order_id;
+                $orderitems[$i]["item_id"] = $item_id;
+                $orderitems[$i]["quantity"] = $quantity;
+                $orderitems[$i]["unit_price"] = $unit_price;
+                $orderitems[$i]["shipping_amount"] = $shipping_amount;
+                $orderitems[$i]["tax_item"] = $tax_item;
+                $orderitems[$i]["tax_shipping"] = $tax_shipping;
                 $i++;
             }
-            return $faqs;
+            return $orderitems;
         }else{
         $this->error_number = 4;
-        $this->error_description="Can't list FAQs";
+        $this->error_description="Can't list Orderitem";
         return false;
         }
 }
 
-function get_list_array_bylimit($id=-1,$question="", $answer="", $start_record = 0,$max_records = 25){
 
-        $limited_data = array();
-        $i=0;
-        $str_condition = "";
-
-        $strSQL = "SELECT id,question,answer FROM faq WHERE 1 ";
-        if ( $id != "" && $id != -1 ) {
-            $str_condition .= " AND id  = '" . $id . "'" ;
-        }
-
-
-        if ( $question != "" ) {
-            $str_condition .= " AND question  LIKE '%" . $question . "%'" ;
-        }
-
-
-        if ( $answer != "" ) {
-            $str_condition .= " AND answer  LIKE '%" . $answer . "%'" ;
-        }
-
-
-        if (trim($str_condition) !="") {
-            $strSQL .=  $str_condition . "  ";
-        }
-        $strSQL .= " ORDER BY id";
-        //taking limit  result of that in $rsRES .$start_record is starting record of a page.$max_records num of records in that page
-        $strSQL_limit = sprintf("%s LIMIT %d, %d", $strSQL, $start_record, $max_records);
-        $rsRES = mysql_query($strSQL_limit, $this->connection) or die(mysql_error(). $strSQL_limit);
-
-        if ( mysql_num_rows($rsRES) > 0 ){
-
-            //without limit  , result of that in $all_rs
-            if (trim($this->total_records)!="" && $this->total_records > 0) {
-                
-            } else {
-                $all_rs = mysql_query($strSQL, $this->connection) or die(mysql_error(). $strSQL_limit); 
-                $this->total_records = mysql_num_rows($all_rs);
-            }
-    
-            while ( $row = mysql_fetch_assoc($rsRES) ){
-                $limited_data[$i]["id"] = $row["id"];
-                $limited_data[$i]["question"] = $row["question"];
-                $limited_data[$i]["answer"] = $row["answer"];
-                $i++;
-            }
-            return $limited_data;
-        }else{
-            $this->error_number = 5;
-            $this->error_description="Can't get limited data";
-            return false;
-        }
-}
 
 function delete(){
     if($this->id > 0 ) {
-        $strSQL = " DELETE FROM faq WHERE id = '".$this->id."'";
+        $strSQL = " DELETE FROM orderitems WHERE id = '".$this->id."'";
         $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
         if ( mysql_affected_rows($this->connection) > 0 ) {
             return true;
         }
         else{
             $this->error_number = 6;
-            $this->error_description="Can't deltete this FAQ";
+            $this->error_description="Can't deltete this Orderitem";
             return  false;
         }
     }

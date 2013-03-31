@@ -11,6 +11,7 @@ $page = new gsPage;
     $page->title = "Kaffakarma.com";   // page Title
     $page->page_name = 'backup';     // page name for menu and other purpose
     $page->layout = 'default.html';     // layout name
+    $page->access_list = array("USERTYPE_ADMIN"); // authorisation
 
     $page->conf_list = array("conf.php");
     $page->menuconf_list = array("menu_conf.php");

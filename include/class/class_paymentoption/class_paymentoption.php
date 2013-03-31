@@ -4,26 +4,26 @@ if ( !defined('CHECK_INCLUDED') ){
     exit();
 }
 
-class Order {
+class Paymentoption {
     var $connection;
     var $id = gINVALID;
-    var $order_number = "";
-    var $order_date = "";
+    var $name = "";
+    var $description = "";
     var $error_number=gINVALID;
     var $error_description="";
     //for pagination
     var $total_records = "";
 
 function get_id(){
-    $strSQL = "SELECT id,order_number FROM orders WHERE order_number = '".$this->order_number."'";
+    $strSQL = "SELECT id,name FROM paymentoptions WHERE name = '".$this->name."'";
     $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
     if ( mysql_num_rows($rsRES) > 0 ){
         $this->id = mysql_result($rsRES,0,'id');
-        $this->order_number = mysql_result($rsRES,0,'order_number');
+        $this->name = mysql_result($rsRES,0,'name');
         return $this->id;
     }else{
         $this->error_number = 1;
-        $this->error_description="This Order doesn't exist";
+        $this->error_description="This Paymentoption doesn't exist";
         return false;
     }
 }
@@ -31,12 +31,12 @@ function get_id(){
 
 
 function get_detail(){
-    $strSQL = "SELECT id,order_number,order_date FROM orders WHERE id = '".$this->id."'";
+    $strSQL = "SELECT id,name,description FROM paymentoptions WHERE id = '".$this->id."'";
     $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
     if ( mysql_num_rows($rsRES) > 0 ){
         $this->id = mysql_result($rsRES,0,'id');
-        $this->order_number = mysql_result($rsRES,0,'order_number');
-        $this->order_date = mysql_result($rsRES,0,'order_date');
+        $this->name = mysql_result($rsRES,0,'name');
+        $this->description = mysql_result($rsRES,0,'description');
         return $this->id;
     }else{
         $this->error_number = 2;
@@ -48,22 +48,22 @@ function get_detail(){
 
 function update(){
     if ( $this->id == "" || $this->id == gINVALID) {
-    $strSQL = "INSERT INTO orders (order_number, order_date) VALUES ('";
-    $strSQL .= addslashes(trim($this->order_number)) ."','";
-    $strSQL .= addslashes(trim($this->order_date)) ."')";
+    $strSQL = "INSERT INTO paymentoptions (name, description) VALUES ('";
+    $strSQL .= addslashes(trim($this->name)) ."','";
+    $strSQL .= addslashes(trim($this->description)) ."')";
     $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
           if ( mysql_affected_rows($this->connection) > 0 ) {
               $this->id = mysql_insert_id();
               return $this->id;
           }else{
               $this->error_number = 3;
-              $this->error_description="Can't insert this order_number";
+              $this->error_description="Can't insert this name";
               return false;
           }
     }
     elseif($this->id > 0 ) {
-    $strSQL = "UPDATE orders SET order_number = '".addslashes(trim($this->order_number))."',";
-    $strSQL .= "order_date = '".addslashes(trim($this->order_date))."'";
+    $strSQL = "UPDATE paymentoptions SET name = '".addslashes(trim($this->name))."',";
+    $strSQL .= "description = '".addslashes(trim($this->description))."'";
     $strSQL .= " WHERE id = ".$this->id;
     $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
             if ( mysql_affected_rows($this->connection) >= 0 ) {
@@ -71,55 +71,67 @@ function update(){
             }
             else{
                 $this->error_number = 3;
-                $this->error_description="Can't update this Order";
+                $this->error_description="Can't update this Paymentoption";
                 return false;
             }
     }
 }
 
 function get_list_array(){
-        $orders = array();$i=0;
-        $strSQL = "SELECT id,order_number,order_date FROM orders ORDER BY id";
+        $paymentoptions = array();$i=0;
+        $strSQL = "SELECT id,name,description FROM paymentoptions ORDER BY id";
         $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
         if ( mysql_num_rows($rsRES) > 0 ){
-            while ( list ($id,$order_number,$order_date) = mysql_fetch_row($rsRES) ){
-                $orders[$i]["id"] =  $id;
-                $orders[$i]["order_number"] = $order_number;
-                $orders[$i]["order_date"] = $order_date;
+            while ( list ($id,$name,$description) = mysql_fetch_row($rsRES) ){
+                $paymentoptions[$i]["id"] =  $id;
+                $paymentoptions[$i]["name"] = $name;
+                $paymentoptions[$i]["description"] = $description;
                 $i++;
             }
-            return $orders;
+            return $paymentoptions;
         }else{
         $this->error_number = 4;
-        $this->error_description="Can't list Orders";
+        $this->error_description="Can't list Paymentoption";
         return false;
         }
 }
 
-function get_list_array_bylimit($id=-1,$order_number="", $order_date="", $start_record = 0,$max_records = 25){
+function get_list_array_bylimit($id=-1,$name="", $description="", $start_record = 0,$max_records = 25){
 
         $limited_data = array();
         $i=0;
         $str_condition = "";
 
-        $strSQL = "SELECT id,order_number,order_date FROM orders WHERE 1 ";
+        $strSQL = "SELECT id,name,description FROM paymentoptions WHERE 1 ";
         if ( $id != "" && $id != -1 ) {
-            $str_condition .= " AND id  = '" . $id . "'" ;
+            if (trim($str_condition) =="") {
+                $str_condition = "  id  = '" . $id . "'" ;
+            }else{
+                $str_condition .= " AND id  = '" . $id . "'" ;
+            } 
         }
 
 
-        if ( $order_number != "" ) {
-            $str_condition .= " AND order_number  LIKE '%" . $order_number . "%'" ;
+        if ( $name != "" ) {
+            if (trim($str_condition) =="") {
+                $str_condition = "  name  LIKE '%" . $name . "%'" ;
+            }else{
+                $str_condition .= " AND name  LIKE '%" . $name . "%'" ;
+            } 
         }
 
 
-        if ( $order_date != "" ) {
-            $str_condition .= " AND order_date  LIKE '%" . $order_date . "%'" ;
+        if ( $description != "" ) {
+            if (trim($str_condition) =="") {
+                $str_condition = "  description  LIKE '%" . $description . "%'" ;
+            }else{
+                $str_condition .= " AND description  LIKE '%" . $description . "%'" ;
+            } 
         }
 
 
         if (trim($str_condition) !="") {
-            $strSQL .=  $str_condition . "  ";
+            $strSQL .= " AND  " . $str_condition . "  ";
         }
         $strSQL .= " ORDER BY id";
         //taking limit  result of that in $rsRES .$start_record is starting record of a page.$max_records num of records in that page
@@ -138,8 +150,8 @@ function get_list_array_bylimit($id=-1,$order_number="", $order_date="", $start_
     
             while ( $row = mysql_fetch_assoc($rsRES) ){
                 $limited_data[$i]["id"] = $row["id"];
-                $limited_data[$i]["order_number"] = $row["order_number"];
-                $limited_data[$i]["order_date"] = $row["order_date"];
+                $limited_data[$i]["name"] = $row["name"];
+                $limited_data[$i]["description"] = $row["description"];
                 $i++;
             }
             return $limited_data;
@@ -152,14 +164,14 @@ function get_list_array_bylimit($id=-1,$order_number="", $order_date="", $start_
 
 function delete(){
     if($this->id > 0 ) {
-        $strSQL = " DELETE FROM orders WHERE id = '".$this->id."'";
+        $strSQL = " DELETE FROM paymentoptions WHERE id = '".$this->id."'";
         $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
         if ( mysql_affected_rows($this->connection) > 0 ) {
             return true;
         }
         else{
             $this->error_number = 6;
-            $this->error_description="Can't deltete this Order";
+            $this->error_description="Can't deltete this Paymentoption";
             return  false;
         }
     }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 26, 2013 at 06:43 AM
+-- Generation Time: Mar 31, 2013 at 07:50 AM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.6-1ubuntu1.2
 
@@ -436,7 +436,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `tax_shipping` double NOT NULL,
   `order_amount` double(10,2) DEFAULT '0.00',
   `order_status` char(1) DEFAULT '1',
-  `paymentoption` char(1) NOT NULL DEFAULT 'I',
+  `paymentoption_id` int(11) NOT NULL DEFAULT '1',
   `paymentdate` datetime DEFAULT NULL,
   `paymentdetail` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -470,6 +470,28 @@ INSERT INTO `pages` (`id`, `page_name`) VALUES
 (7, 'about_us'),
 (8, 'about_the_coffee'),
 (9, 'coffee');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `paymentoptions`
+--
+
+CREATE TABLE IF NOT EXISTS `paymentoptions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` text,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `paymentoptions`
+--
+
+INSERT INTO `paymentoptions` (`id`, `name`, `description`) VALUES
+(1, 'Cash', 'Cash Payment'),
+(2, 'PayPal', 'Paypal Payment');
 
 -- --------------------------------------------------------
 
