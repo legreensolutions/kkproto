@@ -9,7 +9,7 @@ $page = new gsPage;
 	$page->root_path = ROOT_PATH;
 	$page->current_url = $current_url;	// current url for pages
 	$page->title = "Kaffakarma.com";	// page Title
-	$page->page_name = 'index';		// page name for menu and other purpose
+	$page->page_name = 'buycoffee';		// page name for menu and other purpose
 	$page->layout = 'k_coffee_sub_site.html';		// layout name
 
         $page->use_gsconf = true;                 // enable GS conf
@@ -19,8 +19,8 @@ $page = new gsPage;
 	$page->connection_list = array("connection.php");
 
 	$page->function_list = array("functions.php");
-	$page->class_list = array("class_user.php","class_useritem.php", "class_state.php", "class_country.php", "class_city.php");
-	$page->pageconf_list = array("index.php");
+	$page->class_list = array("class_user.php","class_useritem.php", "class_state.php", "class_country.php", "class_city.php", "class_customer.php");
+	$page->pageconf_list = array("subsite/buycoffee.php");
     $page->css_list = array("form.css");
 
 	$index=0;
@@ -30,10 +30,10 @@ $page = new gsPage;
 	$content_list[$index]['file_name']='subsite/inc_conf.php';
 	$content_list[$index]['var_name']='content';
 	$index++;
-	$content_list[$index]['file_name']='subsite/inc_buy_coffe_code.php';
+	$content_list[$index]['file_name']='subsite/inc_buycoffee_code.php';
 	$content_list[$index]['var_name']='content';
 	$index++;
-	$content_list[$index]['file_name']='subsite/inc_buy_coffe_form.php';
+	$content_list[$index]['file_name']='subsite/inc_buycoffee_form.php';
 	$content_list[$index]['var_name']='content';
 
 	$page->content_list = $content_list;

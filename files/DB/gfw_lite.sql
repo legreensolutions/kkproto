@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 31, 2013 at 07:50 AM
+-- Generation Time: Apr 02, 2013 at 08:52 AM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.6-1ubuntu1.2
 
@@ -642,6 +642,7 @@ CREATE TABLE IF NOT EXISTS `useritems` (
   `user_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
   `unit_price` double NOT NULL,
+  `active` smallint(6) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`,`item_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
@@ -650,13 +651,13 @@ CREATE TABLE IF NOT EXISTS `useritems` (
 -- Dumping data for table `useritems`
 --
 
-INSERT INTO `useritems` (`id`, `user_id`, `item_id`, `unit_price`) VALUES
-(1, 2, 1, 15),
-(2, 2, 2, 15),
-(3, 2, 3, 15),
-(4, 2, 4, 15),
-(5, 2, 5, 15),
-(6, 2, 6, 15);
+INSERT INTO `useritems` (`id`, `user_id`, `item_id`, `unit_price`, `active`) VALUES
+(1, 2, 1, 15, 1),
+(2, 2, 2, 15, 1),
+(3, 2, 3, 15, 1),
+(4, 2, 4, 15, 1),
+(5, 2, 5, 15, 1),
+(6, 2, 6, 15, 1);
 
 -- --------------------------------------------------------
 

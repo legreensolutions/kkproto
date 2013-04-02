@@ -21,7 +21,7 @@
             <div class="item_image"><img src="<?php echo $item_image?>"></div>        
         
                         
-                        <div class="price_buy"><div class="item_price">$<?php echo $data_bylimit[$index]["user_price"]; ?></div><a href="buy_coffe.php?item_id=<?php echo $data_bylimit[$index]["item_id"] ?>"><div class="buy_button" ></div></a></div>
+                        <div class="price_buy"><div class="item_price">$<?php echo $data_bylimit[$index]["user_price"]; ?></div><a href="buycoffee.php?item_id=<?php echo $data_bylimit[$index]["item_id"] ?>"><div class="buy_button" ></div></a></div>
                         <div style="clear:both;"></div>
                         <div class="item_description">
   <?php echo $data_bylimit[$index]["description"]; ?>

@@ -25,11 +25,10 @@
      <br />
 
 
-         <form  name="frmsignup" id="frmsignup" method="post" action="<?php echo $current_url; ?>" enctype="multipart/form-data">
+         <form  name="frmbuycoffee" id="frmbuycoffee" method="post" action="<?php echo $current_url; ?>" enctype="multipart/form-data">
 
 <h1>Buy Coffee <?php echo $myuseritem->name; ?><br /></h1>
-<p class="error"></p>
-
+<p class="error"><?php echo $mycustomer->error_description; ?></p>
 
 <div class="field_small" >
 <img src="<?php echo $item_image?>"><br/>
@@ -40,13 +39,14 @@ $<?php echo $myuseritem->user_price; ?><br/>
 
 <div class="field_small" >
 <label> Quantity</label>  
-<input   type="text" name="txtquantity" id="txtquantity" value="<?php if(isset($_POST['txtquantity'])){echo $_POST['txtquantity'];}?>" >   
+<input   type="text" name="txtquantity" id="txtquantity" value="<?php if(isset($_POST['txtquantity'])){echo $_POST['txtquantity'];} ?>" />  
+<input   type="hidden" name="item_id" id="item_id" value="<?php if(isset($_REQUEST['item_id'])){echo $_REQUEST['item_id'];}?>"/>  
 </div>
 
 <br/>
 <div class="field" >
     <label> Email</label>
-    <input   type="text" name="txtemail" id="txtemail" value="<?php if(isset($_POST['txtemail'])){echo $_POST['txtemail'];}?>" >
+    <input   type="text" name="txtemail" id="txtemail" value="<?php if(isset($_POST['txtemail'])){echo $_POST['txtemail'];}else{ echo $mycustomer->emailid;} ?>" >
 </div>
 
 <div class="field" >
@@ -62,9 +62,7 @@ $<?php echo $myuseritem->user_price; ?><br/>
 
 <div class="field" >
     <label>Address</label>
-    <textarea ame="txtaddress" id="txtaddress">
-        <?php if(isset($_POST['txtaddress'])){echo $_POST['txtaddress'];}?>
-    </textarea>
+    <textarea name="txtaddress" id="txtaddress"><?php if(isset($_POST['txtaddress'])){echo $_POST['txtaddress'];}?></textarea>
 </div>
 
 <div class="field" >
@@ -105,7 +103,8 @@ $<?php echo $myuseritem->user_price; ?><br/>
 
 
 <div class="actions" >
-    <input type="submit" name="submit" value="Continue" onClick="return validate_signup();" />
+    <input   type="hidden" name="h_id" id="h_id" value="<?php echo $h_id ?>"/> 
+    <input type="submit" name="submit" value="<?php echo $CAP_submit; ?>" onClick="return validate_buycoffee();" />
 </div>
 
 

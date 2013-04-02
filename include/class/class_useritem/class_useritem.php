@@ -22,6 +22,7 @@ class UserItem {
 
     var $user_id = gINVALID;
     var $user_price = 0.00;
+    var $active = 1;
 
     var $error_number=gINVALID;
     var $error_description="";
@@ -29,7 +30,7 @@ class UserItem {
     var $total_records = "";
 
 function get_id(){
-    $strSQL = "SELECT UI.id, I.name, I.description, I.item_status_id, I.item_type_id, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping, UI.user_id, UI.item_id, UI.unit_price as user_price FROM items I, useritems UI WHERE UI.item_id = I.id AND I.name = '".addslashes(trim($this->name))."' AND UI.user_id ='".addslashes(trim($this->user_id))."'";
+    $strSQL = "SELECT UI.id, I.name, I.description, I.item_status_id, I.item_type_id, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping, UI.user_id, UI.item_id, UI.unit_price as user_price FROM items I, useritems UI WHERE UI.item_id = I.id AND I.name = '".addslashes(trim($this->name))."' AND UI.active= '".addslashes(trim($this->active))."' AND UI.user_id ='".addslashes(trim($this->user_id))."'";
     $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
     if ( mysql_num_rows($rsRES) > 0 ){
         $this->id = mysql_result($rsRES,0,'id');
@@ -60,7 +61,7 @@ function get_id(){
 
 
 function get_detail(){
-    $strSQL = "SELECT UI.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping, UI.user_id, UI.item_id, UI.unit_price AS user_price FROM items I,itemstatuses S, itemtypes T, useritems UI WHERE I.item_status_id = S.id AND I.item_type_id = T.id AND UI.item_id = I.id AND UI.id = '".addslashes(trim($this->id))."'";
+    $strSQL = "SELECT UI.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping, UI.user_id, UI.item_id, UI.unit_price AS user_price FROM items I,itemstatuses S, itemtypes T, useritems UI WHERE I.item_status_id = S.id AND I.item_type_id = T.id AND UI.item_id = I.id AND UI.active= '".addslashes(trim($this->active))."' AND UI.id = '".addslashes(trim($this->id))."'";
     $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
     if ( mysql_num_rows($rsRES) > 0 ){
         $this->id = mysql_result($rsRES,0,'id');
@@ -87,7 +88,7 @@ function get_detail(){
 
 
 function get_item_detail(){
-    $strSQL = "SELECT UI.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping, UI.user_id, UI.item_id, UI.unit_price AS user_price FROM items I,itemstatuses S, itemtypes T, useritems UI WHERE I.item_status_id = S.id AND I.item_type_id = T.id AND UI.item_id = I.id AND UI.item_id = '".addslashes(trim($this->item_id))."' AND UI.user_id ='".addslashes(trim($this->user_id))."'";
+    $strSQL = "SELECT UI.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping, UI.user_id, UI.item_id, UI.unit_price AS user_price FROM items I,itemstatuses S, itemtypes T, useritems UI WHERE I.item_status_id = S.id AND I.item_type_id = T.id AND UI.item_id = I.id AND UI.active= '".addslashes(trim($this->active))."' AND UI.item_id = '".addslashes(trim($this->item_id))."' AND UI.user_id ='".addslashes(trim($this->user_id))."'";
     $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
     if ( mysql_num_rows($rsRES) > 0 ){
         $this->id = mysql_result($rsRES,0,'id');
@@ -133,6 +134,7 @@ function update(){
     elseif($this->id > 0 ) {
     $strSQL = "UPDATE useritems SET user_id = '".addslashes(trim($this->user_id))."',";
     $strSQL .= "item_id = '".addslashes(trim($this->item_id))."',";
+    $strSQL .= "active = '".addslashes(trim($this->active))."',";
     $strSQL .= "unit_price = ".addslashes(trim($this->user_price));
     $strSQL .= " WHERE id = ".$this->id;
     $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
@@ -149,11 +151,11 @@ function update(){
 
 function get_list_array(){
         $items = array();$i=0;
-        $strSQL = "SELECT UI.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping , UI.user_id, UI.item_id ,UI.unit_price AS user_price FROM items I,itemstatuses S, itemtypes T, useritems UI WHERE I.item_status_id = S.id AND I.item_type_id = T.id AND UI.item_id = I.id  ORDER BY UI.id";
+        $strSQL = "SELECT UI.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping , UI.user_id, UI.item_id ,UI.unit_price AS user_price, UI.active FROM items I,itemstatuses S, itemtypes T, useritems UI WHERE I.item_status_id = S.id AND I.item_type_id = T.id AND UI.item_id = I.id  ORDER BY UI.id";
 
         $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
         if ( mysql_num_rows($rsRES) > 0 ){
-            while ( list ($id,$name,$description, $item_status_id, $item_status_name, $item_type_id, $item_type_name, $image, $keywords, $unit_price, $tax_item, $tax_shipping, $user_id, $item_id, $user_price) = mysql_fetch_row($rsRES) ){
+            while ( list ($id,$name,$description, $item_status_id, $item_status_name, $item_type_id, $item_type_name, $image, $keywords, $unit_price, $tax_item, $tax_shipping, $user_id, $item_id, $user_price,$active) = mysql_fetch_row($rsRES) ){
                 $items[$i]["id"] =  $id;
                 $items[$i]["name"] = $name;
                 $items[$i]["description"] = $description;
@@ -169,6 +171,7 @@ function get_list_array(){
                 $items[$i]["user_id"] = $user_id;
                 $items[$i]["item_id"] = $item_id;
                 $items[$i]["user_price"] = $user_price;
+                $items[$i]["active"] = $active;
                 $i++;
             }
             return $items;
@@ -182,13 +185,13 @@ function get_list_array(){
 }
 
 
-function get_list_array_bylimit($id=gINVALID,$name="", $description="", $item_status_id=gINVALID, $item_type_id=gINVALID, $user_id=gINVALID, $item_id=gINVALID, $keywords="", $start_record = 0,$max_records = 25){
+function get_list_array_bylimit($id=gINVALID,$name="", $description="", $item_status_id=gINVALID, $item_type_id=gINVALID, $user_id=gINVALID, $item_id=gINVALID, $keywords="", $active=1,$start_record = 0,$max_records = 25){
 
         $limited_data = array();
         $i=0;
         $str_condition = "";
 
-        $strSQL = "SELECT UI.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping , UI.user_id, UI.item_id ,UI.unit_price AS user_price FROM items I,itemstatuses S, itemtypes T, useritems UI WHERE I.item_status_id = S.id AND I.item_type_id = T.id AND UI.item_id = I.id ";
+        $strSQL = "SELECT UI.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping , UI.user_id, UI.item_id ,UI.unit_price AS user_price, UI.active FROM items I,itemstatuses S, itemtypes T, useritems UI WHERE I.item_status_id = S.id AND I.item_type_id = T.id AND UI.item_id = I.id ";
         if ( $id != "" && $id != gINVALID ) {
                 $str_condition .= " AND UI.id  = '" . addslashes(trim($id)) . "'" ;
         }
@@ -219,6 +222,9 @@ function get_list_array_bylimit($id=gINVALID,$name="", $description="", $item_st
 
         if ( $item_id != gINVALID && $item_id != ""){
                 $str_condition .= " AND UI.item_id = ".addslashes(trim($item_id));
+        }
+        if ( $active != gINVALID && $active != ""){
+                $str_condition .= " AND UI.active = ".addslashes(trim($active));
         }
 
 
@@ -256,6 +262,7 @@ function get_list_array_bylimit($id=gINVALID,$name="", $description="", $item_st
                 $limited_data[$i]["user_id"] = $row["user_id"];
                 $limited_data[$i]["item_id"] = $row["item_id"];
                 $limited_data[$i]["user_price"] = $row["user_price"];
+                $limited_data[$i]["active"] = $row["active"];
 
                 $i++;
             }

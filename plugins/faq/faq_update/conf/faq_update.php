@@ -6,11 +6,11 @@
 ?>
 <?php
 
-$RD_MSG_que_deleted = "Faq deleted ";
+$RD_MSG_faq_deleted = "Faq deleted ";
 
-$RD_MSG_que_added = "Faq Added ";
+$RD_MSG_faq_added = "Faq Added ";
 
-$RD_MSG_que_updated = "Faq Updated ";
+$RD_MSG_faq_updated = "Faq Updated ";
 
 $RD_MSG_on_fail = "Your attempt failed.Contact Admin";
 

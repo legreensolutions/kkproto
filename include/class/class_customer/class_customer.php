@@ -26,7 +26,7 @@ class Customer {
     //for pagination
     var $total_records = "";
 
-    function Customer ( $id="", $first_name="", $last_name="", $address="", $street="", $city=""  $state_id=gINVALID, $country_id=gINVALID, $postal_code = "", $emailid = "", $phone = "", $ipaddress ="", $gender_id = gINVALID, $connection="" ){
+    function Customer ( $id=gINVALID, $first_name="", $last_name="", $address="", $street="", $city="", $state_id=gINVALID, $country_id=gINVALID, $postal_code = "", $emailid = "", $phone = "", $ipaddress ="", $gender_id = gINVALID, $connection="" ){
         $this->id = $id;
         $this->first_name = $first_name;
         $this->last_name = $last_name;
@@ -49,7 +49,7 @@ class Customer {
 
     function update(){
         if ( $this->id == "" || $this->id == gINVALID) {
-              $strSQL = "INSERT INTO customers  first_name, last_name, address, street, city, state_id, country_id, postal_code, emailid, phone, ipaddress, gender_id) ";
+              $strSQL = "INSERT INTO customers  (first_name, last_name, address, street, city, state_id, country_id, postal_code, emailid, phone, ipaddress, gender_id) ";
               $strSQL .= "VALUES ('".addslashes(trim($this->first_name))."','";
               $strSQL .= addslashes(trim($this->last_name))."','";
               $strSQL .= addslashes(trim($this->address))."','";

@@ -26,13 +26,13 @@ if ( $error == "" ){
                             exit();
                             }
                             elseif ( $_POST['update'] == $CAP_update && $chk != false ) {
-                            $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_que_updated;
+                            $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_faq_updated;
                             $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "faq_search.php";
                             header( "Location: gfwflash.php");
                             exit();
                             }
                             elseif ($_POST['insert'] == $CAP_insert && $chk != false){
-                            $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_que_added;
+                            $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_faq_added;
                             $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "faq_update.php";
                             header( "Location: gfwflash.php");
                             exit();
@@ -51,7 +51,7 @@ elseif ($_POST['delete'] == $CAP_delete){
                             exit();
                             }
                             else{
-                            $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_que_deleted;
+                            $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_faq_deleted;
                             $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "faq_search.php";
                             header( "Location: gfwflash.php");
                             exit();
