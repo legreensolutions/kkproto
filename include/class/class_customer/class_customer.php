@@ -49,7 +49,7 @@ class Customer {
 
     function update(){
         if ( $this->id == "" || $this->id == gINVALID) {
-              $strSQL = "INSERT INTO customers  (first_name, last_name, address, street, city, state_id, country_id, postal_code, emailid, phone, ipaddress, gender_id) ";
+              $strSQL = "INSERT INTO customers  (first_name, last_name, address, street, city, state_id, country_id, postal_code, emailid, phone, registrationdate, ipaddress, gender_id) ";
               $strSQL .= "VALUES ('".addslashes(trim($this->first_name))."','";
               $strSQL .= addslashes(trim($this->last_name))."','";
               $strSQL .= addslashes(trim($this->address))."','";
@@ -59,8 +59,9 @@ class Customer {
               $strSQL .= addslashes(trim($this->country_id))."','";
               $strSQL .= addslashes(trim($this->postal_code))."','";
               $strSQL .= addslashes(trim($this->emailid))."','";
-              $strSQL .= addslashes(trim($this->phone))."','";
-              $strSQL .= addslashes(trim($this->ipaddress))."','";
+              $strSQL .= addslashes(trim($this->phone))."',";
+              $strSQL .= "now(),'";
+              $strSQL .= $_SERVER['REMOTE_ADDR']."','";
               $strSQL .= addslashes(trim($this->gender_id))."')";
               $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
               if ( mysql_affected_rows($this->connection) > 0 ){
@@ -85,7 +86,7 @@ class Customer {
             $strSQL .= "postal_code = '".addslashes(trim($this->postal_code))."',";
             $strSQL .= "emailid = '".addslashes(trim($this->emailid))."',";
             $strSQL .= "phone = '".addslashes(trim($this->phone))."',";
-            $strSQL .= "ipaddress = '".addslashes(trim($this->ipaddress))."',";
+            $strSQL .= "ipaddress = '".$_SERVER['REMOTE_ADDR']."',";
             $strSQL .= "gender_id = '".addslashes(trim($this->gender_id))."',";
             $strSQL .= " WHERE id = ".$this->id;//$this->id
             $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );

@@ -39,10 +39,24 @@
     $mycustomer = new Customer($myconnection);
     $mycustomer->connection = $myconnection;
 
+    $myorder = new Order($myconnection);
+    $myorder->connection = $myconnection;
+
+    $myorderitem = new OrderItem($myconnection);
+    $myorderitem->connection = $myconnection;
+
     if(isset($_SESSION[SESSION_TITLE.'customer_id']) && $_SESSION[SESSION_TITLE.'customer_id'] > 0){
         $mycustomer->id = $_SESSION[SESSION_TITLE.'customer_id'];
         $mycustomer->get_detail();
         $h_id = $mycustomer->id;
+
+        if(isset($_SESSION[SESSION_TITLE.'customer_id']) && $_SESSION[SESSION_TITLE.'customer_id'] > 0 && isset($_SESSION[SESSION_TITLE.'order_id']) && $_SESSION[SESSION_TITLE.'order_id'] > 0){
+            $myorder->id = $_SESSION[SESSION_TITLE.'order_id'];
+            $myorder->get_detail();
+            $ho_id = $myorder->id;
+        }
+            
+
     }
 
     $error = "";
@@ -66,6 +80,10 @@
 
         if ( trim($_POST['txtstreet']) == "" ){
             $error .= $MSG_empty_street;
+        }
+
+        if ( trim($_POST['txtcity']) == "" ){
+            $error .= $MSG_empty_city;
         }
 
         if ( trim($_POST['lststate']) <= 0 ){
@@ -97,6 +115,12 @@
               $mycustomer->first_name = mysql_real_escape_string(trim($_POST['txtfirstname']));
               $mycustomer->last_name = mysql_real_escape_string(trim($_POST['txtlastname']));
               $mycustomer->address = mysql_real_escape_string(trim($_POST['address']));
+              $mycustomer->street = mysql_real_escape_string(trim($_POST['street']));
+              $mycustomer->city = mysql_real_escape_string(trim($_POST['city']));
+              $mycustomer->state_id = mysql_real_escape_string(trim($_POST['lststate']));
+              $mycustomer->country_id = mysql_real_escape_string(trim($_POST['lstcountry']));
+              $mycustomer->postal_code = mysql_real_escape_string(trim($_POST['postal_code']));
+              $mycustomer->phone = mysql_real_escape_string(trim($_POST['phone']));
 
               $mycustomer->id = mysql_real_escape_string(trim($_POST['h_id']));
               $chk = $mycustomer->update();
@@ -107,11 +131,18 @@
                                     exit();
                                     }
                                     elseif ( $_POST['submit'] == $CAP_submit && $chk != false ) {
-                                    $_SESSION[SESSION_TITLE.'customer_id'] = $mycustomer->id;
-                                    $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_updated;
-                                    $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "subsite/confirm.php";
-                                    header( "Location: ../gfwflash.php");
-                                    exit();
+
+                                        $myorder = new Order($myconnection);
+                                        $myorder->connection = $myconnection;
+                                        $myorder->id = mysql_real_escape_string(trim($_POST['ho_id']));
+                                        $myorder->customer_id = $mycustomer->id;
+                                        $myorder->user_id = $_SESSION[SESSION_TITLE.'charity_id'];
+
+                                        $_SESSION[SESSION_TITLE.'customer_id'] = $mycustomer->id;
+                                        $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_updated;
+                                        $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "subsite/confirm.php";
+                                        header( "Location: ../gfwflash.php");
+                                        exit();
                                     }
         }
 

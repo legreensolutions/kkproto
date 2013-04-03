@@ -104,6 +104,7 @@ $<?php echo $myuseritem->user_price; ?><br/>
 
 <div class="actions" >
     <input   type="hidden" name="h_id" id="h_id" value="<?php echo $h_id ?>"/> 
+    <input   type="hidden" name="ho_id" id="ho_id" value="<?php echo $ho_id ?>"/> 
     <input type="submit" name="submit" value="<?php echo $CAP_submit; ?>" onClick="return validate_buycoffee();" />
 </div>
 

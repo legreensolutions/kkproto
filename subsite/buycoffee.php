@@ -12,14 +12,14 @@ $page = new gsPage;
 	$page->page_name = 'buycoffee';		// page name for menu and other purpose
 	$page->layout = 'k_coffee_sub_site.html';		// layout name
 
-        $page->use_gsconf = true;                 // enable GS conf
+    $page->use_gsconf = true;                 // enable GS conf
 
-        $page->conf_list = array("conf.php");
-        $page->menuconf_list = array("menu_conf.php");
+    $page->conf_list = array("conf.php");
+    $page->menuconf_list = array("menu_conf.php");
 	$page->connection_list = array("connection.php");
 
 	$page->function_list = array("functions.php");
-	$page->class_list = array("class_user.php","class_useritem.php", "class_state.php", "class_country.php", "class_city.php", "class_customer.php");
+	$page->class_list = array("class_user.php","class_useritem.php", "class_state.php", "class_country.php", "class_city.php", "class_customer.php","class_order", "class_orderitem");
 	$page->pageconf_list = array("subsite/buycoffee.php");
     $page->css_list = array("form.css");
 

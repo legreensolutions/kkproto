@@ -9,17 +9,36 @@ class Order {
     var $id = gINVALID;
     var $order_number = "";
     var $order_date = "";
+    var $user_id = gINVALID;
+    var $customer_id = gINVALID;
+    var $shipping_amount = "";
+    var $tax_shipping = "";
+    var $order_amount = "";
+    var $order_status = 1;
+    var $paymentoption_id = 1;
+    var $paymentdate = "";
+    var $paymentdetail = "";
     var $error_number=gINVALID;
     var $error_description="";
     //for pagination
     var $total_records = "";
 
 function get_id(){
-    $strSQL = "SELECT id,order_number FROM orders WHERE order_number = '".$this->order_number."'";
+    $strSQL = "SELECT id, order_number, order_date, user_id, customer_id, shipping_amount, tax_shipping, order_amount, order_status, paymentoption_id, paymentdate, paymentdetail FROM orders WHERE order_number = '".$this->order_number."'";
     $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
     if ( mysql_num_rows($rsRES) > 0 ){
         $this->id = mysql_result($rsRES,0,'id');
         $this->order_number = mysql_result($rsRES,0,'order_number');
+        $this->order_date = mysql_result($rsRES,0,'order_date');
+        $this->user_id = mysql_result($rsRES,0,'user_id');
+        $this->customer_id = mysql_result($rsRES,0,'customer_id');
+        $this->shipping_amount = mysql_result($rsRES,0,'shipping_amount');
+        $this->tax_shipping = mysql_result($rsRES,0,'tax_shipping');
+        $this->order_amount = mysql_result($rsRES,0,'order_amount');
+        $this->order_status = mysql_result($rsRES,0,'order_status');
+        $this->paymentoption_id = mysql_result($rsRES,0,'paymentoption_id');
+        $this->paymentdate = mysql_result($rsRES,0,'paymentdate');
+        $this->paymentdetail = mysql_result($rsRES,0,'paymentdetail');
         return $this->id;
     }else{
         $this->error_number = 1;
@@ -31,12 +50,21 @@ function get_id(){
 
 
 function get_detail(){
-    $strSQL = "SELECT id,order_number,order_date FROM orders WHERE id = '".$this->id."'";
+    $strSQL = "SELECT id, order_number, order_date, user_id, customer_id, shipping_amount, tax_shipping, order_amount, order_status, paymentoption_id, paymentdate, paymentdetail FROM orders WHERE id = '".$this->id."'";
     $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
     if ( mysql_num_rows($rsRES) > 0 ){
         $this->id = mysql_result($rsRES,0,'id');
         $this->order_number = mysql_result($rsRES,0,'order_number');
         $this->order_date = mysql_result($rsRES,0,'order_date');
+        $this->user_id = mysql_result($rsRES,0,'user_id');
+        $this->customer_id = mysql_result($rsRES,0,'customer_id');
+        $this->shipping_amount = mysql_result($rsRES,0,'shipping_amount');
+        $this->tax_shipping = mysql_result($rsRES,0,'tax_shipping');
+        $this->order_amount = mysql_result($rsRES,0,'order_amount');
+        $this->order_status = mysql_result($rsRES,0,'order_status');
+        $this->paymentoption_id = mysql_result($rsRES,0,'paymentoption_id');
+        $this->paymentdate = mysql_result($rsRES,0,'paymentdate');
+        $this->paymentdetail = mysql_result($rsRES,0,'paymentdetail');
         return $this->id;
     }else{
         $this->error_number = 2;
@@ -48,9 +76,18 @@ function get_detail(){
 
 function update(){
     if ( $this->id == "" || $this->id == gINVALID) {
-    $strSQL = "INSERT INTO orders (order_number, order_date) VALUES ('";
+    $strSQL = "INSERT INTO orders (order_number, order_date, user_id, customer_id, shipping_amount, tax_shipping, order_amount, order_status, paymentoption_id, paymentdate, paymentdetail) VALUES ('";
     $strSQL .= addslashes(trim($this->order_number)) ."','";
-    $strSQL .= addslashes(trim($this->order_date)) ."')";
+    $strSQL .= addslashes(trim($this->order_date)) ."','";
+    $strSQL .= addslashes(trim($this->user_id)) ."','";
+    $strSQL .= addslashes(trim($this->customer_id)) ."','";
+    $strSQL .= addslashes(trim($this->shipping_amount)) ."','";
+    $strSQL .= addslashes(trim($this->tax_shipping)) ."','";
+    $strSQL .= addslashes(trim($this->order_amount)) ."','";
+    $strSQL .= addslashes(trim($this->order_status)) ."','";
+    $strSQL .= addslashes(trim($this->paymentoption_id)) ."','";
+    $strSQL .= addslashes(trim($this->paymentdate)) ."','";
+    $strSQL .= addslashes(trim($this->paymentdetail)) ."')";
     $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
           if ( mysql_affected_rows($this->connection) > 0 ) {
               $this->id = mysql_insert_id();
@@ -64,6 +101,15 @@ function update(){
     elseif($this->id > 0 ) {
     $strSQL = "UPDATE orders SET order_number = '".addslashes(trim($this->order_number))."',";
     $strSQL .= "order_date = '".addslashes(trim($this->order_date))."'";
+    $strSQL .= "user_id = '".addslashes(trim($this->user_id))."'";
+    $strSQL .= "customer_id = '".addslashes(trim($this->customer_id))."'";
+    $strSQL .= "shipping_amount = '".addslashes(trim($this->shipping_amount))."'";
+    $strSQL .= "tax_shipping = '".addslashes(trim($this->tax_shipping))."'";
+    $strSQL .= "order_amount = '".addslashes(trim($this->order_amount))."'";
+    $strSQL .= "order_status = '".addslashes(trim($this->order_status))."'";
+    $strSQL .= "paymentoption_id = '".addslashes(trim($this->paymentoption_id))."'";
+    $strSQL .= "paymentdate = '".addslashes(trim($this->paymentdate))."'";
+    $strSQL .= "paymentdetail = '".addslashes(trim($this->paymentdetail))."'";
     $strSQL .= " WHERE id = ".$this->id;
     $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
             if ( mysql_affected_rows($this->connection) >= 0 ) {
@@ -79,13 +125,22 @@ function update(){
 
 function get_list_array(){
         $orders = array();$i=0;
-        $strSQL = "SELECT id,order_number,order_date FROM orders ORDER BY id";
+        $strSQL = "SELECT id,order_number, order_date, user_id, customer_id, shipping_amount, tax_shipping, order_amount, order_status, paymentoption_id, paymentdate, paymentdetail FROM orders ORDER BY id";
         $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
         if ( mysql_num_rows($rsRES) > 0 ){
-            while ( list ($id,$order_number,$order_date) = mysql_fetch_row($rsRES) ){
+            while ( list ($id,$order_number, $order_date, $user_id, $customer_id, $shipping_amount, $tax_shipping, $order_amount, $order_status, $paymentoption_id, $paymentdate, $paymentdetail) = mysql_fetch_row($rsRES) ){
                 $orders[$i]["id"] =  $id;
                 $orders[$i]["order_number"] = $order_number;
                 $orders[$i]["order_date"] = $order_date;
+                $orders[$i]["user_id"] = $user_id;
+                $orders[$i]["customer_id"] = $customer_id;
+                $orders[$i]["shipping_amount"] = $shipping_amount;
+                $orders[$i]["tax_shipping"] = $tax_shipping;
+                $orders[$i]["order_amount"] = $order_amount;
+                $orders[$i]["order_status"] = $order_status;
+                $orders[$i]["paymentoption_id"] = $paymentoption_id;
+                $orders[$i]["paymentdate"] = $paymentdate;
+                $orders[$i]["paymentdetail"] = $paymentdetail;
                 $i++;
             }
             return $orders;
@@ -96,27 +151,40 @@ function get_list_array(){
         }
 }
 
-function get_list_array_bylimit($id=-1,$order_number="", $order_date="", $start_record = 0,$max_records = 25){
+function get_list_array_bylimit($id=gINVALID,$order_number="", $order_date="", $user_id=gINVALID, $customer_id=gINVALID, $order_status = "", $paymentoption_id ="", $start_record = 0,$max_records = 25){
 
         $limited_data = array();
         $i=0;
         $str_condition = "";
 
-        $strSQL = "SELECT id,order_number,order_date FROM orders WHERE 1 ";
-        if ( $id != "" && $id != -1 ) {
+        $strSQL = "SELECT id,order_number, order_date, user_id, customer_id, shipping_amount, tax_shipping, order_amount, order_status, paymentoption_id, paymentdate, paymentdetail FROM orders WHERE 1 ";
+        if ( $id != "" && $id != gINVALID ) {
             $str_condition .= " AND id  = '" . $id . "'" ;
         }
-
 
         if ( $order_number != "" ) {
             $str_condition .= " AND order_number  LIKE '%" . $order_number . "%'" ;
         }
 
-
         if ( $order_date != "" ) {
-            $str_condition .= " AND order_date  LIKE '%" . $order_date . "%'" ;
+            $str_condition .= " AND order_date  = '" . $order_date . "'" ;
         }
 
+        if ( $user_id != "" && $user_id != gINVALID  ) {
+            $str_condition .= " AND user_id  = '" . $user_id . "'" ;
+        }
+
+        if ( $customer_id != "" && $customer_id != gINVALID ) {
+            $str_condition .= " AND customer_id  = '" . $customer_id . "'" ;
+        }
+
+        if ( $order_status != "" ) {
+            $str_condition .= " AND order_status  = '" . $order_status . "'" ;
+        }
+
+        if ( $paymentoption_id != "" ) {
+            $str_condition .= " AND paymentoption_id  = '" . $paymentoption_id . "'" ;
+        }
 
         if (trim($str_condition) !="") {
             $strSQL .=  $str_condition . "  ";
@@ -140,6 +208,15 @@ function get_list_array_bylimit($id=-1,$order_number="", $order_date="", $start_
                 $limited_data[$i]["id"] = $row["id"];
                 $limited_data[$i]["order_number"] = $row["order_number"];
                 $limited_data[$i]["order_date"] = $row["order_date"];
+                $limited_data[$i]["user_id"] = $row["user_id"];
+                $limited_data[$i]["customer_id"] = $row["customer_id"];
+                $limited_data[$i]["shipping_amount"] = $row["shipping_amount"];
+                $limited_data[$i]["tax_shipping"] = $row["tax_shipping"];
+                $limited_data[$i]["order_amount"] = $row["order_amount"];
+                $limited_data[$i]["order_status"] = $row["order_status"];
+                $limited_data[$i]["paymentoption_id"] = $row["paymentoption_id"];
+                $limited_data[$i]["paymentdate"] = $row["paymentdate"];
+                $limited_data[$i]["paymentdetail"] = $row["paymentdetail"];
                 $i++;
             }
             return $limited_data;

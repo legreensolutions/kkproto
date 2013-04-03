@@ -4,7 +4,7 @@ if ( !defined('CHECK_INCLUDED') ){
     exit();
 }
 
-class Orderitem {
+class OrderItem {
     var $connection;
     var $id = gINVALID;
     var $order_id = gINVALID;
