@@ -25,6 +25,10 @@ define("ITEMSTATUS_OUT_OF_STOCK", 2);
 define("USER_ITEM_ACTIVE", 1);
 define("USER_ITEM_INACTIVE", 2);
 
+//Payment Options
+define("CASH_PAYMENT", 1);
+define("PAYPAL_PAYMENT", 2);
+
 
 GLOBAL $g_msg_unauthorized_request;
 $g_msg_unauthorized_request = "<strong>Unauthorized Page Request</strong><br/> <br/> You are not authorized to access this page. This attempt will be reported to the system Administrator. ";

@@ -19,7 +19,7 @@ $page = new gsPage;
 	$page->connection_list = array("connection.php");
 
 	$page->function_list = array("functions.php");
-	$page->class_list = array("class_user.php","class_useritem.php", "class_gspagination.php");
+	$page->class_list = array("class_user.php","class_useritem.php", "class_state.php", "class_country.php", "class_city.php", "class_customer.php","class_order.php", "class_orderitem.php");
 	$page->pageconf_list = array("confirm.php");
 
 	$index=0;

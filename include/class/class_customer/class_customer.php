@@ -13,7 +13,9 @@ class Customer {
     var $street = "";
     var $city = "";
     var $state_id = gINVALID;
+    var $state_name = "";
     var $country_id = gINVALID;
+    var $country_name = "";
     var $postal_code = "";
     var $emailid = "";
     var $phone = "";
@@ -87,7 +89,7 @@ class Customer {
             $strSQL .= "emailid = '".addslashes(trim($this->emailid))."',";
             $strSQL .= "phone = '".addslashes(trim($this->phone))."',";
             $strSQL .= "ipaddress = '".$_SERVER['REMOTE_ADDR']."',";
-            $strSQL .= "gender_id = '".addslashes(trim($this->gender_id))."',";
+            $strSQL .= "gender_id = '".addslashes(trim($this->gender_id))."' ";
             $strSQL .= " WHERE id = ".$this->id;//$this->id
             $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
             if ( mysql_affected_rows($this->connection) >= 0 ) {

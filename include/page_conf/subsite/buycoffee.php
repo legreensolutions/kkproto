@@ -3,7 +3,7 @@
 $CAP_submit = "Continue";
 
 $RD_MSG_added = "Record Added <br/>";
-$RD_MSG_updated = "Record Updated <br/>";
+$RD_MSG_updated = "Please Confirm the details... <br/>";
 $RD_MSG_on_fail = "Your attempt failed.Contact Admin<br/>";
 
 $MSG_empty_email = "Email Empty <br/>";

@@ -18,6 +18,7 @@ class Item {
     var $unit_price = 0.00;
     var $tax_item = 0.00;
     var $tax_shipping = 0.00;
+    var $commision = 1.00;
 
 
     var $error_number=gINVALID;
@@ -26,7 +27,7 @@ class Item {
     var $total_records = "";
 
 function get_id(){
-    $strSQL = "SELECT id,name, description, item_status_id, item_type_id, image, keywords, unit_price, tax_item, tax_shipping FROM items WHERE name = '".addslashes(trim($this->name))."'";
+    $strSQL = "SELECT id,name, description, item_status_id, item_type_id, image, keywords, unit_price, tax_item, tax_shipping, commision FROM items WHERE name = '".addslashes(trim($this->name))."'";
     $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
     if ( mysql_num_rows($rsRES) > 0 ){
         $this->id = mysql_result($rsRES,0,'id');
@@ -41,6 +42,7 @@ function get_id(){
         $this->unit_price = mysql_result($rsRES,0,'unit_price');
         $this->tax_item = mysql_result($rsRES,0,'tax_item');
         $this->tax_shipping = mysql_result($rsRES,0,'tax_shipping');
+        $this->commision = mysql_result($rsRES,0,'commision');
 
         return $this->id;
     }else{
@@ -53,7 +55,7 @@ function get_id(){
 
 
 function get_detail(){
-    $strSQL = "SELECT I.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping FROM items I,itemstatuses S, itemtypes T WHERE I.item_status_id = S.id AND I.item_type_id = T.id AND I.id = '".addslashes(trim($this->id))."'";
+    $strSQL = "SELECT I.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping, I.commision FROM items I,itemstatuses S, itemtypes T WHERE I.item_status_id = S.id AND I.item_type_id = T.id AND I.id = '".addslashes(trim($this->id))."'";
     $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
     if ( mysql_num_rows($rsRES) > 0 ){
         $this->id = mysql_result($rsRES,0,'id');
@@ -66,6 +68,7 @@ function get_detail(){
         $this->unit_price= mysql_result($rsRES,0,'unit_price');
         $this->tax_item= mysql_result($rsRES,0,'tax_item');
         $this->tax_shipping= mysql_result($rsRES,0,'tax_shipping');
+        $this->commision= mysql_result($rsRES,0,'commision');
         return $this->id;
     }else{
         $this->error_number = 2;
@@ -77,7 +80,7 @@ function get_detail(){
 
 function update(){
     if ( $this->id == "" || $this->id == gINVALID) {
-    $strSQL = "INSERT INTO items (name, description, item_status_id, item_type_id, image, keywords, unit_price, tax_item, tax_shipping) VALUES ('";
+    $strSQL = "INSERT INTO items (name, description, item_status_id, item_type_id, image, keywords, unit_price, tax_item, tax_shipping, commision) VALUES ('";
     $strSQL .= addslashes(trim($this->name)) ."','";
     $strSQL .= addslashes(trim($this->description)) ."',";
     $strSQL .= addslashes(trim($this->item_status_id)) .",";
@@ -86,7 +89,8 @@ function update(){
     $strSQL .= addslashes(trim($this->keywords)) ."',";
     $strSQL .= addslashes(trim($this->unit_price)) .",";
     $strSQL .= addslashes(trim($this->tax_item)) .",";
-    $strSQL .= addslashes(trim($this->tax_shipping)) .")";
+    $strSQL .= addslashes(trim($this->tax_shipping)) .",";
+    $strSQL .= addslashes(trim($this->commision)) .")";
 
     $rsRES = mysql_query($strSQL,$this->connection) or die ( mysql_error() . $strSQL );
           if ( mysql_affected_rows($this->connection) > 0 ) {
@@ -109,7 +113,8 @@ if ( $this->image != "" ){
     $strSQL .= "keywords = '".addslashes(trim($this->keywords))."',";
     $strSQL .= "unit_price = ".addslashes(trim($this->unit_price)).",";
     $strSQL .= "tax_item = ".addslashes(trim($this->tax_item)).",";
-    $strSQL .= "tax_shipping = ".addslashes(trim($this->tax_shipping));
+    $strSQL .= "tax_shipping = ".addslashes(trim($this->tax_shipping)).",";
+    $strSQL .= "commision = ".addslashes(trim($this->commision));
     $strSQL .= " WHERE id = ".$this->id;
     $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
             if ( mysql_affected_rows($this->connection) >= 0 ) {
@@ -125,7 +130,7 @@ if ( $this->image != "" ){
 
 function get_list_array(){
         $items = array();$i=0;
-        $strSQL = "SELECT I.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping FROM items I,itemstatuses S, itemtypes T WHERE I.item_status_id = S.id AND I.item_type_id = T.id ORDER BY I.id";
+        $strSQL = "SELECT I.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping, I.commision FROM items I,itemstatuses S, itemtypes T WHERE I.item_status_id = S.id AND I.item_type_id = T.id ORDER BY I.id";
         $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
         if ( mysql_num_rows($rsRES) > 0 ){
             while ( list ($id,$name,$description, $item_status_id, $item_status_name, $item_type_id, $item_type_name, $image, $keywords, $unit_price, $tax_item, $tax_shipping) = mysql_fetch_row($rsRES) ){
@@ -141,6 +146,7 @@ function get_list_array(){
                 $items[$i]["unit_price"] = $unit_price;
                 $items[$i]["tax_item"] = $tax_item;
                 $items[$i]["tax_shipping"] = $tax_shipping;
+                $items[$i]["commision"] = $commision;
                 $i++;
             }
             return $items;
@@ -157,7 +163,7 @@ function get_list_array_bylimit($id=gINVALID,$name="", $description="", $item_st
         $i=0;
         $str_condition = "";
 
-        $strSQL = "SELECT I.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping FROM items I,itemstatuses S, itemtypes T WHERE I.item_status_id = S.id AND I.item_type_id = T.id ";
+        $strSQL = "SELECT I.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping, I.commision FROM items I,itemstatuses S, itemtypes T WHERE I.item_status_id = S.id AND I.item_type_id = T.id ";
         if ( $id != "" && $id != gINVALID ) {
                 $str_condition .= " AND id  = '" . addslashes(trim($id)) . "'" ;
         }
@@ -214,6 +220,7 @@ function get_list_array_bylimit($id=gINVALID,$name="", $description="", $item_st
                 $limited_data[$i]["unit_price"] = $row["unit_price"];
                 $limited_data[$i]["tax_item"] = $row["tax_item"];
                 $limited_data[$i]["tax_shipping"] = $row["tax_shipping"];
+                $limited_data[$i]["commision"] = $row["commision"];
                 $i++;
             }
             return $limited_data;

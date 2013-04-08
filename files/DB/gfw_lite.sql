@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 02, 2013 at 08:52 AM
+-- Generation Time: Apr 09, 2013 at 03:16 AM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.6-1ubuntu1.2
 
@@ -261,6 +261,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `unit_price` double NOT NULL,
   `tax_item` double NOT NULL,
   `tax_shipping` double NOT NULL,
+  `commision` double NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   KEY `item_status_id` (`item_status_id`)
@@ -270,13 +271,13 @@ CREATE TABLE IF NOT EXISTS `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `name`, `description`, `item_status_id`, `item_type_id`, `image`, `keywords`, `unit_price`, `tax_item`, `tax_shipping`) VALUES
-(1, 'Coffee 1', 'Coffee 1', 1, 1, '4.jpg', 'Coffee', 15, 5, 5),
-(2, 'Coffee 2', 'Coffee 2', 1, 1, '3.jpg', 'Coffee', 15, 5, 5),
-(3, 'Coffee 3', 'Coffee 3', 1, 1, '2.jpg', 'Coffee', 15, 5, 5),
-(4, 'Coffee 4', 'Coffee 4', 1, 1, '4.jpg', 'Coffee', 15, 5, 5),
-(5, 'Coffee 5', 'Coffee 5', 1, 1, '3.jpg', 'Coffee', 15, 5, 5),
-(6, 'Coffee 6', 'Coffee 6', 1, 1, '2.jpg', 'Coffee', 15, 5, 5);
+INSERT INTO `items` (`id`, `name`, `description`, `item_status_id`, `item_type_id`, `image`, `keywords`, `unit_price`, `tax_item`, `tax_shipping`, `commision`) VALUES
+(1, 'Coffee 1', 'Coffee 1', 1, 1, '4.jpg', 'Coffee', 15, 5, 5, 1),
+(2, 'Coffee 2', 'Coffee 2', 1, 1, '3.jpg', 'Coffee', 15, 5, 5, 1),
+(3, 'Coffee 3', 'Coffee 3', 1, 1, '2.jpg', 'Coffee', 15, 5, 5, 1),
+(4, 'Coffee 4', 'Coffee 4', 1, 1, '4.jpg', 'Coffee', 15, 5, 5, 1),
+(5, 'Coffee 5', 'Coffee 5', 1, 1, '3.jpg', 'Coffee', 15, 5, 5, 1),
+(6, 'Coffee 6', 'Coffee 6', 1, 1, '2.jpg', 'Coffee', 15, 5, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -413,9 +414,12 @@ CREATE TABLE IF NOT EXISTS `orderitems` (
   `item_id` int(11) NOT NULL,
   `quantity` double NOT NULL,
   `unit_price` double NOT NULL,
+  `amount` double NOT NULL,
   `shipping_amount` double NOT NULL,
   `tax_item` double NOT NULL,
   `tax_shipping` double NOT NULL,
+  `commision` double NOT NULL,
+  `commision_amount` double NOT NULL,
   PRIMARY KEY (`id`),
   KEY `order_id` (`order_id`,`item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -428,13 +432,14 @@ CREATE TABLE IF NOT EXISTS `orderitems` (
 
 CREATE TABLE IF NOT EXISTS `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `order_number` varchar(255) DEFAULT NULL,
+  `order_number` varchar(255) NOT NULL,
   `order_date` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `shipping_amount` double NOT NULL,
   `tax_shipping` double NOT NULL,
   `order_amount` double(10,2) DEFAULT '0.00',
+  `commision_amount` double NOT NULL,
   `order_status` char(1) DEFAULT '1',
   `paymentoption_id` int(11) NOT NULL DEFAULT '1',
   `paymentdate` datetime DEFAULT NULL,

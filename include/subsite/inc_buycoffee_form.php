@@ -39,7 +39,7 @@ $<?php echo $myuseritem->user_price; ?><br/>
 
 <div class="field_small" >
 <label> Quantity</label>  
-<input   type="text" name="txtquantity" id="txtquantity" value="<?php if(isset($_POST['txtquantity'])){echo $_POST['txtquantity'];} ?>" />  
+<input   type="text" name="txtquantity" id="txtquantity" value="<?php if(isset($_POST['txtquantity'])){echo $_POST['txtquantity'];}else{ echo 1 ;} ?>" />  
 <input   type="hidden" name="item_id" id="item_id" value="<?php if(isset($_REQUEST['item_id'])){echo $_REQUEST['item_id'];}?>"/>  
 </div>
 
@@ -51,39 +51,39 @@ $<?php echo $myuseritem->user_price; ?><br/>
 
 <div class="field" >
     <label>First Name</label>
-    <input  type="text" name="txtfirstname" id="txtfirstname" value="<?php if(isset($_POST['txtfirstname'])){echo $_POST['txtfirstname'];}?>" >
+    <input  type="text" name="txtfirstname" id="txtfirstname" value="<?php if(isset($_POST['txtfirstname'])){echo $_POST['txtfirstname'];}else{ echo $mycustomer->first_name;}?>" >
 </div>
 <div class="field" >
     <label>Last Name</label>
-<input  type="text" name="txtlastname" id="txtlastname" value="<?php if(isset($_POST['txtlastname'])){echo $_POST['txtlastname'];}?>" >
+<input  type="text" name="txtlastname" id="txtlastname" value="<?php if(isset($_POST['txtlastname'])){echo $_POST['txtlastname'];}else{ echo $mycustomer->last_name;}?>" >
 </div>
 
 
 
 <div class="field" >
     <label>Address</label>
-    <textarea name="txtaddress" id="txtaddress"><?php if(isset($_POST['txtaddress'])){echo $_POST['txtaddress'];}?></textarea>
+    <textarea name="txtaddress" id="txtaddress"><?php if(isset($_POST['txtaddress'])){echo $_POST['txtaddress'];}else{ echo $mycustomer->address;}?></textarea>
 </div>
 
 <div class="field" >
     <label>Street</label>
-    <input  type="text" name="txtstreet" id="txtstreet" value="<?php if(isset($_POST['txtstreet'])){echo $_POST['txtstreet'];}?>" >
+    <input  type="text" name="txtstreet" id="txtstreet" value="<?php if(isset($_POST['txtstreet'])){echo $_POST['txtstreet'];}else{ echo $mycustomer->street;}?>" >
 </div>
 
 <div class="field" >
     <label>City</label>
-    <input  type="text" name="txtcity" id="txtcity" value="<?php if(isset($_POST['txtcity'])){echo $_POST['txtcity'];}?>" >
+    <input  type="text" name="txtcity" id="txtcity" value="<?php if(isset($_POST['txtcity'])){echo $_POST['txtcity'];}else{ echo $mycustomer->city;}?>" >
 </div>
 
     <div class="field" >
         <label>State</label>
-        <?php if(isset($_POST['lststate'])){ $value = $_POST['lststate']; } else{ $value = -1;}
+        <?php if(isset($_POST['lststate'])){ $value = $_POST['lststate']; } else{ $value = $mycustomer->state_id;}
              populate_list_array("lststate", $chk_state, "id", "state_name", $defaultvalue=$value,$disable=false);  ?>
     </div>
 
 <div class="field" >
     <label>Country</label>
-<?php if(isset($_POST['lstcountry'])){ $value = $_POST['lstcountry']; } else{ $value = -1;}
+<?php if(isset($_POST['lstcountry'])){ $value = $_POST['lstcountry']; } else{ $value = $mycustomer->country_id;}
                      populate_list_array("lstcountry", $chk_con, "id", "country", $defaultvalue=$value,$disable=false)
                   ?>
 </div>
@@ -91,12 +91,12 @@ $<?php echo $myuseritem->user_price; ?><br/>
 
 <div class="field" >
     <label>Zip/Postal Code</label>
-    <input  type="text" name="txtpostal_code" id="txtpostal_code" value="<?php if(isset($_POST['txtpostal_code'])){echo $_POST['txtpostal_code'];}?>" >
+    <input  type="text" name="txtpostal_code" id="txtpostal_code" value="<?php if(isset($_POST['txtpostal_code'])){echo $_POST['txtpostal_code'];}else{ echo $mycustomer->postal_code;}?>" >
 </div>
 
 <div class="field" >
     <label>Phone</label>
-    <input  type="text" name="txtphone" id="txtphone" value="<?php if(isset($_POST['txtphone'])){echo $_POST['txtphone'];}?>" >
+    <input  type="text" name="txtphone" id="txtphone" value="<?php if(isset($_POST['txtphone'])){echo $_POST['txtphone'];}else{ echo $mycustomer->phone;}?>" >
 </div>
 
 

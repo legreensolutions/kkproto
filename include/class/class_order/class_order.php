@@ -100,15 +100,15 @@ function update(){
     }
     elseif($this->id > 0 ) {
     $strSQL = "UPDATE orders SET order_number = '".addslashes(trim($this->order_number))."',";
-    $strSQL .= "order_date = '".addslashes(trim($this->order_date))."'";
-    $strSQL .= "user_id = '".addslashes(trim($this->user_id))."'";
-    $strSQL .= "customer_id = '".addslashes(trim($this->customer_id))."'";
-    $strSQL .= "shipping_amount = '".addslashes(trim($this->shipping_amount))."'";
-    $strSQL .= "tax_shipping = '".addslashes(trim($this->tax_shipping))."'";
-    $strSQL .= "order_amount = '".addslashes(trim($this->order_amount))."'";
-    $strSQL .= "order_status = '".addslashes(trim($this->order_status))."'";
-    $strSQL .= "paymentoption_id = '".addslashes(trim($this->paymentoption_id))."'";
-    $strSQL .= "paymentdate = '".addslashes(trim($this->paymentdate))."'";
+    $strSQL .= "order_date = '".addslashes(trim($this->order_date))."',";
+    $strSQL .= "user_id = '".addslashes(trim($this->user_id))."',";
+    $strSQL .= "customer_id = '".addslashes(trim($this->customer_id))."',";
+    $strSQL .= "shipping_amount = '".addslashes(trim($this->shipping_amount))."',";
+    $strSQL .= "tax_shipping = '".addslashes(trim($this->tax_shipping))."',";
+    $strSQL .= "order_amount = '".addslashes(trim($this->order_amount))."',";
+    $strSQL .= "order_status = '".addslashes(trim($this->order_status))."',";
+    $strSQL .= "paymentoption_id = '".addslashes(trim($this->paymentoption_id))."',";
+    $strSQL .= "paymentdate = '".addslashes(trim($this->paymentdate))."',";
     $strSQL .= "paymentdetail = '".addslashes(trim($this->paymentdetail))."'";
     $strSQL .= " WHERE id = ".$this->id;
     $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );

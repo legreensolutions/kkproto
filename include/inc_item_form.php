@@ -45,6 +45,7 @@ populate_list_array("lstitem_type_id", $data_item_type, "id", "name", $defaultva
       <div class="field"><label for="unit_price">Unit Price: </label><input type="text" name="txtunit_price" id="txtunti_price" value="<?php echo $myItem->unit_price; ?>" /></div>
       <div class="field"><label for="tax_item">Tax on Item: </label><input type="text" name="txttax_item" id="txttax_item" value="<?php echo $myItem->tax_item; ?>" /></div>
       <div class="field" ><label for="tax_shipping">Tax on Shipping: </label><input type="text" name="txttax_shipping" id="txttax_shipping" value="<?php echo $myItem->tax_shipping; ?>" /></div>
+      <div class="field" ><label for="commision">Commision: </label><input type="text" name="txtcommision" id="txtcommision" value="<?php echo $myItem->commision; ?>" /></div>
 
       <div class="field" ><label for="image">Item Image: </label>
 <?php if ( $image == "" ) {?>
