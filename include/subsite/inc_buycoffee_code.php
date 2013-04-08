@@ -157,13 +157,13 @@
                                 $myorderitem->quantity = mysql_real_escape_string(trim($_POST['txtquantity']));
                                 $myorderitem->unit_price = $myuseritem->unit_price;
                                 $myorderitem->amount = intval($myuseritem->unit_price) * intval($_POST['txtquantity']);
-                                // calculate shipping amount, order_amount, commision_amount tax...
+                                // calculate shipping amount, order_amount, commission_amount tax...
                                 $myorderitem->shipping_amount = $myuseritem->shipping_amount;
                                 $myorderitem->tax_item = $myuseritem->tax_item;
                                 $myorderitem->tax_shipping = $myuseritem->tax_shipping;
-                                // modify class useritem for commision
-                                $myorderitem->commision = $myuseritem->commision;
-                                $myorderitem->commision_amount = intval($myuseritem->commision) * intval($_POST['txtquantity']);
+                                // modify class useritem for commission
+                                $myorderitem->commission = $myuseritem->commission;
+                                $myorderitem->commission_amount = intval($myuseritem->commission) * intval($_POST['txtquantity']);
                                 $chk_orderitem = $myorderitem->update();
                                     if ($chk_orderitem == false){
                                         $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_on_fail;
@@ -171,7 +171,7 @@
                                         header( "Location: ../gfwflash.php");
                                         exit();
                                     }else{
-                                         // calculate shipping amount, order_amount, commision_amount tax...
+                                         // calculate shipping amount, order_amount, commission_amount tax...
                                         $myorder->order_number = $myorder->id;
                                         $myorder->order_amount = $myorderitem->amount;
                                         $chk_order = $myorder->update();

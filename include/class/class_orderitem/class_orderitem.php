@@ -16,8 +16,8 @@ class OrderItem {
     var $shipping_amount = "";
     var $tax_item = "";
     var $tax_shipping = "";
-    var $commision = "";
-    var $commision_amount = "";
+    var $commission = "";
+    var $commission_amount = "";
     var $error_number=gINVALID;
     var $error_description="";
     //for pagination
@@ -48,10 +48,10 @@ function get_detail(){
 
 function get_order_detail(){
         $orderitems = array();$i=0;
-        $strSQL = "SELECT OI.id, OI.order_id, OI.item_id, I.name as item_name, I.image as item_image, OI.quantity, OI.unit_price, OI.amount, OI.shipping_amount, OI.tax_item, OI.tax_shipping, OI.commision, OI.commision_amount  FROM orderitems OI, items I WHERE OI.item_id = I.id AND OI.order_id = '".$this->order_id."'";
+        $strSQL = "SELECT OI.id, OI.order_id, OI.item_id, I.name as item_name, I.image as item_image, OI.quantity, OI.unit_price, OI.amount, OI.shipping_amount, OI.tax_item, OI.tax_shipping, OI.commission, OI.commission_amount  FROM orderitems OI, items I WHERE OI.item_id = I.id AND OI.order_id = '".$this->order_id."'";
         $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
         if ( mysql_num_rows($rsRES) > 0 ){
-            while ( list ($id,$order_id,$item_id,$item_name, $item_image, $quantity, $unit_price, $amount, $shipping_amount, $tax_item, $tax_shipping, $commision, $commision_amount) = mysql_fetch_row($rsRES) ){
+            while ( list ($id,$order_id,$item_id,$item_name, $item_image, $quantity, $unit_price, $amount, $shipping_amount, $tax_item, $tax_shipping, $commission, $commission_amount) = mysql_fetch_row($rsRES) ){
                 $orderitems[$i]["id"] =  $id;
                 $orderitems[$i]["order_id"] = $order_id;
                 $orderitems[$i]["item_id"] = $item_id;
@@ -63,8 +63,8 @@ function get_order_detail(){
                 $orderitems[$i]["shipping_amount"] = $shipping_amount;
                 $orderitems[$i]["tax_item"] = $tax_item;
                 $orderitems[$i]["tax_shipping"] = $tax_shipping;
-                $orderitems[$i]["commision"] = $commision;
-                $orderitems[$i]["commision_amount"] = $commision_amount;
+                $orderitems[$i]["commission"] = $commission;
+                $orderitems[$i]["commission_amount"] = $commission_amount;
                 $i++;
             }
             return $orderitems;

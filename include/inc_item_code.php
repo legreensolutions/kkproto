@@ -50,7 +50,7 @@ if ( $error == "" ){
     $myItem->unit_price= trim($_POST['txtunit_price']);
     $myItem->tax_item= trim($_POST['txttax_item']);
     $myItem->tax_shipping= trim($_POST['txttax_shipping']);
-    $myItem->commision= trim($_POST['txtcommision']);
+    $myItem->commission= trim($_POST['txtcommission']);
     $myItem->id = $_POST['h_id'];
     $myItem->image = $_FILES['fleimage']['name'];
     $chk = $myItem->update();

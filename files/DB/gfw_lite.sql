@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 09, 2013 at 03:16 AM
+-- Generation Time: Apr 09, 2013 at 05:12 AM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.6-1ubuntu1.2
 
@@ -261,7 +261,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `unit_price` double NOT NULL,
   `tax_item` double NOT NULL,
   `tax_shipping` double NOT NULL,
-  `commision` double NOT NULL DEFAULT '1',
+  `commission` double NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   KEY `item_status_id` (`item_status_id`)
@@ -271,7 +271,7 @@ CREATE TABLE IF NOT EXISTS `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `name`, `description`, `item_status_id`, `item_type_id`, `image`, `keywords`, `unit_price`, `tax_item`, `tax_shipping`, `commision`) VALUES
+INSERT INTO `items` (`id`, `name`, `description`, `item_status_id`, `item_type_id`, `image`, `keywords`, `unit_price`, `tax_item`, `tax_shipping`, `commission`) VALUES
 (1, 'Coffee 1', 'Coffee 1', 1, 1, '4.jpg', 'Coffee', 15, 5, 5, 1),
 (2, 'Coffee 2', 'Coffee 2', 1, 1, '3.jpg', 'Coffee', 15, 5, 5, 1),
 (3, 'Coffee 3', 'Coffee 3', 1, 1, '2.jpg', 'Coffee', 15, 5, 5, 1),
@@ -418,8 +418,8 @@ CREATE TABLE IF NOT EXISTS `orderitems` (
   `shipping_amount` double NOT NULL,
   `tax_item` double NOT NULL,
   `tax_shipping` double NOT NULL,
-  `commision` double NOT NULL,
-  `commision_amount` double NOT NULL,
+  `commission` double NOT NULL,
+  `commission_amount` double NOT NULL,
   PRIMARY KEY (`id`),
   KEY `order_id` (`order_id`,`item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -439,7 +439,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `shipping_amount` double NOT NULL,
   `tax_shipping` double NOT NULL,
   `order_amount` double(10,2) DEFAULT '0.00',
-  `commision_amount` double NOT NULL,
+  `commission_amount` double NOT NULL,
   `order_status` char(1) DEFAULT '1',
   `paymentoption_id` int(11) NOT NULL DEFAULT '1',
   `paymentdate` datetime DEFAULT NULL,
@@ -701,8 +701,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `user_name`, `userpassword`, `usertype_id`, `firstname`, `lastname`, `emailid`, `address`, `street`, `city_id`, `state_id`, `country_id`, `ipaddress`, `registrationdate`, `lastlogin`, `userstatus_id`, `image`, `securityquestion_id`, `answer`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 'Admin', '', '', '', NULL, '16', 0, 0, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, NULL, 1, 'neelan'),
-(2, 'legreens', '4297f44b13955235245b2497399d7a93', 2, 'legreens', 'legree', 'legreens@test.com', 'afaf', NULL, '18', 4, 226, NULL, '2013-02-25 13:25:29', '0000-00-00 00:00:00', 1, '', 4, 'dfd');
+(1, 'admin', '85587e3aa839ec03b0967408ca2192f9', 1, 'Admin', '', '', '', NULL, '16', 0, 0, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, NULL, 1, 'neelan'),
+(2, 'legreens', 'e10adc3949ba59abbe56e057f20f883e', 2, 'legreens', 'legree', 'legreens@test.com', 'afaf', NULL, '18', 4, 226, NULL, '2013-02-25 13:25:29', '0000-00-00 00:00:00', 1, '', 4, 'dfd');
 
 -- --------------------------------------------------------
 
