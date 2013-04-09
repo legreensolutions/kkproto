@@ -251,6 +251,26 @@ h1 {
   width:100%;
   text-align:center;
   margin:auto;
-  
-
 }
+.buy_coffee {
+  float:left;
+  width:200px;
+  color:brown;
+  padding:10px;
+  border-right:1px solid #f6c896;
+}
+.buy_coffee_div{
+  float:left;
+  width:120px;
+  padding:20px;
+}
+
+.buy_coffee_left_div {
+  float:left;
+  width:70px;
+}
+.buy_coffee_right_div {
+  float:left;
+  width:40px;
+}
+

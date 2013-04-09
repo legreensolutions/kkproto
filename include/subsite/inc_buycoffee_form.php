@@ -27,23 +27,34 @@
 
          <form  name="frmbuycoffee" id="frmbuycoffee" method="post" action="<?php echo $current_url; ?>" enctype="multipart/form-data">
 
-<h1>Buy Coffee <?php echo $myuseritem->name; ?><br /></h1>
+<h1>1. Please enter quantity of <?php echo $myuseritem->name; ?> required<br /></h1>
 <p class="error"><?php echo $mycustomer->error_description; ?></p>
 
 <div class="field_small" >
-<img src="<?php echo $item_image?>"><br/>
-$<?php echo $myuseritem->user_price; ?><br/>
-<?php echo $myuseritem->description; ?>
+
+      <div class="buy_coffee">
+        <img src="<?php echo $item_image?>"><br/>
+        <?php echo $myuseritem->description; ?>
+      </div>
+
+
+
+      <div class="buy_coffee_div">
+        <br /><br />
+        <div class="buy_coffee_left_div"><label>Rate</label></div> <div class="buy_coffee_right_div">$<?php echo $myuseritem->user_price; ?></div>
+        <br />   <br />     
+
+        <div class="buy_coffee_left_div"><label>Quantity</label></div><div class="buy_coffee_right_div"><input   type="text" name="txtquantity" id="txtquantity" value="<?php if(isset($_POST['txtquantity'])){echo $_POST['txtquantity'];}else{ echo 1 ;} ?>" /></div>  
+          
+        <input   type="hidden" name="item_id" id="item_id" value="<?php if(isset($_REQUEST['item_id'])){echo $_REQUEST['item_id'];}?>"/>  
+      </div>
+    
+      <div style="clear:both;"></div>
+      
+
 </div>
-
-
-<div class="field_small" >
-<label> Quantity</label>  
-<input   type="text" name="txtquantity" id="txtquantity" value="<?php if(isset($_POST['txtquantity'])){echo $_POST['txtquantity'];}else{ echo 1 ;} ?>" />  
-<input   type="hidden" name="item_id" id="item_id" value="<?php if(isset($_REQUEST['item_id'])){echo $_REQUEST['item_id'];}?>"/>  
-</div>
-
-<br/>
+<br /><br />
+<h1>2. Please enter you details<br /></h1>
 <div class="field" >
     <label> Email</label>
     <input   type="text" name="txtemail" id="txtemail" value="<?php if(isset($_POST['txtemail'])){echo $_POST['txtemail'];}else{ echo $mycustomer->emailid;} ?>" >
