@@ -1,16 +1,27 @@
 
-<h1>Please Confirm & Continue...<br /></h1>
+<h1>3. Please Confirm & Continue...<br /></h1>
 
 
 <div class="field_small" >
-<img src="<?php echo $item_image; ?>"><br/>
-<?php echo $orderitem[0]["item_name"]; ?><br/>
-$<?php echo $orderitem[0]["unit_price"]; ?><br/>
-Quantity <?php echo $orderitem[0]["quantity"]; ?>
+
+  <div class="buy_coffee">
+    <label><?php echo $orderitem[0]["item_name"]; ?></label><br />
+    <img src="<?php echo $item_image; ?>"><br />
+  </div>
+
+  <br />
+  
+  <div class="buy_coffee_div">
+      Price: $<?php echo $orderitem[0]["unit_price"]; ?><br />
+      Quantity: <?php echo $orderitem[0]["quantity"]; ?>
+  </div>
 </div>
 
+<div style="clear:both;"></div>
 
 <br/>
+<h1>Address<br /></h1>
+<hr />
 <div class="field" >
     <label> Email : </label>
     <?php echo $mycustomer->emailid; ?>
@@ -63,7 +74,7 @@ Quantity <?php echo $orderitem[0]["quantity"]; ?>
     <?php echo $mycustomer->phone;?>
 </div>
 
-
+<hr />
 
 
 
