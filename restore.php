@@ -31,5 +31,5 @@ $page = new gsPage;
 
     $page->plugin_path = 'plugins/data/'; 
     $page->plugin = 'restore';
-    $page->get_plugin(); //completed pluggin with dynamic content will be displayed
+	$page->display(); //completed page with dynamic cintent will be displayed
 ?>

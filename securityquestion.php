@@ -30,5 +30,5 @@ $page = new gsPage;
 
     $page->plugin_path = 'plugins/securityquestion/';
     $page->plugin = 'securityquestion';
-    $page->get_plugin(); //completed pluggin with dynamic content will be displayed
+	$page->display(); //completed page with dynamic cintent will be displayed
 ?>                                `

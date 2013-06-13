@@ -17,7 +17,8 @@
         <p><?php echo $myItem->error_description; ?></p>
 
       <div class="field" ><label for="name">Item Name: </label><input type="text" name="txtname" id="txtname" value="<?php echo $myItem->name; ?>" /></div>
-      <div class="field" ><label for="description">Description: </label><input type="text" name="txtdescription" id="txtdescription" value="<?php echo $myItem->description; ?>" /></div>
+      <div class="field" ><label for="description">Description: </label><textarea name="txtdescription" id="txtdescription"><?php echo $myItem->description; ?></textarea>
+</div>
 
 <div class="field" ><label for="kewords">Status: </label>
 <?php

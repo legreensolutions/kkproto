@@ -34,5 +34,5 @@ $page = new gsPage;
 
     $page->plugin_path = 'plugins/faq/';
     $page->plugin = 'faq_search';
-    $page->get_plugin(); //completed pluggin with dynamic content will be displayed
+	$page->display(); //completed page with dynamic cintent will be displayed
 ?>

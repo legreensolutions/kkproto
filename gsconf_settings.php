@@ -32,5 +32,5 @@ $page = new gsPage;
 
     $page->plugin_path = 'plugins/gsconf/'; 
     $page->plugin = 'gsconf_settings';
-    $page->get_plugin(); //completed pluggin with dynamic content will be displayed
+	$page->display(); //completed page with dynamic cintent will be displayed
 ?>

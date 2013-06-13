@@ -165,7 +165,7 @@ function get_list_array_bylimit($id=gINVALID,$name="", $description="", $item_st
 
         $strSQL = "SELECT I.id, I.name, I.description, I.item_status_id, S.name as item_status_name, I.item_type_id, T.name as item_type_name, I.image, I.keywords, I.unit_price, I.tax_item, I.tax_shipping, I.commission FROM items I,itemstatuses S, itemtypes T WHERE I.item_status_id = S.id AND I.item_type_id = T.id ";
         if ( $id != "" && $id != gINVALID ) {
-                $str_condition .= " AND id  = '" . addslashes(trim($id)) . "'" ;
+                $str_condition .= " AND I.id  = '" . addslashes(trim($id)) . "'" ;
         }
 
 

@@ -23,22 +23,21 @@ class gsPage {
 	var $css_list = array();
 	var $function_list = array();
 
-        var $access_list = array();
+    var $access_list = array();
 
 	var $root_path='./';
 	var $connection_path='include/connection/';
 	var $conf_path='include/conf/';
 	var $menuconf_path='include/menuconf/';
-	var $pageconf_path='include/page_conf/';
 	var $class_path='include/class/';
 	var $include_path='include/';
 	var $function_path='include/functions/';
 
 	var $plugin_path='plugins/';
-
-	var $gsconf_path='include/class/class_gsconf/';
-
 	var $plugin_output='';
+
+	var $pageconf_path='include/page_conf/';
+	var $gsconf_path='include/class/class_gsconf/';
 
 	var $js_path='js/';
 	var $js_link_path='js/';
@@ -59,16 +58,21 @@ class gsPage {
 
         }
 
+
+
+
+
 	function display(){
 		
 		$title=$this->title;
 		//$name=$this->name;
 		$page_name = $this->page_name;
 		$current_url = $this->current_url;
-
+		if(!isset($css)) $css="";
+		if(!isset($js)) $js="";
 
 		ob_start();	
-		$filename = $this->root_path.$this->conf_path.'gfw_conf.php';
+		$filename = $this->root_path.$this->conf_path.'system_conf.php';
 		eval("\$filename = \"$filename\";");
 		if (file_exists($filename)) {
 			include($filename);
@@ -103,6 +107,7 @@ class gsPage {
 
 
 
+
         if(count($this->access_list) > 0){
                 $chk == false;
                 foreach ($this->access_list as $user_typeid){
@@ -125,13 +130,8 @@ class gsPage {
 
         }
 			
+			
 	
-
-
-
-
-
-
 
 
 		if(count($this->connection_list) > 0){
@@ -151,6 +151,10 @@ class gsPage {
 		}
 
 
+
+
+
+
 		if ($this->use_gsconf == true){
 
 			ob_start();	
@@ -165,12 +169,15 @@ class gsPage {
 			$debug_output .= ob_get_contents();
 			ob_end_clean();
 
+
+
+
 			ob_start();	
 			$filename = $this->root_path.$this->gsconf_path.'class_gsconf.php';
 			eval("\$filename = \"$filename\";");
 			if (file_exists($filename)) {
 				include($filename);
-				
+			
 				$this->gsconf = new gsConf;
 				$this->gsconf->connection = $myconnection;
 				
@@ -194,6 +201,11 @@ class gsPage {
 		}
 		$debug_output .= ob_get_contents();
 		ob_end_clean();
+
+
+
+
+
 
 
 		if(count($this->menuconf_list) > 0){
@@ -230,6 +242,22 @@ class gsPage {
 			}
 			
 		}
+
+		if(trim($this->plugin) != ""){
+			ob_start();	
+			$filename = $this->root_path.$this->plugin_path.$this->plugin."/conf.php";
+			eval("\$filename = \"$filename\";");
+			if (file_exists($filename)) {
+				include($filename);
+			}else{
+				echo 'File :: '.$filename ." not exists. <br/>";
+			}
+			$debug_output .= ob_get_contents();
+			ob_end_clean();		
+		}
+
+
+
 
 
 		if(count($this->class_list) > 0){
@@ -329,343 +357,60 @@ class gsPage {
 		}
 
 
+		if(trim($this->plugin) != ""){
 
-
-		if(count($this->content_list) > 0){
-			foreach ($this->content_list as $content_tmp){
-
-				$filename = $this->root_path.$this->include_path.$content_tmp['file_name'];
-				eval("\$filename = \"$filename\";");
-				if (file_exists($filename)){ 
-					ob_start();
-					include($filename);
-					if(isset($content_tmp['var_name']) && trim($content_tmp['var_name']) != ""){	
-						if(isset($$content_tmp['var_name']) && trim($$content_tmp['var_name'])!=""){
-							$$content_tmp['var_name'] .= ob_get_contents();
-						}else{
-							$$content_tmp['var_name'] = ob_get_contents();
-						}
-	
-					}else{
-							$debug_output .= ob_get_contents();
-					}
-					ob_end_clean();
-				}else{
-					$debug_output .= 'File :: '.$filename ." not exists. <br/>";
-				}
-			}
-		}
-
-		if ( defined('gDEBUG') ){
-			$this->debug_state = gDEBUG;
-		}
-
-		$this->debug_output.=$debug_output;
-
-		if($this->debug_state == true){
-			$this->debug_output($this->debug_output);
-		}
-
-		include($this->root_path.'layouts/'.$this->layout);
-
-	}
-
-
-	function get_plugin(){
-		
-		$title=$this->title;
-		//$name=$this->name;
-		$page_name = $this->page_name;
-		$current_url = $this->current_url;
-
-
-		ob_start();	
-		$filename = $this->root_path.$this->conf_path.'gfw_conf.php';
-		eval("\$filename = \"$filename\";");
-		if (file_exists($filename)) {
-			include($filename);
-		}else{
-			echo 'File :: '.$filename ." not exists. <br/>";
-		}
-		$debug_output .= ob_get_contents();
-		ob_end_clean();
-
-		if(count($this->conf_list) > 0){
-			foreach ($this->conf_list as $conf_file){
-				ob_start();	
-				$filename = $this->root_path.$this->conf_path.$conf_file;
-				eval("\$filename = \"$filename\";");
-				if (file_exists($filename)) {
-					include($filename);
-				}else{
-					echo 'File :: '.$filename ." not exists. <br/>";
-				}
-				$debug_output .= ob_get_contents();
-				ob_end_clean();
-			}
-			
-		}
-
-
-
-
-
-
-
-
-        if(count($this->access_list) > 0){
-                $chk == false;
-                foreach ($this->access_list as $user_typeid){
-
-                        if ( isset($_SESSION[SESSION_TITLE.'userid']) && $_SESSION[SESSION_TITLE.'userid'] > 0 ) {
-                                if ( constant($user_typeid) == $_SESSION[SESSION_TITLE.'usertypeid']){
-                                       $chk = true;
-                                }
-                        }
-
-                }
-
-                 if ( $chk == false ){
-                            $_SESSION[SESSION_TITLE.'flash'] = $g_msg_unauthorized_request;
-                            $_SESSION[SESSION_TITLE.'flash_redirect_page'] = $g_msg_unauthorized_request_redirect_page;
-                            header( "Location: gfwflash.php");
-                            exit();
-                 }
-
-
-        }
-
-
-
-
-
-
-
-
-		if(count($this->connection_list) > 0){
-			foreach ($this->connection_list as $connection_file){
-				ob_start();	
-				$filename = $this->root_path.$this->connection_path.$connection_file;
-				eval("\$filename = \"$filename\";");
-				if (file_exists($filename)) {
-					include($filename);
-				}else{
-					echo 'File :: '.$filename ." not exists. <br/>";
-				}
-				$debug_output .= ob_get_contents();
-				ob_end_clean();
-			}
-			
-		}
-
-
-
-		if ($this->use_gsconf == true){
-
-			ob_start();	
-			$filename = $this->root_path.$this->gsconf_path.'class_gsconf_conf.php';
+			$filename = $this->root_path.$this->plugin_path.$this->plugin."/css.css";
+		                    
 			eval("\$filename = \"$filename\";");
-			if (file_exists($filename)) {
-				include($filename);
+		            
+			if (file_exists( $filename)) {
+				$css.='<link rel="stylesheet" type="text/css" href="'.$filename.'">';
 			}else{
-				echo 'File :: '.$filename ." not exists. <br/>";
+				$debug_output .= 'File :: '.$filename ." not exists <br/>";
 			}
-			$debug_output .= ob_get_contents();
-			ob_end_clean();
-
-
-
-
-			ob_start();	
-			$filename = $this->root_path.$this->gsconf_path.'class_gsconf.php';
-			eval("\$filename = \"$filename\";");
-			if (file_exists($filename)) {
-				include($filename);
-			
-				$this->gsconf = new gsConf;
-				$this->gsconf->connection = $myconnection;
-				
-			}else{
-				echo 'File :: '.$filename ." not exists. <br/>";
-			}
-			$debug_output .= ob_get_contents();
-			ob_end_clean();
-
-		}
-
-		ob_start();	
-		$filename = $this->root_path.$this->pageconf_path.'g_pageconf.php';
-		eval("\$filename = \"$filename\";");
-		if (file_exists($filename)) {
-			include($filename);
-		}else{
-			echo 'File :: '.$filename ." not exists. <br/>";
-		}
-		$debug_output .= ob_get_contents();
-		ob_end_clean();
-
-		if(count($this->menuconf_list) > 0){
-			foreach ($this->menuconf_list as $menuconf_file){
-				ob_start();	
-				$filename = $this->root_path.$this->menuconf_path.$menuconf_file;
-				eval("\$filename = \"$filename\";");
-				if (file_exists($filename)) {
-					include($filename);
-				}else{
-					echo 'File :: '.$filename ." not exists. <br/>";
-				}
-				$debug_output .= ob_get_contents();
-				ob_end_clean();
-			}
-			
-		}
-
-		if(count($this->function_list) > 0){
-			foreach ($this->function_list as $function_file){
-				ob_start();	
-				$filename = $this->root_path.$this->function_path.$function_file;
-				eval("\$filename = \"$filename\";");
-				if (file_exists($filename)) {
-					include($filename);
-				}else{
-					echo 'File :: '.$filename ." not exists. <br/>";
-				}
-				$debug_output .= ob_get_contents();
-				ob_end_clean();
-			}
-			
-		}
-
-
-		ob_start();	
-		$filename = $this->root_path.$this->plugin_path.$this->plugin."/conf/".$this->plugin.".php";
-		eval("\$filename = \"$filename\";");
-		if (file_exists($filename)) {
-			include($filename);
-		}else{
-			echo 'File :: '.$filename ." not exists. <br/>";
-		}
-		$debug_output .= ob_get_contents();
-		ob_end_clean();
-
-		if(count($this->class_list) > 0){
-			foreach ($this->class_list as $class_file){
-				$class_file = substr($class_file,0,strlen($class_file)-4);
-
-
-				ob_start();	
-				$filename = $this->root_path.$this->class_path.$class_file."/".$class_file."_conf.php";
-				eval("\$filename = \"$filename\";");
-				if (file_exists($filename)) {
-					include($filename);
-				}else{
-					echo 'File :: '.$filename ." not exists. <br/>";
-				}
-				$debug_output .= ob_get_contents();
-				ob_end_clean();
-
-
-
-				ob_start();	
-				$filename = $this->root_path.$this->class_path.$class_file."/".$class_file.".php";
-				eval("\$filename = \"$filename\";");
-				if (file_exists($filename)) {
-					include($filename);
-				}else{
-					echo 'File :: '.$filename ." not exists. <br/>";
-				}
-				$debug_output .= ob_get_contents();
-				ob_end_clean();
-			}
-			
-		}
-
-		if(count($this->css_list) > 0){
-			foreach ($this->css_list as $css_file){
-				$filename =$this->root_path.$this->css_path.$css_file;
-				eval("\$filename = \"$filename\";");
-				if (file_exists($filename)) {
-					$css.='<link rel="stylesheet" type="text/css" href="'.$filename.'">';
-				}else{
-					$debug_output .= 'File :: '.$filename ." not exists <br/>";
-				}
-				
-			}
-			
-		}	
-
-	
-		if(count($this->js_list_link) > 0){
-			foreach ($this->js_list_link as $js_link_file){
-				$filename =$this->root_path.$this->js_link_path.$js_link_file;
-				eval("\$filename = \"$filename\";");
-				if (file_exists($filename)) {
-					$js.='<script src="'.$filename.'" language="JavaScript" type="text/JavaScript"></script>';
-				}else{
-					$debug_output .= 'File :: '.$filename ." not exists. <br/>";
-				}
-			}	
-		}
-
-
-		if(count($this->js_list) > 0){
-			$js.='<script language="JavaScript" type="text/JavaScript">';
-			foreach ($this->js_list as $js_file){
-				$filename = $this->root_path.$this->js_link_path.$js_file;
-				eval("\$filename = \"$filename\";");
-				if (file_exists($filename)) {
-					ob_start();
-					include($filename);
-					$js .= ob_get_contents();
-					ob_end_clean();
-				}else{
-					$debug_output .='File :: '.$filename ." not exists. <br/>";
-				}
-			}
-			$js.='</script>';	
-		}
-
-
-                if(!isset($css)) $css="";
-                if(!isset($js)) $js="";
-
-		$filename = $this->root_path.$this->plugin_path.$this->plugin."/css/".$this->plugin.".css";
-                        
-		eval("\$filename = \"$filename\";");
-                
-		if (file_exists( $filename)) {
-			$css.='<link rel="stylesheet" type="text/css" href="'.$filename.'">';
-		}else{
-			$debug_output .= 'File :: '.$filename ." not exists <br/>";
-		}
 		
 
-		$filename = $this->root_path.$this->plugin_path.$this->plugin."/js/".$this->plugin.".js";
-		eval("\$filename = \"$filename\";");
-                
-		if (file_exists($filename)) {
-			$js.='<script src="'.$filename.'" language="JavaScript" type="text/JavaScript"></script>';
-		}else{
-			$debug_output .= 'File :: '.$filename ." not exists. <br/>";
+			$filename = $this->root_path.$this->plugin_path.$this->plugin."/css.php";
+			eval("\$filename = \"$filename\";");
+			if (file_exists($filename)) {
+				ob_start();
+				include($filename);
+				$css.='<style>';
+				$css .= ob_get_contents();
+				$css.='</style>';
+				ob_end_clean();
+			}else{
+				$debug_output .='File :: '.$filename ." not exists. <br/>";
+			}
+
+
+
+			$filename = $this->root_path.$this->plugin_path.$this->plugin."/js.js";
+			eval("\$filename = \"$filename\";");
+		            
+			if (file_exists($filename)) {
+				$js.='<script src="'.$filename.'" language="JavaScript" type="text/JavaScript"></script>';
+			}else{
+				$debug_output .= 'File :: '.$filename ." not exists. <br/>";
+			}
+
+
+
+
+			$filename = $this->root_path.$this->plugin_path.$this->plugin."/js.php";
+			eval("\$filename = \"$filename\";");
+			if (file_exists($filename)) {
+				ob_start();
+				include($filename);
+				$js.='<script language="JavaScript" type="text/JavaScript">';
+				$js .= ob_get_contents();
+				$js.='</script>';
+				ob_end_clean();
+			}else{
+				$debug_output .='File :: '.$filename ." not exists. <br/>";
+			}
+
 		}
-
-
-
-
-		$filename = $this->root_path.$this->plugin_path.$this->plugin."/js/".$this->plugin.".php";
-		eval("\$filename = \"$filename\";");
-		if (file_exists($filename)) {
-			ob_start();
-			include($filename);
-			$js.='<script language="JavaScript" type="text/JavaScript">';
-			$js .= ob_get_contents();
-			$js.='</script>';
-			ob_end_clean();
-		}else{
-			$debug_output .='File :: '.$filename ." not exists. <br/>";
-		}
-
-
 
 
 
@@ -694,60 +439,62 @@ class gsPage {
 			}
 		}
 
-				$filename = $this->root_path.$this->plugin_path.$this->plugin."/functions/".$this->plugin.".php";
-				eval("\$filename = \"$filename\";");
-				if (file_exists($filename)) {
-					ob_start();	
-					include($filename);
-					$this->plugin_output .= ob_get_contents();
-					ob_end_clean();
+		if(trim($this->plugin) != ""){
+			$filename = $this->root_path.$this->plugin_path.$this->plugin."/functions.php";
+			eval("\$filename = \"$filename\";");
+			if (file_exists($filename)) {
+				ob_start();	
+				include($filename);
+				$this->plugin_output .= ob_get_contents();
+				ob_end_clean();
 
-				}else{
-					ob_start();
-					echo 'File :: '.$filename ." not exists. <br/>";
-					$debug_output .= ob_get_contents();
-					ob_end_clean();
-				}
-
-
-				$filename = $this->root_path.$this->plugin_path.$this->plugin."/code/".$this->plugin.".php";
-				eval("\$filename = \"$filename\";");
-				if (file_exists($filename)) {
-					ob_start();	
-					include($filename);
-					$this->plugin_output .= ob_get_contents();
-					ob_end_clean();
-
-				}else{
-					ob_start();
-					echo 'File :: '.$filename ." not exists. <br/>";
-					$debug_output .= ob_get_contents();
-					ob_end_clean();
-				}
+			}else{
+				ob_start();
+				echo 'File :: '.$filename ." not exists. <br/>";
+				$debug_output .= ob_get_contents();
+				ob_end_clean();
+			}
 
 
+			$filename = $this->root_path.$this->plugin_path.$this->plugin."/code.php";
+			eval("\$filename = \"$filename\";");
+			if (file_exists($filename)) {
+				ob_start();	
+				include($filename);
+				$this->plugin_output .= ob_get_contents();
+				ob_end_clean();
 
-				$filename = $this->root_path.$this->plugin_path.$this->plugin."/form/".$this->plugin.".php";
-				eval("\$filename = \"$filename\";");
-				if (file_exists($filename)) {
-					ob_start();	
-					include($filename);
-					$this->plugin_output .= ob_get_contents();
-					ob_end_clean();
+			}else{
+				ob_start();
+				echo 'File :: '.$filename ." not exists. <br/>";
+				$debug_output .= ob_get_contents();
+				ob_end_clean();
+			}
 
-				}else{
-					ob_start();
-					echo 'File :: '.$filename ." not exists. <br/>";
-					$debug_output .= ob_get_contents();
-					ob_end_clean();
-				}
 
+
+			$filename = $this->root_path.$this->plugin_path.$this->plugin."/form.php";
+			eval("\$filename = \"$filename\";");
+			if (file_exists($filename)) {
+				ob_start();	
+				include($filename);
+				$this->plugin_output .= ob_get_contents();
+				ob_end_clean();
+
+			}else{
+				ob_start();
+				echo 'File :: '.$filename ." not exists. <br/>";
+				$debug_output .= ob_get_contents();
+				ob_end_clean();
+			}
+		}
 
 		if (defined('gDEBUG') ){
 			$this->debug_state = gDEBUG;
 		}
 
 		$this->debug_output.=$debug_output;
+
 		if($this->debug_state == true){
 			$this->debug_output($this->debug_output);
 		}

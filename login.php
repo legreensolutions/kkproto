@@ -31,5 +31,5 @@ $page = new gsPage;
 
 	$page->plugin_path = 'plugins/user/'; 
 	$page->plugin = 'login';
-	$page->get_plugin(); //completed pluggin with dynamic content will be displayed
+	$page->display(); //completed pluggin with dynamic content will be displayed
 ?>
