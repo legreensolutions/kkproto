@@ -28,8 +28,8 @@
     Welcome to ".WEB_NAME."!";
     
     //Send the mail to the Registered User with activation link
-    //mail($strTo,$strSubject,$strMailbody,$headers);
-      echo $strMailbody;
-//     exit();
+    mail($strTo,$strSubject,$strMailbody,$headers);
+      //echo $strMailbody;
+     exit();
 }
 ?>
