@@ -62,10 +62,12 @@ text-align:left;
 margin-bottom: 10px; 
 }
 
+
 .field_small input, .field_small textarea, .field_small select{
-width:40px;
+width:130px;
 text-align: left;
 margin-right:90%;
+
 }
 
 .field_small textarea {
@@ -73,8 +75,9 @@ height:100px;
 
 }
 .field_small label{
- font-size:14px;
- margin-left:10px;
- font-weight:bold;
-
+width:130px;
+font-size:14px;
+margin-left:10px;
+font-weight:bold;
+float: left;
 }

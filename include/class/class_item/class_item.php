@@ -147,6 +147,7 @@ function get_list_array(){
                 $items[$i]["tax_item"] = $tax_item;
                 $items[$i]["tax_shipping"] = $tax_shipping;
                 $items[$i]["commission"] = $commission;
+				$items[$i]["details"] = $name . ", $".$unit_price;
                 $i++;
             }
             return $items;

@@ -29,6 +29,23 @@ define("USER_ITEM_INACTIVE", 2);
 define("CASH_PAYMENT", 1);
 define("PAYPAL_PAYMENT", 2);
 
+//Payment STATUS
+define("PAYMENT_PENDING", 1);
+define("PAID", 2);
+
+
+// ORDER Status
+define("ORDER_APPROVED", 1);
+define("ORDER_BILLED", 2);
+define("ORDER_SHIPPED", 3);
+define("ORDER_DELIVERED", 4);
+define("ORDER_CANCELLED", 5);
+define("ORDER_REJECTED", 6);
+
+// BILL Status
+define("BILLED", 1);
+define("BILL_CANCELLED", 2);
+ 
 
 GLOBAL $g_msg_unauthorized_request;
 $g_msg_unauthorized_request = "<strong>Unauthorized Page Request</strong><br/> <br/> You are not authorized to access this page. This attempt will be reported to the system Administrator. ";

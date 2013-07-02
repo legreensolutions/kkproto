@@ -20,7 +20,7 @@ $page = new gsPage;
 
 	$page->function_list = array("functions.php");
 	$page->class_list = array("class_user.php","class_useritem.php", "class_state.php", "class_country.php", "class_city.php", "class_customer.php","class_order.php", "class_orderitem.php");
-	$page->pageconf_list = array("subsite/buycoffee.php");
+
     $page->css_list = array("form.css");
 
 	$index=0;
@@ -29,15 +29,11 @@ $page = new gsPage;
 	$index++;
 	$content_list[$index]['file_name']='subsite/inc_conf.php';
 	$content_list[$index]['var_name']='content';
-	$index++;
-	$content_list[$index]['file_name']='subsite/inc_buycoffee_code.php';
-	$content_list[$index]['var_name']='content';
-	$index++;
-	$content_list[$index]['file_name']='subsite/inc_buycoffee_form.php';
-	$content_list[$index]['var_name']='content';
 
 	$page->content_list = $content_list;
 
 
+	$page->plugin_path = 'plugins/sale/'; 
+	$page->plugin = 'buycoffee';
 	$page->display(); //completed page with dynamic cintent will be displayed
 ?>

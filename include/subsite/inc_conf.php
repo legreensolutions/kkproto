@@ -1,4 +1,8 @@
 <?php 
+// echo $_SERVER["SUBSITE"];
+//print_r($_SERVER);	
+
+
     if(isset($_GET['charity']) && $_GET['charity'] !="" ) {
         $charity=$_GET['charity'];
     }elseif(isset($_SESSION[SESSION_TITLE.'charity']) && $_SESSION[SESSION_TITLE.'charity'] !="" ) {

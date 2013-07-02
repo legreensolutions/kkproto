@@ -4,7 +4,7 @@
       <td>
 
         <div class="shift_right_align_center">
-          <?= $index_content; ?>
+          <?php echo $index_content; ?>
         </div>
       </td>
     </tr>
