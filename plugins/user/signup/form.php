@@ -9,7 +9,7 @@
          <form  name="frmsignup" id="frmsignup" method="post" action="<?php echo $current_url; ?>" enctype="multipart/form-data">
 
 <h1><?php echo $CAP_page_caption?><br /></h1>
-<p class="error"><?php echo $myuser->error_description; ?></p>
+<p class="error"><?php if(isset($myuser->error_description)) echo $myuser->error_description; ?></p>
 
 <div class="field" >
     <label><?php echo $CAP_username ?> </label>

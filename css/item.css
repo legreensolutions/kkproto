@@ -30,6 +30,10 @@
 .item_image:hover {
   border:1px solid #f8e0c8;   
 }
+.item_image img{
+width:100px;
+}
+
 .item_description {
   text-align:justify;
   margin:auto;
@@ -65,5 +69,17 @@
   color:blue;
   line-height:30px;
 
+}
+
+.item_info{
+
+}
+.item_info img{
+height:200px;
+}
+.item_info p{
+float:left;
+width:300px;
+margin-right:10px;
 }
 

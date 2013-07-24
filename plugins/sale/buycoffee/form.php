@@ -34,7 +34,7 @@
 
       <div class="buy_coffee">
         <img src="<?php echo $item_image?>"><br/>
-        <?php echo $myuseritem->description; ?>
+        <?php echo substr($myuseritem->description,0,50); ?>...
       </div>
 
 

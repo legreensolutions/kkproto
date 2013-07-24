@@ -119,6 +119,56 @@ function get_list_array(){
         return false;
         }
 }
+function get_array(){
+        $countries = array();$i=0;
+        $strSQL = "SELECT id,country_name,country,iso2,iso3,numericcode FROM countries ORDER BY country_name";
+        $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
+        if ( mysql_num_rows($rsRES) > 0 ){
+        while ( list ($id,$country_name,$country,$iso2,$iso3,$numericcode) = mysql_fetch_row($rsRES) ){
+              $countries[$id]["id"] = $id;
+              $countries[$id]["country_name"] = $country_name;
+              $countries[$id]["country"] = $country;
+              $countries[$id]["iso2"] = $iso2;
+              $countries[$id]["iso3"] = $iso3;
+              $countries[$id]["numericcode"] = $numericcode;
+
+        }
+        return $countries;
+        }
+        else{
+        $this->error_number = 4;
+        $this->error_description="Can't list countries";
+        return false;
+        }
+}
+
+function get_list_array_canada(){
+        $countries = array();$i=0;
+        $strSQL = "SELECT id,country_name,country,iso2,iso3,numericcode FROM countries WHERE id = 38  ORDER BY country_name";
+        $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
+        if ( mysql_num_rows($rsRES) > 0 ){
+        while ( list ($id,$country_name,$country,$iso2,$iso3,$numericcode) = mysql_fetch_row($rsRES) ){
+              $countries[$i]["id"] = $id;
+              $countries[$i]["country_name"] = $country_name;
+              $countries[$i]["country"] = $country;
+              $countries[$i]["iso2"] = $iso2;
+              $countries[$i]["iso3"] = $iso3;
+              $countries[$i]["numericcode"] = $numericcode;
+
+              $i++;
+        }
+        return $countries;
+        }
+        else{
+        $this->error_number = 4;
+        $this->error_description="Can't list countries";
+        return false;
+        }
+}
+
+
+
+
 function get_list_array_bylimit($country=-1,$country_name=-1,$iso2="",$iso3="",$numericcode=-1,$start_record = 0,$max_records = 25){
 
         $limited_data = array();

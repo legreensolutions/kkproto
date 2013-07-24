@@ -22,27 +22,23 @@ class Customer {
     var $ipaddress = "";
     var $gender_id = gINVALID;
     var $registrationdate = "";
+
+    var $shipping_address;
+    var $shipping_street = "";
+    var $shipping_city = "";
+    var $shipping_state_id = gINVALID;
+    var $shipping_state_name = "";
+    var $shipping_country_id = gINVALID;
+    var $shipping_country_name = "";
+    var $shipping_postal_code = "";
+
     var $error = false;
     var $error_number=gINVALID;
     var $error_description="";
     //for pagination
     var $total_records = "";
 
-    function Customer ( $id=gINVALID, $first_name="", $last_name="", $address="", $street="", $city="", $state_id=gINVALID, $country_id=gINVALID, $postal_code = "", $emailid = "", $phone = "", $ipaddress ="", $gender_id = gINVALID, $connection="" ){
-        $this->id = $id;
-        $this->first_name = $first_name;
-        $this->last_name = $last_name;
-        $this->address = $address;
-        $this->street = $street;
-        $this->city = $city;
-        $this->state_id = $state_id;
-        $this->country_id = $country_id;
-        $this->postal_code = $postal_code;
-        $this->emailid = $emailid;
-        $this->phone = $phone;
-        $this->ipaddress = $ipaddress;
-        $this->gender_id = $gender_id;
-
+    function Customer($connection=""){
         $this->connection=$connection;
 
     }
@@ -51,7 +47,7 @@ class Customer {
 
     function update(){
         if ( $this->id == "" || $this->id == gINVALID) {
-              $strSQL = "INSERT INTO customers  (first_name, last_name, address, street, city, state_id, country_id, postal_code, emailid, phone, registrationdate, ipaddress, gender_id) ";
+              $strSQL = "INSERT INTO customers  (first_name, last_name, address, street, city, state_id, country_id, postal_code, emailid, phone, registrationdate, ipaddress, gender_id, shipping_address, shipping_street, shipping_city, shipping_state_id, shipping_country_id, shipping_postal_code) ";
               $strSQL .= "VALUES ('".addslashes(trim($this->first_name))."','";
               $strSQL .= addslashes(trim($this->last_name))."','";
               $strSQL .= addslashes(trim($this->address))."','";
@@ -64,7 +60,13 @@ class Customer {
               $strSQL .= addslashes(trim($this->phone))."',";
               $strSQL .= "now(),'";
               $strSQL .= $_SERVER['REMOTE_ADDR']."','";
-              $strSQL .= addslashes(trim($this->gender_id))."')";
+              $strSQL .= addslashes(trim($this->gender_id))."','";
+              $strSQL .= addslashes(trim($this->shipping_address))."','";
+              $strSQL .= addslashes(trim($this->shipping_street))."','";
+              $strSQL .= addslashes(trim($this->shipping_city))."','";
+              $strSQL .= addslashes(trim($this->shipping_state_id))."','";
+              $strSQL .= addslashes(trim($this->shipping_country_id))."','";
+              $strSQL .= addslashes(trim($this->shipping_postal_code))."')";
               $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
               if ( mysql_affected_rows($this->connection) > 0 ){
                     $this->id = mysql_insert_id();;
@@ -89,7 +91,13 @@ class Customer {
             $strSQL .= "emailid = '".addslashes(trim($this->emailid))."',";
             $strSQL .= "phone = '".addslashes(trim($this->phone))."',";
             $strSQL .= "ipaddress = '".$_SERVER['REMOTE_ADDR']."',";
-            $strSQL .= "gender_id = '".addslashes(trim($this->gender_id))."' ";
+            $strSQL .= "gender_id = '".addslashes(trim($this->gender_id))."', ";
+            $strSQL .= "shipping_address = '".addslashes(trim($this->shipping_address))."',";
+            $strSQL .= "shipping_street = '".addslashes(trim($this->shipping_street))."',";
+            $strSQL .= "shipping_city = '".addslashes(trim($this->shipping_city))."',";
+            $strSQL .= "shipping_state_id = '".addslashes(trim($this->shipping_state_id))."',";
+            $strSQL .= "shipping_country_id = '".addslashes(trim($this->shipping_country_id))."',";
+            $strSQL .= "shipping_postal_code = '".addslashes(trim($this->shipping_postal_code))."',";
             $strSQL .= " WHERE id = ".$this->id;//$this->id
             $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
             if ( mysql_affected_rows($this->connection) >= 0 ) {
@@ -123,6 +131,12 @@ class Customer {
                 $this->ipaddress = mysql_result($rsRES,0,'ipaddress');
                 $this->registrationdate = mysql_result($rsRES,0,'registrationdate');
                 $this->gender_id = mysql_result($rsRES,0,'gender_id');
+                $this->shipping_address = mysql_result($rsRES,0,'shipping_address');
+                $this->shipping_street = mysql_result($rsRES,0,'shipping_street');
+                $this->shipping_city = mysql_result($rsRES,0,'shipping_city');
+                $this->shipping_state_id = mysql_result($rsRES,0,'shipping_state_id');
+                $this->shipping_country_id = mysql_result($rsRES,0,'shipping_country_id');
+                $this->shipping_postal_code = mysql_result($rsRES,0,'shipping_postal_code');
                 return true;
         }
         else{
@@ -133,10 +147,10 @@ class Customer {
 
     function get_list_array(){
             $customers = array();$i=0;
-            $strSQL = "SELECT id, first_name, last_name, address, street, city, state_id, country_id, postal_code, emailid, phone, ipaddress, gender_id, registrationdate FROM customers ORDER BY id";
+            $strSQL = "SELECT id, first_name, last_name, address, street, city, state_id, country_id, postal_code, emailid, phone, ipaddress, gender_id, registrationdate, shipping_address, shipping_street, shipping_city, shipping_state_id, shipping_country_id, shipping_postal_code FROM customers ORDER BY id";
             $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
             if ( mysql_num_rows($rsRES) > 0 ){
-                while ( list ($id, $first_name, $last_name, $address, $street, $city, $state_id, $country_id, $postal_code, $emailid, $phone, $ipaddress, $gender_id, $registrationdate ) = mysql_fetch_row($rsRES) ){
+                while ( list ($id, $first_name, $last_name, $address, $street, $city, $state_id, $country_id, $postal_code, $emailid, $phone, $ipaddress, $gender_id, $registrationdate, $shipping_address, $shipping_street, $shipping_city, $shipping_state_id, $shipping_country_id, $shipping_postal_code ) = mysql_fetch_row($rsRES) ){
                     $customers[$i]["id"] =  $id;
                     $customers[$i]["first_name"] = $first_name;
                     $customers[$i]["last_name"] = $last_name;
@@ -151,6 +165,12 @@ class Customer {
                     $customers[$i]["ipaddress"] = $ipaddress;
                     $customers[$i]["gender_id"] = $gender_id;
                     $customers[$i]["registrationdate"] = $registrationdate;
+                    $customers[$i]["shipping_address"] = $shipping_address;
+                    $customers[$i]["shipping_street"] = $shipping_street;
+                    $customers[$i]["shipping_city"] = $shipping_city;
+                    $customers[$i]["shipping_state_id"] = $shipping_state_id;
+                    $customers[$i]["shipping_country_id"] = $shipping_country_id;
+                    $customers[$i]["shipping_postal_code"] = $shipping_postal_code;
                     $i++;
                 }
                 return $customers;
@@ -168,7 +188,7 @@ class Customer {
             $i=0;
             $str_condition = "";
 
-            $strSQL = "id, first_name, last_name, address, street, city, state_id, country_id, postal_code, emailid, phone, ipaddress, gender_id, registrationdate FROM customers WHERE 1 ";
+            $strSQL = "id, first_name, last_name, address, street, city, state_id, country_id, postal_code, emailid, phone, ipaddress, gender_id, registrationdate,shipping_address, shipping_street, shipping_city, shipping_state_id, shipping_country_id, shipping_postal_code  FROM customers WHERE 1 ";
             if ( $id != "" && $id != -1 ) {
                 $str_condition .= " AND id  = '" . $id . "'" ;
             }
@@ -250,11 +270,19 @@ class Customer {
                     $limited_data[$i]["state_id"] = $row["state_id"];
                     $limited_data[$i]["country_id"] = $row["country_id"];
                     $limited_data[$i]["postal_code"] = $row["postal_code"];
+
                     $limited_data[$i]["emailid"] = $row["emailid"];
                     $limited_data[$i]["phone"] = $row["phone"];
                     $limited_data[$i]["ipaddress"] = $row["ipaddress"];
                     $limited_data[$i]["gender_id"] = $row["gender_id"];
-                    $limited_data[$i]["registrationdate"] = $row["registrationdate"];
+                    $limited_data[$i]["registrationdate"] = $row["registrationdate"];  
+                  
+					$limited_data[$i]["shipping_address"] = $row["shipping_address"];
+                    $limited_data[$i]["shipping_street"] = $row["street"];
+                    $limited_data[$i]["shipping_city"] = $row["shipping_city"];
+                    $limited_data[$i]["shipping_state_id"] = $row["state_id"];
+                    $limited_data[$i]["shipping_country_id"] = $row["shipping_country_id"];
+                    $limited_data[$i]["shipping_postal_code"] = $row["shipping_postal_code"];
                     $i++;
                 }
                 return $limited_data;

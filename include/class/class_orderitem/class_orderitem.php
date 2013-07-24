@@ -56,7 +56,7 @@ function get_order_detail(){
                 $orderitems[$i]["id"] =  $id;
                 $orderitems[$i]["order_id"] = $order_id;
                 $orderitems[$i]["item_id"] = $item_id;
-                $orderitems[$i]["item_name"] = $item_id;
+                $orderitems[$i]["item_name"] = $item_name;
                 $orderitems[$i]["item_image"] = $item_image;
                 $orderitems[$i]["quantity"] = $quantity;
                 $orderitems[$i]["unit_price"] = $unit_price;

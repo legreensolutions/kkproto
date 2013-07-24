@@ -7,7 +7,7 @@ function populatelist ($lstname, $str_query, $str_firstvalue="-1", $str_firstopt
     if ($bln_disabled == true){
         $str_disable = "disabled";
     }
-    echo '<select name="' . $lstname . '"' . $str_disable . ' ' . $str_event .  ' ' . $str_style . '>';
+    echo '<select name="' . $lstname . '" id="' . $lstname . '"' . $str_disable . ' ' . $str_event .  ' ' . $str_style . '>';
     if ( trim($str_firstoption) != "" && is_null($str_firstoption) == false ) {
         if ( $str_selected == $str_firstvalue ) {
             echo '<option selected="selected" value="' . $str_firstvalue . '">';
@@ -32,11 +32,11 @@ function populatelist ($lstname, $str_query, $str_firstvalue="-1", $str_firstopt
 }
 
 
-function populate_list_array($objname, $array_list, $value_array, $display_array, $defaultvalue=-1,$disable=false){ 
+function populate_list_array($objname, $array_list, $value_array, $display_array, $defaultvalue=-1,$disable=false, $style=""){ 
 // function used to populate list from associative array  
 GLOBAL $g_obj_select_default_text;
 ?>	
-<select  name="<?php echo $objname; ?>" <?php if ($disable == true){?> disabled="true"<?php } ?> >
+<select  name="<?php echo $objname; ?>"  id="<?php echo $objname; ?>" <?php if ($disable == true){?> disabled="true"<?php } ?> <?php echo $style; ?> >
 	<option selected="selected" value="-1"><?php echo $g_obj_select_default_text ?></option>
 	<?php foreach ($array_list as $value) { ?><option <?php if( $defaultvalue == $value[$value_array]){ ?> selected="selected"<?php } ?> value="<?php echo $value[$value_array]; ?>"><?php echo $value[$display_array]; ?></option>
 	<?php } //--end for ?>

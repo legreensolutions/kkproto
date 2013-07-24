@@ -273,7 +273,7 @@ $i++;
 GLOBAL $sales_menu_admin;
 
 $sales_menu_admin[$i][caption] = "Cash Sale";
-$sales_menu_admin[$i][url]="#";
+$sales_menu_admin[$i][url]="cash_sale.php";
 $sales_menu_admin[$i][usertype] = USERTYPE_ADMIN;
 $sales_menu_admin[$i][submenu] = "";
 $i++;

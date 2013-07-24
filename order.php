@@ -9,7 +9,7 @@ $page = new gsPage;
     
     $page->current_url = $current_url;  // current url for pages
     $page->title = "Kaffakarma.com";   // page Title
-    $page->page_name = 'cash_sale';     // page name for menu and other purpose
+    $page->page_name = 'order';     // page name for menu and other purpose
     $page->layout = 'default.html';     // layout name
     $page->access_list = array("USERTYPE_ADMIN"); // authorisation
 
@@ -21,7 +21,7 @@ $page = new gsPage;
     $page->class_list = array("class_user.php","class_item.php", "class_state.php", "class_country.php", "class_city.php", "class_customer.php", "class_order.php","class_orderitem.php","class_bill.php","class_billitem.php");
 
     $page->css_list = array("form.css");
-    $page->js_list_link = array("jquery.min.js");
+    //$page->js_list_link = array("jquery.min.js");
 
     $index=0;
     $content_list[$index]['file_name']='inc_language.php';
@@ -33,6 +33,6 @@ $page = new gsPage;
     $page->content_list = $content_list;
 
     $page->plugin_path = 'plugins/sale/';
-    $page->plugin = 'cash_sale';
+    $page->plugin = 'order';
 	$page->display(); //completed page with dynamic cintent will be displayed
 ?>                                `

@@ -5,7 +5,7 @@ define('TEST_ALERT','Got Error!');
 
 // $_SESSION[SESSION_TITLE.'gDEBUG'] = true;
 
-if($_SESSION[SESSION_TITLE.'gDEBUG'] == true){
+if(isset($_SESSION[SESSION_TITLE.'gDEBUG']) && $_SESSION[SESSION_TITLE.'gDEBUG'] == true){
     define('gDEBUG',true);
 }else{
     define('gDEBUG',false);
@@ -13,7 +13,7 @@ if($_SESSION[SESSION_TITLE.'gDEBUG'] == true){
 
 // $_SESSION[SESSION_TITLE.'gEDIT_MODE'] = true;
 
-if($_SESSION[SESSION_TITLE.'gEDIT_MODE'] == true){
+if(isset($_SESSION[SESSION_TITLE.'gEDIT_MODE']) && $_SESSION[SESSION_TITLE.'gEDIT_MODE'] == true){
     define('gEDIT_MODE',true);
 }else{
     define('gEDIT_MODE',false);

@@ -6,7 +6,7 @@
 
     $mystate = new State($myconnection);
     $mystate->connection = $myconnection;
-    $chk_state = $mystate->get_list_array_canada_and_us();
+    $chk_state = $mystate->get_list_array();
 
     $mycountry = new country($myconnection);
     $mycountry->connection = $myconnection;
@@ -15,7 +15,7 @@
 
     $myimage = new Image;
 
-if ($_POST['submit'] == $CAP_submit){
+if (isset($_POST['submit']) && $_POST['submit'] == $CAP_submit){
 if ( $_POST['txtusername'] == "" ){
     $strERR .= "<br/>".$MSG_empty_username;
 }

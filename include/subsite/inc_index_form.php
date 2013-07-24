@@ -24,7 +24,7 @@
                         <div class="price_buy"><div class="item_price">$<?php echo $data_bylimit[$index]["user_price"]; ?></div><a href="buycoffee.php?item_id=<?php echo $data_bylimit[$index]["item_id"] ?>"><div class="buy_button" ></div></a></div>
                         <div style="clear:both;"></div>
                         <div class="item_description">
-  <?php echo $data_bylimit[$index]["description"]; ?>
+  <?php echo substr($data_bylimit[$index]["description"],0,50); ?> ... <a href="product.php?id=<?php echo $data_bylimit[$index]["item_id"] ?>">More</a>
                         </div>
                 </div>
                 <?php 

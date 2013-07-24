@@ -109,7 +109,7 @@ class gsPage {
 
 
         if(count($this->access_list) > 0){
-                $chk == false;
+                $chk = false;
                 foreach ($this->access_list as $user_typeid){
 
                         if ( isset($_SESSION[SESSION_TITLE.'userid']) && $_SESSION[SESSION_TITLE.'userid'] > 0 ) {

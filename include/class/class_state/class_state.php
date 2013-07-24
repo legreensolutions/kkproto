@@ -96,6 +96,29 @@ function update(){
     }
 }
 
+function get_array(){
+        $states = array();$i=0;
+        $strSQL = "SELECT S.id AS state_id,state_name,statecode,country_id,country_name FROM states S,countries C";
+        $strSQL .= " WHERE S.country_id = C.id ORDER BY state_name";
+        $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
+        if ( mysql_num_rows($rsRES) > 0 ){
+        while ( list ($id,$state_name,$statecode,$country_id,$country_name) = mysql_fetch_row($rsRES) ){
+              $states[$id]["id"] = $id;
+              $states[$id]["state_name"] = $state_name;
+              $states[$id]["statecode"] = $statecode;
+              $states[$id]["country_id"] = $country_id;
+              $states[$id]["country_name"] = $country_name;
+        }
+        return $states;
+        }
+        else{
+        $this->error_number = 4;
+        $this->error_description="Can't list states";
+        return false;
+        }
+}
+
+
 function get_list_array(){
         $states = array();$i=0;
         $strSQL = "SELECT S.id AS state_id,state_name,statecode,country_id,country_name FROM states S,countries C";
@@ -118,6 +141,8 @@ function get_list_array(){
         return false;
         }
 }
+
+
 
 
 function get_list_array_canada_and_us(){
@@ -165,6 +190,39 @@ function get_list_array_canada_and_us(){
         return false;
         }
 }
+
+
+
+function get_list_array_canada(){
+        $states = array();$i=0;
+
+
+        $strSQL = "SELECT S.id AS state_id,state_name,statecode,country_id,country_name FROM states S,countries C";
+        $strSQL .= " WHERE S.country_id = C.id AND C.id = 38 ORDER BY state_name";
+        $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
+        if ( mysql_num_rows($rsRES) > 0 ){
+              $states[$i]["id"] = gINVALID;
+              $states[$i]["state_name"] = "--Canada--";
+              $i++;
+        while ( list ($id,$state_name,$statecode,$country_id,$country_name) = mysql_fetch_row($rsRES) ){
+              $states[$i]["id"] = $id;
+              $states[$i]["state_name"] = $state_name;
+              $states[$i]["statecode"] = $statecode;
+              $states[$i]["country_id"] = $country_id;
+              $states[$i]["country_name"] = $country_name;
+              $i++;
+        }
+		 return $states;
+        }else{
+        $this->error_number = 4;
+        $this->error_description="Can't list states";
+        return false;
+        }
+}
+
+
+
+
 
 
 

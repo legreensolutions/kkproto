@@ -5,7 +5,7 @@
 
     $mystate = new State($myconnection);
     $mystate->connection = $myconnection;
-    $chk_state = $mystate->get_list_array_canada_and_us();
+    $chk_state = $mystate->get_list_array();
 
     $mycountry = new country($myconnection);
     $mycountry->connection = $myconnection;
@@ -34,7 +34,7 @@
 
 
     $error = "";
-    if ($_POST['submit'] == $CAP_submit){
+    if (isset($_POST['submit']) && $_POST['submit'] == $CAP_submit){
 
         if ( trim($_POST['txtemail']) == "" ){
             $error .= $MSG_empty_email;
@@ -83,6 +83,7 @@
 
         $mycustomer->error_description = $error;
         if ( $error == "" ){
+
               $mycustomer = new Customer();
               $mycustomer->connection = $myconnection;
               $mycustomer->emailid = mysql_real_escape_string(trim($_POST['txtemail']));
@@ -94,12 +95,22 @@
               $mycustomer->state_id = mysql_real_escape_string(trim($_POST['lststate']));
               $mycustomer->country_id = mysql_real_escape_string(trim($_POST['lstcountry']));
               $mycustomer->postal_code = mysql_real_escape_string(trim($_POST['txtpostal_code']));
+
               $mycustomer->phone = mysql_real_escape_string(trim($_POST['txtphone']));
+
+              $mycustomer->shipping_address = mysql_real_escape_string(trim($_POST['txtaddress_shipping']));
+              $mycustomer->shipping_street = mysql_real_escape_string(trim($_POST['txtstreet_shipping']));
+              $mycustomer->shipping_city = mysql_real_escape_string(trim($_POST['txtcity_shipping']));
+              $mycustomer->shipping_state_id = mysql_real_escape_string(trim($_POST['lststate_shipping']));
+              $mycustomer->shipping_country_id = mysql_real_escape_string(trim($_POST['lstcountry_shipping']));
+              $mycustomer->shipping_postal_code = mysql_real_escape_string(trim($_POST['txtpostal_code_shipping']));
               $mycustomer->id = mysql_real_escape_string(trim($_POST['h_id']));
+
               $chk = $mycustomer->update();
+
                     if ($chk == false){
                         $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_on_fail;
-                        $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "subsite/index.php";
+                        $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "cash_sale.php";
                         header( "Location: ../gfwflash.php");
                         exit();
                     }else{
@@ -108,13 +119,13 @@
                         $myorder->connection = $myconnection;
                         $myorder->id = mysql_real_escape_string(trim($_POST['ho_id']));
                         $myorder->customer_id = $mycustomer->id;
-                        $myorder->user_id = $_SESSION[SESSION_TITLE.'charity_id'];
+                        $myorder->user_id = $_SESSION[SESSION_TITLE.'user_id'];
                         $myorder->order_date = date("Y-m-d");
-                        $myorder->paymentoption_id = PAYPAL_PAYMENT;
+                        $myorder->paymentoption_id = CASH_PAYMENT;
                         $chk_order = $myorder->update();
                             if ($chk_order == false){
                                 $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_on_fail;
-                                $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "subsite/index.php";
+                                $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "cash_sale.php";
                                 header( "Location: ../gfwflash.php");
                                 exit();
                             }else{
@@ -125,10 +136,17 @@
                                 $myorderitem->delete_orderitmes();
                                 $myorderitem->id = gINVALID;
                                 $myorderitem->order_id = $myorder->id;
-                                $myorderitem->item_id = $myitem->item_id;
+
+								$myitem = new Item($myconnection);
+								$myitem->connection = $myconnection;
+								$myitem->id = $_POST['lstitem'];
+								$myitem->get_detail();
+
+                                $myorderitem->item_id = $myitem->id;
                                 $myorderitem->quantity = mysql_real_escape_string(trim($_POST['txtquantity']));
                                 $myorderitem->unit_price = $myitem->unit_price;
-                                $myorderitem->amount = intval($myitem->unit_price) * intval($_POST['txtquantity']);
+								$orderitem_amount = intval($myitem->unit_price) * intval($_POST['txtquantity']);
+                                $myorderitem->amount = $orderitem_amount;
                                 // calculate shipping amount, order_amount, commission_amount tax...
                                 $myorderitem->shipping_amount = $myitem->shipping_amount;
                                 $myorderitem->tax_item = $myitem->tax_item;
@@ -139,7 +157,7 @@
                                 $chk_orderitem = $myorderitem->update();
                                     if ($chk_orderitem == false){
                                         $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_on_fail;
-                                        $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "subsite/index.php";
+                                        $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "cash_sale.php";
                                         header( "Location: ../gfwflash.php");
                                         exit();
                                     }else{
@@ -148,9 +166,9 @@
                                         $myorder->order_amount = $myorderitem->amount;
                                         $chk_order = $myorder->update();
 
-                                        $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_updated;
-                                        $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "subsite/confirm.php";
-                                        header( "Location: ../gfwflash.php");
+                                        //$_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_updated;
+                                        //$_SESSION[SESSION_TITLE.'flash_redirect_page'] = "order.php";
+                                        header( "Location: order.php?id=".$myorder->id);
                                         exit();
                                     }
 

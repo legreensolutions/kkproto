@@ -62,7 +62,7 @@
     }
 
     $error = "";
-    if ($_POST['submit'] == $CAP_submit){
+    if (isset( $_POST['submit']) && $_POST['submit'] == $CAP_submit){
 
         if ( trim($_POST['txtemail']) == "" ){
             $error .= $MSG_empty_email;

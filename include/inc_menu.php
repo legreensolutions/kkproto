@@ -41,7 +41,7 @@ GLOBAL $g_menu_Logout_page;
 			$my_menu["url"] = $g_menu_Logout_page;
 		}
 
-    	if ( ($my_menu["usertype"] == 0) || ($my_menu["usertype"] == $_SESSION[SESSION_TITLE.'usertypeid']) || ($my_menu["usertype"] == -1 && !isset($_SESSION[SESSION_TITLE.'usertypeid'])) ){
+    	if (isset($my_menu["usertype"]) && ($my_menu["usertype"] == 0) || (isset($my_menu["usertype"]) && $my_menu["usertype"] == $_SESSION[SESSION_TITLE.'usertypeid']) || (isset($my_menu["usertype"]) && $my_menu["usertype"] == -1 && !isset($_SESSION[SESSION_TITLE.'usertypeid'])) ){
 
 			if ( !$first_menu ){
 				$str_menu .= ",";

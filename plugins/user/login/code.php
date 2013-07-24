@@ -17,18 +17,22 @@ if ( isset ( $_GET[md5("AL")] ) && trim ( $_GET[md5("AL")] ) != ""  ){
             $login_error=$msg_email_activation_failed;
     }
 }
+
+$login_error = "";
+
 if (isset($_POST['submit']) && $_POST['submit'] == "Sign In"){
 if ( $_POST['loginname'] == "" ){
     $login_error .= $msg_empty_loginname;
 }
-if ( $_POST['passwd'] == "" ){
+if ( isset($_POST['passwd']) && $_POST['passwd'] == "" ){
     $login_error .= "<br/>".$msg_empty_password;
 }
-if ( $login_error == "" ){
+if ( isset($login_error) && $login_error == "" ){
       $uname = mysql_real_escape_string(trim($_POST['loginname']));
       $pass = md5(trim($_POST['passwd']));
-      $myuser = new User(gInvalid,$uname,$pass,$myconnection);
+      $myuser = new User(gINVALID,$uname,$pass,$myconnection);
       $chk = $myuser->login();
+
       if ( $chk == true ){
           $chk = $myuser->register_login();
           header ("Location: ".$myuser->loggedin_page);
@@ -38,6 +42,7 @@ if ( $login_error == "" ){
 	}
 	
 }
+
 
 }
 ?>

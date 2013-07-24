@@ -28,11 +28,14 @@ define("USER_ITEM_INACTIVE", 2);
 //Payment Options
 define("CASH_PAYMENT", 1);
 define("PAYPAL_PAYMENT", 2);
+$g_paymentoptions[1] = "Cash Payment";
+$g_paymentoptions[2] = "Paypal";
 
 //Payment STATUS
 define("PAYMENT_PENDING", 1);
 define("PAID", 2);
-
+$g_paymentstatuses[1] = "Payment Pending";
+$g_paymentstatuses[2] = "Paid";
 
 // ORDER Status
 define("ORDER_APPROVED", 1);
@@ -41,11 +44,24 @@ define("ORDER_SHIPPED", 3);
 define("ORDER_DELIVERED", 4);
 define("ORDER_CANCELLED", 5);
 define("ORDER_REJECTED", 6);
-
+$g_orderstatuses[1] = "Approved";
+$g_orderstatuses[2] = "Billed";
+$g_orderstatuses[3] = "Shipped";
+$g_orderstatuses[4] = "Delivered";
+$g_orderstatuses[5] = "Cancelled";
+$g_orderstatuses[6] = "Rejected";
 // BILL Status
 define("BILLED", 1);
 define("BILL_CANCELLED", 2);
- 
+$g_billstatus[1] = "Billed";
+$g_billstatus[2] = "Bill Cancelled";
+
+// shipping Status
+define("SHIPPING", 1);
+define("NO_SHIPPING", 1);
+$g_shipping[1] = "Shipping";
+$g_shipping[2] = "No Shipping";
+
 
 GLOBAL $g_msg_unauthorized_request;
 $g_msg_unauthorized_request = "<strong>Unauthorized Page Request</strong><br/> <br/> You are not authorized to access this page. This attempt will be reported to the system Administrator. ";

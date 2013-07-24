@@ -259,6 +259,10 @@ h1 {
   padding:10px;
   border-right:1px solid #f6c896;
 }
+.buy_coffee img{
+height:200px;
+margin-left:20px;
+}
 .buy_coffee_div{
   float:left;
   width:120px;
