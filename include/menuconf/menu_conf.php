@@ -279,6 +279,13 @@ $sales_menu_admin[$i][submenu] = "";
 $i++;
 
 
+$sales_menu_admin[$i][caption] = "Orders";
+$sales_menu_admin[$i][url]="orders.php";
+$sales_menu_admin[$i][usertype] = USERTYPE_ADMIN;
+$sales_menu_admin[$i][submenu] = "";
+$i++;
+
+
 $sales_menu_admin[$i][caption] = "Carity Fundus";
 $sales_menu_admin[$i][url]="#";
 $sales_menu_admin[$i][usertype] = USERTYPE_ADMIN;

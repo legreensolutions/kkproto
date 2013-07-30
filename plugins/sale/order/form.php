@@ -1,5 +1,6 @@
 <form>
 <h1>Order Details</h1>
+</br>>
 <div class="field">
 <table>
 <tr>
@@ -73,8 +74,12 @@ echo $item_total;
 </tr>
 
 </table>
+</br>
+<div style="text-align:center;">
 <input type="hidden" name="id" value="<?php echo $myorder->id; ?>" />
-<input type="submit" name="submit" value="Process" />
+<input style="width:150px;" type="submit" name="submit" value="Process" />
+</div>
+</br>
 </div>
 
 

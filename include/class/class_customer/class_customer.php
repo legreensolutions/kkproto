@@ -145,6 +145,27 @@ class Customer {
     }
 
 
+
+function get_array(){
+        $customers = array();
+        $strSQL = "SELECT * FROM customers";
+        $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
+        if ( mysql_num_rows($rsRES) > 0 ){
+        while ( $row = mysql_fetch_assoc($rsRES) ){
+          $customers[$row["id"]]["name"] = $row["first_name"]. " ".$row["last_name"] ;
+        }
+        return $customers;
+        }
+        else{
+        $this->error_number = 4;
+        $this->error_description="Can't list customers";
+        return false;
+        }
+}
+
+
+
+
     function get_list_array(){
             $customers = array();$i=0;
             $strSQL = "SELECT id, first_name, last_name, address, street, city, state_id, country_id, postal_code, emailid, phone, ipaddress, gender_id, registrationdate, shipping_address, shipping_street, shipping_city, shipping_state_id, shipping_country_id, shipping_postal_code FROM customers ORDER BY id";

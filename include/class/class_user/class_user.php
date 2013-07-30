@@ -351,6 +351,44 @@ class User {
                         $this->error_description = "Image not deleted";
          }
     }
+
+
+function get_array(){
+        $users = array();
+        $strSQL = "SELECT id,user_name FROM users ORDER BY user_name";
+        $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
+        if ( mysql_num_rows($rsRES) > 0 ){
+        while ( list ($id,$user_name) = mysql_fetch_row($rsRES) ){
+          $users[$id]["name"] = $user_name;
+        }
+        return $users;
+        }
+        else{
+        $this->error_number = 4;
+        $this->error_description="Can't list users";
+        return false;
+        }
+}
+
+function get_list_array_all(){
+        $users = array();$i=0;
+        $strSQL = "SELECT id,user_name FROM users ORDER BY user_name";
+        $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
+        if ( mysql_num_rows($rsRES) > 0 ){
+        while ( list ($id,$user_name) = mysql_fetch_row($rsRES) ){
+              $users[$i]["id"] = $id;
+              $users[$i]["name"] = $user_name;
+              $i++;
+        }
+        return $users;
+        }
+        else{
+        $this->error_number = 4;
+        $this->error_description="Can't list users";
+        return false;
+        }
+}
+
     function get_list_array($txtsearch,$lstusertype,$lstuserstatus){
         $data = array();$i=0;
         $strSQL = "SELECT U.id AS uid,user_name,firstname,usertype_id,userstatus_id,usertype_name,userstatus_name,";
