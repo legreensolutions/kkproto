@@ -55,12 +55,12 @@
 
     <div class="field" >
         <label>State : </label>
-        <?php echo $mycustomer->state_name; ?>
+        <?php echo $array_state[$mycustomer->state_id]["state_name"] ; ?>
     </div>
 
 <div class="field" >
     <label>Country : </label>
-    <?php echo $mycustomer->country_name;?>
+    <?php echo $array_country[$mycustomer->country_id]["country_name"] ; ?>
 </div>
 
 
@@ -74,12 +74,44 @@
     <?php echo $mycustomer->phone;?>
 </div>
 
+
+
+
+<h1>Shipping Address<br /></h1>
 <hr />
 
+<div class="field" >
+    <label>Address : </label>
+    <?php echo $mycustomer->shipping_address;?>
+</div>
+
+<div class="field" >
+    <label>Street : </label>
+    <?php echo $mycustomer->shipping_street;?>
+</div>
+
+<div class="field" >
+    <label>City : </label>
+    <?php echo $mycustomer->shipping_city;?>
+</div>
+
+    <div class="field" >
+        <label>State : </label>
+       <?php echo $array_state[$mycustomer->shipping_state_id]["state_name"] ; ?>
+    </div>
+
+<div class="field" >
+    <label>Country : </label>
+    <?php echo $array_country[$mycustomer->shipping_country_id]["country_name"] ; ?>
+</div>
 
 
+<div class="field" >
+    <label>Zip/Postal Code : </label>
+    <?php echo $mycustomer->postal_code;?>
+</div>
 <br/><br/>
-<form action="<?php echo $current_url; ?>" method="post">
+<form action="/paypal.php" method="post">
 <input type="hidden" name="rm" value="2">
 
 <input type="hidden" name="custom" value="<?php echo $myorder->id; ?>">
@@ -91,19 +123,6 @@
 <input type="hidden" name="currency_code" value="CAD">
 <input type="hidden" name="lc" value="CA">
 
-
-<input type="hidden" name="cmd" value="_xclick">
-<input type="hidden" name="business" value="email@example.com">
-<input type="hidden" name="lc" value="CA">
-<input type="hidden" name="custom" value="<?php echo $myorder->id; ?>">
-<input type="hidden" name="item_name" value= "<?php echo $orderitem[0]["item_name"]; ?>">
-<input type="hidden" name="item_number" value="<?php echo $orderitem[0]["item_id"]; ?>">
-<input type="hidden" name="amount" value="<?php echo $order->order_amount; ?>">
-<input type="hidden" name="currency_code" value="CAD">
-<input type="hidden" name="button_subtype" value="services">
-<input type="hidden" name="no_note" value="0">
-<input type="hidden" name="tax_rate" value="5.000">
-<input type="hidden" name="shipping" value="5.00">
 <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
 <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
 <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
@@ -163,4 +182,4 @@
 
 </div>
 
-
+<br class="clear" />

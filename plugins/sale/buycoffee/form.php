@@ -38,17 +38,36 @@
       </div>
 
 
+<?php
+$unit_price = $myuseritem->user_price;
+if(isset($_POST['txtquantity'])){
+    $quantity = $_POST['txtquantity'];
+}else{ 
+    $quantity = 1 ;
+}
+
+$total = $unit_price * $quantity;
+?>
 
       <div class="buy_coffee_div">
         <br /><br />
-        <div class="buy_coffee_left_div"><label>Rate</label></div> <div class="buy_coffee_right_div">$<?php echo $myuseritem->user_price; ?></div>
+        <div class="buy_coffee_left_div"><label>Rate</label></div> <div class="buy_coffee_right_div">$<?php echo $unit_price ;  ?></div>
         <br />   <br />     
 
-        <div class="buy_coffee_left_div"><label>Quantity</label></div><div class="buy_coffee_right_div"><input   type="text" name="txtquantity" id="txtquantity" value="<?php if(isset($_POST['txtquantity'])){echo $_POST['txtquantity'];}else{ echo 1 ;} ?>" /></div>  
+        <div class="buy_coffee_left_div"><label>Quantity</label></div><div class="buy_coffee_right_div"><input   type="text" name="txtquantity" id="txtquantity" value="<?php echo  $quantity; ?>" /></div>  
+
+
+        <br /><br />
+        <div class="buy_coffee_left_div"><label>Total</label></div> <div class="buy_coffee_right_div"><span id="div_total">$<?php echo $total; ?> </span> <br>(Shipping and Tax extra)</div>
+        <br />   <br />  
           
         <input   type="hidden" name="item_id" id="item_id" value="<?php if(isset($_REQUEST['item_id'])){echo $_REQUEST['item_id'];}?>"/>  
+        <input   type="hidden" name="unit_price" id="unit_price" value="<?php echo $unit_price; ?>"/>  
       </div>
     
+        <br />   <br />     
+
+
       <div style="clear:both;"></div>
       
 
@@ -109,6 +128,71 @@
     <label>Phone</label>
     <input  type="text" name="txtphone" id="txtphone" value="<?php if(isset($_POST['txtphone'])){echo $_POST['txtphone'];}else{ echo $mycustomer->phone;}?>" >
 </div>
+
+
+
+
+
+      <div class="field"> <label>Shipping</label> <input type="checkbox" name="chkshipping" id="chkshipping"
+          value="<?php if(isset($_POST['chkshipping'])){echo $_POST['chkshipping'];}?>"
+          type="text">
+      </div>
+
+	<div id="shipping_tab">
+
+
+      <br>
+      <h1>3. Please enter shipping details</h1><br>
+      <div class="field"> <label>Use Same Address for Shipping</label> <input type="checkbox" name="chk_use_same_address" id="chk_use_same_address"
+          value="<?php if(isset($_POST['chk_use_same_address'])){echo $_POST['chk_use_same_address'];}?>"
+          type="text">
+      </div>
+
+      <div class="field"> <label>Address</label> <textarea name="txtaddress_shipping" id="txtaddress_shipping"><?php
+          if(isset($_POST['txtaddress_shipping'])){echo $_POST['txtaddress_shipping'];}else{ echo
+          $mycustomer->shipping_address;}?></textarea>
+      </div>
+      <div class="field"> <label>Street</label> <input name="txtstreet_shipping" id="txtstreet_shipping"
+          value="<?php if(isset($_POST['txtstreet_shipping'])){echo $_POST['txtstreet_shipping'];}else{ echo $mycustomer->shipping_street;}?>"
+          type="text">
+      </div>
+      <div class="field"> <label>City</label> <input name="txtcity_shipping" id="txtcity_shipping"
+          value="<?php if(isset($_POST['txtcity_shipping'])){echo $_POST['txtcity_shipping'];}else{ echo $mycustomer->shipping_city;}?>"
+          type="text">
+      </div>
+      <div class="field"> <label>State</label>
+        <?php if(isset($_POST['lststate_shipping'])){ $value = $_POST['lststate_shipping']; } else{ $value = $mycustomer->shipping_state_id;}
+        populate_list_array("lststate_shipping", $chk_state, "id", "state_name",
+        $defaultvalue=$value,$disable=false); ?> </div>
+      <div class="field"> <label>Country</label>
+        <?php if(isset($_POST['lstcountry_shipping'])){ $value = $_POST['lstcountry_shipping']; } else{ $value = $mycustomer->shipping_country_id;}
+        populate_list_array("lstcountry_shipping", $chk_con, "id", "country",
+        $defaultvalue=$value,$disable=false) ?>
+      </div>
+      <div class="field"> <label>Zip/Postal Code</label> <input name="txtpostal_code_shipping"
+          id="txtpostal_code_shipping" value="<?php if(isset($_POST['txtpostal_code_shipping'])){echo $_POST['txtpostal_code_shipping'];}else{ echo $mycustomer->shipping_postal_code;}?>"
+          type="text">
+      </div>
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

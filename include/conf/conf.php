@@ -81,4 +81,17 @@ define("WEB_URL", "http://kaffakarma.local");
 define("SUBSITE_WEB_URL", "http://kaffakarma.local/subsite");
 define("WEB_NAME", "kaffakarma.local");
 define("ORG_NAME", "Kaffakarma");
+
+
+//paypal
+ define("PAYPAL_URL", 'https://www.sandbox.paypal.com/cgi-bin/webscr');
+//define("PAYPAL_URL", 'https://www.paypal.com/cgi-bin/webscr');
+
+ define("PAYPAL_BUSINESS_ACCOUNT", 'pgm78@rediffmail.com');
+//define("PAYPAL_BUSINESS_ACCOUNT", 'admin@kaffakarma.com');
+
+ define("PAYPAL_RETURN_URL", 'http://kaffakarma.legreensolutions.com/paypal.php');
+//define("PAYPAL_RETURN_URL", 'http://kaffakarma.com/paypal.php');
+
+
 ?>

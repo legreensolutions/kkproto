@@ -1,11 +1,11 @@
 <?php
     $mystate = new State($myconnection);
     $mystate->connection = $myconnection;
-    $chk_state = $mystate->get_list_array_canada_and_us();
+    $array_state = $mystate->get_array();
 
     $mycountry = new country($myconnection);
     $mycountry->connection = $myconnection;
-    $chk_con = $mycountry->get_list_array();
+    $array_country = $mycountry->get_array();
 
 
     $mycustomer = new Customer($myconnection);

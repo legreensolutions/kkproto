@@ -5,7 +5,7 @@
 
     $mystate = new State($myconnection);
     $mystate->connection = $myconnection;
-    $chk_state = $mystate->get_list_array_canada_and_us();
+    $chk_state = $mystate->get_list_array();
 
     $mycountry = new country($myconnection);
     $mycountry->connection = $myconnection;
@@ -122,7 +122,16 @@
               $mycustomer->state_id = mysql_real_escape_string(trim($_POST['lststate']));
               $mycustomer->country_id = mysql_real_escape_string(trim($_POST['lstcountry']));
               $mycustomer->postal_code = mysql_real_escape_string(trim($_POST['txtpostal_code']));
+
               $mycustomer->phone = mysql_real_escape_string(trim($_POST['txtphone']));
+
+              $mycustomer->shipping_address = mysql_real_escape_string(trim($_POST['txtaddress_shipping']));
+              $mycustomer->shipping_street = mysql_real_escape_string(trim($_POST['txtstreet_shipping']));
+              $mycustomer->shipping_city = mysql_real_escape_string(trim($_POST['txtcity_shipping']));
+              $mycustomer->shipping_state_id = mysql_real_escape_string(trim($_POST['lststate_shipping']));
+              $mycustomer->shipping_country_id = mysql_real_escape_string(trim($_POST['lstcountry_shipping']));
+              $mycustomer->shipping_postal_code = mysql_real_escape_string(trim($_POST['txtpostal_code_shipping']));
+
               $mycustomer->id = mysql_real_escape_string(trim($_POST['h_id']));
               $chk = $mycustomer->update();
                     if ($chk == false){
@@ -152,6 +161,7 @@
                                 $myorderitem->order_id = $myorder->id;
                                 $myorderitem->delete_orderitmes();
                                 $myorderitem->id = gINVALID;
+
                                 $myorderitem->order_id = $myorder->id;
                                 $myorderitem->item_id = $myuseritem->item_id;
                                 $myorderitem->quantity = mysql_real_escape_string(trim($_POST['txtquantity']));

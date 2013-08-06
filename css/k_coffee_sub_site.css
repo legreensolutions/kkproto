@@ -2,6 +2,7 @@ body {
   background-color:#170e01;  
   font-family:"Times New Roman",Georgia,Serif;
   font-style:italic;
+  width:100%;
 }
 #outer-container {
   background-image:url('images/k_coffee_subsite/v_strand.png');
@@ -9,8 +10,7 @@ body {
 }
 #body {
   text-align:center;
-  margin:auto;
-  width:801px;
+
   min-height:1000px;/*Do not reduce this below 1000px */
   background-color:#f9f3e6;
   background-color:#f8f2e5;
@@ -19,6 +19,10 @@ body {
   background-image:url('../images/k_coffee_subsite/m_bottom.png');
   background-repeat:repeat-y;
   background-position:0px 65px;
+  width:801px;
+  margin-left:auto;
+  margin-right:auto;
+  
 }
 
 a, a:hover, a:visited {
@@ -265,7 +269,7 @@ margin-left:20px;
 }
 .buy_coffee_div{
   float:left;
-  width:120px;
+  width:220px;
   padding:20px;
 }
 
@@ -275,6 +279,9 @@ margin-left:20px;
 }
 .buy_coffee_right_div {
   float:left;
-  width:40px;
+  width:150px;
 }
+
+.clear { clear: both; }
+
 

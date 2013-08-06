@@ -22,6 +22,7 @@ $page = new gsPage;
 	$page->class_list = array("class_user.php","class_useritem.php", "class_state.php", "class_country.php", "class_city.php", "class_customer.php","class_order.php", "class_orderitem.php");
 
     $page->css_list = array("form.css");
+    $page->js_list_link = array("jquery.min.js");
 
 	$index=0;
 	$content_list[$index]['file_name']='subsite/inc_left_menu.php';
