@@ -294,6 +294,38 @@ $i++;
 
 GLOBAL $reports_menu_admin;
 
+$reports_menu_admin[$i][caption] = "Sales Report";
+$reports_menu_admin[$i][url]="rep_sales.php";
+$reports_menu_admin[$i][usertype] = USERTYPE_ADMIN;
+$reports_menu_admin[$i][submenu] = "";
+$i++;
+
+$reports_menu_admin[$i][caption] = "Shipping Report";
+$reports_menu_admin[$i][url]="rep_shipping.php";
+$reports_menu_admin[$i][usertype] = USERTYPE_ADMIN;
+$reports_menu_admin[$i][submenu] = "";
+$i++;
+
+
+$reports_menu_admin[$i][caption] = "Shipping Report- Annual";
+$reports_menu_admin[$i][url]="rep_shipping_anual.php";
+$reports_menu_admin[$i][usertype] = USERTYPE_ADMIN;
+$reports_menu_admin[$i][submenu] = "";
+$i++;
+
+
+$reports_menu_admin[$i][caption] = "Charity Amount Raised";
+$reports_menu_admin[$i][url]="rep_charity_amount_raised.php";
+$reports_menu_admin[$i][usertype] = USERTYPE_ADMIN;
+$reports_menu_admin[$i][submenu] = "";
+$i++;
+
+$reports_menu_admin[$i][caption] = "------------------------------------";
+$reports_menu_admin[$i][url]="#";
+$reports_menu_admin[$i][usertype] = USERTYPE_ADMIN;
+$reports_menu_admin[$i][submenu] = "";
+$i++;
+
 $reports_menu_admin[$i][caption] = "Cash Sale list";
 $reports_menu_admin[$i][url]="#";
 $reports_menu_admin[$i][usertype] = USERTYPE_ADMIN;

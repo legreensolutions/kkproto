@@ -171,3 +171,78 @@ color:#92151D;
   height:350px;
   border-bottom:1px solid #936b4a;  
 }
+
+
+.report-header h2 {
+  width:100%;
+  text-align:center;
+  margin:auto;
+  line-height:50px;
+  font-size:20px;
+
+}
+
+.report-header h3 {
+  width:100%;
+  text-align:center;
+  margin:auto;
+  line-height:50px;
+  font-size:15px;
+}
+.panel {
+  width:700px;
+  border:1px inset grey;
+  text-align:center;
+  margin:auto;
+  line-height:20px;
+  font-size:15px;
+  
+}
+
+td.numeric {
+  text-align:right;
+}
+
+.tablefooter{
+font-weight : bold;
+text-align:center;
+background-color:#f8d3b2;
+color:#FFFFFF;
+}
+.tablefooter td{
+font-weight : bold;
+text-align:center;
+background-color:#f8d3b2;
+color:#FFFFFF;
+}
+.tablefooter td.numeric {
+  color:#000;
+
+}
+
+tr.tablefooter td.numeric {
+  text-align:right;
+}
+
+
+.tableheader td.hidden{
+font-weight : bold;
+text-align:center;
+background-color:#412207;
+color:#412207;
+}
+
+
+
+
+.panel input {
+font-weight : bold;
+
+  
+}
+
+
+
+
+
+
