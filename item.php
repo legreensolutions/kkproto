@@ -27,13 +27,12 @@
 	$index=0;
 	$content_list[$index]['file_name']='inc_menu.php';
 	$content_list[$index]['var_name']='menu';
-	$index++;
-	$content_list[$index]['file_name']='inc_item_code.php';
-	$content_list[$index]['var_name']='content';
-    $index++;
-	$content_list[$index]['file_name']='inc_item_form.php';
-	$content_list[$index]['var_name']='content';
+
 	$page->content_list = $content_list;
   
+    $page->plugin_path = 'plugins/item/';
+    $page->plugin = 'update';
+
+
 	$page->display(); // completed page with dynamic content will be displayed
 ?>

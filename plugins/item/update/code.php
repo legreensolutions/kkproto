@@ -48,6 +48,9 @@ if ( $error == "" ){
     $myItem->item_type_id= trim($_POST['lstitem_type_id']);
     $myItem->keywords= trim($_POST['txtkeywords']);
     $myItem->unit_price= trim($_POST['txtunit_price']);
+    $myItem->unit_weight= trim($_POST['txtunit_weight']);
+    $myItem->max_shipping_unit= trim($_POST['txtmax_shipping_unit']);
+    $myItem->shipping_rate= trim($_POST['txtshipping_rate']);
     $myItem->tax_item= trim($_POST['txttax_item']);
     $myItem->tax_shipping= trim($_POST['txttax_shipping']);
     $myItem->commission= trim($_POST['txtcommission']);

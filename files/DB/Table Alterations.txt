@@ -1,0 +1,5 @@
+
+ALTER TABLE `items` ADD `unit_weight` DOUBLE NOT NULL AFTER `unit_price` ,
+ADD `max_shipping_unit` DOUBLE NOT NULL AFTER `unit_weight` ,
+ADD `shipping_rate` DOUBLE NOT NULL AFTER `max_shipping_unit` 
+

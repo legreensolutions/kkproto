@@ -44,6 +44,13 @@ populate_list_array("lstitem_type_id", $data_item_type, "id", "name", $defaultva
 
       <div class="field" ><label for="kewords">Keywords: </label><input type="text" name="txtkeywords" id="txtkeywords" value="<?php echo $myItem->keywords; ?>" /></div>
       <div class="field"><label for="unit_price">Unit Price: </label><input type="text" name="txtunit_price" id="txtunti_price" value="<?php echo $myItem->unit_price; ?>" /></div>
+
+      <div class="field"><label for="unit_weight">Unit weight (lbs): </label><input type="text" name="txtunit_weight" id="txtunti_weight" value="<?php echo $myItem->unit_weight; ?>" /></div>
+
+      <div class="field"><label for="max_shipping_unit">Max shipping unit (lbs) : </label><input type="text" name="txtmax_shipping_unit" id="txtmax_shipping_unit" value="<?php echo $myItem->max_shipping_unit; ?>" /></div>
+
+      <div class="field"><label for="shipping_rate">Shipping rate: </label><input type="text" name="txtshipping_rate" id="txtshipping_rate" value="<?php echo $myItem->shipping_rate; ?>" /></div>
+
       <div class="field"><label for="tax_item">Tax on Item: </label><input type="text" name="txttax_item" id="txttax_item" value="<?php echo $myItem->tax_item; ?>" /></div>
       <div class="field" ><label for="tax_shipping">Tax on Shipping: </label><input type="text" name="txttax_shipping" id="txttax_shipping" value="<?php echo $myItem->tax_shipping; ?>" /></div>
       <div class="field" ><label for="commission">Commission: </label><input type="text" name="txtcommission" id="txtcommission" value="<?php echo $myItem->commission; ?>" /></div>
