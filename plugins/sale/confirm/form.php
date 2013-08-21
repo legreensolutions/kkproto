@@ -13,7 +13,8 @@
   
   <div class="buy_coffee_div">
       Price: $<?php echo $orderitem[0]["unit_price"]; ?><br />
-      Quantity: <?php echo $orderitem[0]["quantity"]; ?>
+      Quantity: <?php echo $orderitem[0]["quantity"]; ?><br />
+      Amount: $<?php echo $orderitem[0]["amount"]; ?><br />
   </div>
 </div>
 
@@ -113,16 +114,19 @@
 <br/><br/>
 <form action="/paypal.php" method="post">
 <input type="hidden" name="rm" value="2">
-
+<input type="hidden" name="cmd" value="_xclick">
+<input type="hidden" name="business" value="<?php echo PAYPAL_BUSINESS_ACCOUNT ; ?>">
 <input type="hidden" name="custom" value="<?php echo $myorder->id; ?>">
 <input type="hidden" name="item_name" value= "<?php echo $orderitem[0]["item_name"]; ?>">
+<input type="hidden" name="item_price" value= "<?php echo $orderitem[0]["unit_price"]; ?>">
 <input type="hidden" name="item_number" value="<?php echo $orderitem[0]["item_id"]; ?>">
-<input type="hidden" name="amount" value="<?php echo $order->order_amount; ?>">
+<input type="hidden" name="amount" value="<?php echo $myorder->order_amount; ?>">
 <input type="hidden" name="no_shipping" value="2">
 <input type="hidden" name="no_note" value="1">
 <input type="hidden" name="currency_code" value="CAD">
 <input type="hidden" name="lc" value="CA">
-
+<input type="hidden" name="tax_rate" value="<?php echo $myorder->tax; ?>">
+<input type="hidden" name="shipping" value="<?php echo $myorder->shipping_amount; ?>">
 <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
 <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
 <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">

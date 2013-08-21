@@ -2,7 +2,7 @@
 
 		
 		
-		$my_paypal = new paypal_class;             // initiate an instance of the class
+		$my_paypal = new paypal;             // initiate an instance of the class
 		$my_paypal->paypal_url = PAYPAL_URL;   // paypal url
 		
 		// if there is not action variable, set the default action of 'process'

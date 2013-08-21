@@ -87,7 +87,7 @@ define("ORG_NAME", "Kaffakarma");
  define("PAYPAL_URL", 'https://www.sandbox.paypal.com/cgi-bin/webscr');
 //define("PAYPAL_URL", 'https://www.paypal.com/cgi-bin/webscr');
 
- define("PAYPAL_BUSINESS_ACCOUNT", 'pgm78@rediffmail.com');
+ define("PAYPAL_BUSINESS_ACCOUNT", 'business-test@kaffakarma.com');
 //define("PAYPAL_BUSINESS_ACCOUNT", 'admin@kaffakarma.com');
 
  define("PAYPAL_RETURN_URL", 'http://kaffakarma.legreensolutions.com/paypal.php');

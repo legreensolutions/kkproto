@@ -19,15 +19,15 @@ $page = new gsPage;
 	$page->connection_list = array("connection.php");
 
 	$page->function_list = array("functions.php");
-	$page->class_list = array("class_user.php");
+	$page->class_list = array("class_user.php","class_paypal.php");
 	$page->pageconf_list = array("index.php");
 
 	$index=0;
 	$content_list[$index]['file_name']='inc_left_menu.php';
 	$content_list[$index]['var_name']='left_menu';
 	$index++;
-	//$content_list[$index]['file_name']='inc_paypal.php';
-	//$content_list[$index]['var_name']='content';
+	$content_list[$index]['file_name']='inc_paypal.php';
+	$content_list[$index]['var_name']='content';
 
 	$page->content_list = $content_list;
 
