@@ -1,7 +1,5 @@
 <?php
 
-		
-		
 		$my_paypal = new paypal;             // initiate an instance of the class
 		$my_paypal->paypal_url = PAYPAL_URL;   // paypal url
 		
@@ -18,13 +16,21 @@
 		$my_paypal->add_field('cancel_return', PAYPAL_RETURN_URL.'?action=cancel');       
 
 		$my_paypal->add_field('notify_url', PAYPAL_RETURN_URL.'?action=ipn');
-		$my_paypal->add_field('item_name', $_POST['item_name']);
+
 		$my_paypal->add_field('custom', $_POST['custom']);
+		$my_paypal->add_field('item_name', $_POST['item_name']);
+		$my_paypal->add_field('item_number', $_POST['item_number']);
+		$my_paypal->add_field('quantity', $_POST['quantity']);
+		$my_paypal->add_field('amount', $_POST['amount']);
+		$my_paypal->add_field('tax', $_POST['tax']);
+		$my_paypal->add_field('shipping', $_POST['shipping']);
 		
 		$my_paypal->add_field('no_shipping', $_POST['no_shipping']);
 		$my_paypal->add_field('no_note', $_POST['no_note']);	
 		$my_paypal->add_field('currency_code', $_POST['currency_code']);
 		$my_paypal->add_field('lc', $_POST['lc']);
+
+
 		$my_paypal->add_field('cmd', '_xclick');
 	
 		$my_paypal->submit_paypal_post(); // submit the fields to paypal

@@ -112,71 +112,36 @@
     <?php echo $mycustomer->postal_code;?>
 </div>
 <br/><br/>
+
+
 <form action="/paypal.php" method="post">
-<input type="hidden" name="rm" value="2">
-<input type="hidden" name="cmd" value="_xclick">
+
+<!-- Identify your business so that you can collect the payments. -->
 <input type="hidden" name="business" value="<?php echo PAYPAL_BUSINESS_ACCOUNT ; ?>">
+
+<!-- Specify a Buy Now button. -->
+<input type="hidden" name="cmd" value="_xclick">
+
+<!-- Specify details about the item that buyers will purchase. -->
 <input type="hidden" name="custom" value="<?php echo $myorder->id; ?>">
 <input type="hidden" name="item_name" value= "<?php echo $orderitem[0]["item_name"]; ?>">
-<input type="hidden" name="item_price" value= "<?php echo $orderitem[0]["unit_price"]; ?>">
 <input type="hidden" name="item_number" value="<?php echo $orderitem[0]["item_id"]; ?>">
-<input type="hidden" name="amount" value="<?php echo $myorder->order_amount; ?>">
-<input type="hidden" name="no_shipping" value="2">
+<input type="hidden" name="quantity" value="<?php echo $orderitem[0]["quantity"]; ?>">
+<input type="hidden" name="amount" value="<?php echo $orderitem[0]["unit_price"]; ?>">
+<input type="hidden" name="no_shipping" value="<?php echo $myorder->shipping; ?>">
 <input type="hidden" name="no_note" value="1">
 <input type="hidden" name="currency_code" value="CAD">
 <input type="hidden" name="lc" value="CA">
-<input type="hidden" name="tax_rate" value="<?php echo $myorder->tax; ?>">
+<input type="hidden" name="tax" value="<?php echo $myorder->tax; ?>">
 <input type="hidden" name="shipping" value="<?php echo $myorder->shipping_amount; ?>">
-<input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
-<input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-
-
-
-
-
-
-	<br/><br/>
-<!--
-<input type="image" src="../images/paypal/PayPal_credit_card_logos.jpg" border="0" name="submit1" alt="Make payments with PayPal - it's fast, free and secure!">
--->
+<!-- Display the payment button. -->
+<input type="image" name="submit" border="0"
+src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+alt="PayPal - The safer, easier way to pay online">
+<img alt="" border="0" width="1" height="1"
+src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
 
 </form>
-
-
-
-
-
-
-
-
-
-
-<!--
-
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_xclick">
-<input type="hidden" name="business" value="email@example.com">
-<input type="hidden" name="lc" value="IN">
-<input type="hidden" name="item_name" value="tiem_name">
-<input type="hidden" name="item_number" value="item_id">
-<input type="hidden" name="amount" value="30.00">
-<input type="hidden" name="currency_code" value="CAD">
-<input type="hidden" name="button_subtype" value="services">
-<input type="hidden" name="no_note" value="0">
-<input type="hidden" name="tax_rate" value="5.000">
-<input type="hidden" name="shipping" value="5.00">
-<input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
-<input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-</form>
-
--->
-
-
-
-
-
 
 
 
