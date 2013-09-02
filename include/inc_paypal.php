@@ -55,10 +55,20 @@
 			mysql_query($query, $myconnection);
 	
 			if (trim($custom) == "" ) {
-				$_SESSION[SESSION_TITLE.'flash'] ='Unable to Complete Payment :: Paypal redirect Failed.';
-				header( "Location: flash.php");
+				$_SESSION[SESSION_TITLE.'flash'] ='Thank you for your contibution. Your payment is under processing, Waiting for Instant payment notification';
+				header( "Location: gfwflash.php");
 				exit();
-			}
+			}else{
+
+                    $myorder = new Order($myconnection);
+                    $myorder->connection = $myconnection;
+                    $myorder->id = 
+                    $myorder->payment_status_id = PAID;
+                    $myorder->update();
+				    $_SESSION[SESSION_TITLE.'flash'] ='Thank you for your contibution.Your payment is under processing, Waiting for Instant payment notification';
+				    header( "Location: gfwflash.php");
+				exit();
+            }
 				
             // 	Code Process Order		
 
@@ -71,7 +81,7 @@
 Thanks!";
 			$_SESSION[SESSION_TITLE.'flash_refresh_page'] = 60; 
 			$_SESSION[SESSION_TITLE.'flash_redirect_page'] = "index.php";
-			header( "Location: flash.php");
+			header( "Location: gfwflash.php");
 			exit();
 			
 

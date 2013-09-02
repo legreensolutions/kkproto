@@ -13,6 +13,12 @@
 
     $myuseritem = new UserItem($myconnection);
     $myuseritem->connection = $myconnection;
+
+    $myitem = new Item($myconnection);
+    $myitem->connection = $myconnection;
+
+
+
     if(isset($_REQUEST['item_id']) && $_REQUEST['item_id'] > 0){
 
         $myuseritem->item_id = $_REQUEST['item_id'];
@@ -37,6 +43,9 @@
     }else{
         //do nothing
         $_SESSION[SESSION_TITLE.'item_id'] = $myuseritem->item_id;
+        $myitem->id = $myuseritem->item_id;
+        $myitem->get_detail();
+
     }            
 
     $mycustomer = new Customer($myconnection);
@@ -166,11 +175,26 @@
                                 $myorderitem->item_id = $myuseritem->item_id;
                                 $myorderitem->quantity = mysql_real_escape_string(trim($_POST['txtquantity']));
                                 $myorderitem->unit_price = $myuseritem->unit_price;
-                                $myorderitem->amount = intval($myuseritem->unit_price) * intval($_POST['txtquantity']);
+                                $amount = intval($myuseritem->unit_price) * intval($_POST['txtquantity']);
+                                $myorderitem->amount = $amount;
                                 // calculate shipping amount, order_amount, commission_amount tax...
-                                $myorderitem->shipping_amount = $myuseritem->shipping_amount;
-                                $myorderitem->tax_item = $myuseritem->tax_item;
-                                $myorderitem->tax_shipping = $myuseritem->tax_shipping;
+                                
+                                $myorderitem->shipping_amount = $myitem->shipping_rate;
+
+
+                                if ($myitem->tax_item>0){
+                                    $tax =  $amount*($myitem->tax_item/100);
+                                }else{
+                                    $tax = 0;
+                                }
+                                $myorderitem->tax_item = $tax;
+
+                                if ($myitem->tax_shipping>0){
+                                    $gst =  $amount*($myitem->tax_shipping/100);
+                                }else{
+                                    $gst = 0;
+                                }
+                                $myorderitem->tax_shipping = $gst;
                                 // modify class useritem for commission
                                 $myorderitem->commission = $myuseritem->commission;
                                 $myorderitem->commission_amount = intval($myuseritem->commission) * intval($_POST['txtquantity']);
@@ -184,6 +208,9 @@
                                          // calculate shipping amount, order_amount, commission_amount tax...
                                         $myorder->order_number = $myorder->id;
                                         $myorder->order_amount = $myorderitem->amount;
+                                        $myorder->shipping_amount = $myorderitem->shipping_amount;
+                                        $myorder->tax = $tax + $gst;
+                                        $myorder->commission_amount = $myorderitem->commission_amount;
                                         $chk_order = $myorder->update();
 
                                         $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_updated;
