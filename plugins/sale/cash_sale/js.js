@@ -9,6 +9,7 @@ $(document).ready(function(){
 			.done(function(data) {
 			//alert("Data Loaded: " + data);
 			$('#txtrate').val(data);
+             calculate_total();
 		});
 	});
 
@@ -25,11 +26,32 @@ $(document).ready(function(){
 	});	
 
 	$('#txtquantity').change(function() {
+        calculate_total();
+	});	
+
+	$('#txtquantity').change(function() {
+        calculate_total();
+	});	
+
+
+
+
+
+function calculate_total(){
+
 		rate = $('#txtrate').val();
 		quantity = $('#txtquantity').val();
 		total = rate*quantity;
 		$('#div_total').html("Total : $"+total+" (Shipping and Tax extra)");
 
-	});	
+}
+
+
+
 
 });
+
+
+
+
+

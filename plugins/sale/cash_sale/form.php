@@ -75,7 +75,7 @@
 
 
       <div class="field"> <label>Shipping</label> <input type="checkbox" name="chkshipping" id="chkshipping"
-          value="<?php if(isset($_POST['chkshipping'])){echo $_POST['chkshipping'];}?>"
+          value="<?php if(isset($_POST['chkshipping'])){echo $_POST['chkshipping'];} else { echo SHIPPING; }?>"
           type="text">
       </div>
 

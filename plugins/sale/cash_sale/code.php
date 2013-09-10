@@ -24,17 +24,14 @@
     $myorderitem = new OrderItem($myconnection);
     $myorderitem->connection = $myconnection;
 
-    $mybill = new Bill($myconnection);
-    $mybill->connection = $myconnection;
-
-    $mybillitem = new BillItem($myconnection);
-    $mybillitem->connection = $myconnection;
 
 
 
 
     $error = "";
     if (isset($_POST['submit']) && $_POST['submit'] == $CAP_submit){
+
+
 
         if ( trim($_POST['txtemail']) == "" ){
             $error .= $MSG_empty_email;
@@ -121,6 +118,14 @@
                         $myorder->customer_id = $mycustomer->id;
                         $myorder->user_id = $_SESSION[SESSION_TITLE.'user_id'];
                         $myorder->order_date = date("Y-m-d");
+
+                        if(isset($_POST['chkshipping']) && $_POST['chkshipping'] > 0){
+                            $shipping =  SHIPPING;
+                        }else{
+                            $shipping =  NO_SHIPPING;
+                        }
+
+                        $myorder->shipping =  $shipping ;
                         $myorder->paymentoption_id = CASH_PAYMENT;
                         $chk_order = $myorder->update();
                             if ($chk_order == false){
@@ -145,12 +150,36 @@
                                 $myorderitem->item_id = $myitem->id;
                                 $myorderitem->quantity = mysql_real_escape_string(trim($_POST['txtquantity']));
                                 $myorderitem->unit_price = $myitem->unit_price;
-								$orderitem_amount = intval($myitem->unit_price) * intval($_POST['txtquantity']);
-                                $myorderitem->amount = $orderitem_amount;
+							    $amount = intval($myitem->unit_price) * intval($_POST['txtquantity']);
+                                $myorderitem->amount = $amount;
+
                                 // calculate shipping amount, order_amount, commission_amount tax...
-                                $myorderitem->shipping_amount = $myitem->shipping_amount;
-                                $myorderitem->tax_item = $myitem->tax_item;
-                                $myorderitem->tax_shipping = $myitem->tax_shipping;
+                                if($myorder->shipping == SHIPPING){
+
+                                    $myorderitem->shipping_amount = $myitem->shipping_rate;
+                                }else{
+                                    $myorderitem->shipping_amount = 0;
+                                }
+
+
+
+                                if ($myitem->tax_item>0){
+                                    $tax =  $amount*($myitem->tax_item/100);
+                                }else{
+                                    $tax = 0;
+                                }
+                                
+                                
+                                if ($myorder->shipping == SHIPPING && $myitem->tax_shipping > 0){
+                                    $gst =  $amount*($myitem->tax_shipping/100);
+                                }else{
+                                    $gst = 0;
+                                }
+
+//                                $myorderitem->tax_shipping = $gst;
+//                                $myorderitem->tax_item = $tax;
+
+                                 $myorderitem->tax = $tax + $gst;
                                 // modify class useritem for commission
                                 $myorderitem->commission = $myitem->commission;
                                 $myorderitem->commission_amount = intval($myitem->commission) * intval($_POST['txtquantity']);
@@ -164,6 +193,18 @@
                                          // calculate shipping amount, order_amount, commission_amount tax...
                                         $myorder->order_number = $myorder->id;
                                         $myorder->order_amount = $myorderitem->amount;
+                                        if($myorder->shipping == SHIPPING){
+                                            $myorder->shipping_amount = $myorderitem->shipping_amount;
+                                            $myorder->tax = $tax + $gst;            
+                                        }else{
+                                            $myorder->shipping_amount = 0;
+                                            $myorder->tax = $tax ;  
+                                        }
+
+                                        $myorder->commission_amount = $myorderitem->commission_amount;
+                                        $myorder->payment_status_id = PAID;
+                                        $myorder->paymentdate = date("Y-m-d");
+
                                         $chk_order = $myorder->update();
 
                                         //$_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_updated;

@@ -58,7 +58,7 @@ $g_billstatus[2] = "Bill Cancelled";
 
 // shipping Status
 define("SHIPPING", 1);
-define("NO_SHIPPING", 1);
+define("NO_SHIPPING", 2);
 $g_shipping[1] = "Shipping";
 $g_shipping[2] = "No Shipping";
 
