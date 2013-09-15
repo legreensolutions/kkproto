@@ -2,9 +2,8 @@
 
 //User Types
 define("USERTYPE_ADMIN", 1);
-define("USERTYPE_REGISTERED_USER", 2);
-define("USERTYPE_EMPLOYEE", 3);
-
+define("USERTYPE_EMPLOYEE", 2);
+define("USERTYPE_REGISTERED_USER", 3);  //charity
 //User Status
 define("USERSTATUS_ACTIVE", 1);
 define("USERSTATUS_TO_BE_ACTIVATED", 2);

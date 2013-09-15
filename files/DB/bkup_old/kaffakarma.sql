@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.11.1deb1
+-- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 15, 2013 at 10:10 AM
--- Server version: 5.5.32
--- PHP Version: 5.4.6-1ubuntu1.3
+-- Generation Time: Jul 02, 2013 at 08:59 AM
+-- Server version: 5.5.31
+-- PHP Version: 5.3.10-1ubuntu3.6
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `kaffakarma`
+-- Database: `kkproto`
 --
 
 -- --------------------------------------------------------
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `business` (
   `ipaddress` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `userid` (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `cities` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `country_id` (`country_id`,`state_id`,`city_name`),
   KEY `state_id` (`state_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `cities`
@@ -132,10 +132,7 @@ INSERT INTO `cities` (`id`, `city_name`, `state_id`, `country_id`) VALUES
 (15, 'Kochi', 0, 0),
 (16, 'cochin', 0, 0),
 (17, 'ere', 52, 38),
-(18, 'afadsf', 4, 226),
-(19, 'abc', 57, 38),
-(20, 'city', 0, 38),
-(21, 'txtcity', 0, 38);
+(18, 'afadsf', 4, 226);
 
 -- --------------------------------------------------------
 
@@ -155,7 +152,22 @@ CREATE TABLE IF NOT EXISTS `configurations` (
   PRIMARY KEY (`id`),
   KEY `page_id` (`page_id`,`language_id`),
   KEY `configurationtype_id` (`configurationtype_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `configurations`
+--
+
+INSERT INTO `configurations` (`id`, `configuration_name`, `page_id`, `value`, `description`, `language_id`, `configurationtype_id`, `publish`) VALUES
+(1, 'Home Page Content', 1, '<p>Kaffa Karma is a family owned and operated company that was founded on the principles of Paying It Forward.</p><br />\n<p>The owners have been an active part of the Calgary community for four generations and have watched this thriving metropolis take form.</p><br />\n<p>Over the years, as our children have grown and participated in community events, sporting groups and clubs, we&#39;ve been involved in a TON of fund raisers. Kaffa Karma is just that! Fund raising on cruise control!</p><br /><p>We work with your group or organization to raise funds without the early morning bottle drives or hours working in a bingo hall. Kaffa Karma will brand and market Organic Gourmet 100% Arabica Coffee for your group. We handle the order processing and arrange for the delivery of the product... so, all you do is collect a check at the end of the month.</p><br /><div id = "fund_raiser_button"></div><!--div id = "equipments_big_button"></div--><br />\n          <br />\n', 'Dynamic index content', 1, 1, 0),
+(2, 'Our Showcase', 8, '<br />\n<h1>Our Showcase</h1><br />\nCoffee... <br /><br />\n          <br />\n', 'Dynamic about_the_coffee content', 1, 1, 0),
+(3, 'Contact Information', 6, '<br />\n<h1>Contact Information</h1><br />\nKaffa Karma <br /><br />\nCanada<br /><br />\nemail:  admin@kaffakarma.com<br /><br />\nPh: 123456789<br /><br />\n          <br />\n', 'Dynamic contact_us content', 1, 1, 0),
+(4, 'About Us', 7, '<br />\n<h1>About Us</h1><br />Kaffa Karma is just ... fund raising on cruise control!<br /><br />\nKaffa Karma is a family owned and operated company that was founded on the principals of paying it forward. The owners have been an active part of the Calgary community for four generations and have watched this thriving metropolis take form. over the years as our children have grown and participated in community events, sporting groups and clubs and as such weÃ¢â‚¬â„¢ve been involved in a TON of fund raisers.<br />\n  <br />\n', 'Dynamic about_us content', 1, 1, 0),
+(5, 'Home Page Content', 1, '<p>Kaffa Karma is a family owned and operated company that was founded on the principles of Paying It Forward.</p><br />\n<p>The owners have been an active part of the Calgary community for four generations and have watched this thriving metropolis take form.</p><br />\n<p>Over the years, as our children have grown and participated in community events, sporting groups and clubs, we&#39;ve been involved in a TON of fund raisers. Kaffa Karma is just that! Fund raising on cruise control!</p><br /><p>We work with your group or organization to raise funds without the early morning bottle drives or hours working in a bingo hall. Kaffa Karma will brand and market Organic Gourmet 100% Arabica Coffee for your group. We handle the order processing and arrange for the delivery of the product... so, all you do is collect a check at the end of the month.</p><br /><div id = "fund_raiser_button"></div><!--div id = "equipments_big_button"></div--><br />\n          <br />\n', 'Dynamic index content', 0, 0, 0),
+(6, 'Terms and Conditions', 3, '<br />\n<h1>Terms and Conditions</h1><br />\n<p>Terms and Conditions .. </p><br />\n          <br />\n', 'Dynamic terms_of_use content', 0, 0, 0),
+(7, 'Disclaimer', 4, '<br />\n<h1>Disclaimer</h1><br />\n<p>Disclaimer content .. </p><br />\n          <br />\n', 'Dynamic disclaimer content', 0, 0, 0),
+(8, 'Sitemap', 2, '<br />\n<h1>Sitemap</h1><br />\n<p>sitemap content .. </p><br />\n          <br />\n', 'Dynamic sitemap content', 0, 0, 0),
+(9, 'Privacy Policy', 5, '<br />\n<h1>Privacy Policy</h1><br />\n<p>privacy policy content .. </p><br />\n          <br />\n', 'Dynamic privacy_policy content', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -205,7 +217,9 @@ CREATE TABLE IF NOT EXISTS `countries` (
 --
 
 INSERT INTO `countries` (`id`, `country`, `country_name`, `iso2`, `iso3`, `numericcode`) VALUES
-(38, 'CANADA', 'Canada', 'CA', 'CAN', 124);
+(38, 'CANADA', 'Canada', 'CA', 'CAN', 124),
+(226, 'UNITED STATES', 'United States', 'US', 'USA', 840),
+(240, 'Other', 'Other', '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -237,47 +251,14 @@ CREATE TABLE IF NOT EXISTS `customers` (
   PRIMARY KEY (`id`),
   KEY `state_id` (`state_id`,`country_id`),
   KEY `shipping_state_id` (`shipping_state_id`,`shipping_country_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `customers`
 --
 
 INSERT INTO `customers` (`id`, `first_name`, `last_name`, `address`, `street`, `city`, `state_id`, `country_id`, `postal_code`, `emailid`, `phone`, `ipaddress`, `gender_id`, `registrationdate`, `shipping_address`, `shipping_street`, `shipping_city`, `shipping_state_id`, `shipping_country_id`, `shipping_postal_code`) VALUES
-(1, 'pramod', 'menon', 'sreerangam', 'vennala', 'kochi', 51, 38, '123456', 'test@test.com', '123456', '127.0.0.1', -1, '2013-07-22 23:05:53', 'sreerangam', 'vennala', 'kochi', 51, 38, '123456'),
-(2, 'Pramod', 'Menon', 'Sreerangam', 'vennala', 'kochi', 51, 38, '123456', 'pramod@legreens.com', '987654', '127.0.0.1', -1, '2013-08-06 00:47:54', 'Sreerangam', 'vennala', 'kochi', 51, 38, '123456'),
-(3, 'Pramod', 'Menon', 'Sreerangam', 'vennala', 'kochi', 51, 38, '123456', 'pramod@legreens.com', '987654', '127.0.0.1', -1, '2013-08-06 00:49:34', 'Sreerangam', 'vennala', 'kochi', 51, 38, '123456'),
-(4, 'Pramod', 'Menon', 'Sreerangam', 'vennala', 'kochi', 51, 38, '123456', 'pramod@legreens.com', '987654', '127.0.0.1', -1, '2013-08-06 00:50:39', 'Sreerangam', 'vennala', 'kochi', 51, 38, '123456'),
-(5, 'Pramod', 'Menon', 'test', 'vennala', 'kochi', 61, 38, '123456', 'pramod@legreens.com', '987654', '127.0.0.1', -1, '2013-08-06 02:13:45', 'test', 'vennala', 'kochi', 61, 38, '123456'),
-(6, 'Buyer', 'Test', 'test address', 'street', 'city', 51, 38, '123456', 'buyer-test@kaffakarma.com', '654321', '127.0.0.1', -1, '2013-08-21 01:44:01', 'test address', 'street', 'city', 51, 38, '123456'),
-(7, 'pramod', 'menon', 'legreens', 'vennala', 'kochi', 51, 38, '123456', 'pramod@test.com', '654987', '127.0.0.1', -1, '2013-08-27 02:00:39', 'legreens', 'vennala', 'kochi', 51, 38, '123456'),
-(8, 'buyer', 'buyer', 'buyer', 'street', 'city', 51, 38, '123456', 'buyer-test@kaffakarma.com', '654321', '127.0.0.1', -1, '2013-08-31 04:54:44', 'buyer', 'street', 'city', 51, 38, '123456'),
-(9, 'pramod', 'pramod', 'address', 'vennala', 'city', 51, 38, '123456', 'pramod@test.com', '654321', '127.0.0.1', -1, '2013-09-01 08:56:00', 'address', 'vennala', 'city', 51, 38, '123456'),
-(10, 'buyer', 'tester', 'address', 'street', 'city', 52, 38, '123456', 'buyer-test@kaffakarma.com', '654321', '127.0.0.1', -1, '2013-09-02 01:52:48', 'address', 'street', 'city', 52, 38, '123456'),
-(11, 'abcd', 'efg', 'address,\\r\\nabcd street', 'abcd', 'abcd', 51, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-03 02:25:00', 'address,\\r\\nabcd street', 'abcd', 'abcd', 51, 38, '123456'),
-(12, 'abcd', 'efg', 'address', 'abcd', 'abcd', 51, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-03 02:55:23', '', '', '', -1, -1, ''),
-(13, 'abcd', 'efg', 'dasfadf', 'abcd', 'abcd', 51, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-03 02:56:56', 'dasfadf', 'abcd', 'abcd', 51, 38, '123456'),
-(14, 'abcd', 'efg', 'aswdad', 'abcd', 'abcd', 52, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-03 02:59:36', 'aswdad', 'abcd', 'abcd', 52, 38, '123456'),
-(15, 'abcd', 'efg', 'asdaSD', 'abcd', 'abcd', 51, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-03 03:00:29', '', '', '', -1, -1, ''),
-(16, 'abcd', 'efg', 'asdaSD', 'abcd', 'abcd', 51, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-03 03:03:22', '', '', '', -1, -1, ''),
-(17, 'abcd', 'efg', 'asdaSD', 'abcd', 'abcd', 51, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-03 03:03:43', '', '', '', -1, -1, ''),
-(18, 'HELLO', 'HELLO', 'HELLO', 'HELLO', 'HELLO', 60, 38, '123456', 'hello@hello.com', '654321', '127.0.0.1', -1, '2013-09-03 03:05:31', '', '', '', -1, -1, ''),
-(19, 'abcd', 'efg', 'test', 'street', 'city', 51, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-03 03:08:08', '', '', '', -1, -1, ''),
-(20, 'abcd', 'efg', 'test', 'street', 'city', 51, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-03 03:08:56', '', '', '', -1, -1, ''),
-(21, 'abcd', 'efg', 'test', 'street', 'city', 51, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-03 03:10:05', '', '', '', -1, -1, ''),
-(22, 'abcd', 'efg', 'test', 'street', 'city', 51, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-03 03:11:06', '', '', '', -1, -1, ''),
-(23, 'sdf', 'sdf', 'sdf', 'abcd', 'abcd', 52, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-03 03:11:31', '', '', '', -1, -1, ''),
-(24, 'abcd', 'efg', 'asf', 'abcd', 'abcd', 51, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-03 03:12:15', '', '', '', -1, -1, ''),
-(25, 'abcd', 'efg', 'adsfaf', 'abcd', 'abcd', 54, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-05 03:02:19', '', '', '', -1, -1, ''),
-(26, 'abcd', 'efg', 'adsfaf', 'abcd', 'abcd', 54, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-05 03:03:17', '', '', '', -1, -1, ''),
-(27, 'abcd', 'efg', 'dfghd', 'abcd', 'abcd', 51, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-10 01:19:52', '', '', '', -1, -1, ''),
-(28, 'abcd', 'efg', '123', 'abcd', 'abcd', 52, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-10 01:26:46', '', '', '', -1, -1, ''),
-(29, 'abcd', 'efg', 'vbnjf', 'abcd', 'abcd', 51, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-10 01:27:51', '', '', '', -1, -1, ''),
-(30, 'abcd', 'efg', 'erewqr', 'abcd', 'abcd', 61, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-10 01:30:41', '', '', '', -1, -1, ''),
-(31, 'abcd', 'efg', 'dgh', 'abcd', 'abcd', 51, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-10 01:38:55', '', '', '', -1, -1, ''),
-(32, 'abcd', 'efg', 'hmg', 'j', 'abcd', 51, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-10 01:39:51', 'hmg', 'j', 'abcd', 51, 38, '123456'),
-(33, 'abcd', 'efg', 'srtewt', 'abcd', 'abcd', 51, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-10 01:40:46', 'srtewt', 'abcd', 'abcd', 51, 38, '123456'),
-(34, 'abcd', 'efg', 'yghfjhfgjfghj', 'abcd', 'abcd', 51, 38, '123456', 'abcd@abcd.com', '654321', '127.0.0.1', -1, '2013-09-10 01:46:40', 'yghfjhfgjfghj', 'abcd', 'abcd', 51, 38, '123456');
+(1, 'dafa', 'afsf', 'afa', 'afaf', 'afsaf', 5, 38, 'afasf', 'pramod@test.com', 'afsasf', '127.0.0.1', -1, '2013-06-27 17:34:43', '', '', '', 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -345,27 +326,25 @@ CREATE TABLE IF NOT EXISTS `items` (
   `image` varchar(255) DEFAULT NULL,
   `keywords` text,
   `unit_price` double NOT NULL,
-  `unit_weight` double NOT NULL,
-  `max_shipping_unit` double NOT NULL,
-  `shipping_rate` double NOT NULL,
   `tax_item` double NOT NULL,
   `tax_shipping` double NOT NULL,
   `commission` double NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   KEY `item_status_id` (`item_status_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `name`, `description`, `item_status_id`, `item_type_id`, `image`, `keywords`, `unit_price`, `unit_weight`, `max_shipping_unit`, `shipping_rate`, `tax_item`, `tax_shipping`, `commission`) VALUES
-(1, 'Medium Roast', 'Our Paradise Mountain beans are roasted to a full medium roast to produce a sweet, lightly dry cup with a pleasant flowery aroma. Well-balanced with a delicate body, our Single-Farm Medium offers an exceptionally vibrant beginning with a honey like, dry finish. It is a likable and easy drinking cup of coffee to enjoy anytime of the day.', 1, 1, 'MediumRoast.jpeg', 'Coffee', 15, 1, 25, 12.5, 0, 5, 1),
-(2, 'Dark Roast', 'Our Paradise Mountain dark beans are slow roasted to create a dark, exotic cup with an intensely bold flavor. Lively, with an earthy, acidic undertone and a slightly chocolate aroma, our dark roast is full bodied with a spicy dry finish. This coffee is excellent in the morning or paired with your favorite dessert.', 1, 1, 'DarkRoast.jpeg', 'Coffee', 15, 1, 25, 12.5, 0, 5, 1),
-(3, 'Estate Blend', 'This blend was specially developed to produce a coffee that reflects all of the characteristics of Paradise Mountain Organic Coffee. Each varietal is individually roasted in order to showcase its own unique profile. Right from the start, this coffee presents an exotic flowery aroma. In the cup, it is full bodied with a wide range of depth. The finish is slightly smoky with hints of mocha and berries. This coffee is best enjoyed on its own to appreciate its complexity.', 1, 1, 'EstateBlend.jpeg', 'Estate Blend Coffee Kaffakarma', 15, 1, 25, 12.5, 0, 5, 1),
-(4, 'Angel’s Espresso Blend', 'This blend a rare combination of six origin beans makes up this highly popular, smooth, rich espresso. A combination of South American and Indonesian beans this espresso is flavored for its slightly sweet and winey undertones. With a pleasant, dry mocha finish, this espresso carries well with any milk based drink or especially on its own.', 1, 1, 'Expresso.jpeg', 'Angel’s Espresso Blend Coffee Kaffakarma Angel', 15, 1, 25, 12.5, 0, 5, 1),
-(5, 'SWP Decaf Blend', 'From our farm in Thailand we bring our green beans to Burnaby, Canada, where they are decaffeinated via the Swiss Water Process. This is the only method that preserves the organic status of coffee. The distinct characteristics of our Thailand farm coffees are as present as ever. Exotic flowery aromas, smooth yet full bodied and a slightly dry mocha finish, just now available in decaffeinated version.', 1, 1, 'decaf.jpeg', 'SWP Decaf Blend Coffee Kaffakarma', 15, 1, 25, 12.5, 0, 5, 1);
+INSERT INTO `items` (`id`, `name`, `description`, `item_status_id`, `item_type_id`, `image`, `keywords`, `unit_price`, `tax_item`, `tax_shipping`, `commission`) VALUES
+(1, 'Coffee 1', 'Coffee 1', 1, 1, '4.jpg', 'Coffee', 15, 5, 5, 1),
+(2, 'Coffee 2', 'Coffee 2', 1, 1, '3.jpg', 'Coffee', 15, 5, 5, 1),
+(3, 'Coffee 3', 'Coffee 3', 1, 1, '2.jpg', 'Coffee', 15, 5, 5, 1),
+(4, 'Coffee 4', 'Coffee 4', 1, 1, '4.jpg', 'Coffee', 15, 5, 5, 1),
+(5, 'Coffee 5', 'Coffee 5', 1, 1, '3.jpg', 'Coffee', 15, 5, 5, 1),
+(6, 'Coffee 6', 'Coffee 6', 1, 1, '2.jpg', 'Coffee', 15, 5, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -650,6 +629,56 @@ CREATE TABLE IF NOT EXISTS `states` (
 --
 
 INSERT INTO `states` (`id`, `state_name`, `statecode`, `country_id`) VALUES
+(1, 'Alabama', 'AL', 226),
+(2, 'Alaska', 'AK', 226),
+(3, 'Arizona', 'AZ', 226),
+(4, 'Arkansas', 'AR', 226),
+(5, 'California', 'CA', 226),
+(6, 'Colorado', 'CO', 226),
+(7, 'Connecticut', 'CT', 226),
+(8, 'Delaware', 'DE', 226),
+(9, 'Florida', 'FL', 226),
+(10, 'Georgia', 'GA', 226),
+(11, 'Hawaii', 'HI', 226),
+(12, 'Idaho', 'ID', 226),
+(13, 'Illinois', 'IL', 226),
+(14, 'Indiana', 'IN', 226),
+(15, 'Iowa', 'IA', 226),
+(16, 'Kansas', 'KS', 226),
+(17, 'Kentucky', 'KY', 226),
+(18, 'Louisiana', 'LA', 226),
+(19, 'Maine', 'ME', 226),
+(20, 'Maryland', 'MD', 226),
+(21, 'Massachusetts', 'MA', 226),
+(22, 'Michigan', 'MI', 226),
+(23, 'Minnesota', 'MN', 226),
+(24, 'Mississippi', 'MS', 226),
+(25, 'Missouri', 'MO', 226),
+(26, 'Montana', 'MT', 226),
+(27, 'Nebraska', 'NE', 226),
+(28, 'Nevada', 'NV', 226),
+(29, 'New Hampshire', 'NH', 226),
+(30, 'New Jersey', 'NJ', 226),
+(31, 'New Mexico', 'NM', 226),
+(32, 'New York', 'NY', 226),
+(33, 'North Carolina', 'NC', 226),
+(34, 'North Dakota', 'ND', 226),
+(35, 'Ohio', 'OH', 226),
+(36, 'Oklahoma', 'OK', 226),
+(37, 'Oregon', 'OR', 226),
+(38, 'Pennsylvania', 'PA', 226),
+(39, 'Rhode Island', 'RI', 226),
+(40, 'South Carolina', 'SC', 226),
+(41, 'South Dakota', 'SD', 226),
+(42, 'Tennessee', 'TN', 226),
+(43, 'Texas', 'TX', 226),
+(44, 'Utah', 'UT', 226),
+(45, 'Vermont', 'VT', 226),
+(46, 'Virginia', 'VA', 226),
+(47, 'Washington', 'WA', 226),
+(48, 'West Virginia', 'WV', 226),
+(49, 'Wisconsin', 'WI', 226),
+(50, 'Wyoming', 'WY', 226),
 (51, 'Alberta', 'AAC', 38),
 (52, 'British Columbia', 'BCC', 38),
 (53, 'Manitoba', 'MAC', 38),
@@ -660,7 +689,8 @@ INSERT INTO `states` (`id`, `state_name`, `statecode`, `country_id`) VALUES
 (60, 'Prince Edward Island', 'PEC', 38),
 (61, 'Quebec', 'QCC', 38),
 (62, 'Saskatchewan', 'SNC', 38),
-(63, 'Yukon', 'YNC', 38);
+(63, 'Yukon', 'YNC', 38),
+(64, 'Other', NULL, 240);
 
 -- --------------------------------------------------------
 
@@ -691,7 +721,19 @@ CREATE TABLE IF NOT EXISTS `useritems` (
   `active` smallint(6) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`,`item_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `useritems`
+--
+
+INSERT INTO `useritems` (`id`, `user_id`, `item_id`, `unit_price`, `active`) VALUES
+(1, 2, 1, 15, 1),
+(2, 2, 2, 15, 1),
+(3, 2, 3, 15, 1),
+(4, 2, 4, 15, 1),
+(5, 2, 5, 15, 1),
+(6, 2, 6, 15, 1);
 
 -- --------------------------------------------------------
 
@@ -723,14 +765,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `user_name` (`user_name`),
   KEY `usertype_id` (`usertype_id`),
   KEY `userstatus_id` (`userstatus_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `user_name`, `userpassword`, `usertype_id`, `firstname`, `lastname`, `emailid`, `address`, `street`, `city_id`, `state_id`, `country_id`, `ipaddress`, `registrationdate`, `lastlogin`, `userstatus_id`, `image`, `securityquestion_id`, `answer`) VALUES
-(1, 'admin', '85587e3aa839ec03b0967408ca2192f9', 1, 'Admin', '', '', '', NULL, '16', 0, 0, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, NULL, 1, 'neelan');
+(1, 'admin', '85587e3aa839ec03b0967408ca2192f9', 1, 'Admin', '', '', '', NULL, '16', 0, 0, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, NULL, 1, 'neelan'),
+(2, 'legreens', 'e10adc3949ba59abbe56e057f20f883e', 2, 'legreens', 'legree', 'legreens@test.com', 'afaf', NULL, '18', 4, 226, NULL, '2013-02-25 13:25:29', '0000-00-00 00:00:00', 1, '', 4, 'dfd');
 
 -- --------------------------------------------------------
 
@@ -778,7 +821,7 @@ CREATE TABLE IF NOT EXISTS `usertypes` (
 INSERT INTO `usertypes` (`id`, `usertype_name`, `description`, `loggedin_page`) VALUES
 (1, 'Admin', 'Administrator', 'profile.php'),
 (2, 'Employee', 'Employee', 'profile.php'),
-(3, 'User[charity]', 'Registered User', 'profile.php');
+(3, 'User', 'Registered User', 'profile.php');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

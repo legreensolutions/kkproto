@@ -132,6 +132,64 @@ $myuser->error_description = $strERR;
               $myuser->sec_ans = $_POST['txtsec_ans'];
               $chk = $myuser->update();
               if ( $chk == true ){
+
+
+
+//######################### FOR USERITEM ############################
+
+        if($myuser->usertype_id == USERTYPE_REGISTERED_USER ){
+
+            //for pagination
+            $Mypagination = new Pagination(100);
+
+
+            $MyItem = new Item($myconnection);
+            $MyItem->connection = $myconnection;
+            $chk = $MyItem->get_list_array();
+
+            //for pagination
+            $MyItem->total_records = $Mypagination->total_records;
+
+            $data_bylimit = $MyItem->get_list_array_bylimit(-1, "", "","",ITEMSTATUS_IN_STOCK,ITEMTYPE_KAFFAKARMA, $Mypagination->start_record,$Mypagination->max_records);
+            
+            if ( $data_bylimit == false ){
+                // No Items found
+            }else{
+                $count_data_bylimit=count($data_bylimit);
+                $index = 0;
+                $MyUserItem = new UserItem($myconnection);
+                $MyUserItem->connection = $myconnection;
+                while ( $count_data_bylimit > $index ){
+                    $MyUserItem->id = gINVALID;
+                    $MyUserItem->item_id = $data_bylimit[$index]["id"];
+                    $MyUserItem->user_price = $data_bylimit[$index]["unit_price"];
+                    $MyUserItem->user_id = $myuser->id;
+                    $MyUserItem->update();
+                    $index++;
+                }
+
+            }
+        }
+//###################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     if ( trim ( $_FILES['fleimage']['name'] ) != "" && $myuser->id > 0 ) {
                                                 //rename the uploaded Image file and the thumbnail
                                                 if ( $myimage->rename_image ($myuser->id, $arrupload["imagefile"], USER_DIR)  /*&& rename_image ($imageid, $arrupload["thumbfile"], THUMBS_DIR)*/ ) {
@@ -146,13 +204,13 @@ $myuser->error_description = $strERR;
                     send_email_to_user($_POST["txtusername"],$password,$_POST["txtusername"],$myuser->id);
                     }
                           $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_added;
-                            $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "index.php";
+                            $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "dashboard.php";
                             header( "Location: gfwflash.php");
                             exit();
               }
               else{
                             $_SESSION[SESSION_TITLE.'flash'] = $RD_MSG_attempt_failed;
-                            $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "index.php";
+                            $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "dashboard.php";
                             header( "Location: gfwflash.php");
                             exit();
              }
@@ -172,7 +230,7 @@ $myuser->error_description = $strERR;
             $user_image = USER_DIR . $myuser->id . '.' . $ext;
       }
       if ( $chk == false ){
-      header("Location: index.php");
+      header("Location: dashboard.php");
       exit();
       }
       if ( $myuser->city_id != "" ){
