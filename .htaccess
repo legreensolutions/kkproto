@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteRule ^\.htaccess$ - [F]
+RewriteCond %{HTTP_HOST} !^www\.kaffakarma\.local?$
+RewriteCond %{HTTP_HOST} ^([^.]+)\.kaffakarma\.local?$
+RewriteRule ^$ /subsite [L]

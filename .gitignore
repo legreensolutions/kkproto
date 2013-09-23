@@ -10,4 +10,4 @@
 # Ignore ~ hidden
 *.php~
 .gitignore~
-.htaccess
+
