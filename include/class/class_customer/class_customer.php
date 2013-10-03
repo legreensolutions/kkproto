@@ -97,7 +97,7 @@ class Customer {
             $strSQL .= "shipping_city = '".addslashes(trim($this->shipping_city))."',";
             $strSQL .= "shipping_state_id = '".addslashes(trim($this->shipping_state_id))."',";
             $strSQL .= "shipping_country_id = '".addslashes(trim($this->shipping_country_id))."',";
-            $strSQL .= "shipping_postal_code = '".addslashes(trim($this->shipping_postal_code))."',";
+            $strSQL .= "shipping_postal_code = '".addslashes(trim($this->shipping_postal_code))."' ";
             $strSQL .= " WHERE id = ".$this->id;//$this->id
             $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
             if ( mysql_affected_rows($this->connection) >= 0 ) {
