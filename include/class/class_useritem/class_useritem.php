@@ -184,6 +184,26 @@ function get_list_array(){
         
 }
 
+function get_array($user_id){
+        $items = array();
+        $strSQL = "SELECT * FROM useritems UI WHERE UI.user_id = ".addslashes(trim($user_id))."  ORDER BY UI.id";
+
+        $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
+        if ( mysql_num_rows($rsRES) > 0 ){
+            while ( $row = mysql_fetch_assoc($rsRES) ){
+                $items[$row["item_id"]]["id"] =  $row["id"];
+                $items[$row["item_id"]]["user_id"] = $row["user_id"];
+                $items[$row["item_id"]]["item_id"] = $row["item_id"];
+
+            }
+            return $items;
+        }else{
+            return $items;
+        }
+            
+        
+}
+
 
 function get_list_array_bylimit($id=gINVALID,$name="", $description="", $item_status_id=gINVALID, $item_type_id=gINVALID, $user_id=gINVALID, $item_id=gINVALID, $keywords="", $active=1,$start_record = 0,$max_records = 25){
 
@@ -276,7 +296,7 @@ function get_list_array_bylimit($id=gINVALID,$name="", $description="", $item_st
 
 function delete(){
     if($this->id > 0 ) {
-        $strSQL = " DELETE FROM items WHERE id = '".$this->id."'";
+        $strSQL = " DELETE FROM useritems WHERE id = '".$this->id."'";
         $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
         if ( mysql_affected_rows($this->connection) > 0 ) {
             return true;
@@ -288,7 +308,19 @@ function delete(){
     }
 }
 
-
+function delete_all(){
+    if($this->user_id > 0 ) {
+       $strSQL = " DELETE FROM useritems WHERE user_id = '".$this->user_id."'";
+        $rsRES = mysql_query($strSQL,$this->connection) or die(mysql_error(). $strSQL );
+        if ( mysql_affected_rows($this->connection) > 0 ) {
+            return true;
+        }else{
+            $this->error_number = 6;
+            $this->error_description="Can't deltete this items";
+            return  false;
+        }
+    }
+}
 
 
 }

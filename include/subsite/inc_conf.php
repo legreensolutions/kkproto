@@ -35,8 +35,9 @@
         $_SESSION[SESSION_TITLE.'charity'] = "";
         $_SESSION[SESSION_TITLE.'charity_id'] = "";
         $_SESSION[SESSION_TITLE.'flash'] = "No Charity Page found!";
+
         $_SESSION[SESSION_TITLE.'flash_redirect_page'] = "index.php";
-        header( "Location: ".WEB_URL."/gfwflash.php");
+        header( "Location: ../gfwflash.php");
         exit();
     }
     

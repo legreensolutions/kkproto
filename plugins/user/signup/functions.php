@@ -30,6 +30,6 @@
     //Send the mail to the Registered User with activation link
     mail($strTo,$strSubject,$strMailbody,$headers);
       //echo $strMailbody;
-     exit();
+     //exit();
 }
 ?>

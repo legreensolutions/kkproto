@@ -268,6 +268,12 @@ $kaffakarma_menu[$i][usertype] = USERTYPE_ADMIN;
 $kaffakarma_menu[$i][submenu] = "";
 $i++;
 
+$kaffakarma_menu[$i][caption] = "My Coffee";
+$kaffakarma_menu[$i][url]="my_items.php"; 
+$kaffakarma_menu[$i][usertype] = USERTYPE_REGISTERED_USER;
+$kaffakarma_menu[$i][submenu] = "";
+$i++;
+
 
 
 GLOBAL $sales_menu_admin;

@@ -1,4 +1,4 @@
-<?php 	
+<?php 
 	if(trim($_SESSION[SESSION_TITLE.'flash'])!=""){
 ?>
 

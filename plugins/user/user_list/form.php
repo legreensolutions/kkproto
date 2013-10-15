@@ -103,6 +103,7 @@
 
      while ( $count_data_bylimit > $index ){
         $link = "add_user.php?id=".$data_bylimit[$index]["id"]."";
+        $link_items = "user_items.php?id=".$data_bylimit[$index]["id"]."";
          if ( $style == "tbl_row_lite" ){
             $style="tbl_row_dark";
         }
@@ -113,7 +114,11 @@
         ?>
     <tr onmouseover="this.className='tbl_row_highlight'" onmouseout="this.className='<?php echo $style; ?>'"  class="<?php echo $style; ?>" >
         <td><?php echo $slno++ ?></td>
-        <td><a href="<?php echo $link; ?>"><?php echo $data_bylimit[$index]["user_name"]; ?></a></td>
+        <td><a href="<?php echo $link; ?>"><?php echo $data_bylimit[$index]["user_name"]; ?></a>
+<?php if($data_bylimit[$index]["id"] > 1) { ?>
+<a href="<?php echo $link_items; ?>">Items</a>
+<?php } ?>
+</td>
         <td><?php echo $data_bylimit[$index]["firstname"] ;?></td>
         <td><?php echo $data_bylimit[$index]["lastname"]; ?></td>
         <td><?php echo $data_bylimit[$index]["address"]; ?></td>
