@@ -1,0 +1,73 @@
+<html>
+ <title><?php if (!empty($title)) echo $title ?></title>
+<head>
+<link href="css/k_coffee_new.css" rel="stylesheet" type="text/css">
+ <?php if (!empty($js)) echo $js ?><?php if (!empty($css)) echo $css ?>
+</head>
+<body style="margin:auto;width:100%;text-align:center;height:800px;">
+
+        <div style="margin:auto;width:100%;text-align:center;min-height:1100px;background-color:#f9f3e6;overflow:auto;">
+                <div id="top-bg">
+                    <div id="left-top"></div><div style="float:none;height:0px;width:0px;"></div>
+                    <div id="right-top"></div>
+                </div>
+
+
+                <div id="left-menu">
+<?php if (!empty($left_menu)) echo $left_menu ?>
+
+                    <div id="m_bottom"></div>
+                </div>
+
+                
+        
+
+            <a id="linked_in" href="http://www.linkedin.com"></a>
+            <a id="twitter" href="http://www.twitter.com"> </a>
+            <a id="facebook" href="http://www.facebook.com"> </a>
+             <a id="logo" href="/index.php" > </a>  
+                <div id="search_left"></div>
+               
+<form name="frmsearch" id="frmsearch" method="GET" action="search_charity.php">
+            <div id="search_box">
+                <input   maxlength="40" name="txtcharity_name" id= "search" >
+            </div>            
+     
+            <input id="search_button" name="submit" type="image" value="" src="images/null.png"  title="Search Charity?"  style="cursor:pointer;" />
+            <input type="hidden" name="h_conf_search" value="<?php echo md5("CONF_SEARCH"); ?>">
+</form>
+               
+                <?php if ( $_SESSION[SESSION_TITLE.'userid'] > 0){ ?>
+                <a id="profile_link" href = "profile.php"> <p>Profile:<?= $_SESSION[SESSION_TITLE.'username'] ?></p> </a> 
+
+            <?php } else { ?>
+                <a id="open_new_account" href = "signup.php"> </a>
+                <!-- a id="open_new_account" href = "#" onClick="alert('Please wait till the site is officially launched.');"> </a-->
+            <?php } ?>
+<?php if ( $_SESSION[SESSION_TITLE.'userid'] > 0){ ?>
+                <a id="login" href = "logout.php"><br /><span id="login1">Logout</span></a> 
+
+            <?php } else { ?>
+                <a id="login" href = "login.php"><br /><span id="login1">Login</span></a>
+            <?php } ?>
+             
+            <div id="content">
+            <?php if (!empty($content)) echo $content;
+        echo $this->plugin_output;  ?>
+            </div>
+        </div>
+
+
+        <div id="footer_container">
+            <div id="footer">
+                <a href="privacy_policy.php">Privacy Policy</a>
+                <a href="terms_of_use.php">Terms of Use</a>
+                <a href="disclaimer.php">Disclaimer</a>
+                <a href="faq.php">FAQ</a>
+                <a href="sitemap.php">Site Map</a>   &copy; KaffaKarma.com. All rights reserved.
+            </div>
+        </div>
+    
+
+</body>
+</html>

@@ -10,7 +10,7 @@ $page = new gsPage;
 	$page->current_url = $current_url;	// current url for pages
 	$page->title = "Kaffakarma.com";	// page Title
 	$page->page_name = 'index';		// page name for menu and other purpose
-	$page->layout = 'k_coffee.html';		// layout name
+	$page->layout = 'k_coffee_new.html';		// layout name
 
         $page->use_gsconf = true;                 // enable GS conf
 
