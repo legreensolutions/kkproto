@@ -16,6 +16,14 @@
  $mycountry->connection = $myconnection;
  $data_country = $mycountry->get_list_array();
 
+
+ $mygender = new Gender($myconnection);
+ $mygender->connection = $myconnection;
+ $arr_gender = $mygender->get_list_array();
+
+ $myuser_detail = new UserDetail($myconnection);
+ $myuser_detail->connection = $myconnection;
+
  $myimage = new Image;
 
 if ( isset($_POST['submit']) && $_POST['submit'] == $CAP_OBJ_update ) {
@@ -77,6 +85,29 @@ $strERR = "";
         $myuser->image = $_FILES['fleimage']['name'];
         $data_user = $myuser->update();
         if ( $data_user == true ){
+
+            if($myuser->usertype_id == USERTYPE_REGISTERED_USER ){
+                $myuser_detail = new UserDetail();
+                $myuser_detail->id = $_SESSION[SESSION_TITLE.'userid'];;
+                $myuser_detail->connection = $myconnection;
+                $chk_userdetails = $myuser_detail->exist();
+                if($chk_userdetails == false){
+                    $myuser_detail->id = gINVALID;
+                }else{
+                    $myuser_detail->id = $_SESSION[SESSION_TITLE.'userid'];;
+                }
+                $myuser_detail->user_id = $myuser->id;
+                $myuser_detail->phone = $_POST['txtphone'];
+                $myuser_detail->fax = $_POST['txtfax'];
+               // $myuser_detail->dob = $_POST['txtdob'];
+                $myuser_detail->description = $_POST['txtdescription'];
+                $myuser_detail->gender_id = $_POST['lstgender'];
+                $myuser_detail->update();
+
+            }
+
+
+
             if ( trim ( $_FILES['fleimage']['name'] ) != "" && $myuser->id > 0 ) {
                 //rename the uploaded Image file and the thumbnail
                 if ( $myimage->rename_image ($myuser->id, $arrupload["imagefile"], USER_DIR)  /*&& rename_image ($imageid, $arrupload["thumbfile"], THUMBS_DIR)*/ ) {
@@ -110,6 +141,13 @@ $strERR = "";
 
 $myuser->id = $_SESSION[SESSION_TITLE.'userid'];
 $data_user = $myuser->get_detail();
+
+$myuser_detail = new UserDetail();
+$myuser_detail->id = $_SESSION[SESSION_TITLE.'userid'];
+$myuser_detail->connection = $myconnection;
+$chk_userdetails = $myuser_detail->get_detail();
+
+
 $image = $myuser->image;
 if ( $myuser->image != "" ) {
     $ext = explode('.', $myuser->image);

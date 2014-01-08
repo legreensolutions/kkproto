@@ -26,6 +26,14 @@
  $myuserstatus->connection = $myconnection;
  $chk_userstatus = $myuserstatus->get_list_array();
 
+ $mygender = new Gender($myconnection);
+ $mygender->connection = $myconnection;
+ $arr_gender = $mygender->get_list_array();
+
+ $myuser_detail = new UserDetail($myconnection);
+ $myuser_detail->connection = $myconnection;
+
+
  $myimage = new Image;
 
  if ( $_POST['submit'] == $CAP_add ) {
@@ -135,9 +143,18 @@ $myuser->error_description = $strERR;
 
 
 
-//######################### FOR USERITEM ############################
-
         if($myuser->usertype_id == USERTYPE_REGISTERED_USER ){
+
+             $myuser_detail->id = gINVALID;
+             $myuser_detail->user_id = $myuser->id;
+             $myuser_detail->phone = $_POST['txtphone'];
+             $myuser_detail->fax = $_POST['txtfax'];
+             //$myuser_detail->dob = $_POST['txtdob'];
+             $myuser_detail->description = $_POST['txtdescription'];
+             $myuser_detail->gender_id = $_POST['lstgender'];
+             $myuser_detail->update();
+
+//######################### FOR USERITEM ############################
 
             //for pagination
             $Mypagination = new Pagination(100);
@@ -222,6 +239,14 @@ $myuser->error_description = $strERR;
       $myuser->id = $_GET['id'];
       $myuser->connection = $myconnection;
       $chk1 = $myuser->get_detail();
+
+      $myuser_detail = new UserDetail();
+      $myuser_detail->id = $_GET['id'];
+      $myuser_detail->connection = $myconnection;
+      $chk_userdetails = $myuser_detail->get_detail();
+
+
+
       $image = $myuser->image;
       $r_date = date('m/d/Y', strtotime($myuser->registrationdate));
       if ( $myuser->image != "" ) {
@@ -321,6 +346,30 @@ $myuser->error_description = $strERR;
               $chk = $myuser->update();
 
               if ( $chk == true ){
+
+
+                if($myuser->usertype_id == USERTYPE_REGISTERED_USER ){
+                    $myuser_detail = new UserDetail();
+                    $myuser_detail->id = $_POST['h_check_id'];
+                    $myuser_detail->connection = $myconnection;
+                    $chk_userdetails = $myuser_detail->exist();
+                    if($chk_userdetails == false){
+                        $myuser_detail->id = gINVALID;
+                    }else{
+                        $myuser_detail->id = $myuser->id;
+                    }
+                    $myuser_detail->user_id = $myuser->id;
+                    $myuser_detail->phone = $_POST['txtphone'];
+                    $myuser_detail->fax = $_POST['txtfax'];
+                   // $myuser_detail->dob = $_POST['txtdob'];
+                    $myuser_detail->description = $_POST['txtdescription'];
+                    $myuser_detail->gender_id = $_POST['lstgender'];
+                    $myuser_detail->update();
+
+                }
+
+
+
                     if ( trim ( $_FILES['fleimage']['name'] ) != "" && $myuser->id > 0 ) {
                                                 //rename the uploaded Image file and the thumbnail
                                                $myimage->delete_image ($myuser->id, $myuser->image, USER_DIR);

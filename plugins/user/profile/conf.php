@@ -15,6 +15,16 @@ $CAP_state = "State";
 
 $CAP_country = "Country";
 
+$CAP_phone = "Phone";
+
+$CAP_fax = "Fax";
+
+$CAP_dob = "D O B";
+
+$CAP_description = "About Charity";
+
+$CAP_gender = "Gender";
+
 $CAP_upload_image = "Upload Image";
 
 $CAP_LIN_change_password = "Change Password";

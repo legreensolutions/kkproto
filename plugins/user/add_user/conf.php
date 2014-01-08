@@ -63,6 +63,16 @@ $CAP_city = "City";
 
 $CAP_country = "Country";
 
+$CAP_phone = "Phone";
+
+$CAP_fax = "Fax";
+
+$CAP_dob = "D O B";
+
+$CAP_description = "About Charity";
+
+$CAP_gender = "Gender";
+
 $CAP_image = "Upload Image (260 x 200)";
 
 $CAP_sec_que = "Security Question";

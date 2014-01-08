@@ -56,7 +56,30 @@
                                     <input style="width:200px;" align = "center" type="text" name="txtlastname" value="<?php if(isset($_POST['txtlastname'])){echo $_POST['txtlastname'];}else{echo $myuser->lastname;}?>"  >
                                 </td>
                             </tr>
-                            
+
+
+                            <tr>
+                                <td style="width:30%" align="right" >
+                                    <b><?php echo $CAP_gender ?></b>
+                                </td>   
+                                <td >
+                                    <?php
+                                    if (isset($_POST['lstgender'])){$gender_id = $_POST['lstgender'];}elseif($myuser_detail->gender_id > 0){$gender_id = $myuser_detail->gender_id;}
+                                    populate_list_array("lstgender", $arr_gender, "id", "name", $defaultvalue=$gender_id, $disable=false);?>
+                                </td>
+                            </tr>
+
+            <!--
+                         <tr>
+                                <td style="width:30%" align="right">
+                                    <b><?php echo $CAP_dob ?></b>
+                                </td>   
+                                <td >
+                                    <input style="width:200px;" align = "center" type="text"name="txtdob"  value="<?php if(isset($_POST['txtdob'])){echo $_POST['txtdob'];}elseif(isset($_SESSION[SESSION_TITLE.'userid'])){echo $myuser_detail->dob;}?>"  >
+                                </td>
+                         </tr>
+
+            -->                            
                             
                             <tr>
                                 <td style="width:30%" align="right">
@@ -89,6 +112,42 @@
                                     ?>
                                 </td>
                             </tr>
+
+
+
+
+                     <tr>
+                            <td style="width:30%" align="right">
+                                <b><?php echo $CAP_phone ?></b>
+                            </td>   
+                            <td >
+                                <input style="width:200px;" align = "center" type="text"name="txtphone"  value="<?php if(isset($_POST['txtphone'])){echo $_POST['txtphone'];}elseif(isset($_SESSION[SESSION_TITLE.'userid'])){echo $myuser_detail->phone;}?>"  >
+                            </td>
+                     </tr>
+
+                     <tr>
+                            <td style="width:30%" align="right">
+                                <b><?php echo $CAP_fax ?></b>
+                            </td>   
+                            <td >
+                                <input style="width:200px;" align = "center" type="text"name="txtfax"  value="<?php if(isset($_POST['txtfax'])){echo $_POST['txtfax'];}elseif(isset($_SESSION[SESSION_TITLE.'userid'])){echo $myuser_detail->fax;}?>"  >
+                            </td>
+                     </tr>
+
+                     <tr>
+                            <td style="width:30%" align="right">
+                                <b><?php echo $CAP_description ?></b>
+                            </td>   
+                            <td >
+                                <textarea style="width:400px;height:100px;" name="txtdescription" ><?php if(isset($_POST['txtdescription'])){echo $_POST['txtdescription'];}elseif(isset($_SESSION[SESSION_TITLE.'userid'])){echo $myuser_detail->description;}?></textarea >
+                            </td>
+                     </tr>
+
+
+
+
+
+
                                 <?php if ( $image == "" ) {?>
                                 <tr>
                                 <td style="width:30%" align="right" >

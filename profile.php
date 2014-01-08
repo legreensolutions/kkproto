@@ -17,7 +17,7 @@ $page = new gsPage;
     $page->connection_list = array("connection.php",);
 
     $page->function_list = array("functions.php","image.php");
-    $page->class_list = array("class_user.php","class_city.php","class_country.php","class_image.php");
+    $page->class_list = array("class_user.php","class_userdetail.php","class_gender.php","class_city.php","class_country.php","class_image.php");
 
     $index=0;
     $content_list[$index]['file_name']='inc_language.php';
